@@ -1,9 +1,14 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">首頁</router-link> |
+    <router-link to="/news">最新消息</router-link> |
+    <router-link to="/itinerary">時光行程</router-link> |
+    <router-link to="/history">歷史故事</router-link> |
+    <router-link to="/product">購物商城</router-link> |
+    <router-link to="/about">關於我們</router-link> |
+    <router-link to="/member">會員中心</router-link> |
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="scss">
