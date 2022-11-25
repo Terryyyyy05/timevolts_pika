@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "初始安裝套件(install)": "npm install"
   },
   "dependencies": {
     "core-js": "^3.8.3",
