@@ -1,26 +1,86 @@
+$padding:10px 30px;
+$border-radius: 15px;
+$font-size: 28px;
+$border: 3px solid #FEC570;
+
+
 //桌機版
+@mixin btn-primary{
+    display: flex;
+    padding: $padding;
+    border: none;
+    background-color: #FAB042;
+    box-shadow: 4px 4px 0px #D37E00;
+    text-align: center;
+    border-radius: $border-radius;
+    cursor: pointer; 
+    font-size: $font-size;
+    color:#131313; 
+    transition:all .2s;
+    transform:translate(-3px,-3px);
+        &:hover {
+            transform: translate(0,0);
+            transition: all .2s cubic-bezier(.15,.62,.43,.8);
+            box-shadow: 0px 0px;
+            background-color: #FEC570;
+
+        }
+    }
+
+@mixin btn-secondary{
+    display: flex;
+    padding: $padding;
+    border: $border;
+    background-color: #1E1E1E;
+    box-shadow: 4px 4px 0px #D37E00;
+    text-align: center;
+    border-radius: $border-radius;
+    cursor: pointer; 
+    font-size: $font-size;
+    color:#FAB042; 
+    transition:all .2s;
+    transform:translate(-3px,-3px);
+        &:hover {
+            transform: translate(0,0);
+            transition: all .2s cubic-bezier(.15,.62,.43,.8);
+            color:#FEC570; 
+            box-shadow: 0px 0px;
+
+        }
+    }
+
+@mixin btn-lightbox{
+    display: flex;
+    padding: $padding;
+    border: none;
+    background-color: #493A24;
+    box-shadow: 4px 4px 0px #D37E00;
+    border: $border;
+    text-align: center;
+    border-radius: $border-radius;
+    cursor: pointer; 
+    font-size: $font-size;
+    color:#FAB042; 
+    transition:all .2s;
+    transform:translate(-3px,-3px);
+        &:hover {
+            transform: translate(0,0);
+            transition: all .2s cubic-bezier(.15,.62,.43,.8);
+            color:#FEC570; 
+            box-shadow: 0px 0px;
+
+        }
+    }
+
+@mixin btn-disable{
+    display: flex;
+    padding: $padding;
+    border: none;
+    background-color: #5D5D5D;
+    text-align: center;
+    border-radius: $border-radius;
+    font-size: $font-size;
+    color:#A8A8A8; 
+    }
+    
 //手機版
-
-//btn module
-// @mixin btn_module( $btn , $r:null) {
-
-//     @each $k ,$v in $btn {
-//       .btn-#{$k} {
-//         max-width: 300px;
-//         padding: 10px 20px;
-//         background-color: $v;
-//         text-align: center;
-//         border-radius: $r;
-//         cursor: pointer;
-//         color:invert($v); 
-//         transition: all ease .5s;
-//         &:hover {
-//           background-color: darken($v , 20);
-  
-//         }
-//       }
-//     }
-  
-//   }
-  
-//   @include btn_module($btn , 5px);
