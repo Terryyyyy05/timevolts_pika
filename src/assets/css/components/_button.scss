@@ -1,7 +1,9 @@
 $padding:1% 3%;
 $border-radius: 15px;
-$font-size: 30px;
-$border: 3px solid #FEC570;
+$font-size: 20px;
+$border: 2.5px solid #FEC570;
+$box-shadow: 3px 3px 0px #D37E00;
+$box-shadow-none: 0px 0px;
 
 
 //桌機版
@@ -11,18 +13,18 @@ $border: 3px solid #FEC570;
     padding: $padding;
     border: none;
     background-color: #FAB042;
-    box-shadow: 4px 4px 0px #D37E00;
     text-align: center;
     border-radius: $border-radius;
     cursor: pointer; 
     font-size: $font-size;
+    box-shadow: $box-shadow;
     color:#131313; 
     transition:all .2s;
     transform:translate(-3px,-3px);
         &:hover {
             transform: translate(0,0);
             transition: all .2s cubic-bezier(.15,.62,.43,.8);
-            box-shadow: 0px 0px;
+            box-shadow: $box-shadow-none;
             background-color: #FEC570;
 
         }
@@ -34,7 +36,7 @@ $border: 3px solid #FEC570;
     border: $border;
 	font-family: 'Cube11';
     background-color: #1E1E1E;
-    box-shadow: 4px 4px 0px #D37E00;
+    box-shadow: $box-shadow;
     text-align: center;
     border-radius: $border-radius;
     cursor: pointer; 
@@ -46,7 +48,7 @@ $border: 3px solid #FEC570;
             transform: translate(0,0);
             transition: all .2s cubic-bezier(.15,.62,.43,.8);
             color:#FEC570; 
-            box-shadow: 0px 0px;
+            box-shadow: $box-shadow-none;
 
         }
     }
@@ -57,7 +59,7 @@ $border: 3px solid #FEC570;
     border: none;
 	font-family: 'Cube11';
     background-color: #493A24;
-    box-shadow: 4px 4px 0px #D37E00;
+    box-shadow: $box-shadow;
     border: $border;
     text-align: center;
     border-radius: $border-radius;
@@ -70,7 +72,7 @@ $border: 3px solid #FEC570;
             transform: translate(0,0);
             transition: all .2s cubic-bezier(.15,.62,.43,.8);
             color:#FEC570; 
-            box-shadow: 0px 0px;
+            box-shadow: $box-shadow-none;
 
         }
     }
