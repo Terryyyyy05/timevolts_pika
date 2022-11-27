@@ -2,10 +2,11 @@
   <div class="about">
     <h1>關於我們</h1>
     <p>About us</p>
-    <button class="primary">click me</button>
-    <button class="secondary">click me</button>
-    <button class="lightbox">click me</button>
-    <button class="disable">click me</button>
+    <p class="font">完盪了 按鈕字體跑不出來</p>
+    <button class="primary">主要按鈕</button>
+    <button class="secondary">次要按鈕</button>
+    <button class="lightbox">燈箱按鈕</button>
+    <button class="disable">停用狀態</button>
 
   </div>
 </template>
@@ -24,6 +25,9 @@ h1{
 }
 p{
 	font-family: '8bit';
+}
+.font{
+	font-family: 'Cube11';
 }
 .primary{
   @include btn-primary;
