@@ -3,13 +3,13 @@
     <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
-  <div>
-    <h1>
+  <div class="bg_dark">
+    <h1 >
     TimeVolts
     <span>時萬伏特</span>
     </h1>
   </div>
-  <div>
+  <div class="bg_dark p_md ">
     <p>Last login: Wed Nov 16 10:53:48</p>
     <p>Restored session:</p>
     <p>TimeVolts ~ %</p>
@@ -31,7 +31,7 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'HomeView',
@@ -40,3 +40,4 @@ export default {
   }
 }
 </script>
+

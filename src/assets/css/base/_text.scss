@@ -1,10 +1,21 @@
 @import "../utils/variables";
 @import "../utils/mixin";
+<<<<<<< HEAD
 @import "../base/basic";
 
+=======
+>>>>>>> 2e0f2a6ba43b789baef375dafa382912487247f5
 
 * {
-  font-family: 'Cube11';
+  font-family: "Cube11";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Cube&8";
 }
 
 // 標題
