@@ -30,7 +30,7 @@
   @each $k, $fz in $paragraph {
     #{$k} {
       font-size: $fz;
-      line-height: $fz * 1.2;
+      line-height: $fz * 1.4;
       color: $color;
 
       letter-spacing: $fz * 0.01;

@@ -3,16 +3,22 @@
 
 @font-face {
   font-family: "Cube11";
+<<<<<<< HEAD
   src: url("@/assets/css/font/Cubic.woff") format("woff");
 
     //url("/public/fonts/cube11/Cubic_11_1.013_R.woff2") format("woff2");
+=======
+  src: url("@/assets/css/font/Cubic.ttf") format("woff2");
+  // @/assets\css\font\Cubic.ttf
+  // src: url("/public/fonts/cube11/Cubic_11_1.013_R.woff") format("woff"),
+  // url("/public/fonts/cube11/Cubic_11_1.013_R.woff2") format("woff2");
+>>>>>>> 81d015ac1388a17163611e53dd94f1c3be721a8f
 }
 
 @font-face {
   font-family: "8bit";
-  src: url("/public/fonts/8bit/8-BIT\ WONDER.TTF") format("truetype");
+  src: url("@/assets/css/font/8BIT.TTF") format("truetype");
 }
 
 // 背景顏色
 @include bgc($color);
-
