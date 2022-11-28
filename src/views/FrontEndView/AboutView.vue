@@ -1,10 +1,4 @@
 <template>
-  <div>
-    <Tabs>
-      <Tab>123</Tab>
-    </Tabs>
-  </div>
-
   <div class="about">
     <h1>關於我們</h1>
     <p>About us</p>
@@ -18,14 +12,6 @@
 </template>
 
 <script>
-import Tabs from '@/components/Tabs.vue'
-import Tab from '@/components/Tab.vue'
-  export default {
-    components: {
-      Tabs,
-      Tab,
-    }
-  }
 
 </script>
 

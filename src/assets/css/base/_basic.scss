@@ -2,17 +2,9 @@
 @import "../utils/mixin";
 
 @font-face {
-<<<<<<< HEAD
-  font-family: "Cube11";
-
-  // @/assets\css\font\Cubic.ttf
-  // src: url("/public/fonts/cube11/Cubic_11_1.013_R.woff") format("woff"),
-  // url("/public/fonts/cube11/Cubic_11_1.013_R.woff2") format("woff2");
-=======
   font-family: "Cube&8";
   src: url("@/assets/css/font/Cubic.ttf") format("truetype");
   unicode-range: U+4E00-9FFF;
->>>>>>> 2e0f2a6ba43b789baef375dafa382912487247f5
 }
 
 @font-face {
