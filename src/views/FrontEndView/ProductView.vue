@@ -24,7 +24,7 @@
       <div class="bg_body_dark">bg_body_dark</div>
       <div class="bg_dark">bg_dark</div>
       <div class="bg_dark_sub">bg_dark_sub</div>
-      <div class="bg_muted ">bg_muted </div>
+      <div class="bg_muted">bg_muted</div>
       <div class="bg_light">bg_light</div>
       <div class="bg_light_sub">bg_light_sub</div>
     </div>
@@ -32,6 +32,7 @@
 </template>
 
 <style lang="scss" scoped>
+@import "@/assets/css/utils/variables";
 h1,
 h2,
 h3,
@@ -40,9 +41,10 @@ h5,
 p {
   border: 1px solid red;
   width: fit-content;
+  color: map-get($color, primary);
 }
 
-.container{
+.container {
   border: 1px solid blue;
 }
 
