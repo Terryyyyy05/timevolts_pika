@@ -2,6 +2,10 @@
 @import "../utils/mixin";
 @import "../font/font";
 
+* {
+  font-family: 'Cube11';
+}
+
 // 標題
 @include title($title_d);
 

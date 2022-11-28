@@ -1,16 +1,20 @@
-// layout
-@import 'layout/rwd';
-
+// utils
+@import "utils/variables";
 // base
-@import 'base/basic';
-@import 'base/border';
-@import 'base/color';
-@import 'base/font';
-@import 'base/reset';
-@import 'base/spacing';
+@import "base/basic";
+@import "base/text";
+@import "base/border";
+@import "base/color";
+@import "base/font";
+@import "base/reset";
+@import "base/spacing";
+
+// layout
+@import "layout/rwd";
 
 // component
-@import 'components/button';
+@import "components/button";
+
 
 // utils
 @import 'utils/function';

@@ -6,36 +6,36 @@ $t-breakpoint: 1439px;
 $container: (
   "d_container": (
     "max_width": 1320px,
-    "width": 90%,
+    "width": 94%,
   ),
   "t_container": (
     "max_width": 1140px,
-    "width": 90%,
+    "width": 94%,
   ),
   "m_container": (
     "max_width": 720px,
-    "width": 100%,
+    "width": 94%,
   ),
 );
 
 // -------- 顏色
 $color: (
-  "primary" #ffe1b5,
-  "primary_sub" #c1af92,
+  "primary": #ffe1b5,
+  "primary_sub": #c1af92,
 
-  "accent" #fab042,
-  "accent_sub" #fec570,
-  "accent_reverse" #493a24,
+  "accent": #fab042,
+  "accent_sub": #fec570,
+  "accent_reverse": #493a24,
 
   //底色為亮色時的強調色
-  "body_dark" #131313,
-  "dark" #1e1e1e,
-  "dark_sub" #333333,
+  "body_dark": #131313,
+  "dark": #1e1e1e,
+  "dark_sub": #333333,
 
-  "muted" #5d5d5d,
+  "muted": #5d5d5d,
 
-  "light" #fffaec,
-  "light_sub" #d9d9d9
+  "light": #fffaec,
+  "light_sub": #d9d9d9
 );
 
 //--------- 字體大小/行距
@@ -48,3 +48,6 @@ $title_m: ("h1" 38px, "h2" 30px, "h3" 24px, "h4" 22px, "h5" 18px);
 $paragraph_d: (".p_md" 18px, ".p_lg" 24px, ".p_xl" 28px);
 
 $paragraph_m: (".p_md" 14px, ".p_lg" 16px, ".p_xl" 18px);
+
+
+// map-get($物件總名稱, key的名稱)
