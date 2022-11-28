@@ -1,3 +1,4 @@
+
 $padding:1% 3%;
 $border-radius: 15px;
 $font-size: 20px;
@@ -12,7 +13,7 @@ $box-shadow-none: 0px 0px;
 	font-family: 'Cube11';
     padding: $padding;
     border: none;
-    background-color: #FAB042;
+    background-color: $bg-accent;
     text-align: center;
     border-radius: $border-radius;
     cursor: pointer; 
