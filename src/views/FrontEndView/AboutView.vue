@@ -1,4 +1,10 @@
 <template>
+  <div>
+    <Tabs>
+      <Tab>123</Tab>
+    </Tabs>
+  </div>
+
   <div class="about">
     <h1>關於我們</h1>
     <p>About us</p>
@@ -12,7 +18,14 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import Tabs from '@/components/Tabs.vue'
+import Tab from '@/components/Tab.vue'
+  export default {
+    components: {
+      Tabs,
+      Tab,
+    }
+  }
 
 </script>
 
@@ -30,19 +43,19 @@ p{
 	font-family: '8bit';
 }
 .primary{
-  // @include btn-primary;
+  // map-get(@button,primary);
   margin: 20px;
 }
 .secondary{
-  @include btn-secondary;
+  // @include btn-secondary;
   margin: 20px;
 }
 .lightbox{
-  @include btn-lightbox;
+  // @include btn-lightbox;
   margin: 20px;
 }
 .disable{
-  @include btn-disable;
+  // @include btn-disable;
   margin: 20px;
 }
 
