@@ -1,15 +1,16 @@
-@font-face {
-    font-family: 'Cube11';
-    src: url('/public/fonts/cube11/Cubic_11_1.013_R.woff')format('woff'),url('/public/fonts/cube11/Cubic_11_1.013_R.woff2') format('woff2');
-  }
-@font-face {
-    font-family: '8bit';
-    src: url('/public/fonts/8bit/8-BIT\ WONDER.TTF')format('truetype');
-  }
-  @import "../utils/variables";
+@import "../utils/variables";
 @import "../utils/mixin";
+
+@font-face {
+  font-family: "Cube11";
+  src: url("/public/fonts/cube11/Cubic_11_1.013_R.woff") format("woff"),
+    url("/public/fonts/cube11/Cubic_11_1.013_R.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "8bit";
+  src: url("/public/fonts/8bit/8-BIT\ WONDER.TTF") format("truetype");
+}
 
 // 背景顏色
 @include bgc($color);
-
-
