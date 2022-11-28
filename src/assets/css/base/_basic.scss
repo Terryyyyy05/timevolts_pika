@@ -3,8 +3,9 @@
 
 @font-face {
   font-family: "Cube11";
-  src: url("/public/fonts/cube11/Cubic_11_1.013_R.woff") format("woff"),
-    url("/public/fonts/cube11/Cubic_11_1.013_R.woff2") format("woff2");
+  src: url("@/assets/css/font/Cubic.woff") format("woff");
+
+    //url("/public/fonts/cube11/Cubic_11_1.013_R.woff2") format("woff2");
 }
 
 @font-face {

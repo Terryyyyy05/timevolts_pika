@@ -2,7 +2,7 @@
   <div class="about">
     <h1>關於我們</h1>
     <p>About us</p>
-    <p class="font">完盪了 按鈕字體跑不出來</p>
+    <p class="font">完盪了 按鈕字體跑不出來hihihi</p>
     <button class="primary">主要按鈕</button>
     <button class="secondary">次要按鈕</button>
     <button class="lightbox">燈箱按鈕</button>
@@ -17,20 +17,20 @@
 </script>
 
 <style scope lang="scss">
-@import "../../assets/css/app.scss";
+@import "@/assets/css/app.scss";
 
 h1{
-	font-family: 'Cube11';
+  font-family: "Cube11";
   color: antiquewhite;
 }
 p{
-	font-family: '8bit';
+	font-family: "Cube11";
 }
 .font{
-	font-family: 'Cube11';
+	font-family: '8bit';
 }
 .primary{
-  @include btn-primary;
+  // @include btn-primary;
   margin: 20px;
 }
 .secondary{
