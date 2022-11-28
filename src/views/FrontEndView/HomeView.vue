@@ -47,5 +47,10 @@ h1{
     display: none;
   }
 }
-
+.home{
+  display: flex;
+  flex-direction: column;
+  // border: 1px map-get($color , primary );
+  // color: get-map($color,primary) ;
+}
 </style>
