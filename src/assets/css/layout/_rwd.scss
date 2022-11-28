@@ -1,0 +1,22 @@
+@import "../utils/variables";
+@import "../utils/mixin";
+
+// container
+@mixin container($container, $status) {
+  .container {
+    @if $status == "d" {
+      width: min(map-get($container, d_container, width), map-get($container, d_container, max_width));
+    } @else if $status == "t" {
+      width: min(map-get($container, t_container, width), map-get($container, t_container, max_width));
+    } @else if $status == "m" {
+      width: min(map-get($container, m_container, width), map-get($container, m_container, max_width));
+    }
+    margin: 0 auto;
+  }
+}
+
+@include container($container, "d");
+
+@include m() {
+  @include container($container, "m");
+}

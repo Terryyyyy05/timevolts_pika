@@ -6,4 +6,10 @@
     font-family: '8bit';
     src: url('/public/fonts/8bit/8-BIT\ WONDER.TTF')format('truetype');
   }
-  
+  @import "../utils/variables";
+@import "../utils/mixin";
+
+// 背景顏色
+@include bgc($color);
+
+

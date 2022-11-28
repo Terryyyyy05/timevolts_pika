@@ -1,0 +1,17 @@
+@import "../utils/variables";
+@import "../utils/mixin";
+@import "../font/font";
+
+// 標題
+@include title($title_d);
+
+@include m() {
+  @include title($title_m);
+}
+
+// 內文
+@include paragraph($paragraph_d);
+
+@include m() {
+  @include paragraph($paragraph_m);
+}
