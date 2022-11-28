@@ -1,10 +1,151 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 @font-face {
-  font-family: "Cube11";
-  src: url("@/assets/css/font/Cubic.ttf") format("woff2");
+  font-family: "Cube&8";
+  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF;
 }
 @font-face {
-  font-family: "8bit";
+  font-family: "Cube&8";
   src: url("@/assets/css/font/8BIT.TTF") format("truetype");
+  unicode-range: U+00-024F;
+}
+@font-face {
+  font-family: "Cube11";
+  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
 }
 .bg_primary {
   background-color: #ffe1b5;
@@ -52,6 +193,14 @@
 
 * {
   font-family: "Cube11";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Cube&8";
 }
 
 h1 {
