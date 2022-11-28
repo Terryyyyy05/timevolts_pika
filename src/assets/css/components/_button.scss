@@ -13,7 +13,7 @@ $box-shadow-none: 0px 0px;
 	font-family: 'Cube11';
     padding: $padding;
     border: none;
-    background-color: $bg-accent;
+    background-color: map-get($color,"accent");
     text-align: center;
     border-radius: $border-radius;
     cursor: pointer; 
