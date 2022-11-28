@@ -4,7 +4,7 @@
     <router-link to="/news">最新消息</router-link> |
     <router-link to="/itinerary">時光行程</router-link> |
     <router-link to="/history">歷史故事</router-link> |
-    <router-link to="/product">購物商城</router-link> |
+    <router-link to="/product">購物商城Test</router-link> |
     <router-link to="/about">關於我們</router-link> |
     <router-link to="/member">會員中心</router-link> |
   </nav>

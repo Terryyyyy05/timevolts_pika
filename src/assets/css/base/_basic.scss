@@ -1,0 +1,7 @@
+@import "../utils/variables";
+@import "../utils/mixin";
+
+// 背景顏色
+@include bgc($color);
+
+
