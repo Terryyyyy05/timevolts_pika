@@ -1,10 +1,10 @@
 @font-face {
   font-family: "Cube11";
-  src: url("/public/fonts/cube11/Cubic_11_1.013_R.woff") format("woff"), url("/public/fonts/cube11/Cubic_11_1.013_R.woff2") format("woff2");
+  src: url("@/assets/css/font/Cubic.ttf") format("woff2");
 }
 @font-face {
   font-family: "8bit";
-  src: url("/public/fonts/8bit/8-BIT WONDER.TTF") format("truetype");
+  src: url("@/assets/css/font/8BIT.TTF") format("truetype");
 }
 .bg_primary {
   background-color: #ffe1b5;
@@ -50,17 +50,6 @@
   background-color: #d9d9d9;
 }
 
-/* @font-face {
-  font-family: "font";
-  src: url('./src/assets/css/font/8BIT.TTF') format('truetype');
-} */
-/* @font-face {
-  font-family: "font";
-  src: url(../../font/8BIT.TTF);
-} */
-/* html {
-  font-family: "font";
-} */
 * {
   font-family: "Cube11";
 }
@@ -124,36 +113,36 @@ h5 {
 }
 .p_md {
   font-size: 18px;
-  line-height: 21.6px;
+  line-height: 25.2px;
   letter-spacing: 0.18px;
 }
 
 .p_lg {
   font-size: 24px;
-  line-height: 28.8px;
+  line-height: 33.6px;
   letter-spacing: 0.24px;
 }
 
 .p_xl {
   font-size: 28px;
-  line-height: 33.6px;
+  line-height: 39.2px;
   letter-spacing: 0.28px;
 }
 
 @media screen and (max-width: 767px) {
   .p_md {
     font-size: 14px;
-    line-height: 16.8px;
+    line-height: 19.6px;
     letter-spacing: 0.14px;
   }
   .p_lg {
     font-size: 16px;
-    line-height: 19.2px;
+    line-height: 22.4px;
     letter-spacing: 0.16px;
   }
   .p_xl {
     font-size: 18px;
-    line-height: 21.6px;
+    line-height: 25.2px;
     letter-spacing: 0.18px;
   }
 }
@@ -167,4 +156,7 @@ h5 {
     width: min(94%, 720px);
     margin: 0 auto;
   }
+}
+body {
+  background-color: #131313;
 }/*# sourceMappingURL=app.css.map */

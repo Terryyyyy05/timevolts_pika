@@ -2,15 +2,39 @@
   <div class="product_test">
     <h1>Test</h1>
     <hr />
-    <h1>這是h1 title</h1>
-    <h2>這是h2 title</h2>
-    <h3>這是h3 title</h3>
-    <h4>這是h4 title</h4>
-    <h5>這是h5 title</h5>
+    <h1>
+      這是h1 <br />
+      title
+    </h1>
+    <h2>
+      這是h2 <br />
+      title
+    </h2>
+    <h3>
+      這是h3 <br />
+      title
+    </h3>
+    <h4>
+      這是h4 <br />
+      title
+    </h4>
+    <h5>
+      這是h5 <br />
+      title
+    </h5>
     <hr />
-    <p class="p_xl">p_xl 安安你好我很好大家好 hfl hfdslkhjl sdhjlfkh hdfsl</p>
-    <p class="p_lg">p_lg 安安你好我很好大家好 hfl hfdslkhjl sdhjlfkh hdfsl</p>
-    <p class="p_md">p_md 安安你好我很好大家好 hfl hfdslkhjl sdhjlfkh hdfsl</p>
+    <p class="p_xl">
+      p_xl 安安你好我很好大家好<br />hfl hfdslkhjl sdhjlfkh hdfsl<br />dsfadsfdsfsa
+      dsfds
+    </p>
+    <p class="p_lg">
+      p_lg 安安你好我很好大家好<br />hfl hfdslkhjl sdhjlfkh hdfsl<br />dsfadsfdsfsa
+      dsfds
+    </p>
+    <p class="p_md">
+      p_md 安安你好我很好大家好<br />hfl hfdslkhjl sdhjlfkh hdfsl<br />dsfadsfdsfsa
+      dsfdsl
+    </p>
     <hr />
     <h3>bgc_test</h3>
     <div class="bgc_test container">
