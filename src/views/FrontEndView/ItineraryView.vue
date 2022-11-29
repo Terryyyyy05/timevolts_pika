@@ -41,6 +41,7 @@
     import * as THREE from 'three';
     import gsap from 'gsap';
     import * as $ from 'jquery';
+    import imgA from '@/assets/image/itineraryglobe.jpg';
     export default{
         mounted() {
             this.initThree()
@@ -94,10 +95,11 @@
                         fragmentShader:fShader,
                         uniforms:{
                             globeTexture:{
-                                value: new THREE.TextureLoader().load('./img/globe.jpg')
+                                value: new THREE.TextureLoader().load(imgA)
+                                // @assets\image\itineraryglobe.jpg
+                                // map: new THREE.TextureLoader().load('./src/assets/image/itineraryglobe.jpg')
                             }
                         }
-                        // map: new THREE.TextureLoader().load('./img/globe.jpg')
                     })
                 )
                 
@@ -160,7 +162,7 @@
                 function animate() {
                     requestAnimationFrame(animate)
                     renderer.render(scene, camera)
-                    sphere.rotation.y += 0.002
+                    sphere.rotation.y += 0.01
                     group.rotation.y = mouse.x * 0.5
                     gsap.to(group.rotation, {
                         x: -mouse.y * 0.6,
