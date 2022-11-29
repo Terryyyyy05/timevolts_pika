@@ -1,10 +1,151 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 @font-face {
-  font-family: "Cube11";
-  src: url("/public/fonts/cube11/Cubic_11_1.013_R.woff") format("woff"), url("/public/fonts/cube11/Cubic_11_1.013_R.woff2") format("woff2");
+  font-family: "Cube&8";
+  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF;
 }
 @font-face {
-  font-family: "8bit";
-  src: url("/public/fonts/8bit/8-BIT WONDER.TTF") format("truetype");
+  font-family: "Cube&8";
+  src: url("@/assets/css/font/8BIT.TTF") format("truetype");
+  unicode-range: U+00-024F;
+}
+@font-face {
+  font-family: "Cube11";
+  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
 }
 .bg_primary {
   background-color: #ffe1b5;
@@ -50,19 +191,16 @@
   background-color: #d9d9d9;
 }
 
-/* @font-face {
-  font-family: "font";
-  src: url('./src/assets/css/font/8BIT.TTF') format('truetype');
-} */
-/* @font-face {
-  font-family: "font";
-  src: url(../../font/8BIT.TTF);
-} */
-/* html {
-  font-family: "font";
-} */
-* {
+html {
   font-family: "Cube11";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Cube&8";
 }
 
 h1 {
@@ -124,36 +262,36 @@ h5 {
 }
 .p_md {
   font-size: 18px;
-  line-height: 21.6px;
+  line-height: 25.2px;
   letter-spacing: 0.18px;
 }
 
 .p_lg {
   font-size: 24px;
-  line-height: 28.8px;
+  line-height: 33.6px;
   letter-spacing: 0.24px;
 }
 
 .p_xl {
   font-size: 28px;
-  line-height: 33.6px;
+  line-height: 39.2px;
   letter-spacing: 0.28px;
 }
 
 @media screen and (max-width: 767px) {
   .p_md {
     font-size: 14px;
-    line-height: 16.8px;
+    line-height: 19.6px;
     letter-spacing: 0.14px;
   }
   .p_lg {
     font-size: 16px;
-    line-height: 19.2px;
+    line-height: 22.4px;
     letter-spacing: 0.16px;
   }
   .p_xl {
     font-size: 18px;
-    line-height: 21.6px;
+    line-height: 25.2px;
     letter-spacing: 0.18px;
   }
 }

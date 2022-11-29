@@ -1,9 +1,18 @@
 @import "../utils/variables";
 @import "../utils/mixin";
-@import "../font/font";
+@import "../base/basic";
 
-* {
-  font-family: 'Cube11';
+
+html {
+  font-family: "Cube11";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Cube&8";
 }
 
 // 標題
