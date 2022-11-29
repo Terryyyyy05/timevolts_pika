@@ -12,39 +12,35 @@
 </template>
 
 <script>
-
+// import  from 
+//   export default {
+//     components: {
+      
+//     }
+//   }
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/css/app.scss";
-@import "../../assets/css/base/text";
 
-h1{
-  color: antiquewhite;
-}
-p{
-  color: antiquewhite;
-  font-family: "Cube11";
-}
-.font{
-  font-family: "Cube11";
-}
 .primary{
-  // map-get(@button,primary);
+  @include btn-primary;
   margin: 20px;
 }
+
 .secondary{
-  // @include btn-secondary;
+  @include btn-secondary;
   margin: 20px;
-  font-family: "Cube11";
 }
 .lightbox{
-  // @include btn-lightbox;
+  @include btn-lightbox;
   margin: 20px;
 }
+
 .disable{
-  // @include btn-disable;
+  @include btn-disable;
   margin: 20px;
 }
+
 
 </style>
