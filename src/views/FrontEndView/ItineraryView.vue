@@ -16,7 +16,14 @@
     </div>
   </section>
   <section class="section">
-    <div class="container">carousel</div>
+    <div class="container">
+        <div>
+            <itinirary-crsl-btn msg="經典行程"/>
+            <itinirary-crsl-btn msg="歷史事件"/>
+            <itinirary-crsl-btn msg="ccc"/>
+        </div>
+
+    </div>
   </section>
   <section class="section">
     <div class="container">worldmap</div>
@@ -38,7 +45,12 @@
     import gsap from 'gsap';
     import * as $ from 'jquery';
     import imgA from '@/assets/image/itineraryglobe.jpg';
+    import itiniraryCrslBtn from '@/components/itiniraryCrslBtn.vue'
     export default{
+        name: 'itiniraryView',
+        components:{
+            itiniraryCrslBtn
+        },
         mounted() {
             this.initThree()
         },
@@ -158,7 +170,7 @@
                 function animate() {
                     requestAnimationFrame(animate)
                     renderer.render(scene, camera)
-                    sphere.rotation.y += 0.01
+                    sphere.rotation.y += 1
                     group.rotation.y = mouse.x * 0.5
                     gsap.to(group.rotation, {
                         x: -mouse.y * 0.6,
