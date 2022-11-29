@@ -20,5 +20,11 @@ export default {
         text-align: center;
         color:map-get($color, primary)
     }
+    .itinCrslBtn{
+      border: 1px solid red;
+      display: inline-block;
+      padding: 10px;
+      margin: 10px 30px;
+    }
 
 </style>
