@@ -13,9 +13,14 @@
   unicode-range: U+00-024F;
 }
 
+// @font-face {
+//   font-family: "Cube11";
+//   src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+// }
+
 @font-face {
   font-family: "Cube11";
-  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+  src: url("@/assets/css/font/Cubic.woff");
 }
 
 // 背景顏色

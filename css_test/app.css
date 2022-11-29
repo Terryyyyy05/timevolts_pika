@@ -145,7 +145,7 @@ table {
 }
 @font-face {
   font-family: "Cube11";
-  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+  src: url("@/assets/css/font/Cubic.woff");
 }
 .bg_primary {
   background-color: #ffe1b5;
@@ -203,7 +203,7 @@ table {
 }
 @font-face {
   font-family: "Cube11";
-  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+  src: url("@/assets/css/font/Cubic.woff");
 }
 .bg_primary {
   background-color: #ffe1b5;

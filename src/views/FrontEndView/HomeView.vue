@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 @import "@/assets/css/app.scss";
 .homeTitle{
   margin: 20px;
@@ -59,4 +59,4 @@ export default {
   color: map-get($color, primary) ;
   
 }
-</style>
+</style> -->
