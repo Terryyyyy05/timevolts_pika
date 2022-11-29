@@ -1,41 +1,37 @@
 <template>
-    <div class="about">
-        <h1>行程</h1>
+  <div class="about">
+    <h1>行程</h1>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="banner1">
+        <div class="word_wrap">
+          <p class="text">來場時空穿越之旅吧</p>
+        </div>
+        <div class="globe_wrap" id="globe_container">
+          <canvas class="canvas_globe"></canvas>
+        </div>
+      </div>
     </div>
-    
-    <section class="section">
-        <div class="container">
-            <div class="banner1">
-                <div class="word_wrap">
-                    <p class="text">來場時空穿越之旅吧</p>
-                </div>
-                <div class="globe_wrap" id="globe_container">
-                    <canvas class="canvas_globe"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            carousel
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            worldmap
-        </div>
-    </section>
-    <section>
-        <div>filter</div>
-        <div>
-            <h2>經典行程</h2>
-            <div>經典行程card</div>
-        </div>
-        <div>
-            <h2>經典行程</h2>
-            <div>經典行程card</div>
-        </div>
-    </section>
+  </section>
+  <section class="section">
+    <div class="container">carousel</div>
+  </section>
+  <section class="section">
+    <div class="container">worldmap</div>
+  </section>
+  <section>
+    <div>filter</div>
+    <div>
+      <h2>經典行程</h2>
+      <div>經典行程card</div>
+    </div>
+    <div>
+      <h2>經典行程</h2>
+      <div>經典行程card</div>
+    </div>
+  </section>
 </template>
 <script type="module">
     import * as THREE from 'three';
@@ -78,8 +74,8 @@
                         vertexUV =uv;
                         vertexNormal = normalize(normalMatrix * normal);
                         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                    }`
-                const fShader =`
+                    }`;
+      const fShader = `
                     uniform sampler2D globeTexture;
                     varying vec2 vertexUV;
                     varying vec3 vertexNormal;
@@ -109,8 +105,8 @@
                     void main(){
                         vertexNormal = normalize(normalMatrix * normal);
                         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                    }`
-                const atmospherefShader =`
+                    }`;
+      const atmospherefShader = `
                     varying vec3 vertexNormal;
                     void main(){
                         float intensity = pow(0.6 - dot(vertexNormal, vec3(0, 0, 1.0)), 2.0);
@@ -177,68 +173,65 @@
                         resizeBanner()
                     })
 
-                    function resizeBanner(){
-                        $('.banner1').css({
-                            height: '90vh'
-                        })
-                        $('#globe_container').css({
-                            width:'70%',
-                            height: '90vh'
-                        })
-                        $('.canvas_globe').css({
-                            width:'100%',
-                            height: '90vh'
-                        })
-                        camera.aspect = globe_container.offsetWidth / globe_container.offsetHeight; //使用者可見整個場景物件改變大小
-                        camera.updateProjectionMatrix(); //更新投影矩陣
-                    }
-                })
-
-            
-                
-                window.addEventListener('mousemove', function(e){
-                    mouse.x = (e.clientX / innerWidth ) * 2 - 1
-                    mouse.y = (e.clientY / innerHeight ) * 2 - 1
-                
-                    console.log(mouse);
-                })
-            }
+        function resizeBanner() {
+          $(".banner1").css({
+            height: "90vh",
+          });
+          $("#globe_container").css({
+            width: "70%",
+            height: "90vh",
+          });
+          $(".canvas_globe").css({
+            width: "100%",
+            height: "90vh",
+          });
+          camera.aspect =
+            globe_container.offsetWidth / globe_container.offsetHeight; //使用者可見整個場景物件改變大小
+          camera.updateProjectionMatrix(); //更新投影矩陣
         }
-    }    
+      });
 
+      window.addEventListener("mousemove", function (e) {
+        mouse.x = (e.clientX / innerWidth) * 2 - 1;
+        mouse.y = (e.clientY / innerHeight) * 2 - 1;
+
+        console.log(mouse);
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-    @import "@/assets/css/app.scss";
-    .section{
-        width: 100%;
-        height: 90vh;
-        outline: 1px solid red;
-        margin: 10px 0;
-    }
-    .container{
-        width:map-get($container , each(d_container));
-        height:100%;
-        outline: 1px solid blue;
-    }
-    .banner1{
-        display: flex;
-        height: 90vh;
-        background-color: #000;
-    }
-    .globe_wrap{
-        width: 70%;
-        
-    }
-    .word_wrap{
-        width: 30%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .text{
-        color: #fff;
-        font-size: 28px;
-        text-align: center;
-    }
+@import "@/assets/css/app.scss";
+.section {
+  width: 100%;
+  height: 90vh;
+  outline: 1px solid red;
+  margin: 10px 0;
+}
+.container {
+  width: map-get($container, each(d_container));
+  height: 100%;
+  outline: 1px solid blue;
+}
+.banner1 {
+  display: flex;
+  height: 90vh;
+  background-color: #000;
+}
+.globe_wrap {
+  width: 70%;
+}
+.word_wrap {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text {
+  color: #fff;
+  font-size: 28px;
+  text-align: center;
+}
 </style>

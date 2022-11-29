@@ -12,7 +12,7 @@
 </template>
 
 <style lang="scss">
-@import "@/assets/css/app.scss";
+@import "@/assets/css/utils/variables";
 // #app {
 //   font-family: Avenir, Helvetica, Arial, sans-serif;
 //   -webkit-font-smoothing: antialiased;

@@ -15,7 +15,7 @@
 
 </script>
 
-<style scope lang="scss">
+<style scoped lang="scss">
 @import "@/assets/css/app.scss";
 
 h1{
