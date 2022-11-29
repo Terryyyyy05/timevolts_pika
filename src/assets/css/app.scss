@@ -1,6 +1,10 @@
 // css-reset
 @import "base/reset";
 
+// utils
+@import "utils/variables";
+@import "utils/mixin";
+
 // base
 @import "base/basic";
 @import "base/text";
@@ -14,6 +18,3 @@
 
 // component
 @import "components/button";
-
-// pages
-@import "pages/common";
