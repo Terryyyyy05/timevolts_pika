@@ -134,18 +134,18 @@ table {
 }
 
 @font-face {
+  font-family: "Cube11";
+  src: url("@/assets/css/font/Cubic.WOFF") format("truetype");
+}
+@font-face {
   font-family: "Cube&8";
-  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+  src: url("@/assets/css/font/Cubic.WOFF") format("truetype");
   unicode-range: U+4E00-9FFF;
 }
 @font-face {
   font-family: "Cube&8";
   src: url("@/assets/css/font/8BIT.TTF") format("truetype");
   unicode-range: U+00-024F;
-}
-@font-face {
-  font-family: "Cube11";
-  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
 }
 .bg_primary {
   background-color: #ffe1b5;
@@ -192,18 +192,18 @@ table {
 }
 
 @font-face {
+  font-family: "Cube11";
+  src: url("@/assets/css/font/Cubic.WOFF") format("truetype");
+}
+@font-face {
   font-family: "Cube&8";
-  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+  src: url("@/assets/css/font/Cubic.WOFF") format("truetype");
   unicode-range: U+4E00-9FFF;
 }
 @font-face {
   font-family: "Cube&8";
   src: url("@/assets/css/font/8BIT.TTF") format("truetype");
   unicode-range: U+00-024F;
-}
-@font-face {
-  font-family: "Cube11";
-  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
 }
 .bg_primary {
   background-color: #ffe1b5;

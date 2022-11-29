@@ -1,7 +1,7 @@
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: true,
-  chainWebpack: (config) => {
+  /* chainWebpack: (config) => {
     config.module
       .rule("fonts")
       .test(/\.(ttf|otf|eot|woff|woff2)$/)
@@ -15,5 +15,5 @@ module.exports = defineConfig({
         return options;
       })
       .end();
-  },
+  }, */
 });
