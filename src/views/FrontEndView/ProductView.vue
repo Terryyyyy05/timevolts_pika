@@ -56,7 +56,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/css/utils/variables";
+@import "@/assets/css/app.scss";
 h1,
 h2,
 h3,
