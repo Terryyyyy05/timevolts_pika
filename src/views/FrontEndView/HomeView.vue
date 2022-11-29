@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss"scoped >
+<style lang="scss" scoped >
 @import "@/assets/css/app.scss";
 .homeTitle{
   margin: 20px;
