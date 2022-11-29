@@ -3,7 +3,7 @@
     <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
-    <div class="bg_dark">
+    <div class="homeTitle bg_dark">
       <h1>
         TimeVolts
         <span>時萬伏特</span>
@@ -42,15 +42,21 @@ export default {
 </script>
 
 <style lang="scss">
-h1{
-  span{
-    display: none;
+@import "@/assets/css/app.scss";
+.homeTitle{
+  margin: 20px;
+  text-align: center;
+  h1{
+    span{
+      display: none;
+    }
   }
 }
 .home{
   display: flex;
   flex-direction: column;
-  // border: 1px map-get($color , primary );
-  // color: get-map($color,primary) ;
+  border: 1px map-get($color , primary );
+  color: map-get($color, primary) ;
+  
 }
 </style>
