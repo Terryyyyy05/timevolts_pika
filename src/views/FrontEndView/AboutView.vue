@@ -19,15 +19,9 @@
 @import "@/assets/css/app.scss";
 
 h1{
-  font-family: "Cube11";
   color: antiquewhite;
 }
-p{
-	font-family: "Cube11";
-}
-.font{
-	font-family: '8bit';
-}
+
 .primary{
   // map-get(@button,primary);
   margin: 20px;
