@@ -19,10 +19,7 @@
     <div class="container">
         <div>
             <itinirary-crsl-btn msg="經典行程"/>
-            <itinirary-crsl-btn msg="歷史事件"/>
-            <itinirary-crsl-btn msg="ccc"/>
         </div>
-
     </div>
   </section>
   <section class="section">
