@@ -1,6 +1,0 @@
-@import "../utils/variables";
-@import "../utils/mixin";
-
-body {
-  background-color: map-get($color, body_dark);
-}
