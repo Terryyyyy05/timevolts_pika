@@ -191,7 +191,65 @@ table {
   background-color: #d9d9d9;
 }
 
-html {
+@font-face {
+  font-family: "Cube&8";
+  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF;
+}
+@font-face {
+  font-family: "Cube&8";
+  src: url("@/assets/css/font/8BIT.TTF") format("truetype");
+  unicode-range: U+00-024F;
+}
+@font-face {
+  font-family: "Cube11";
+  src: url("@/assets/css/font/Cubic.ttf") format("truetype");
+}
+.bg_primary {
+  background-color: #ffe1b5;
+}
+
+.bg_primary_sub {
+  background-color: #c1af92;
+}
+
+.bg_accent {
+  background-color: #fab042;
+}
+
+.bg_accent_sub {
+  background-color: #fec570;
+}
+
+.bg_accent_reverse {
+  background-color: #493a24;
+}
+
+.bg_body_dark {
+  background-color: #131313;
+}
+
+.bg_dark {
+  background-color: #1e1e1e;
+}
+
+.bg_dark_sub {
+  background-color: #333333;
+}
+
+.bg_muted {
+  background-color: #5d5d5d;
+}
+
+.bg_light {
+  background-color: #fffaec;
+}
+
+.bg_light_sub {
+  background-color: #d9d9d9;
+}
+
+body {
   font-family: "Cube11";
 }
 
