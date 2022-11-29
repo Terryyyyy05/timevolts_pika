@@ -10,7 +10,7 @@ module.exports = defineConfig({
       .tap((options) => {
         options = {
           // limit: 10000,
-          name: "/assets/fonts/[name].[ext]",
+          name: "/assets/font/[name].[ext]",
         };
         return options;
       })

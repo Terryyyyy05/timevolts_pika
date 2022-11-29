@@ -17,11 +17,18 @@
 
 <style scope lang="scss">
 @import "@/assets/css/app.scss";
+@import "../../assets/css/base/text";
 
 h1{
   color: antiquewhite;
 }
-
+p{
+  color: antiquewhite;
+  font-family: "Cube11";
+}
+.font{
+  font-family: "Cube11";
+}
 .primary{
   // map-get(@button,primary);
   margin: 20px;
@@ -29,6 +36,7 @@ h1{
 .secondary{
   // @include btn-secondary;
   margin: 20px;
+  font-family: "Cube11";
 }
 .lightbox{
   // @include btn-lightbox;
