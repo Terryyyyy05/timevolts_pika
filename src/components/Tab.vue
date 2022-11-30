@@ -1,10 +1,10 @@
 <template>
 <div class="select-btn">
-  <button @click="selectTab(1)"><img src="../assets/image/news/lightning.svg" alt="">全部消息</button>
-  <button @click="selectTab(2)"><img src="../assets/image/news/lightning.svg" alt="">行程預訂</button>
-  <button @click="selectTab(3)"><img src="../assets/image/news/lightning.svg" alt="">歷史事件</button>
-  <button @click="selectTab(4)"><img src="../assets/image/news/lightning.svg" alt="">購物商城</button>
-  <button @click="selectTab(5)"><img src="../assets/image/news/lightning.svg" alt="">其他消息</button>
+  <button id="select-item" @click="selectTab(1)"><img src="../assets/image/news/lightning.svg" alt="">全部消息</button>
+  <button id="select-item" @click="selectTab(2)"><img src="../assets/image/news/lightning.svg" alt="">行程預訂</button>
+  <button id="select-item" @click="selectTab(3)"><img src="../assets/image/news/lightning.svg" alt="">歷史事件</button>
+  <button id="select-item" @click="selectTab(4)"><img src="../assets/image/news/lightning.svg" alt="">購物商城</button>
+  <button id="select-item" @click="selectTab(5)"><img src="../assets/image/news/lightning.svg" alt="">其他消息</button>
 </div>
 
 <div class="container">
@@ -75,6 +75,9 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/css/app.scss';
 
+*{
+  font-family: "Cube11";
+}
 .select-btn{
   width: 50%;
   border: 1px solid map-get($color, accent);
@@ -83,14 +86,14 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-button{
+#select-item{
   display: flex;
   border: none;
-  font-family: "Cube11";
   text-decoration: none;
   background: none;
   font-size: 20px;
   color: map-get($color, accent);
+  cursor: pointer;
 }
 img{
   margin: auto 5px;
@@ -119,12 +122,14 @@ span{
   font-size: 15px;
   line-height: 1.2;
 }
-button.more{
-  width: 80%;
-  text-align: center;
+.more{
+  width: 100%;
+  text-align: right;
   border: none;
+  background: none;
+  margin:10px;
 }
-button.more a{
+.more a{
   text-decoration: none;
   margin:10px;
   color: map-get($color, primary);
