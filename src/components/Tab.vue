@@ -21,12 +21,10 @@
   <ul v-if="currentTab ==1">
     <li class="news" v-for="(item, index) in newsData" :key="index">
       <h2>{{item.title}}</h2>
-      <p class="date">2022-11-21</p>
-      <span>#行程預訂</span>
-      <span>#十字軍東征</span>
-      <p class="content">
-        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
-      </p>
+      <p class="date">{{item.date}}</p>
+      <span class="hashtag">{{item.hashtag}}</span>
+      <span class="hashtag">{{item.hashtag1}}</span>
+      <p class="content">{{item.content}}</p>
       <button class="more">
         <a href="">看更多</a>
       </button>
@@ -35,12 +33,10 @@
   <ul v-if="currentTab ==2">
     <li class="news" v-for="(item, index) in itineraryData" :key="index">
       <h2>{{item.title}}</h2>
-      <p class="date">2022-11-21</p>
-      <span>#行程預訂</span>
-      <span>#十字軍東征</span>
-      <p class="content">
-        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
-      </p>
+      <p class="date">{{item.date}}</p>
+      <span class="hashtag">{{item.hashtag}}</span>
+      <span class="hashtag">{{item.hashtag1}}</span>
+      <p class="content">{{item.content}}</p>
       <button class="more">
         <a href="">看更多</a>
       </button>
@@ -49,12 +45,10 @@
   <ul v-if="currentTab ==3">
     <li class="news" v-for="(item, index) in historyData" :key="index">
       <h2>{{item.title}}</h2>
-      <p class="date">2022-11-21</p>
-      <span>#行程預訂</span>
-      <span>#十字軍東征</span>
-      <p class="content">
-        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
-      </p>
+      <p class="date">{{item.date}}</p>
+      <span class="hashtag">{{item.hashtag}}</span>
+      <span class="hashtag">{{item.hashtag1}}</span>
+      <p class="content">{{item.content}}</p>     
       <button class="more">
         <a href="">看更多</a>
       </button>
@@ -63,12 +57,10 @@
   <ul v-if="currentTab ==4">
     <li class="news" v-for="(item, index) in shoppingData" :key="index">
       <h2>{{item.title}}</h2>
-      <p class="date">2022-11-21</p>
-      <span>#行程預訂</span>
-      <span>#十字軍東征</span>
-      <p class="content">
-        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
-      </p>
+      <p class="date">{{item.date}}</p>
+      <span class="hashtag">{{item.hashtag}}</span>
+      <span class="hashtag">{{item.hashtag1}}</span>
+      <p class="content">{{item.content}}</p>     
       <button class="more">
         <a href="">看更多</a>
       </button>
@@ -77,12 +69,10 @@
   <ul v-if="currentTab ==5">
     <li class="news" v-for="(item, index) in otherData" :key="index">
       <h2>{{item.title}}</h2>
-      <p class="date">2022-11-21</p>
-      <span>#行程預訂</span>
-      <span>#十字軍東征</span>
-      <p class="content">
-        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
-      </p>
+      <p class="date">{{item.date}}</p>
+      <span class="hashtag">{{item.hashtag}}</span>
+      <span class="hashtag">{{item.hashtag1}}</span>
+      <p class="content">{{item.content}}</p>     
       <button class="more">
         <a href="">看更多</a>
       </button>
@@ -101,44 +91,82 @@ export default {
       currentTab:1,
       newsData:[
         {
-          title:'全部消息',
-          
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         },
         {
-          title:'全部消息1',
-          
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         }
       ],
       itineraryData:[
         {
-          title:'行程消息',
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         },
         {
-          title:'行程消息1',
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         }
       ],
       historyData:[
         {
-          title:'歷史預訂',
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         },
         {
-          title:'歷史預訂1',
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         }
       ],
       shoppingData:[
         {
-          title:'購物商城',
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         },
         {
-          title:'購物商城1',
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         }
       ],
       otherData:[
         {
-          title:'其他消息',
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         },
         {
-          title:'其他消息1',
+          title:'鐵達尼號沈船事件',
+          date:'2022-12-12',
+          hashtag:'#歷史事件',
+          hashtag1:'#歐洲',
+          content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
         }
       ],
     }
@@ -185,15 +213,14 @@ img{
   color: map-get($color, primary);
 }
 h2{
-  
-  margin: 10px;
+  margin: 5px 10px;
 }
 .date{
   font-size: 15px;
   text-align: right;
   margin: 10px;
 }
-span{
+.hashtag{
   
   margin: 10px;
 }
