@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>最新消息</h1>
-    <p>News</p>
+    <h3>News</h3>
     <Tab/>
   </div>
 </template>
@@ -20,9 +20,10 @@ export default {
   width: map-get($container, each(d_container));
 }
 h1{
-  // @include title($title:'h1');
+  color: map-get($color,accent);
 }
-p{
-
+h3{
+  color: map-get($color,accent);
+  margin: 10px;
 }
 </style>

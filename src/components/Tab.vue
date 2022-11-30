@@ -1,54 +1,91 @@
 <template>
 <div class="select-btn">
-  <button id="select-item" @click="selectTab(1)"><img src="../assets/image/news/lightning.svg" alt="">全部消息</button>
-  <button id="select-item" @click="selectTab(2)"><img src="../assets/image/news/lightning.svg" alt="">行程預訂</button>
-  <button id="select-item" @click="selectTab(3)"><img src="../assets/image/news/lightning.svg" alt="">歷史事件</button>
-  <button id="select-item" @click="selectTab(4)"><img src="../assets/image/news/lightning.svg" alt="">購物商城</button>
-  <button id="select-item" @click="selectTab(5)"><img src="../assets/image/news/lightning.svg" alt="">其他消息</button>
+  <button id="select-item" @click="selectTab(1)">
+    <img src="../assets/image/news/lightning.svg" alt="">全部消息
+  </button>
+  <button id="select-item" @click="selectTab(2)">
+    <img src="../assets/image/news/lightning.svg" alt="">行程預訂
+  </button>
+  <button id="select-item" @click="selectTab(3)">
+    <img src="../assets/image/news/lightning.svg" alt="">歷史事件
+  </button>
+  <button id="select-item" @click="selectTab(4)">
+    <img src="../assets/image/news/lightning.svg" alt="">購物商城
+  </button>
+  <button id="select-item" @click="selectTab(5)">
+    <img src="../assets/image/news/lightning.svg" alt="">其他消息
+  </button>
 </div>
 
 <div class="container">
-  <ul>
-    <!-- v-for="(news,index) in newsdata" -->
-    <li class="news" v-if="currentTab ==1">
-      <h2>全部消息</h2>
+  <ul v-if="currentTab ==1">
+    <li class="news" v-for="(item, index) in newsData" :key="index">
+      <h2>{{item.title}}</h2>
       <p class="date">2022-11-21</p>
       <span>#行程預訂</span>
       <span>#十字軍東征</span>
-      <p class="content">行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂</p>
-      <button class="more"><a href="">看更多</a></button>
+      <p class="content">
+        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
+      </p>
+      <button class="more">
+        <a href="">看更多</a>
+      </button>
     </li>
-    <li class="news" v-if="currentTab ==2">
-      <h2>行程預訂</h2>
+  </ul>
+  <ul v-if="currentTab ==2">
+    <li class="news" v-for="(item, index) in itineraryData" :key="index">
+      <h2>{{item.title}}</h2>
       <p class="date">2022-11-21</p>
       <span>#行程預訂</span>
       <span>#十字軍東征</span>
-      <p class="content">行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂</p>
-      <button class="more"><a href="">看更多</a></button>
+      <p class="content">
+        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
+      </p>
+      <button class="more">
+        <a href="">看更多</a>
+      </button>
     </li>
-    <li class="news" v-if="currentTab ==3">
-      <h2>歷史事件</h2>
+  </ul>
+  <ul v-if="currentTab ==3">
+    <li class="news" v-for="(item, index) in historyData" :key="index">
+      <h2>{{item.title}}</h2>
       <p class="date">2022-11-21</p>
       <span>#行程預訂</span>
       <span>#十字軍東征</span>
-      <p class="content">行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂</p>
-      <button class="more"><a href="">看更多</a></button>
+      <p class="content">
+        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
+      </p>
+      <button class="more">
+        <a href="">看更多</a>
+      </button>
     </li>
-    <li class="news" v-if="currentTab ==4">
-      <h2>購物商城</h2>
+  </ul>
+  <ul v-if="currentTab ==4">
+    <li class="news" v-for="(item, index) in shoppingData" :key="index">
+      <h2>{{item.title}}</h2>
       <p class="date">2022-11-21</p>
       <span>#行程預訂</span>
       <span>#十字軍東征</span>
-      <p class="content">行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂</p>
-      <button class="more"><a href="">看更多</a></button>
+      <p class="content">
+        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
+      </p>
+      <button class="more">
+        <a href="">看更多</a>
+      </button>
     </li>
-    <li class="news" v-if="currentTab ==5">
-      <h2>其他消息</h2>
+  </ul>
+  <ul v-if="currentTab ==5">
+    <li class="news" v-for="(item, index) in otherData" :key="index">
+      <h2>{{item.title}}</h2>
       <p class="date">2022-11-21</p>
       <span>#行程預訂</span>
       <span>#十字軍東征</span>
-      <p class="content">行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂</p>
-      <button class="more"><a href="">看更多</a></button>
+      <p class="content">
+        行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂行程預訂
+      </p>
+      <button class="more">
+        <a href="">看更多</a>
+      </button>
     </li>
   </ul>
 </div>
@@ -61,7 +98,49 @@ export default {
   name: "Tab",
   data(){
     return{
-      currentTab:1
+      currentTab:1,
+      newsData:[
+        {
+          title:'全部消息',
+          
+        },
+        {
+          title:'全部消息1',
+          
+        }
+      ],
+      itineraryData:[
+        {
+          title:'行程消息',
+        },
+        {
+          title:'行程消息1',
+        }
+      ],
+      historyData:[
+        {
+          title:'歷史預訂',
+        },
+        {
+          title:'歷史預訂1',
+        }
+      ],
+      shoppingData:[
+        {
+          title:'購物商城',
+        },
+        {
+          title:'購物商城1',
+        }
+      ],
+      otherData:[
+        {
+          title:'其他消息',
+        },
+        {
+          title:'其他消息1',
+        }
+      ],
     }
   },
   methods: {
@@ -77,6 +156,7 @@ export default {
 
 *{
   font-family: "Cube11";
+  list-style: none;
 }
 .select-btn{
   width: 50%;
@@ -128,6 +208,7 @@ span{
   border: none;
   background: none;
   margin:10px;
+  
 }
 .more a{
   text-decoration: none;
