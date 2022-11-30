@@ -8,9 +8,9 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "header",
   props: {
-    msg: String,
+    
   },
 };
 </script>
