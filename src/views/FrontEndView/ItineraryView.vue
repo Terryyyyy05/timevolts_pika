@@ -246,7 +246,7 @@
   text-align: center;
 }
 .btnwrap{
-  margin: auto;
+  margin: 0 auto ;
   width: fit-content;
 }
 </style>
