@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <h1>歷史</h1>
+  <div>
+    <h1>歷史故事</h1>
   </div>
 </template>
 
