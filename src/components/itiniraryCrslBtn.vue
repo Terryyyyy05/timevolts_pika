@@ -1,6 +1,6 @@
 <template>
   <div class="itinCrslBtn">
-    <p class="p_md">{{ msg }}</p>
+    <p class="p_xl">{{ msg }}</p>
   </div>
 </template>
 
@@ -24,6 +24,7 @@ export default {
       border: 1px solid yellow;
       display: inline-block;
       padding: 10px;
+      margin: 10px;
     }
 
 </style>
