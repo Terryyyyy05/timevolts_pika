@@ -21,10 +21,9 @@ export default {
         color:map-get($color, primary)
     }
     .itinCrslBtn{
-      border: 1px solid red;
+      border: 1px solid yellow;
       display: inline-block;
       padding: 10px;
-      margin: 0 auto;
     }
 
 </style>

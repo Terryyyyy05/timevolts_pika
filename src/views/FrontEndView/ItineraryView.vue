@@ -7,7 +7,7 @@
     <div class="container">
       <div class="banner1">
         <div class="word_wrap">
-          <p class="text">來場時空穿越之旅吧</p>
+          <p class="text">準備來場頭暈目眩的穿越吧</p>
         </div>
         <div class="globe_wrap" id="globe_container">
           <canvas class="canvas_globe"></canvas>
@@ -17,7 +17,7 @@
   </section>
   <section class="section">
     <div class="container">
-        <div>
+        <div class="btnwrap">
             <itinirary-crsl-btn msg="經典行程"/>
         </div>
     </div>
@@ -167,7 +167,9 @@
                 function animate() {
                     requestAnimationFrame(animate)
                     renderer.render(scene, camera)
-                    sphere.rotation.y += 1
+                    sphere.rotation.Y += 0.06
+                    sphere.rotation.x += 0.07
+                    sphere.rotation.z += 0.1
                     group.rotation.y = mouse.x * 0.5
                     gsap.to(group.rotation, {
                         x: -mouse.y * 0.6,
@@ -242,5 +244,9 @@
   color: #fff;
   font-size: 28px;
   text-align: center;
+}
+.btnwrap{
+  margin: auto;
+  width: fit-content;
 }
 </style>
