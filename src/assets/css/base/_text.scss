@@ -2,7 +2,11 @@
 @import "../utils/mixin";
 @import "../base/basic";
 
-body {
+html {
+  font-family: "Cube11";
+}
+
+* {
   font-family: "Cube11";
 }
 
