@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/css/app.scss";
+@import "@/assets/css/utils/_variables.scss";
 
 $b1-primary : (1px solid map-get($color , primary ));
 $b2-primary : (2px solid map-get($color , primary ));
