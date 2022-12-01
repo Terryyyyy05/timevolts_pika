@@ -5,7 +5,6 @@ import store from "./store";
 
 // SCSS
 import "@/assets/css/app.scss";
-createApp(App).use(store).use(router).mount("#app");
 
 // Import Components
 import TheHeading from "./components/layout/TheHeading.vue";
@@ -18,3 +17,4 @@ app.use(router);
 
 app.component("the-heading", TheHeading);
 
+app.mount("#app");
