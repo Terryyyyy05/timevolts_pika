@@ -13,6 +13,13 @@
   }
 }
 
+@mixin ts() {
+  @media screen and (max-width: $ts-breakpoint) {
+    @content;
+    $status: "ts";
+  }
+}
+
 // 標題
 @mixin title($title, $color: null) {
   @each $k, $fz in $title {
