@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  // import Lightbox from '@/components/';
+  // import Lightbox from '@/components/Lightbox.vue';
   // export default {
   //   components :{
   //     Lightbox

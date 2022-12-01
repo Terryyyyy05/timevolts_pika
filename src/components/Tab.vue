@@ -29,7 +29,7 @@
     </li>
   </ul>
   <ul v-if="currentTab ==2">
-    <li class="news" v-for="(item, index) in itineraryDataSort" :key="index">
+    <li class="news" v-for="(item, index) in itineraryData" :key="index">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
@@ -51,7 +51,7 @@
     </li>
   </ul>
   <ul v-if="currentTab ==4">
-    <li class="news" v-for="(item, index) in shoppingDataSort" :key="index">
+    <li class="news" v-for="(item, index) in shoppingData" :key="index">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
@@ -149,27 +149,12 @@ export default {
   computed: {
     newsData(){
       return[...this.itineraryData,...this.historyData,...this.shoppingData,...this.otherData].sort((a,b)=>{
-        return new Date(b.date).valueOf()-new Date(a.date).valueOf()
-      })
-    },
-    itineraryDataSort() {
-      return [...this.itineraryData].sort((a,b)=>{
-        return new Date(b.date).valueOf()-new Date(a.date).valueOf()
+        return new Date(a.date).valueOf()-new Date(b.date).valueOf()
       })
     },
     historyDataSort() {
       return [...this.historyData].sort((a,b)=>{
-        return new Date(b.date).valueOf()-new Date(a.date).valueOf()
-      })
-    },
-    shoppingDataSort() {
-      return [...this.shoppingData].sort((a,b)=>{
-        return new Date(b.date).valueOf()-new Date(a.date).valueOf()
-      })
-    },
-    otherDataSort() {
-      return [...this.otherData].sort((a,b)=>{
-        return new Date(b.date).valueOf()-new Date(a.date).valueOf()
+        return new Date(a.date).valueOf()-new Date(b.date).valueOf()
       })
     },
   },

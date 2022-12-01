@@ -1,7 +1,7 @@
 <template>
   <div class="l-box">
     <button class="close-l-box">
-      <!-- <i class="fa-solid fa-xmark"></i> -->
+      <i class="fa-solid fa-xmark"></i>
     </button>
     <div class="l-box-img">
       <img src="../assets/image/news/sphinx_optimized.jpg" alt="">
@@ -20,7 +20,7 @@
 <script>
 
 export default {
-  name: "Box",
+  name: "Lightbox",
   data(){
     return{
       

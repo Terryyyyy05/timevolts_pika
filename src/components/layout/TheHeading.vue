@@ -1,6 +1,6 @@
 <template>
    <h1>{{ heading }}</h1>
-   <h3>{{ subheading }}</h3>
+   <h5>{{ subheading }}</h5>
 </template>
 
 <script>
@@ -13,11 +13,11 @@ export default {
 @import "@/assets/css/utils/variables";
 
 h1,
-h3 {
+h5 {
    color: map-get($color, "primary");
 }
 
-h3 {
-   margin: 10px;
+h5 {
+   margin-top: 10px;
 }
 </style>
