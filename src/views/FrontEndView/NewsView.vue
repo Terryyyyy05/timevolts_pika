@@ -4,20 +4,24 @@
     <h3>News</h3>
     <Tab/>
   </div>
+  
+  <Lightbox/>
 </template>
 
 <script>
-import Tab from '@/components/Tab.vue';
+import Tab from '@/components/Tab.vue'
+import Lightbox from '@/components/Lightbox.vue'
 export default {
   components :{
-    Tab
+    Tab,
+    Lightbox,
   }
 };
 </script>
 <style lang="scss" scoped>
 @import '@/assets/css/app.scss';
 .container {
-  width: map-get($container, each(d_container));
+  width: map-get($container, d);
 }
 h1{
   color: map-get($color,accent);

@@ -7,17 +7,18 @@
     <button class="btn-secondary">次要按鈕</button>
     <button class="btn-lightbox">燈箱按鈕</button>
     <button class="btn-disable">停用狀態</button>
+    
 
   </div>
 </template>
 
 <script>
-// import  from 
-//   export default {
-//     components: {
-      
-//     }
-//   }
+  // import Lightbox from '@/components/Lightbox.vue';
+  // export default {
+  //   components :{
+  //     Lightbox
+  //   }
+  // };
 </script>
 
 <style scoped lang="scss">
