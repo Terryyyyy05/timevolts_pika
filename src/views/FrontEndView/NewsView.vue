@@ -12,13 +12,13 @@
 
 <script>
 import Tab from '@/components/Tab.vue'
-import Lightbox from '@/components/Lightbox.vue'
+import Box from '@/components/Box.vue'
 import TheHeading from '@/components/layout/TheHeading.vue'
 
 export default {
   components :{
     Tab,
-    Lightbox,
+    Box,
     TheHeading
   }
 };
