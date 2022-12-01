@@ -19,7 +19,13 @@
 
   <ul v-if="currentTab ==1">
     <li class="news" v-for="(item, index) in newsData" :key="index">
-     {{item}}
+      <h2>{{item.title}}</h2>
+      <p class="date">{{item.date}}</p>
+      <span class="hashtag">{{item.hashtag}}</span>
+      <p class="content">{{item.content}}</p>
+      <button class="more">
+        <a href="">看更多...</a>
+      </button>
     </li>
   </ul>
   <ul v-if="currentTab ==2">
@@ -34,7 +40,7 @@
     </li>
   </ul>
   <ul v-if="currentTab ==3">
-    <li class="news" v-for="(item, index) in historyData" :key="index">
+    <li class="news" v-for="(item, index) in historyDataSort" :key="index">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
@@ -76,7 +82,6 @@ export default {
   data(){
     return{
       currentTab:1,
-      // newsData:[itineraryData[],historyData[],shoppingData[],otherData[]],
       itineraryData:[
         {
           title:'穿梭於史前時代',
@@ -141,11 +146,27 @@ export default {
       ],
     }
   },
+  computed: {
+    newsData(){
+      return[...this.itineraryData,...this.historyData,...this.shoppingData,...this.otherData].sort((a,b)=>{
+        return new Date(a.date).valueOf()-new Date(b.date).valueOf()
+      })
+    },
+    historyDataSort() {
+      return [...this.historyData].sort((a,b)=>{
+        return new Date(a.date).valueOf()-new Date(b.date).valueOf()
+      })
+    },
+  },
   methods: {
     selectTab(selectedTab){
       this.currentTab = selectedTab
-    },
-       
+      console.log(this.historyData);
+    }
+    // allNews = function(){
+    //   this.newsData = this.itineraryData
+    // }
+    
   },
  }
 

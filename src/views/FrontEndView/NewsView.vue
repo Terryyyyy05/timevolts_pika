@@ -1,20 +1,25 @@
 <template>
   <div class="container">
-    <h1>最新消息</h1>
-    <h3>News</h3>
+    <the-heading heading="最新消息" subheading="News"></the-heading>
+      
+    <!-- <h1>最新消息</h1>
+    <h3></h3> -->
     <Tab/>
   </div>
   
-  <Lightbox/>
+  <!-- <Lightbox/> -->
 </template>
 
 <script>
 import Tab from '@/components/Tab.vue'
 import Lightbox from '@/components/Lightbox.vue'
+import TheHeading from '@/components/layout/TheHeading.vue'
+
 export default {
   components :{
     Tab,
     Lightbox,
+    TheHeading
   }
 };
 </script>
@@ -24,7 +29,7 @@ export default {
   width: map-get($container, d);
 }
 h1{
-  color: map-get($color,accent);
+  // color: map-get($color,accent);
 }
 h3{
   color: map-get($color,accent);
