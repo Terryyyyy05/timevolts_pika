@@ -368,6 +368,18 @@ h5 {
     margin: 0 auto;
   }
 }
+@media screen and (max-width: 1365px) {
+  .container {
+    width: min(94%, 1140px);
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .container {
+    width: min(94%, 960px);
+    margin: 0 auto;
+  }
+}
 .btn-primary {
   border: none;
   background-color: #fab042;

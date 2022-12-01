@@ -1,6 +1,7 @@
 // -------- 斷點(大到小)
 $m-breakpoint: 767px;
-$t-breakpoint: 1439px;
+$t-breakpoint: 1365px;
+$ts-breakpoint: 1023px;
 
 // -------- 容器
 $container: (
@@ -14,6 +15,10 @@ $container: (
   ),
   "m_container": (
     "max_width": 720px,
+    "width": 94%,
+  ),
+  "ts_container": (
+    "max_width": 960px,
     "width": 94%,
   ),
 );
@@ -35,7 +40,7 @@ $color: (
   "muted": #5d5d5d,
 
   "light": #fffaec,
-  "light_sub": #d9d9d9
+  "light_sub": #d9d9d9,
 );
 
 //--------- 字體大小/行距
@@ -48,6 +53,5 @@ $title_m: ("h1" 38px, "h2" 30px, "h3" 24px, "h4" 22px, "h5" 18px);
 $paragraph_d: (".p_md" 18px, ".p_lg" 24px, ".p_xl" 28px);
 
 $paragraph_m: (".p_md" 14px, ".p_lg" 16px, ".p_xl" 18px);
-
 
 // map-get($物件總名稱, key的名稱)
