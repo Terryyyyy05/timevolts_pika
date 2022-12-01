@@ -13,14 +13,7 @@ export default {
     name: 'itinClsCrsl',
     components:{
         itinCrslCard
-    },
-    props : ['src'],
-    data(){
-        return{
-            src: 100,
-        }
-    }
-    
+    },    
 }
 </script>
 
