@@ -59,19 +59,22 @@ $b20-primary : (20px solid map-get($color , primary ));
 
 
 // 12/1溝通過，說透明色用到的地方太少，寫在自己頁面就好
-// -------- 顏色透明度
-
 
 // -------- 透明背景顏色
 @mixin bgca($color) {
   @each $k , $v in $color{
-    .bg_#{$k}_#{$alphaName}{
-      $alpha:(.75,.5,.25);
-      $alphaName:(75,50,25);
-      background-color: rgba($v,$alpha);
+    .bg_#{$k}_75{
+      background-color: rgba($v,75%);
+    }
+    .bg_#{$k}_50{
+      background-color: rgba($v,50%);
+    }
+    .bg_#{$k}_25{
+      background-color: rgba($v,25%);
     }
   }
 }
+
 
 // .bg_dark{}
 
