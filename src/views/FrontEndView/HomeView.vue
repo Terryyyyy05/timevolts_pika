@@ -3,38 +3,35 @@
     <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div class="container">
-      <!-- <div class="titleText"> -->
-        <div class="sideTotem">
-          <img src="@/assets/image/home/sideTotem.svg" alt="時萬伏特-圖樣">
-        </div>
-        <div class="title bg_dark">
-          <h1>
-            TimeVolts
-            <span>時萬伏特</span>
-          </h1>
-        </div>
-        <div class="text bg_dark p_md">
-          <p>Last login: Wed Nov 16 10:53:48</p>
-          <p>Restored session:</p>
-          <p>TimeVolts ~ %</p>
-          <p>
-            .<br />
-            .<br />
-            .<br />
-            假文字假文字假文字假文字假文字假文字假文字<br />
-            假文字假文字假文字假文字假文字假文字假文字假文字<br />
-            假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字
-          </p>
-        </div>
-        <div class="slogan">
-          <strong>現在，我們實現了時光旅行</strong>
-          <img src="@/assets/image/home/bitLightning.svg" alt="閃電圖樣"  />
-        </div>
-        <div class="pic">
-          <img src="#" alt="時光機圖樣" />
-        </div>
-
-      <!-- </div> -->
+      <div class="sideTotem">
+        <img src="@/assets/image/home/sideTotem.svg" alt="時萬伏特-文字圖樣">
+      </div>
+      <div class="title bg_dark_50">
+        <h1>
+          TimeVolts
+          <span>時萬伏特</span>
+        </h1>
+      </div>
+      <div class="text bg_dark_50 p_md">
+        <p>Last login: Wed Nov 16 10:53:48</p>
+        <p>Restored session:</p>
+        <p>TimeVolts ~ %</p>
+        <p>
+          .<br />
+          .<br />
+          .<br />
+          歡迎來到時萬伏特<br />
+          假文字假文字假文字假文字假文字假文字假文字假文字<br />
+          假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字
+        </p>
+      </div>
+      <div class="slogan">
+        <strong>現在，我們實現了時光旅行</strong>
+        <img src="@/assets/image/home/bitLightning.svg" alt="閃電圖樣"  />
+      </div>
+      <div class="pic">
+        <img src="@/assets/image/home/Time_Machine.png" alt="時光機圖樣" />
+      </div>
     </div>
   </div>
 </template>
@@ -52,56 +49,114 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/css/app.scss";
+@import "@/assets/css/utils/_variables.scss";
+
+$b1-primary : (1px solid map-get($color , primary ));
+$b2-primary : (2px solid map-get($color , primary ));
+$b20-primary : (20px solid map-get($color , primary ));
+
+
+
+
+// 12/1溝通過，說透明色用到的地方太少，寫在自己頁面就好
+
+// -------- 透明背景顏色
+@mixin bgca($color) {
+  @each $k , $v in $color{
+    .bg_#{$k}_75{
+      background-color: rgba($v,75%);
+    }
+    .bg_#{$k}_50{
+      background-color: rgba($v,50%);
+    }
+    .bg_#{$k}_25{
+      background-color: rgba($v,25%);
+    }
+  }
+}
+
+
+// .bg_dark{}
+
 .home{
   // display: flex;
   .container{
-    background-image: url(@/assets/image/home/bg1.png);
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 30px;
     color: map-get($color, primary) ;
     display: grid;
     grid-template-columns: 2fr 4.5fr 4.5fr 1fr;
-    grid-template-rows: 2fr 4fr 1fr;
+    grid-template-rows: 1.5fr 3fr 0.5fr;
     gap: 20px;
-    // border: 1px map-get($color , primary );
+    background-image: url(@/assets/image/home/bg1_1440.jpg);
+    
     .sideTotem{
-      // width: 8.333333;
       grid-column:1 ;
       grid-row: 1/3;
-      min-height: 50vh;
+      // min-height: 50vh;
+      // width: 100%;
+      // height: 100%;
+      // background-image:url(@/assets/image/home/sideTotem.svg) ;
+      object-fit: scale-down;
+      border:none;
+      @media screen and (max-width: 767px) {
+        grid-row: 2/3;
+        }
       img{
-        // width: 100%;
-        max-height:80vh ;
+        height: 100%;
+        object-fit: scale-down;
       }
     }
-    // .titleText{
-      .title{
-        grid-column: 2/4;
-        grid-row: 1;
-        text-align: center;
-        h1{
-          span{
-            display: none;
-          }
+    
+    .title{
+      @media screen and (max-width: 767px) {
+        font-size: 42px;
+        grid-column: 1/4;
+        }
+      grid-column: 2/4;
+      grid-row: 1;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      border:$b2-primary ;
+      border-top:$b20-primary ;
+      @media screen and (max-width: 1439px) {
+        font-size: 42px;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 42px;
+        grid-column: 1/4;
+        }
+      h1{
+        margin: auto;
+        
+        span{
+          display: none;
         }
       }
-      .text{
-        grid-column: 2/3;
-        grid-row: 2/3;
+    }
+    .text{
+      grid-column: 2/3;
+      grid-row: 2/3;
+      padding: 20px;
+      border:$b2-primary ;
+    }
+    .slogan{
+      grid-column: 1/3;
+      grid-row: 3/4;
+    }
+    .pic{
+      grid-column: 3/4;
+      grid-row: 2/3;
+      img{
+      width: 100%;
+      height: 100%;
+      object-fit: scale-down;
       }
-      .slogan{
-        grid-column: 1/3;
-        grid-row: 3/4;
-      }
-      .pic{
-        grid-column: 3/4;
-        grid-row: 2/3;
-        img{
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        }
-      }
-    // }
+    }
+  
 
   }
 }

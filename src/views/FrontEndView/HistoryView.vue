@@ -1,9 +1,17 @@
 <template>
    <div class="container">
       <the-heading heading="歷史故事" subheading="history"></the-heading>
+      <history-filter></history-filter>
    </div>
 </template>
 
-<style lang="scss" scoped>
-@import "@/assets/css/app";
-</style>
+<script>
+import HistoryFilter from "../../components/history/HistoryFilter.vue";
+export default {
+   components: {
+      HistoryFilter,
+   },
+};
+</script>
+
+<style lang="scss" scoped></style>
