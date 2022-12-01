@@ -1,7 +1,6 @@
 <template>
    <div>
       <font-awesome-icon icon="fa-solid fa-chevron-down" />
-      <p>依危險度區分</p>
    </div>
 </template>
 
