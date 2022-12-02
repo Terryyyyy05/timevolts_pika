@@ -1,7 +1,7 @@
 <template>
   <div class="l-box">
     <button class="close-l-box">
-      <i class="fa-solid fa-xmark"></i>
+      <font-awesome-icon icon="fa-solid fa-xmark" />
     </button>
     <div class="l-box-img">
       <img src="../assets/image/news/sphinx_optimized.jpg" alt="">
@@ -53,11 +53,16 @@ export default {
 }
 
 .l-box{
-  width: 700px;
+  width: 600px;
   border: 1px solid map-get($color, accent);
   margin: auto;
   .close-l-box{
     float: right;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    margin: 5px;
   }
   .l-box-img{
     margin: 20px;

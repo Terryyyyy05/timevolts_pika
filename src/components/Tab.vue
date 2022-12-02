@@ -73,6 +73,22 @@
     </li>
   </ul>
 
+  <div class="l-box" v-for="(item, index) in newsData" :key="index">
+    <button class="close-l-box">
+      <font-awesome-icon icon="fa-solid fa-xmark" />
+    </button>
+    <div class="l-box-img">
+      <!-- <img :src="require('@/assets/image/news/sphinx_optimized.jpg')"> -->
+      <img :src="require(imgUrl)">
+    </div>
+    <div class="l-box-content">
+      <h2>{{item.title}}</h2>
+      <p class="date">{{item.date}}</p>
+      <span class="hashtag">{{item.hashtag}}</span>
+      <p class="content">{{item.content}}</p>     
+    </div>
+  </div>
+
 
 </template>
 
@@ -88,18 +104,21 @@ export default {
           date:'2022-12-10',
           hashtag:'#經典行程 #高度危險',
           content:'人類的歷史分成：史前時代及信使時代。「文字的出現」為畫分的依據，史前時代沒有文字，信使時代為文字開始。今天，我們將回到史前時代，建立屬於自己的莊園，面對嚴苛的大自然及猛獸努力存活下去。',
+          imgUrl:'@/assets/image/news/sphinx_optimized.jpg',
         },
         {
           title:'埃及五千年的黃金時代',
           date:'2022-11-10',
           hashtag:'#經典行程 #中度危險',
           content:'埃及進入第一個「金色時代」，或「黃金時代」。在此期間，太陽作為「偉大的雌雄一體」，毫無疑問地被奉為至高神祇。這位新國王將其父親遺留的壯觀事業進一步發揚光大，完成了埃及史上最宏大且最受美譽的著名地標：吉薩大金字塔。吉薩大金字塔是當今世人所知的名稱，然而，當初的命名是「阿赫特─胡夫」，意即「胡夫的地平線」。',
+          imgUrl:'@/assets/image/news/sphinx_optimized.jpg',
         },
         {
           title:'赤壁之戰',
           date:'2022-10-10',
           hashtag:'#經典行程 #高度危險 #亞洲',
           content:'根據三國誌記載，曹操因多年北伐征討，將兵早已疲倦不堪，加上青州兵擅長陸戰，南下又水土不服，染上瘟疫，整個曹軍能夠作戰的兵力實則不到二十萬；反觀，周瑜、黃蓋皆是當地人，熟悉水域、氣候，綜觀各樣條件，孫劉聯軍才得以寡擊眾，重創曹軍，開創三國鼎立的局勢。',
+          imgUrl: '@/assets/image/news/sphinx_optimized.jpg',
         }
       ],
       historyData:[
@@ -108,18 +127,21 @@ export default {
           date:'2022-12-12',
           hashtag:'#歷史事件 #歐洲',
           content:'鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，該船與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。',
+          imgUrl: '@/assets/image/news/sphinx_optimized.jpg',
         },
         {
           title:'鄭和下西洋',
           date:'2022-12-10',
           hashtag:'#歷史事件 #亞洲',
           content:'鄭和下西洋象徵著中國航海史上的一個高峰。當時明朝在航海技術，船隊規模、航程之遠、持續時間、涉及領域等的規模及高度，在當時的年代均是前所未見，沿途亦有遇上倭寇劫船之風險，可能造成財物損失，甚至有生命危險，請謹慎評估風險後再進行報名。',
+          imgUrl: '@/assets/image/news/sphinx_optimized.jpg',
         },
         {
           title:'馬雅文明',
           date:'2022-11-30',
           hashtag:'#歷史事件 #南美洲',
           content:'關於「馬雅」文明的傳說，很多人都聽說過。提到馬雅人，大部分人會把他們與美洲叢林聯繫到一起。浮現在腦海中的也是一群印地安人，他們身著鮮豔羽毛服飾，趁著月光進行著神祕的儀式，法術高強的祭司站在中間，其他人繞著轉圈。',
+          imgUrl: '@/assets/image/news/sphinx_optimized.jpg',
         }
       ],
       shoppingData:[
@@ -128,12 +150,15 @@ export default {
         date:'2022-11-11',
         hashtag:'#最新公告',
         content:'【購物流程】1.點選您需要的商品規格及數量，加入購物車。2.購物車內確認購買項目後，點選前往結帳（請注意：購物車內商品尚未結帳前，如商品已無庫存，進入結帳時系統會取消商品數量，請注意核對結帳數量及項目）。',
+        imgUrl: '@/assets/image/news/sphinx_optimized.jpg',
+        
         },
         {
           title:'新商品出爐囉!!',
           date:'2022-12-11',
           hashtag:'#新品上架',
           content:'超過上百種語言翻譯，打破溝通障礙，運用本公司獨家秘方【翻譯蒟蒻】，精準翻出生活化的當地語言，就像學會當地語言一樣與人流暢對話。',
+          imgUrl: '@/assets/image/news/sphinx_optimized.jpg',
         }
       ],
       otherData:[
@@ -142,6 +167,7 @@ export default {
           date:'2022-11-09',
           hashtag:'#公告 #維修中',
           content:'親愛的用戶您好，為提高您的網站使用品質，本公司將預計2022-09-15進行系統維護作業，期間會造成部分網頁無法使用，造成您的不便，敬請見諒!',
+          imgUrl:'@/assets/image/news/sphinx_optimized.jpg',
         }
       ],
     }
@@ -161,18 +187,13 @@ export default {
   methods: {
     selectTab(selectedTab){
       this.currentTab = selectedTab
-      console.log(this.historyData);
     }
-    // allNews = function(){
-    //   this.newsData = this.itineraryData
-    // }
-    
   },
  }
 
 </script>
 <style lang="scss" scoped>
-@import '@/assets/css/app.scss';
+@import '@/assets/css/utils/variables';
 
 *{
   font-family: "Cube11";
@@ -239,5 +260,43 @@ ul{
 
 }
   
+.l-box{
+width: 600px;
+border: 1px solid map-get($color, accent);
+color: map-get($color, accent);
+margin: auto;
+.close-l-box{
+  float: right;
+  color: map-get($color, accent);
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  margin: 5px;
+}
+.l-box-img{
+  margin: 20px;
+    img{
+      width: 100%;
+    }
+  }
+h2{
+    margin: 5px 10px;
+  }
+  .date{
+    font-size: 15px;
+    text-align: right;
+    margin: 10px;
+  }
+  .hashtag{
+    
+    margin: 10px;
+  }
+  .content{
+    margin: 10px;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+}
 </style>
 
