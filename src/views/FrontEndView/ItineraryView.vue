@@ -20,7 +20,7 @@
         <div class="btnwrap">
             <itin-crsl-btn msg="經典行程"/>
         </div>
-        <div class="classiccrsl">
+        <div class="clsCrslWrap">
             <itinClsCrsl/>
         </div>
     </div>
@@ -254,5 +254,13 @@
 .btnwrap{
   margin: 0 auto ;
   width: fit-content;
+}
+.clsCrslWrap{
+    width: 100vw;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
 }
 </style>
