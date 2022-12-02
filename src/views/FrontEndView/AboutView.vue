@@ -17,7 +17,7 @@
 <style scoped lang="scss">
 <<<<<<< HEAD
 @import '@/assets/css/utils/variables';
-=======
+// =======
 
 .btn-primary{
   margin: 20px;
