@@ -1,5 +1,5 @@
 <template>
-   <base-history-card v-for="info in information" :key="info.title">
+   <base-history-card v-for="info in VisibleInformation" :key="info.title">
       <h3>{{ info.title }}</h3>
       <div class="history-content">
          <img :src="require('@/assets/image/history/test.png')" />
@@ -14,14 +14,20 @@
          </div>
       </div>
    </base-history-card>
+   <show-more-button
+      :trueOrFalse="distinguishTrueFalse"
+      @show-more="AddVisibleInformation"
+   ></show-more-button>
 </template>
 
 <script>
 import BaseHistoryCard from "./base/BaseHistoryCard.vue";
+import ShowMoreButton from "../../components/history/UI/ShowMoreButton.vue";
 
 export default {
    components: {
       BaseHistoryCard,
+      ShowMoreButton,
    },
    data() {
       return {
@@ -171,7 +177,22 @@ export default {
                   "鐵達尼號沉沒事故是1912年4月14日深夜至15日凌晨在北大西洋發生的著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。1912年4月14日星期天23時40分與一座冰山擦撞前，已經收到6次海冰警告，但當瞭望員看到冰山時，該船的行駛速度正接近最高速。由於無法快速轉向，該船右舷側面遭受了一次撞擊，部分船體出現縫隙，使16個水密隔艙中的5個進水。鐵達尼號的設計僅能夠承受4個水密隔艙進水，因此沉沒。",
             },
          ],
+         informationVisible: 4,
       };
+   },
+   computed: {
+      VisibleInformation() {
+         return this.information.slice(0, this.informationVisible);
+         // slice() 方法會回傳一個新陣列物件，為原陣列選擇之 begin 至 end（不含 end）部分的淺拷貝（shallow copy）。而原本的陣列將不會被修改。
+      },
+      distinguishTrueFalse() {
+         return this.informationVisible !== 16 ? true : false;
+      },
+   },
+   methods: {
+      AddVisibleInformation() {
+         this.informationVisible += 4;
+      },
    },
 };
 </script>

@@ -42,12 +42,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.flex-column {
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   gap: 20px;
-}
+// .flex-column {
+//    display: flex;
+//    flex-direction: column;
+//    justify-content: flex-start;
+//    gap: 20px;
+// }
 
 .flex-column:nth-of-type(1) {
    margin-left: 35px;

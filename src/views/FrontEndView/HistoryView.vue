@@ -13,9 +13,7 @@ import HistoryInformation from "../../components/history/HistoryInformation.vue"
 export default {
    components: {
       HistoryFilter,
-      HistoryInformation
+      HistoryInformation,
    },
 };
 </script>
-
-<style lang="scss" scoped></style>
