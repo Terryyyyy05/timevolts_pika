@@ -18,9 +18,8 @@
 </template>
 
 <script>
-
 export default {
-  name: "Lightbox",
+  name: "Box",
   data(){
     return{
       

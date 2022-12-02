@@ -1,10 +1,8 @@
 <template>
   <div class="container">
     <the-heading heading="最新消息" subheading="News"></the-heading>
-      
-    <!-- <h1>最新消息</h1>
-    <h3></h3> -->
     <Tab/>
+    <Box/>
   </div>
   
   <!-- <Lightbox/> -->
@@ -24,15 +22,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '@/assets/css/app.scss';
+@import '@/assets/css/utils/variables';
 .container {
   width: map-get($container, d);
+
 }
-h1{
-  // color: map-get($color,accent);
-}
-h3{
-  color: map-get($color,accent);
-  margin: 10px;
-}
+
 </style>
