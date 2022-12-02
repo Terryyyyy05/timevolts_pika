@@ -35,12 +35,20 @@ export default {
     }
     .cardWrap{
         display: flex;
+        
+    }
+    .animation1{
         animation: classicScroll 10s linear 0s infinite;
         animation-play-state: running;
         animation-delay: 0s;
         animation-direction: normal;
     }
-    
+    .animation2{
+        animation: classicScroll 10s linear 5s infinite;
+        animation-play-state: running;
+        animation-delay: 0s;
+        animation-direction: normal;
+    }
     @keyframes classicScroll {
         0% {
             transform: translateX(0%);
