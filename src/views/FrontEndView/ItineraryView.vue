@@ -222,45 +222,41 @@
 <style lang="scss" scoped>
 @import "@/assets/css/app.scss";
 .section {
-  width: 100%;
-  height: 90vh;
-  outline: 1px solid red;
-  margin: 10px 0;
+    width: 100%;
+    height: 90vh;
+    outline: 1px solid red;
+    margin: 10px 0;
 }
 .container {
-  width: map-get($container, each(d_container));
-  height: 100%;
-  outline: 1px solid blue;
+    width: map-get($container, each(d_container));
+    height: 100%;
+    outline: 1px solid blue;
 }
 .banner1 {
-  display: flex;
-  height: 90vh;
-  background-color: #000;
+    display: flex;
+    height: 90vh;
+    background-color: #000;
 }
 .globe_wrap {
-  width: 70%;
+    width: 70%;
 }
 .word_wrap {
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .text {
-  color: #fff;
-  font-size: 28px;
-  text-align: center;
+    color: #fff;
+    font-size: 28px;
+    text-align: center;
 }
 .btnwrap{
-  margin: 0 auto ;
-  width: fit-content;
+    margin: 0 auto ;
+    width: fit-content;
 }
 .clsCrslWrap{
-    width: 100vw;
-	position: relative;
-	left: 50%;
-	right: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
+    overflow: hidden;
 }
+
 </style>
