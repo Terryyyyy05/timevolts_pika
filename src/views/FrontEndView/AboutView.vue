@@ -22,7 +22,6 @@
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/css/app.scss";
 
 .btn-primary{
   margin: 20px;
