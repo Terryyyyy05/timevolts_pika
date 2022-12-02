@@ -17,4 +17,6 @@
 <style scoped lang="scss">
 @import '@/assets/css/utils/variables';
 
+
+
 </style>

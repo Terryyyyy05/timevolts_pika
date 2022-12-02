@@ -14,9 +14,11 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 // add icons from library
 library.add(faChevronDown);
 library.add(faMagnifyingGlass);
+library.add(faXmark);
 
 // Vue 實體
 const app = createApp(App);

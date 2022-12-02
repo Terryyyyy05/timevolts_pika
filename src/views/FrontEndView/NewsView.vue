@@ -2,7 +2,6 @@
   <div class="container">
     <the-heading heading="最新消息" subheading="News"></the-heading>
     <Tab/>
-    <Box/>
   </div>
   
   <!-- <Lightbox/> -->
