@@ -1,8 +1,4 @@
 <template>
-   <!-- <div>
-      <input type="checkbox" />
-      <p>{{ text }}</p>
-   </div> -->
    <label class="container"
       >{{ text }}
       <input type="checkbox" />

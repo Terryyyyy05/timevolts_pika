@@ -11,7 +11,11 @@
             </div>
             <p class="p_md">發生年代 --- {{ info.happenYear }}</p>
             <p class="p_lg">{{ info.description }}</p>
-            <router-link to="/history-details" class="more-button">
+            <router-link
+               @click="scrollToTop"
+               to="/history-details"
+               class="more-button"
+            >
                <div class="bg_accent">
                   <span>more</span>
                </div>
@@ -197,6 +201,9 @@ export default {
    methods: {
       AddVisibleInformation() {
          this.informationVisible += 4;
+      },
+      scrollToTop() {
+         window.scrollTo(0, 0);
       },
    },
 };
