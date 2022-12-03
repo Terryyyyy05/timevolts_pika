@@ -1,13 +1,40 @@
 <template>
-  <div class="about">
-    <h1>行程訂票</h1>
-  </div>
+   <div class="container">
+      <the-heading
+         heading="行程訂票"
+         subheading="itinerary booking "
+      ></the-heading>
+      <progress-bar></progress-bar>
+      <div class="main-text">行程資訊</div>
+   </div>
 </template>
 
 <script>
+import ProgressBar from "../../components/ItineraryBooking/UI/ProgressBar.vue";
 
+export default {
+   components: {
+      ProgressBar,
+   },
+};
 </script>
 
-<style>
+<style lang="scss" scoped>
+.main-text {
+   display: grid;
+   grid-template-columns: 1fr max-content 1fr;
+   column-gap: 1.5rem;
+   align-items: center;
+   font-size: 1.6rem;
+   color: #aaa;
+   margin: 4.8rem 0;
+}
 
+.main-text::before,
+.main-text::after {
+   content: "";
+   height: 1px;
+   display: block;
+   background-color: currentColor;
+}
 </style>
