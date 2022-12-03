@@ -1,4 +1,5 @@
 <template>
+  <all-header/>
   <nav>
     <router-link to="/">首頁</router-link> |
     <router-link to="/news">最新消息</router-link> |
@@ -9,6 +10,7 @@
     <router-link to="/member">會員中心</router-link> |
   </nav>
   <router-view />
+  
   <all-footer/>
 </template>
 
@@ -45,6 +47,7 @@ nav {
       text-decoration: none;
     }
   }
+  
   footer{
     padding-bottom: 0;
     margin-bottom: 0;
