@@ -40,7 +40,7 @@ export default {
         outline: 1px solid red;
         font-size: 26px;
         text-align: center;
-        color: rgb(11, 247, 82);
-        line-height: 1.2;
+        color: map-get($color, primary);
+        line-height: 1.4;
     }
 </style>
