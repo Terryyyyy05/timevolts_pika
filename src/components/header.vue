@@ -19,6 +19,7 @@
           <router-link to="/about">關於我們</router-link>
           <div class="bar"></div>
           <router-link to="/member">會員中心</router-link>
+          <div class="chatbot"><img src="Group243.png" alt=""></div>
         </div>
       </div>
     </header>
