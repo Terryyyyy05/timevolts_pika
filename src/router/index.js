@@ -28,6 +28,11 @@ const routes = [
     component: () => import("../views/FrontEndView/HistoryView.vue"),
   },
   {
+    path: "/history-details",
+    name: "history-details",
+    component: () => import("../views/FrontEndView/HistoryDetailsView.vue"),
+  },
+  {
     path: "/product",
     name: "product",
     component: () => import("../views/FrontEndView/ProductView.vue"),
