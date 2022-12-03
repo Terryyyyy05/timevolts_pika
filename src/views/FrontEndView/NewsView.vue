@@ -9,13 +9,11 @@
 
 <script>
 import Tab from '@/components/Tab.vue'
-import Box from '@/components/Box.vue'
 import TheHeading from '@/components/layout/TheHeading.vue'
 
 export default {
   components :{
     Tab,
-    Box,
     TheHeading
   }
 };
