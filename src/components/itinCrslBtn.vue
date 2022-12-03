@@ -1,15 +1,15 @@
 <template>
-  <div class="itinCrslBtn">
-    <p class="p_xl">{{ msg }}</p>
-  </div>
+    <div class="itinCrslBtn">
+        <p class="p_xl">{{ msg }}</p>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'itiniraryCrslBtn',
-  props: {
-    msg: String
-  }
+    name: 'itiniraryCrslBtn',
+    props: {
+        msg: String
+    }
 }
 </script>
 
@@ -21,10 +21,11 @@ export default {
         color:map-get($color, primary)
     }
     .itinCrslBtn{
-      border: 1px solid yellow;
-      display: inline-block;
-      padding: 10px;
-      margin: 10px;
+
+        border: 1px solid yellow;
+        display: inline-block;
+        padding: 10px;
+        margin: 10px;
     }
 
 </style>
