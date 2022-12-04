@@ -32,8 +32,8 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>
-      <button class="more" @click="isShow = true">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多...
       </button>
     </li>
   </ul>
@@ -43,8 +43,8 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>
-      <button class="more" @click="isShow = true">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多...
       </button>
     </li>
   </ul>
@@ -54,8 +54,8 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button class="more" @click="isShow = true">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多...
       </button>
     </li>
   </ul>
@@ -65,8 +65,8 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button class="more" @click="isShow = true">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多..
       </button>
     </li>
   </ul>
@@ -76,8 +76,8 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button class="more" @click="isShow = true">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多...
       </button>
     </li>
   </ul>
@@ -208,19 +208,20 @@ export default {
         return new Date(a.date).valueOf()-new Date(b.date).valueOf()
       })
     },
-    modalStyle(){
-      return{
-        "display" : this.isShow? '' : 'block'
-      };
-    }
+    
     
   },
   methods: {
     selectTab(selectedTab){
       this.currentTab = selectedTab
     },
+    openBox(){
+      let lightBox = document.querySelector('.l-box');
+      lightBox.classList.add('show-lightbox');
+    },
     close(){
-      this.status.isShow = false;
+      let lightBox = document.querySelector('.l-box');
+      lightBox.classList.remove('show-lightbox');
     }
   },
  }
@@ -268,7 +269,7 @@ ul{
     background-color: map-get($color, dark_sub );
     color: map-get($color, primary);
       h2{
-        margin: 5px 10px;
+        margin:10px;
       }
       .date{
         font-size: 15px;
@@ -282,26 +283,24 @@ ul{
       .content{
         margin: 10px;
         font-size: 15px;
-        line-height: 1.2;
+        line-height: 1.5;
       }
       .more{
         width: 100%;
         text-align: right;
         border: none;
         background: none;
-        margin:10px;
-        
-      }
-      .more a{
-        text-decoration: none;
-        margin:10px;
+        margin-bottom: 10px;
         color: map-get($color, primary);
+        cursor: pointer;
       }
+      
   }
 
 }
   
 .l-box{
+  display: none;
   width: 500px;
   height: 90vh;
   border: 1px solid map-get($color, accent);
@@ -345,6 +344,9 @@ h2{
     font-size: 15px;
     line-height: 1.2;
   }
+}
+.show-lightbox{
+  display: block;
 }
 
 @media screen and (max-width:768px) {
