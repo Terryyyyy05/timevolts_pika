@@ -3,8 +3,8 @@
       <h1>行程</h1>
     </div>
 
-    <section class="section">
-        <div class="container">
+    <section class="section bannersec">
+        <div class="container ">
             <div class="banner1">
                 <div class="word_wrap">
                     <p class="text">準備來場頭暈目眩的穿越吧</p>
@@ -234,6 +234,11 @@
     width: 100%;
     // height: 90vh;
     margin: 100px 0;
+}
+.bannersec{
+    height: 90vh;
+    outline:  1px solid red;
+    margin-top: 30px;
 }
 .container {
     width: map-get($container, each(d_container));

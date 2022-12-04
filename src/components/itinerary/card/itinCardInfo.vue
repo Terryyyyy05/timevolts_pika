@@ -8,7 +8,7 @@
                 </div>
                 <div class="textblock">
                     <div>
-                        <span class="p_md">#{{ info.tagDanderLevel }}</span>
+                        <span class="p_md">#{{ info.tagDanderLevel }}危險</span>
                         <span class="p_md">#{{ info.tagFeature }}</span>
                         <span class="p_md">#{{ info.tagRegion }}</span>
                     </div>
@@ -18,14 +18,21 @@
             </div>
         </div>
     </itin-card>
+    <show-more-button
+      :trueOrFalse="distinguishTrueFalse"
+      @show-more="AddvisibleInformation"
+   ></show-more-button>
 </template>
 
 <script>
 import itinCard from "@/components/itinerary/card/itinCard.vue";
+import showMoreButton from "@/components/itinerary/card/showMoreButton.vue";
+
 
 export default{
     components:{
-        itinCard
+        itinCard,
+        showMoreButton
     },
     data(){
         return{
@@ -191,16 +198,21 @@ export default{
                     description: "在西元1550年至1650年間是荷蘭的黃金年代，有這歐洲最先進的制度，也是最強大的經濟體，而鯡魚就是荷蘭崛起的關鍵之一，究竟為什麼荷蘭能靠小小鯡魚擊敗歐洲列強呢?"
                 }
             ],
-            // informationVisible: 4,
+            informationVisible: 4,
         };
     },
     computed:{
         visibleInformation() {
             return this.information.slice(0, this.informationVisible);
         },
+        distinguishTrueFalse() {
+            return this.informationVisible !== 16 ? true : false;
+        },
     },
     methods:{
-
+        AddvisibleInformation() {
+            this.informationVisible += 4;
+        },
     },
 };
 </script>
@@ -243,7 +255,7 @@ span{
     display: inline-block;
     height: 20px;
     margin: 3px 10px 3px 0;
-    padding: 5px;
+    padding: 3px;
     font-size: 16px;
 }
 .tourdate{
