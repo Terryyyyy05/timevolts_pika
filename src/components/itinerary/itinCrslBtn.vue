@@ -22,7 +22,6 @@ export default {
     }
     .itinCrslBtn{
 
-        border: 1px solid yellow;
         display: inline-block;
         padding: 10px;
         margin: 10px;

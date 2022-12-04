@@ -38,21 +38,8 @@
     <section class="section">
         <div class="container">
             <itinerary-filter/>
-            <div>
-                <h2>經典行程</h2>
-                <div>經典行程card</div>
-            </div>
-            <div>
-                <h2>經典行程</h2>
-                <div>經典行程card</div>
-            </div>
-        </div>
-    </section>
-    <section class="section">    
-        <div class="container">
-            <div class="test141414">test use</div>
             <itin-card-info/>
-        </div>   
+        </div>
     </section>
 </template>
 <script type="module">
@@ -112,7 +99,7 @@
                         vertexNormal = normalize(normalMatrix * normal);
                         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
                     }`;
-      const fShader = `
+                const fShader = `
                     uniform sampler2D globeTexture;
                     varying vec2 vertexUV;
                     varying vec3 vertexNormal;
@@ -143,7 +130,7 @@
                         vertexNormal = normalize(normalMatrix * normal);
                         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
                     }`;
-      const atmospherefShader = `
+                const atmospherefShader = `
                     varying vec3 vertexNormal;
                     void main(){
                         float intensity = pow(0.6 - dot(vertexNormal, vec3(0, 0, 1.0)), 2.0);
@@ -245,19 +232,16 @@
 @import "@/assets/css/app.scss";
 .section {
     width: 100%;
-    height: 90vh;
-    outline: 1px solid red;
-    margin: 10px 0;
+    // height: 90vh;
+    margin: 100px 0;
 }
 .container {
     width: map-get($container, each(d_container));
-    height: 100%;
-    outline: 1px solid blue;
+    // height: 100%;
 }
 .banner1 {
     display: flex;
     height: 90vh;
-    background-color: #000;
 }
 .globe_wrap {
     width: 70%;
@@ -281,9 +265,4 @@
     overflow: hidden;
 }
 
-.test141414{
-    font-size: 20px;
-    color: red;
-    text-align: center;
-}
 </style>
