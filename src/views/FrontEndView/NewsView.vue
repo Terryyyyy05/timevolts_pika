@@ -1,10 +1,8 @@
 <template>
   <div class="container">
     <the-heading heading="最新消息" subheading="News"></the-heading>
-    <Tab/>
+    <tab/>
   </div>
-  
-  <!-- <Lightbox/> -->
 </template>
 
 <script>

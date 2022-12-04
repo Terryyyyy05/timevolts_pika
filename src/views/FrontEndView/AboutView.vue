@@ -45,11 +45,8 @@
           <img :src="item.img">
           <h4>{{item.title}}</h4>
         </div>
-        <ul class="member-list-intro">
-          <li>{{item.content[0]}}</li>
-          <li>{{item.content[1]}}</li>
-          <li>{{item.content[2]}}</li>
-          <li>{{item.content[3]}}</li>
+        <ul class="member-list-intro" >
+          <li v-for="subitem in item.content" :key="subitem"> {{subitem}}</li>
         </ul>
       </div>
     </div>
@@ -84,6 +81,7 @@
         ],
       }
   },
+ 
 };
 </script>
 
@@ -112,7 +110,8 @@
     justify-content: space-evenly;
     .about-pic{
       width: 50%;
-      margin: 10px;
+      margin: auto;
+      padding: 10px;
         img{
           width: 100%;
           vertical-align: baseline;
@@ -141,9 +140,9 @@
           background-color: map-get($color, primary);
           color: map-get($color, dark);
           height: 200px;
-          padding: 10px;
+          padding: 10px 30px;
           li{
-            list-style: circle;
+            list-style:square;
             line-height: 2;
             letter-spacing: 1px;
           }
@@ -168,7 +167,35 @@
   }
 
 @media screen and (max-width:768px) {
+  .about{
+    width: 90%;
+  .about-title{
+    img{
+      width: 20%;
+    }
+  }
+  .about-content{
+    flex-direction: column;
+    .about-pic{
+        width: 90%;
+      }
+    .content{
+      width: 90%;
+    }
+    .member-list{
+      width: 70%;
+      margin: auto;
+    .member-list-title{
+      img{
+        width: 10%;
+      }
+    }
+    .member-list-intro{
+        height: 150px;
+      }
+    }
+    }
+  }
 }
-
 
 </style>

@@ -16,6 +16,7 @@
     <img src="../assets/image/news/lightning.svg" alt="">其他消息
   </button>
 </nav>
+
 <select id="select-item-choose">
   <option>全部消息</option>
   <option>行程預訂</option>
@@ -23,8 +24,6 @@
   <option>購物商城</option>
   <option>其他消息</option>
 </select>
-
-
 
   <ul v-if="currentTab == 'all'">
     <li class="news" v-for="(item, index) in newsData" :key="index">
@@ -93,7 +92,7 @@
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
-      <p class="content">{{item.content}}</p>     
+      <p class="content">{{item.content_box}}</p>     
     </div>
   </div>
 
@@ -113,7 +112,7 @@ export default {
   data(){
     return{
       currentTab:'all',
-      isShow: false,
+      tabs:['全部消息','行程預訂','歷史事件','購物商城','其他消息'],
       itineraryData:[
         {
           title:'穿梭於史前時代',
@@ -286,10 +285,10 @@ ul{
         line-height: 1.5;
       }
       .more{
-        width: 100%;
-        text-align: right;
+        width:100%;
         border: none;
         background: none;
+        text-align: right;
         margin-bottom: 10px;
         color: map-get($color, primary);
         cursor: pointer;
@@ -301,7 +300,7 @@ ul{
   
 .l-box{
   display: none;
-  width: 500px;
+  width: 600px;
   height: 90vh;
   border: 1px solid map-get($color, accent);
   color: map-get($color, accent);
@@ -336,7 +335,6 @@ h2{
     margin: 10px;
   }
   .hashtag{
-    
     margin: 10px;
   }
   .content{
