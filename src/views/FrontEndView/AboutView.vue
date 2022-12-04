@@ -69,17 +69,17 @@
           {
             title: '普通會員',
             img: require(`@/assets/image/about/diamond.svg`),
-            content:['． 註冊即可獲得'],
+            content:['註冊即可獲得'],
           },
           {
             title: '白金會員',
             img: require(`@/assets/image/about/diamond.svg`),
-            content:['． 穿越次數達3次','． 累積消費價格達$$$$','． 搶先得知新上架行程','． 行程購買9折'],
+            content:['穿越次數達3次','累積消費價格達$$$$','搶先得知新上架行程','行程購買9折'],
           },
           {
             title: '鑽石會員',
             img: require(`@/assets/image/about/diamond.svg`),
-            content:['． 穿越次數達10次','． 累積消費價格達$$$$','． 搶先得知新上架行程','． 行程購買8折'],
+            content:['穿越次數達10次','累積消費價格達$$$$','搶先得知新上架行程','行程購買8折'],
           },
         ],
       }
@@ -143,6 +143,7 @@
           height: 200px;
           padding: 10px;
           li{
+            list-style: circle;
             line-height: 2;
             letter-spacing: 1px;
           }
