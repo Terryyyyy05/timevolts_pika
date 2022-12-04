@@ -72,7 +72,7 @@ export default {
         width: 80px;
         text-decoration: none;
         color: #ffe1b5;
-        border: 1px solid #ffe1b5;
+        border: 2px solid #ffe1b5;
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -85,7 +85,7 @@ export default {
         }
         div.bar {
           height: 10px;
-          width: 1px;
+          width: 3px;
           background-color: #ffe1b5;
           position: relative;
           margin: 0 40px;
