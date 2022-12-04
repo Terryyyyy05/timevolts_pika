@@ -16,7 +16,7 @@
         height: 500px;
         box-sizing: border-box;
         margin: 10px;
-        padding: 25px 50px;
+        padding: 1%;
         border: 2px solid map-get($color, "primary");
         background-color: map-get($color, "dark_sub");
     }

@@ -47,6 +47,16 @@ const routes = [
     name: "member",
     component: () => import("../views/FrontEndView/MemberView.vue"),
   },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("../views/FrontEndView/LoginView.vue"),
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: () => import("../views/FrontEndView/SignupView.vue"),
+  },
 ];
 
 const router = createRouter({
