@@ -1,18 +1,18 @@
 <template>
 <nav class="select-btn">
-  <button id="select-item" @click="selectTab(1)">
+  <button id="select-item" @click="selectTab('all')">
     <img src="../assets/image/news/lightning.svg" alt="">全部消息
   </button>
-  <button id="select-item" @click="selectTab(2)">
+  <button id="select-item" @click="selectTab('itinerary')">
     <img src="../assets/image/news/lightning.svg" alt="">行程預訂
   </button>
-  <button id="select-item" @click="selectTab(3)">
+  <button id="select-item" @click="selectTab('history')">
     <img src="../assets/image/news/lightning.svg" alt="">歷史事件
   </button>
-  <button id="select-item" @click="selectTab(4)">
+  <button id="select-item" @click="selectTab('shopping')">
     <img src="../assets/image/news/lightning.svg" alt="">購物商城
   </button>
-  <button id="select-item" @click="selectTab(5)">
+  <button id="select-item" @click="selectTab('other')">
     <img src="../assets/image/news/lightning.svg" alt="">其他消息
   </button>
 </nav>
@@ -26,64 +26,64 @@
 
 
 
-  <ul v-if="currentTab ==1">
+  <ul v-if="currentTab == 'all'">
     <li class="news" v-for="(item, index) in newsData" :key="index">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>
-      <button class="more">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多...
       </button>
     </li>
   </ul>
-  <ul v-if="currentTab ==2">
+  <ul v-if="currentTab == 'itinerary'">
     <li class="news" v-for="(item, index) in itineraryData" :key="index">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>
-      <button class="more">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多...
       </button>
     </li>
   </ul>
-  <ul v-if="currentTab ==3">
+  <ul v-if="currentTab == 'history'">
     <li class="news" v-for="(item, index) in historyDataSort" :key="index">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button class="more">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多...
       </button>
     </li>
   </ul>
-  <ul v-if="currentTab ==4">
+  <ul v-if="currentTab == 'shopping'">
     <li class="news" v-for="(item, index) in shoppingData" :key="index">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button class="more">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多..
       </button>
     </li>
   </ul>
-  <ul v-if="currentTab ==5">
+  <ul v-if="currentTab == 'other'">
     <li class="news" v-for="(item, index) in otherData" :key="index">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button class="more">
-        <a href="">看更多...</a>
+      <button type="button" class="more" @click="openBox">
+        看更多...
       </button>
     </li>
   </ul>
 
-  <div class="l-box" v-for="(item,index) in newsData" :key="index">
-    <button class="close-l-box" @click.self="close">
+  <div class="l-box" v-for="(item,index) in newsData" :key="index" :style="modalStyle">
+    <button class="close-l-box" @click="close">
       <font-awesome-icon icon="fa-solid fa-xmark" />
     </button>
     <div class="l-box-img">
@@ -108,10 +108,12 @@ export default {
         date:Number,
         hashtag:String,
         content:String,
+        
     },
   data(){
     return{
-      currentTab:1,
+      currentTab:'all',
+      isShow: false,
       itineraryData:[
         {
           title:'穿梭於史前時代',
@@ -206,10 +208,20 @@ export default {
         return new Date(a.date).valueOf()-new Date(b.date).valueOf()
       })
     },
+    
+    
   },
   methods: {
     selectTab(selectedTab){
       this.currentTab = selectedTab
+    },
+    openBox(){
+      let lightBox = document.querySelector('.l-box');
+      lightBox.classList.add('show-lightbox');
+    },
+    close(){
+      let lightBox = document.querySelector('.l-box');
+      lightBox.classList.remove('show-lightbox');
     }
   },
  }
@@ -221,6 +233,9 @@ export default {
 *{
   font-family: "Cube11";
   list-style: none;
+}
+body{
+  position: relative;
 }
 .select-btn{
   width: 50%;
@@ -251,9 +266,10 @@ ul{
     width: 80%;
     margin: 20px auto;
     border: 1px solid map-get($color, primary);
+    background-color: map-get($color, dark_sub );
     color: map-get($color, primary);
       h2{
-        margin: 5px 10px;
+        margin:10px;
       }
       .date{
         font-size: 15px;
@@ -267,30 +283,35 @@ ul{
       .content{
         margin: 10px;
         font-size: 15px;
-        line-height: 1.2;
+        line-height: 1.5;
       }
       .more{
         width: 100%;
         text-align: right;
         border: none;
         background: none;
-        margin:10px;
-        
-      }
-      .more a{
-        text-decoration: none;
-        margin:10px;
+        margin-bottom: 10px;
         color: map-get($color, primary);
+        cursor: pointer;
       }
+      
   }
 
 }
   
 .l-box{
-width: 600px;
-border: 1px solid map-get($color, accent);
-color: map-get($color, accent);
-margin: auto;
+  display: none;
+  width: 500px;
+  height: 90vh;
+  border: 1px solid map-get($color, accent);
+  color: map-get($color, accent);
+  background-color: map-get($color, dark_sub );
+  margin: auto;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
 .close-l-box{
   float: right;
   color: map-get($color, accent);
@@ -323,6 +344,9 @@ h2{
     font-size: 15px;
     line-height: 1.2;
   }
+}
+.show-lightbox{
+  display: block;
 }
 
 @media screen and (max-width:768px) {
