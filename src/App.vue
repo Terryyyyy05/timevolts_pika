@@ -8,6 +8,7 @@
     <router-link to="/product">購物商城Test</router-link> |
     <router-link to="/about">關於我們</router-link> |
     <router-link to="/member">會員中心</router-link> |
+    <router-link to="/itinerary-booking">行程訂票(預覽)</router-link> |
   </nav>
   <router-view />
   
