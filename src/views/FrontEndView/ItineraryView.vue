@@ -31,7 +31,7 @@
             <itin-crsl-btn msg="期間限定"/>
         </div>
         <div class="clsCrslWrap">
-            <itinClsCrsl/>
+            <itinPrdCrsl/>
         </div>
     </div>
   </section>
@@ -52,14 +52,17 @@
     import gsap from 'gsap';
     import * as $ from 'jquery';
     import imgA from '@/assets/image/itineraryglobe.jpg';
-    import itinCrslBtn from '@/components/itinCrslBtn.vue';
-    import itinClsCrsl from '@/components/itinClsCrsl.vue';
+    import itinCrslBtn from '@/components/itinerary/itinCrslBtn.vue';
+    import itinClsCrsl from '@/components/itinerary/itinClsCrsl.vue';
+    import itinPrdCrsl from '@/components/itinerary/itinPrdCrsl.vue';
+
 
     export default{
         name: 'itiniraryView',
         components:{
             itinCrslBtn,
-            itinClsCrsl
+            itinClsCrsl,
+            itinPrdCrsl
         },
         mounted() {
             this.initThree()
