@@ -38,15 +38,21 @@
     <section class="section">
         <div class="container">
             <itinerary-filter/>
+            <div>
+                <h2>經典行程</h2>
+                <div>經典行程card</div>
+            </div>
+            <div>
+                <h2>經典行程</h2>
+                <div>經典行程card</div>
+            </div>
         </div>
-        <div>
-            <h2>經典行程</h2>
-            <div>經典行程card</div>
-        </div>
-        <div>
-            <h2>經典行程</h2>
-            <div>經典行程card</div>
-        </div>
+    </section>
+    <section class="section">    
+        <div class="container">
+            <div class="test141414">test use</div>
+            <itin-card-info/>
+        </div>   
     </section>
 </template>
 <script type="module">
@@ -58,6 +64,7 @@
     import itinClsCrsl from '@/components/itinerary/itinClsCrsl.vue';
     import itinPrdCrsl from '@/components/itinerary/itinPrdCrsl.vue';
     import itineraryFilter from "@/components/itinerary/filter/itineraryFilter.vue";
+    import itinCardInfo from "@/components/itinerary/card/itinCardInfo.vue";
 
 
     export default{
@@ -66,7 +73,8 @@
             itinCrslBtn,
             itinClsCrsl,
             itinPrdCrsl,
-            itineraryFilter
+            itineraryFilter,
+            itinCardInfo
         },
         mounted() {
             this.initThree()
@@ -273,4 +281,9 @@
     overflow: hidden;
 }
 
+.test141414{
+    font-size: 20px;
+    color: red;
+    text-align: center;
+}
 </style>
