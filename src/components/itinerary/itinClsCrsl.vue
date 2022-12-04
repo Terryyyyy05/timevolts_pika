@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import itinCrslCard from "@/components/itinCrslCard.vue";
+import itinCrslCard from "@/components/itinerary/itinCrslCard.vue";
 
 export default {
     name: 'itinClsCrsl',

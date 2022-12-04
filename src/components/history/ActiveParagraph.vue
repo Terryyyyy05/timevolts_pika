@@ -1,7 +1,9 @@
 <template>
    <div>
       <h4>{{ heading }}</h4>
-      <p class="p_md">{{ text }}</p>
+      <div>
+         <p class="p_md">{{ text }}</p>
+      </div>
    </div>
 </template>
 
@@ -12,6 +14,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/css/utils/variables";
+
 div {
    display: flex;
    flex-direction: column;
@@ -19,5 +23,24 @@ div {
    h4 {
       margin: auto;
    }
+   p {
+      overflow-y: scroll;
+      height: 500px;
+   }
+}
+::-webkit-scrollbar {
+   width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 5px grey;
+   border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+   background: map-get($color, "light");
+   border-radius: 10px;
 }
 </style>

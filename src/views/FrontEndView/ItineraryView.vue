@@ -1,58 +1,80 @@
 <template>
-  <div class="about">
-    <h1>行程</h1>
-  </div>
+    <div class="about">
+      <h1>行程</h1>
+    </div>
 
-  <section class="section">
-    <div class="container">
-      <div class="banner1">
-        <div class="word_wrap">
-          <p class="text">準備來場頭暈目眩的穿越吧</p>
+    <section class="section">
+        <div class="container">
+            <div class="banner1">
+                <div class="word_wrap">
+                    <p class="text">準備來場頭暈目眩的穿越吧</p>
+                </div>
+                <div class="globe_wrap" id="globe_container">
+                    <canvas class="canvas_globe"></canvas>
+                </div>
+            </div>
         </div>
-        <div class="globe_wrap" id="globe_container">
-          <canvas class="canvas_globe"></canvas>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="btnwrap">
+                <itin-crsl-btn msg="經典行程"/>
+            </div>
+            <div class="clsCrslWrap">
+                <itinClsCrsl/>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-        <div class="btnwrap">
-            <itin-crsl-btn msg="經典行程"/>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="btnwrap">
+                <itin-crsl-btn msg="期間限定"/>
+            </div>
+            <div class="clsCrslWrap">
+                <itin-prd-crsl/>
+            </div>
         </div>
-        <div class="clsCrslWrap">
-            <itinClsCrsl/>
+    </section>
+    <section class="section">
+        <div class="container">
+            <itinerary-filter/>
+            <div>
+                <h2>經典行程</h2>
+                <div>經典行程card</div>
+            </div>
+            <div>
+                <h2>經典行程</h2>
+                <div>經典行程card</div>
+            </div>
         </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">worldmap</div>
-  </section>
-  <section>
-    <div>filter</div>
-    <div>
-      <h2>經典行程</h2>
-      <div>經典行程card</div>
-    </div>
-    <div>
-      <h2>經典行程</h2>
-      <div>經典行程card</div>
-    </div>
-  </section>
+    </section>
+    <section class="section">    
+        <div class="container">
+            <div class="test141414">test use</div>
+            <itin-card-info/>
+        </div>   
+    </section>
 </template>
 <script type="module">
     import * as THREE from 'three';
     import gsap from 'gsap';
     import * as $ from 'jquery';
     import imgA from '@/assets/image/itineraryglobe.jpg';
-    import itinCrslBtn from '@/components/itinCrslBtn.vue';
-    import itinClsCrsl from '@/components/itinClsCrsl.vue';
+    import itinCrslBtn from '@/components/itinerary/itinCrslBtn.vue';
+    import itinClsCrsl from '@/components/itinerary/itinClsCrsl.vue';
+    import itinPrdCrsl from '@/components/itinerary/itinPrdCrsl.vue';
+    import itineraryFilter from "@/components/itinerary/filter/itineraryFilter.vue";
+    import itinCardInfo from "@/components/itinerary/card/itinCardInfo.vue";
+
 
     export default{
         name: 'itiniraryView',
         components:{
             itinCrslBtn,
-            itinClsCrsl
+            itinClsCrsl,
+            itinPrdCrsl,
+            itineraryFilter,
+            itinCardInfo
         },
         mounted() {
             this.initThree()
@@ -259,4 +281,9 @@
     overflow: hidden;
 }
 
+.test141414{
+    font-size: 20px;
+    color: red;
+    text-align: center;
+}
 </style>
