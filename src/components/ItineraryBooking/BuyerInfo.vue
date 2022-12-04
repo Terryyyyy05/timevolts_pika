@@ -7,23 +7,48 @@
          </div>
          <div>
             <label class="p_lg">姓名</label>
-            <input class="p_lg" type="text" ref="nameInput" />
+            <input
+               class="p_lg"
+               type="text"
+               ref="buyerName"
+               v-model="buyerName"
+            />
          </div>
          <div>
             <label class="p_lg">生日</label>
-            <input class="p_lg" type="text" ref="nameInput" />
+            <input
+               class="p_lg"
+               type="text"
+               ref="buyerBirthday"
+               v-model="buyerBirthday"
+            />
          </div>
          <div>
             <label class="p_lg">電話</label>
-            <input class="p_lg" type="text" ref="nameInput" />
+            <input
+               class="p_lg"
+               type="text"
+               ref="buyerPhone"
+               v-model="buyerPhone"
+            />
          </div>
          <div>
             <label class="p_lg">信箱</label>
-            <input class="p_lg" type="text" ref="nameInput" />
+            <input
+               class="p_lg"
+               type="text"
+               ref="buyerEmail"
+               v-model="buyerEmail"
+            />
          </div>
          <div>
             <label class="p_lg">地址</label>
-            <input class="p_lg" type="text" ref="nameInput" />
+            <input
+               class="p_lg"
+               type="text"
+               ref="buyerAddress"
+               v-model="buyerName"
+            />
          </div>
       </div>
    </base-card>
@@ -37,30 +62,34 @@
             <div class="checkbox" v-if="index === 0">
                <label class="check-container"
                   >同訂購人資料
-                  <input type="checkbox" />
+                  <input
+                     type="checkbox"
+                     v-model="checked"
+                     @click="clickCheckbox($event)"
+                  />
                   <span class="checkmark"></span>
                </label>
             </div>
          </div>
          <div>
             <label class="p_lg">姓名</label>
-            <input class="p_lg" type="text" />
+            <input class="p_lg" type="text" v-model="travelerName" />
          </div>
          <div>
             <label class="p_lg">生日</label>
-            <input class="p_lg" type="text" />
+            <input class="p_lg" type="text" v-model="travelerBirthday" />
          </div>
          <div>
             <label class="p_lg">電話</label>
-            <input class="p_lg" type="text" />
+            <input class="p_lg" type="text" v-model="travelerPhone" />
          </div>
          <div>
             <label class="p_lg">信箱</label>
-            <input class="p_lg" type="text" />
+            <input class="p_lg" type="text" v-model="travelerEmail" />
          </div>
          <div>
             <label class="p_lg">地址</label>
-            <input class="p_lg" type="text" />
+            <input class="p_lg" type="text" v-model="travelerAddress" />
          </div>
       </div>
    </base-card>
@@ -74,6 +103,40 @@ export default {
       BaseCheckbox,
    },
    inject: ["attendNum"],
+   data() {
+      return {
+         checked: false,
+      };
+   },
+   methods: {
+      clickCheckbox(event) {
+         if (event.target.checked === true) {
+            this.copyInfo();
+         } else {
+            this.removeInfo();
+         }
+      },
+      copyInfo() {
+         const enteredName = this.$refs.buyerName.value;
+         const enteredBirthday = this.$refs.buyerBirthday.value;
+         const enteredEmail = this.$refs.buyerEmail.value;
+         const enteredPhone = this.$refs.buyerPhone.value;
+         const enteredAddress = this.$refs.buyerAddress.value;
+
+         this.travelerName = enteredName;
+         this.travelerBirthday = enteredBirthday;
+         this.travelerEmail = enteredEmail;
+         this.travelerPhone = enteredPhone;
+         this.travelerAddress = enteredAddress;
+      },
+      removeInfo() {
+         this.travelerName = null;
+         this.travelerBirthday = null;
+         this.travelerEmail = null;
+         this.travelerPhone = null;
+         this.travelerAddress = null;
+      },
+   },
 };
 </script>
 
