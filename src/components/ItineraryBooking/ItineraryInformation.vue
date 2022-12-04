@@ -49,14 +49,17 @@
          </base-card>
       </div>
    </div>
+   <buyer-info></buyer-info>
 </template>
 
 <script>
 import Calendar from "./Calendar.vue";
+import BuyerInfo from "./BuyerInfo.vue";
 
 export default {
    components: {
       Calendar,
+      BuyerInfo,
    },
    data() {
       return {
@@ -73,6 +76,11 @@ export default {
          memDiscout: 9,
          discoutPrice: null,
          totalPrice: null,
+      };
+   },
+   provide() {
+      return {
+         latestDate: this.latestDate,
       };
    },
    computed: {
@@ -124,7 +132,7 @@ export default {
 }
 
 .base-card {
-   height: auto;
+   height: fit-content;
 }
 
 .attend-num {
