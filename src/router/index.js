@@ -23,6 +23,16 @@ const routes = [
     component: () => import("../views/FrontEndView/ItineraryView.vue"),
   },
   {
+    path: "/itiItineraryClassicView",
+    name: "ItineraryClassicView",
+    component: () => import("../views/FrontEndView/ItineraryClassicView.vue"),
+  },
+  {
+    path: "/itineraryPeriodView",
+    name: "itineraryPeriodView",
+    component: () => import("../views/FrontEndView/ItineraryPeriodView.vue"),
+  },
+  {
     path: "/itinerary-booking",
     name: "itinerary-booking",
     component: () => import("../views/FrontEndView/ItineraryBookingView.vue"),
