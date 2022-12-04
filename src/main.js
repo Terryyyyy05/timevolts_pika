@@ -7,7 +7,8 @@ import store from "./store";
 import "@/assets/css/app.scss";
 
 // Import Components
-import TheHeading from "./components/layout/TheHeading.vue";
+import TheHeading from "./components/all_layout/TheHeading.vue";
+import BaseCard from "./components/all_UI/BaseCard.vue";
 
 // fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -17,12 +18,16 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 // add icons from library
 library.add(faChevronDown);
 library.add(faChevronRight);
 library.add(faChevronLeft);
 library.add(faMagnifyingGlass);
 library.add(faXmark);
+library.add(faMinus);
+library.add(faPlus);
 
 // Vue 實體
 const app = createApp(App);
@@ -31,6 +36,7 @@ app.use(store);
 app.use(router);
 
 app.component("the-heading", TheHeading);
+app.component("base-card", BaseCard);
 app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.mount("#app");
