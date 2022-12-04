@@ -239,6 +239,7 @@ span {
 
 a {
    text-decoration: none;
+   color: #000
 }
 
 .more-button {
