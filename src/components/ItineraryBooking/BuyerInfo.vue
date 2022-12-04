@@ -55,8 +55,8 @@
 
    <base-card class="base-card">
       <h3>填寫旅客資料</h3>
-      <span class="p_xl attend-num">參團人數 : {{ this.attendNum }}</span>
-      <div class="buyer-info" v-for="(num, index) in this.attendNum" :key="num">
+      <span class="p_xl attend-num">參團人數 : {{ number }}</span>
+      <div class="buyer-info" v-for="(num, index) in number" :key="num">
          <div class="info-top">
             <span class="p_lg">旅客 {{ index + 1 }}</span>
             <div class="checkbox" v-if="index === 0">
@@ -102,6 +102,7 @@ export default {
    components: {
       BaseCheckbox,
    },
+   props: ["number"],
    inject: ["attendNum"],
    data() {
       return {

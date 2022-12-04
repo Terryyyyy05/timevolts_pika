@@ -49,7 +49,7 @@
          </base-card>
       </div>
    </div>
-   <buyer-info></buyer-info>
+   <buyer-info :number="this.attendNum"></buyer-info>
 </template>
 
 <script>
