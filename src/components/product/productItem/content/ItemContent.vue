@@ -35,7 +35,6 @@
 </template>
 
 <script>
-// import ProductCard from "../../base/ProductCard.vue";
 import { ref } from "vue";
 
 import { cardContext } from "../../js/data";

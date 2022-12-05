@@ -1,4 +1,11 @@
 <template>
+  <!-- test -->
+  <!-- <div
+    style="width: 50px; height: 50px; background-color: aliceblue"
+    @click="toggleCart"
+  ></div> -->
+  <!-- <cart :cartStatus="cartStatus" /> -->
+  <!-- test -->
   <div class="product-item">
     <section class="need-wrap">
       <Need />
@@ -18,17 +25,27 @@
 import Need from "../../components/product/productItem/need/Need.vue";
 import ItemContent from "@/components/product/productItem/content/ItemContent.vue";
 
-// import { reactive } from "vue";
+// test
+// import { ref } from "vue";
+// import Cart from "@/components/Cart.vue";
 
 export default {
   components: {
     Need,
     ItemContent,
+
+    // test
+    // Cart,
   },
   setup() {
-    return {
-      // cardContext,
-    };
+    // const cartStatus = ref(true);
+    // const toggleCart = () => {
+    //   return (cartStatus.value = !cartStatus.value);
+    // };
+    // return {
+    //   cartStatus,
+    //   toggleCart,
+    // };
   },
 };
 </script>

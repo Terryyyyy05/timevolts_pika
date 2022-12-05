@@ -1,187 +1,252 @@
 <template>
-    <header>
-      <div class="icon-container">
-        <div><router-link to="/login"><img src="Group604.png" alt=""></router-link></div>
-        <div><img src="Group605.png" alt=""></div>
+  <cart :cartStatus="cartStatus" @xmark="() => (cartStatus = false)" />
+  <header>
+    <div class="icon-container">
+      <div>
+        <router-link to="/login"><img src="Group604.png" alt="" /></router-link>
       </div>
-      <div class="nav">
-        <div class="hbicon"><img src="Group603.png" alt=""></div>
-        <div v-for="(item, index) in pageName" :key="index" class="link-container" >
-          <div class="bar"></div>
-          <router-link @mouseover="changeColor" @mouseleave="changeBack" :to="item.router" :data-item="index" >{{item.ch}}</router-link>
-        </div>
-        <div class="chatbot"><img src="Group243.png" alt=""></div>
+      <div @click="toggleCart"><img src="Group605.png" alt="" /></div>
+    </div>
+    <div class="nav">
+      <div class="hbicon"><img src="Group603.png" alt="" /></div>
+      <div
+        v-for="(item, index) in pageName"
+        :key="index"
+        class="link-container"
+      >
+        <div class="bar"></div>
+        <router-link
+          @mouseover="changeColor"
+          @mouseleave="changeBack"
+          :to="item.router"
+          :data-item="index"
+          >{{ item.ch }}</router-link
+        >
       </div>
-    </header>
+      <div class="chatbot"><img src="Group243.png" alt="" /></div>
+    </div>
+  </header>
 </template>
 <script>
+import Cart from "@/components/Cart.vue";
+
 export default {
   name: "header",
-  data(){
-    return{
-      pageName:[
+  components: {
+    Cart,
+  },
+  data() {
+    return {
+      pageName: [
         {
-          'router': '/news',
-          'ch':"最新消息",
-          'en':"NEWS",
+          router: "/news",
+          ch: "最新消息",
+          en: "NEWS",
         },
         {
-          'router': '/itinerary',
-          'ch':"行程預定",
-          'en':"ITINERARY",
+          router: "/itinerary",
+          ch: "行程預定",
+          en: "ITINERARY",
         },
         {
-          'router': '/history',
-          'ch':"歷史故事",
-          'en':"HISTORY",
+          router: "/history",
+          ch: "歷史故事",
+          en: "HISTORY",
         },
         {
-          'router': '/products',
-          'ch':"購物商城",
-          'en':"PRODUCTS",
+          router: "/products",
+          ch: "購物商城",
+          en: "PRODUCTS",
         },
         {
-          'router': '/about',
-          'ch':"關於我們",
-          'en':"ABOUT US",
+          router: "/about",
+          ch: "關於我們",
+          en: "ABOUT US",
         },
         {
-          'router': '/member',
-          'ch':"會員中心",
-          'en':"MEMBER",
-        }
-        ],
-    }
+          router: "/member",
+          ch: "會員中心",
+          en: "MEMBER",
+        },
+      ],
+      cartStatus: true,
+    };
   },
   methods: {
-    changeColor(e){
-      e.target.style.transition = 'all .3s';
-      e.target.style.backgroundColor = '#ffe1b5';
-      e.target.style.color = '#1e1e1e';
-      
+    changeColor(e) {
+      e.target.style.transition = "all .3s";
+      e.target.style.backgroundColor = "#ffe1b5";
+      e.target.style.color = "#1e1e1e";
+
       e.target.innerText = this.pageName[e.target.dataset.item].en;
     },
-    changeBack(e){
-      e.target.style.transition = 'all .3s';
-      e.target.style.color = '#ffe1b5';
-      e.target.style.backgroundColor = 'transparent';
-      e.target.innerText = this.pageName[e.target.dataset.item].ch
+    changeBack(e) {
+      e.target.style.transition = "all .3s";
+      e.target.style.color = "#ffe1b5";
+      e.target.style.backgroundColor = "transparent";
+      e.target.innerText = this.pageName[e.target.dataset.item].ch;
     },
-  }
+    toggleCart() {
+      return (this.cartStatus = !this.cartStatus);
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-  header{
-    display: flex;
-    position: fixed;
-    top: 2%;
-    right: 2%;
-    z-index: 100;
-    .icon-container{
+header {
+  display: flex;
+  position: fixed;
+  top: 2%;
+  right: 2%;
+  z-index: 101;
+  .icon-container {
     display: flex;
     height: fit-content;
     margin-top: calc((55px - 15px) / 2);
-    div{
+    div {
       width: 15px;
       height: 15px;
       margin-right: 10px;
-      img{
+      cursor: pointer;
+      img {
         width: 100%;
         height: 100%;
       }
     }
+  }
+  div.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .hbicon {
+      height: 55px;
+      width: 55px;
+      animation: rotate 1.5s infinite;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
-    div.nav{
+    .link-container {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      .hbicon{
-        height: 55px;
-        width: 55px;
-        animation: rotate 1.5s infinite;
-        img{
-        width: 100%;
-        height: 100%;
-        }
-      }
-      .link-container{
+      a {
+        font-size: 12px;
+        font-weight: bold;
+        height: 54px;
+        width: 54px;
+        text-decoration: none;
+        color: #ffe1b5;
+        border: 2px solid #ffe1b5;
+        border-radius: 50%;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        a{
-          font-size: 12px;
-          font-weight: bold;
-          height: 54px;
-          width: 54px;
-          text-decoration: none;
-          color: #ffe1b5;
-          border: 2px solid #ffe1b5;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        div.bar {
-          height: 5px;
-          width: 1.5px;
-          background-color: #ffe1b5;
-          position: relative;
-          margin: 0 20px;
-          color: #ffe1b5;
-        }
       }
-    }
-    @keyframes rotate {
-      0%{ rotate: (0deg);}
-      5%{ rotate: (18deg);}
-      10%{ rotate: (36deg);}
-      15%{ rotate: (54deg);}
-      20%{ rotate: (72deg);}
-      25%{ rotate: (90deg);}
-      30%{ rotate: (108deg);}
-      35%{ rotate: (126deg);}
-      40%{ rotate: (144deg);}
-      45%{ rotate: (162deg);}
-      50%{ rotate: (180deg);}
-      55%{ rotate: (198deg);}
-      60%{ rotate: (216deg);}
-      65%{ rotate: (234deg);}
-      70%{ rotate: (252deg);}
-      75%{ rotate: (270deg);}
-      80%{ rotate: (288deg);}
-      85%{ rotate: (306deg);}
-      90%{ rotate: (324deg);}
-      95%{ rotate: (342deg);}
-      100%{ rotate: (360deg);}
+      div.bar {
+        height: 5px;
+        width: 1.5px;
+        background-color: #ffe1b5;
+        position: relative;
+        margin: 0 20px;
+        color: #ffe1b5;
+      }
     }
   }
+  @keyframes rotate {
+    0% {
+      rotate: (0deg);
+    }
+    5% {
+      rotate: (18deg);
+    }
+    10% {
+      rotate: (36deg);
+    }
+    15% {
+      rotate: (54deg);
+    }
+    20% {
+      rotate: (72deg);
+    }
+    25% {
+      rotate: (90deg);
+    }
+    30% {
+      rotate: (108deg);
+    }
+    35% {
+      rotate: (126deg);
+    }
+    40% {
+      rotate: (144deg);
+    }
+    45% {
+      rotate: (162deg);
+    }
+    50% {
+      rotate: (180deg);
+    }
+    55% {
+      rotate: (198deg);
+    }
+    60% {
+      rotate: (216deg);
+    }
+    65% {
+      rotate: (234deg);
+    }
+    70% {
+      rotate: (252deg);
+    }
+    75% {
+      rotate: (270deg);
+    }
+    80% {
+      rotate: (288deg);
+    }
+    85% {
+      rotate: (306deg);
+    }
+    90% {
+      rotate: (324deg);
+    }
+    95% {
+      rotate: (342deg);
+    }
+    100% {
+      rotate: (360deg);
+    }
+  }
+}
 
-  @media screen and (min-width: 768px) {
-    header{
-    .icon-container{
-    margin-top: calc((85px - 30px) / 2);
-    div{
-      width: 30px;
-      height: 30px;
-      margin-right: 20px;
-      img{
-        width: 100%;
-        height: 100%;
+@media screen and (min-width: 768px) {
+  header {
+    .icon-container {
+      margin-top: calc((85px - 30px) / 2);
+      div {
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
-    }
-    div.nav{
-      .hbicon{
+    div.nav {
+      .hbicon {
         height: 85px;
         width: 85px;
       }
-      .link-container{
-        a{
-        height: 80px;
-        width: 80px;
+      .link-container {
+        a {
+          height: 80px;
+          width: 80px;
         }
         div.bar {
           height: 10px;
