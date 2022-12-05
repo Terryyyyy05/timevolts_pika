@@ -38,5 +38,6 @@ app.use(router);
 app.component("the-heading", TheHeading);
 app.component("base-card", BaseCard);
 app.component("font-awesome-icon", FontAwesomeIcon);
+// app.component("innerpageHeader", innerpageHeader);
 
 app.mount("#app");
