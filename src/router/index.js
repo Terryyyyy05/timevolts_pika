@@ -60,12 +60,37 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: () => import("../views/FrontEndView/LoginView.vue"),
+    component: () => import("../views/FrontEndView/MemberLoginView.vue"),
   },
   {
     path: "/signup",
     name: "signup",
-    component: () => import("../views/FrontEndView/SignupView.vue"),
+    component: () => import("../views/FrontEndView/MemberSignupView.vue"),
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: () => import("../views/FrontEndView/MemberProfileView.vue"),
+  },
+  {
+    path: "/profile-edit",
+    name: "profile-edit",
+    component: () => import("../views/FrontEndView/MemberProfileEditView.vue"),
+  },
+  {
+    path: "/coupon",
+    name: "coupon",
+    component: () => import("../views/FrontEndView/MemberCouponView.vue"),
+  },
+  {
+    path: "/itinerary-wishlist",
+    name: "itinerary-wishlist",
+    component: () => import("../views/FrontEndView/MemberItineraryWishlistView.vue"),
+  },
+  {
+    path: "/product-wishlist",
+    name: "product-wishlist",
+    component: () => import("../views/FrontEndView/MemberProductWishlistView.vue"),
   },
 ];
 
