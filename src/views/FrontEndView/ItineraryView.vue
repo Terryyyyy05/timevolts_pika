@@ -39,7 +39,9 @@
     <section class="section">
         <div class="container">
             <itinerary-filter/>
-            <itin-card-info/>
+            <div class="cardwrap">
+                <itin-card-info/>
+            </div>
         </div>
     </section>
 </template>
@@ -272,5 +274,10 @@
 .clsCrslWrap{
     overflow: hidden;
 }
-
+.cardwrap{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center;
+}
 </style>

@@ -7,7 +7,7 @@
             <li><img src="@/assets/image/itin/lochNessMonster01.jpg" alt="圖片4" class="img4"></li>
         </ul>
         <div class="button">
-            <input type="button" id="btnLeft" value="<<" disabled >
+            <input type="button" id="btnLeft" value="<<"  @click="carouselMoveLeft">
             <input type="button" id="btnRight" value=">>" @click="carouselMoveRight">
         </div>
     </div>
@@ -30,19 +30,27 @@ export default {
             
             let ul = document.querySelector(".imageul");
             let btnRight = document.querySelector("#btnRight");
-            // let curIndex = 0;
     
             this.curIndex++;
-            console.log(this.curIndex);
             ul.style.left = -400*this.curIndex + "px";
             if(this.curIndex == 3){
                 btnRight.disabled = true;
             }
+        },
+        carouselMoveLeft (){
+            
+            let ul = document.querySelector(".imageul");
+            let btnLeft = document.querySelector("#btnRight");
+    
+            this.curIndex--;
+            ul.style.left = 400*this.curIndex + "px";
+            if(this.curIndex == 0){
+                btnLeft.disabled = true;
+            }
         }
+        
     },
-    // mounted(){
-    //     this.carouselMoveRight()
-    // }
+    
 }
 
 </script>
