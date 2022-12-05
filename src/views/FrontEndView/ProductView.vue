@@ -1,4 +1,5 @@
 <template>
+  <innerpageHeader></innerpageHeader>
   <div class="product_test">
     <h1>Test</h1>
     <hr />
@@ -54,7 +55,14 @@
     </div>
   </div>
 </template>
-
+<script>
+import innerpageHeader from "@/components/innerpageHeader.vue";
+export default {
+  components:{
+    innerpageHeader,
+  }
+}
+</script>
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
 h1,
