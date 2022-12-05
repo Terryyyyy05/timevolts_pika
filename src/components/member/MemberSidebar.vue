@@ -13,7 +13,7 @@
             >{{ sidebarList.menuList }}</router-link
           >
         </li>
-        <router-view />
+
       </ul>
     </div>
   </div>

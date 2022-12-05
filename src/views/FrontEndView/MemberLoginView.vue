@@ -9,8 +9,12 @@
         <a href="#"><span>忘記密碼</span></a>
       </div>
       <div class="btn">
-        <router-link to="/profile"><button class="btn-login">登入</button></router-link>
-        <router-link to="/signup"><button class="btn-signup">註冊會員</button></router-link>
+        <router-link to="/profile"
+          ><button class="btn-login">登入</button></router-link
+        >
+        <router-link to="/signup"
+          ><button class="btn-signup">註冊會員</button></router-link
+        >
       </div>
     </form>
   </div>
@@ -51,7 +55,7 @@ input {
 }
 
 .login {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 input {
@@ -90,14 +94,13 @@ button {
   margin-bottom: 10px;
   cursor: pointer;
 }
-
 .btn-login {
   background-color: #fab042;
   color: #1e1e1e;
-  border-left: none;
-  border-top: none;
 }
-
+a {
+  text-decoration: none;
+}
 .btn-signup {
   background-color: initial;
   color: #fab042;
