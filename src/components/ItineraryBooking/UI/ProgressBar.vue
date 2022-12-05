@@ -1,16 +1,18 @@
 <template>
    <div class="progress-number">
-      <div class="progress-line"></div>
+      <div class="progress-line" :style="line"></div>
       <div class="circle progress-active"><span>1</span></div>
-      <div class="circle"><span>2</span></div>
-      <div class="circle"><span>3</span></div>
+      <div :class="secondMode"><span>2</span></div>
+      <div :class="thirdMode"><span>3</span></div>
    </div>
    <button class="progress-btn" disabled>Prev</button>
    <button class="progress-btn">Next</button>
 </template>
 
 <script>
-export default {};
+export default {
+   props: ["firstMode", "secondMode", "thirdMode", "line"],
+};
 </script>
 
 <style lang="scss" scoped>
@@ -38,12 +40,12 @@ export default {};
 }
 
 .progress-line {
-   background-color: #7ad7a7;
+   background-color: map-get($color, "accent");
    position: absolute;
    top: 50%;
    left: 0;
    transform: translateY(-50%);
-   height: 4px;
+   height: 10px;
    width: 0%;
    z-index: -1;
    transition: 0.3s ease;
