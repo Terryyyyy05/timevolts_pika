@@ -4,20 +4,78 @@
          heading="行程訂票"
          subheading="itinerary booking "
       ></the-heading>
-      <progress-bar></progress-bar>
-      <div class="main-text">行程資訊</div>
-      <itinerary-information></itinerary-information>
+      <progress-bar
+         :secondMode="setSecondMode"
+         :thirdMode="setThirdMode"
+         :line="setProgressLine"
+      ></progress-bar>
+      <div class="main-text">{{ currentStep }}</div>
+      <keep-alive>
+         <component :is="selectedStep"></component>
+      </keep-alive>
+      <button class="btn-secondary" style="margin: auto" @click="nextStep">
+         {{ button }}
+      </button>
    </div>
 </template>
 
 <script>
 import ProgressBar from "../../components/ItineraryBooking/UI/ProgressBar.vue";
 import ItineraryInformation from "../../components/ItineraryBooking/ItineraryInformation.vue";
+import Checkout from "../../components/ItineraryBooking/Checkout.vue";
+import ConfirmOrder from "../../components/ItineraryBooking/ConfirmOrder.vue";
 
 export default {
    components: {
       ProgressBar,
-      ItineraryInformation
+      ItineraryInformation,
+      Checkout,
+      ConfirmOrder,
+   },
+   data() {
+      return {
+         selectedStep: "itinerary-information",
+         currentStep: "行程資訊",
+         button: "確認訂票",
+      };
+   },
+   computed: {
+      setSecondMode() {
+         if (
+            this.selectedStep === "checkout" ||
+            this.selectedStep === "confirm-order"
+         ) {
+            return "circle progress-active";
+         } else {
+            return "circle";
+         }
+      },
+      setThirdMode() {
+         return this.selectedStep === "confirm-order"
+            ? "circle progress-active"
+            : "circle";
+      },
+      setProgressLine() {
+         if (this.selectedStep === "checkout") {
+            return "width: 50%";
+         } else if (this.selectedStep === "confirm-order") {
+            return "width: 100%";
+         }
+      },
+   },
+   methods: {
+      nextStep() {
+         if (this.selectedStep === "itinerary-information") {
+            this.selectedStep = "checkout";
+            this.currentStep = "結帳";
+            this.button = "前往付款";
+         } else if (this.selectedStep === "checkout") {
+            this.selectedStep = "confirm-order";
+            this.currentStep = "訂單成立";
+            this.button = "開始製作";
+         }
+         window.scrollTo(0, 0);
+      },
    },
 };
 </script>

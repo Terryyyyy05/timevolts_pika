@@ -1,6 +1,7 @@
 <template>
-    <div class="about">
-      <h1>行程</h1>
+    <innerpageHeader></innerpageHeader>
+    <div class="container">
+        <the-heading heading="時光行程" subheading="Itinerary"></the-heading>
     </div>
 
     <section class="section bannersec">
@@ -38,7 +39,9 @@
     <section class="section">
         <div class="container">
             <itinerary-filter/>
-            <itin-card-info/>
+            <div class="cardwrap">
+                <itin-card-info/>
+            </div>
         </div>
     </section>
 </template>
@@ -52,6 +55,7 @@
     import itinPrdCrsl from '@/components/itinerary/itinPrdCrsl.vue';
     import itineraryFilter from "@/components/itinerary/filter/itineraryFilter.vue";
     import itinCardInfo from "@/components/itinerary/card/itinCardInfo.vue";
+    import innerpageHeader from "@/components/innerpageHeader.vue";
 
 
     export default{
@@ -61,7 +65,8 @@
             itinClsCrsl,
             itinPrdCrsl,
             itineraryFilter,
-            itinCardInfo
+            itinCardInfo,
+            innerpageHeader,
         },
         mounted() {
             this.initThree()
@@ -199,30 +204,30 @@
                         resizeBanner()
                     })
 
-        function resizeBanner() {
-          $(".banner1").css({
-            height: "90vh",
-          });
-          $("#globe_container").css({
-            width: "70%",
-            height: "90vh",
-          });
-          $(".canvas_globe").css({
-            width: "100%",
-            height: "90vh",
-          });
-          camera.aspect =
-            globe_container.offsetWidth / globe_container.offsetHeight; //使用者可見整個場景物件改變大小
-          camera.updateProjectionMatrix(); //更新投影矩陣
-        }
-      });
+                function resizeBanner() {
+                $(".banner1").css({
+                    height: "90vh",
+                });
+                $("#globe_container").css({
+                    width: "70%",
+                    height: "90vh",
+                });
+                $(".canvas_globe").css({
+                    width: "100%",
+                    height: "90vh",
+                });
+                camera.aspect =
+                    globe_container.offsetWidth / globe_container.offsetHeight; //使用者可見整個場景物件改變大小
+                    camera.updateProjectionMatrix(); //更新投影矩陣
+                }
+            });
 
-      window.addEventListener("mousemove", function (e) {
-        mouse.x = (e.clientX / innerWidth) * 2 - 1;
-        mouse.y = (e.clientY / innerHeight) * 2 - 1;
+            window.addEventListener("mousemove", function (e) {
+            mouse.x = (e.clientX / innerWidth) * 2 - 1;
+            mouse.y = (e.clientY / innerHeight) * 2 - 1;
 
-        console.log(mouse);
-      });
+            console.log(mouse);
+        });
     },
   },
 };
@@ -269,5 +274,10 @@
 .clsCrslWrap{
     overflow: hidden;
 }
-
+.cardwrap{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center;
+}
 </style>
