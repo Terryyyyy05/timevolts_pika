@@ -1,5 +1,6 @@
 <template>
     <div class="wrapper">
+
         <div class="carousel">
             <div class="slide"
             v-for="(i) in itinerarys" :key="i.id"
@@ -16,8 +17,8 @@
                 <p>{{look.story_age}}</p>
                 <p>{{look.itinerary_memo}}</p>
                 </div>
-                <div>
-                    <img src="#" alt="">
+                <div class="more">
+                    <img v-bind:src=imgsrc alt="圖騰">
                     <button>了解更多</button>
                 </div>
             </div>
@@ -26,6 +27,8 @@
                 <p>地點:{{look.story_spot}}</p>
             </div>
         </div>
+        <button id="ladd">&lt</button>
+        <button id="radd">></button>
    </div>
 </template>
 
@@ -96,6 +99,8 @@ export default {
                 story_risk:"中",
                 story_spot:"北美洲",
             },
+        imgsrc:require('@/assets/image/home/icon/icon_1.svg')
+        ,
         filterExtension: false,
       };
    },
@@ -119,15 +124,35 @@ export default {
 
 .wrapper {
     height: 100vh;
-    // width: fit-content;
+    width: calc(100vw - 17.6px);
+    left: -30px;
+    padding: -30px;
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: center;
+    // align-self: column;
     overflow: hidden;
-    // gap: 10px;
+    
     position: relative;
     // padding: 10px 20px;
     margin: 0 auto;
+    #ladd,#radd{
+        left: 10%;
+        right: 90%;
+        bottom: 30%;
+        width: 40px;
+        height: 40px;
+        padding: 3px;
+        position: absolute;
+        font-size: 30px;
+        background: map-get($color , "accent" );
+        border:  1px solid map-get($color, "primary");
+        border-radius: 20px;
+    }
+    #radd{
+        left: 90%;
+        right: 10%;
+        }
     .carousel{
         position: absolute;
         display: flex;
@@ -157,31 +182,72 @@ export default {
         }
     }    
     .content{
-        width: 80%;
-        margin-top: calc(40vw);
+        width: fit-content;
+        height: 180px;
+        margin-top: calc(25vw);
         margin-left: 15px;
         margin-right: 15px;
         border-radius: 20px;
-        border: 1px solid map-get($color, "primary");
+        // border: 2px solid map-get($color, "primary");
         background: map-get($color, "dark_sub");
-
+        box-sizing: border-box;
         display: flex;
         justify-content: center;
-        
-        box-sizing: border-box;
+        align-items: top;
         .itineraryTitle{
             width: 15vw;
-            padding: 20px;
+            height: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+            border: 2px solid map-get($color, "primary");
+            border-radius:20px 0 0 20px ;
+            align-items: top;
         }
         .itineraryText{
             width: 40vw;
-            padding: 0 20px;
+            // height: 100%;
+            padding: 0 15 0px;
+            box-sizing: border-box;
             display: flex;
             justify-content: space-between;
+            border: 2px solid map-get($color, "primary");
+            align-items: center;
+            .summary{
+                width: 80%;
+                :nth-child(1){
+                    font-size: 24px;
+                    line-height: 33px;
+                }
+            }
+            .more{
+                width: 20%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                border-left: 2px solid map-get($color , "primary" );
+                img{
+                    margin: 20px;
+                }
+                button{
+                    width: 100%;
+                    padding: 10px;
+                    background-color:  map-get($color , "accent" );
+                    color:map-get($color , "dark" );
+                    border: 2px solid map-get($color , "primary" );
+                }
+            }
         }
         .itineraryTeg{
             width: 15vw;
-            padding: 20px;
+            // height: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+            border: 2px solid map-get($color, "primary");
+            border-radius: 0 20px 20px 0;
+            align-items: center;
+            font-size: 24px;
+            line-height: 33px;
         }
     }
     }
