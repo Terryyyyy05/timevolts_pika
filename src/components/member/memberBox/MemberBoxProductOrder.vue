@@ -3,18 +3,18 @@
     <div class="member-box-upper">
       <div class="member-box-img">
         <img
-          src="../../assets/image/member/member-box-corner.png"
+          src="../../../assets/image/member/member-box-corner.png"
           alt="member-box-corner"
         />
       </div>
       <div class="right-angle">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</div>
       <div class="member-data">
-        <span>{{ memberDataDetails }}</span>
+        <span>商品訂單</span>
       </div>
       <div class="left-angle">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
       <div class="member-box-img">
         <img
-          src="../../assets/image/member/member-box-corner.png"
+          src="../../../assets/image/member/member-box-corner.png"
           alt="member-box-corner"
         />
       </div>
@@ -24,8 +24,7 @@
 
 <script>
 export default {
-  name: "MemberBox",
-  props: ["memberDataDetails"],
+  name: "MemberBoxProductOrder",
 };
 </script>
 

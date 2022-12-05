@@ -7,13 +7,10 @@
           :key="sidebarList.id"
           class="menu-item"
         >
-          <router-link
-            :to="{ path: sidebarList.router }"
-            @click="changeSidebar(sidebarList.id)"
-            >{{ sidebarList.menuList }}</router-link
-          >
+          <router-link :to="{ path: sidebarList.router }">{{
+            sidebarList.menuList
+          }}</router-link>
         </li>
-
       </ul>
     </div>
   </div>
@@ -29,7 +26,7 @@ export default {
         {
           id: 0,
           router: "/profile",
-          menuList: "會員基本資料",
+          menuList: "會員資料管理",
         },
         {
           id: 1,

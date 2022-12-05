@@ -1,8 +1,14 @@
 <template>
-  <MemberModule />
+  <innerpageHeader></innerpageHeader>
+  <div class="container">
+    <the-heading heading="會員中心" subheading="Member"></the-heading>
+  </div>
+  <MemberBoxProfile />
+  <MemberSidebar />
 </template>
 
 <script>
+<<<<<<< HEAD
 import MemberSidebar from "@/components/member/MemberSidebar.vue";
 import MemberBox from "@/components/member/MemberBox.vue";
 import MemberModule from "@/components/member/MemberModule.vue";
@@ -46,8 +52,20 @@ export default {
       console.log(e);
     },
     MemberModule
+=======
+import innerpageHeader from "@/components/innerpageHeader.vue";
+import MemberSidebar from "@/components/member/MemberSidebar.vue";
+import MemberBoxProfile from "@/components/member/memberBox/MemberBoxProfile.vue";
+export default {
+  components: {
+    innerpageHeader,
+    MemberSidebar,
+    MemberBoxProfile,
+>>>>>>> dev_vito
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "@/assets/css/app.scss";
+</style>
