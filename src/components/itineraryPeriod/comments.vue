@@ -24,6 +24,7 @@ div{
     height: 100px;
     border: 2px solid map-get($color, "primary");
     background-color: map-get($color, "dark_sub");
+    margin: 0 auto;
 }
 
 </style>

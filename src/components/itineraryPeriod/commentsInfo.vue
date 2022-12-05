@@ -89,6 +89,8 @@ h4 {
     letter-spacing: 1.1px;
     color: #fff;
     width: 1000px;
+    margin: 20px auto;
+    text-align: center;
     
 }
 .wrap{
@@ -97,6 +99,7 @@ h4 {
     box-sizing: border-box;
     color: #fff;
     margin: auto;
+    width: 1000px;
 }
 .left{
     width: 80%;
