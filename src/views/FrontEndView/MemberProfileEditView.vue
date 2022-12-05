@@ -1,13 +1,12 @@
-<template></template>
+<template>
+  <MemberModule />
+</template>
 
 <script>
-import innerpageHeader from "@/components/innerpageHeader.vue";
-import MemberSidebar from "@/components/member/MemberSidebar.vue";
+import MemberModule from "@/components/member/MemberModule.vue";
 export default {
-  name: "MemberProfile",
   components: {
-    innerpageHeader,
-    MemberSidebar,
+    MemberModule
   },
 };
 </script>

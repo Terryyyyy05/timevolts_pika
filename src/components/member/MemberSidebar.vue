@@ -27,32 +27,32 @@ export default {
     return {
       sideBar: [
         {
-          id: 1,
+          id: 0,
           router: "/profile",
           menuList: "會員基本資料",
         },
         {
-          id: 2,
+          id: 1,
           router: "/itineray-order",
           menuList: "行程訂單",
         },
         {
-          id: 3,
+          id: 2,
           router: "/product-order",
           menuList: "商品訂單",
         },
         {
-          id: 4,
+          id: 3,
           router: "/coupon",
           menuList: "商品折扣券",
         },
         {
-          id: 5,
+          id: 4,
           router: "/itinerary-wishlist",
           menuList: "我的行程收藏",
         },
         {
-          id: 6,
+          id: 5,
           router: "/product-wishlist",
           menuList: "我的商品收藏",
         },
