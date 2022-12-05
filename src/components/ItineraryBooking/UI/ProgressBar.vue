@@ -48,7 +48,7 @@ export default {
    height: 10px;
    width: 0%;
    z-index: -1;
-   transition: 0.3s ease;
+   transition: 0.5s ease-in;
 }
 
 .circle {
@@ -61,7 +61,7 @@ export default {
    justify-content: center;
    background-color: map-get($color, "primary");
    border-radius: 50%;
-   transition: 0.3s ease;
+   transition-delay: 0.4s;
 }
 
 .circle span {

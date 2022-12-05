@@ -111,18 +111,17 @@ export default {
       next() {
          if (this.count >= 0 && this.count < this.paragraph.length) {
             this.count += 1;
-            this.activeParagraph = this.paragraph.find(
-               (p) => p.id === this.count
-            );
+            this.updateParagraph();
          }
       },
       previous() {
          if (this.count >= 0 && this.count < this.paragraph.length) {
             this.count -= 1;
-            this.activeParagraph = this.paragraph.find(
-               (p) => p.id === this.count
-            );
+            this.updateParagraph();
          }
+      },
+      updateParagraph() {
+         this.activeParagraph = this.paragraph.find((p) => p.id === this.count);
       },
       imageBorder(index) {
          if (this.count === index) {
@@ -134,6 +133,9 @@ export default {
          this.activeParagraph = this.paragraph.find((p) => p.id === index);
          console.log(this.activeParagraph);
       },
+   },
+   created() {
+      this.updateParagraph();
    },
 };
 </script>
