@@ -46,7 +46,7 @@ export default {
 }
 
 .item-content-wrap {
-  width: 60%;
+  width: 65%;
   color: map-get($color, "primary");
   .btn-secondary {
     margin: 100px auto;

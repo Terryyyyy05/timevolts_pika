@@ -4,7 +4,6 @@ export const cardContext = reactive([
     id: 1,
     title: "翻譯蒟蒻",
     price: 1000,
-    year: "西元前1000年",
     purpose:
       "他是一個實驗室，讓你看看實驗後的的成果。只要對著電話亭，對著話筒說如果，就會發生那樣的事情。",
   },

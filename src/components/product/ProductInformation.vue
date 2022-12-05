@@ -17,7 +17,7 @@
 <script>
 import { ref, computed } from "vue";
 import { cardContext } from "./js/data.js";
-// import BaseHistoryCard from "./base/BaseHistoryCard.vue";
+
 import ShowMoreButton from "../../components/history/UI/ShowMoreButton.vue";
 import ProductCard from "./base/ProductCard.vue";
 
@@ -47,15 +47,6 @@ export default {
       distinguishTrueFalse,
     };
   },
-
-  // methods: {
-  //   AddVisibleInformation() {
-  //     this.informationVisible += 4;
-  //   },
-  //   scrollToTop() {
-  //     window.scrollTo(0, 0);
-  //   },
-  // },
 };
 </script>
 
