@@ -16,8 +16,7 @@ export default {
     div.innerpageHeader{
         background-image: url("/public/Union.png");
         background-repeat: no-repeat;
-        background-position: center 0%;
-        background-size: 50% 100%;
+        background-position: center 100%;
         position: absolute;
         left: 0;
         right: 0;
