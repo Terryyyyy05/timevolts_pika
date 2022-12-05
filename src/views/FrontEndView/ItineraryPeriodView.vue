@@ -18,22 +18,34 @@
             </div>
         </div>
     </section>
+    <section class="section">
+        <div class="container">
+            <div class="commentwrap">
+                <itin-period-card-info></itin-period-card-info>
+            </div>
+        </div>
+    </section>
 
 </template>
 
 <script>
 import carousel from "@/components/itineraryPeriod/carousel.vue";
 import commentsInfo from "@/components/itineraryPeriod/commentsInfo.vue";
+import itinPeriodCardInfo from "@/components/itineraryPeriod/itinPeriodCardInfo.vue";
+
 export default {
     name: "itiniraryPeriodView",
     components: {
     carousel,
     commentsInfo,
+    itinPeriodCardInfo
     },
     mounted() {
 
     },
-    methods: {},
+    methods: {
+
+    },
 };
 </script>
 
