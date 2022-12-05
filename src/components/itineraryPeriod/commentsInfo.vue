@@ -1,5 +1,5 @@
 <template>
-    <h4>行程評論</h4>
+    <h4 class="h4">行程評論</h4>
     <comments  v-for="comment in comments" :key="comment.id">
         <div class="wrap">
             <div class="left">
@@ -81,11 +81,22 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+
+
+h4 {
+    font-size: 22px;
+    line-height: 26.4px;
+    letter-spacing: 1.1px;
+    color: #fff;
+    width: 1000px;
+    
+}
 .wrap{
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
     color: #fff;
+    margin: auto;
 }
 .left{
     width: 80%;
