@@ -49,7 +49,7 @@
          </base-card>
       </div>
    </div>
-   <buyer-info></buyer-info>
+   <buyer-info :number="this.attendNum"></buyer-info>
 </template>
 
 <script>
@@ -71,7 +71,7 @@ export default {
          region: "歐洲",
          singlePrice: 50000,
          memLev: "白金",
-         attendNum: 1,
+         attendNum: 2,
          originPrice: null,
          memDiscout: 9,
          discoutPrice: null,
@@ -80,7 +80,7 @@ export default {
    },
    provide() {
       return {
-         latestDate: this.latestDate,
+         attendNum: this.attendNum,
       };
    },
    computed: {
