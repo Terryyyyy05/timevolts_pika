@@ -50,6 +50,10 @@ input {
   border-radius: 5px;
 }
 
+.login {
+    margin-bottom: 40px;
+}
+
 input {
   color: #fff;
   background-color: inherit;
