@@ -13,6 +13,11 @@
     </section>
     <section class="section">
         <div class="container">
+            <button class="btn-secondary">我要參加活動</button>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
             <div class="commentwrap">
                 <comments-info></comments-info> 
             </div>
@@ -20,7 +25,7 @@
     </section>
     <section class="section">
         <div class="container">
-            <div class="commentwrap">
+            <div class="watchmorewrap">
                 <itin-period-card-info></itin-period-card-info>
             </div>
         </div>
@@ -64,5 +69,9 @@ export default {
 }
 .commentwrap{
     margin: 0 auto;
+}
+.watchmorewrap{
+    display: flex;
+    flex-wrap: wrap;
 }
 </style>
