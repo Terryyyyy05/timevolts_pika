@@ -42,11 +42,11 @@ export default {
     .icon-container{
     display: flex;
     height: fit-content;
-    margin-top: calc((85px - 30px) / 2);
+    margin-top: calc((55px - 15px) / 2);
     div{
-      width: 30px;
-      height: 30px;
-      margin-right: 20px;
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
       img{
         width: 100%;
         height: 100%;
@@ -55,8 +55,8 @@ export default {
     }
     div.nav{
       .hbicon{
-        height: 85px;
-        width: 85px;
+        height: 55px;
+        width: 55px;
         animation: rotate 1.5s infinite;
         img{
         width: 100%;
@@ -69,8 +69,9 @@ export default {
         justify-content: center;
         align-items: center;
         a{
-        height: 80px;
-        width: 80px;
+          font-size: 12px;
+        height: 54px;
+        width: 54px;
         text-decoration: none;
         color: #ffe1b5;
         border: 2px solid #ffe1b5;
@@ -85,11 +86,11 @@ export default {
           }
         }
         div.bar {
-          height: 10px;
-          width: 3px;
+          height: 5px;
+          width: 1.5px;
           background-color: #ffe1b5;
           position: relative;
-          margin: 0 40px;
+          margin: 0 20px;
           color: #ffe1b5;
         }
       }
@@ -118,5 +119,38 @@ export default {
       100%{ rotate: (360deg);}
     }
   }
-  
+
+  @media screen and (min-width: 768px) {
+    header{
+    .icon-container{
+    margin-top: calc((85px - 30px) / 2);
+    div{
+      width: 30px;
+      height: 30px;
+      margin-right: 20px;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    }
+    div.nav{
+      .hbicon{
+        height: 85px;
+        width: 85px;
+      }
+      .link-container{
+        a{
+        height: 80px;
+        width: 80px;
+        }
+        div.bar {
+          height: 10px;
+          width: 3px;
+          margin: 0 40px;
+        }
+      }
+    }
+  }
+}
 </style>

@@ -10,7 +10,7 @@
                 <div class="stars">{{comment.stars}}</div>
             </div>
             <div class="right">
-                <input type="button" value="檢舉">
+                <input type="button" value="檢舉" @click="report">
                 <p class="date">{{comment.date}}</p>
             </div>
         </div>
@@ -73,7 +73,9 @@ export default {
         }
     },
     methods:{
-        
+        report(){
+            alert('檢舉成功，將有人進行審核');
+        }
     }
 }
 
@@ -89,6 +91,8 @@ h4 {
     letter-spacing: 1.1px;
     color: #fff;
     width: 1000px;
+    margin: 20px auto;
+    text-align: center;
     
 }
 .wrap{
@@ -97,9 +101,10 @@ h4 {
     box-sizing: border-box;
     color: #fff;
     margin: auto;
+    width: 1000px;
 }
 .left{
-    width: 80%;
+    width: 85%;
     margin: 10px;
     padding: 10px;
 }
@@ -112,7 +117,7 @@ h4 {
     line-height: 1.2;
 }
 .right {
-    width: 20%;
+    width: 15%;
     margin: 10px;
     padding: 10px;
     display: flex;
