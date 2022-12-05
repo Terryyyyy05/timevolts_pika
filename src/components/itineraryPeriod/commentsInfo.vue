@@ -1,6 +1,6 @@
 <template>
     <h4 class="h4">行程評論</h4>
-    <comments  v-for="comment in comments" :key="comment.id">
+    <comments  v-for="comment in visibleComments" :key="comment.id">
         <div class="wrap">
             <div class="left">
                 <div class="usercomment">
@@ -15,14 +15,20 @@
             </div>
         </div>
     </comments>
+    <show-more-comment
+      :trueOrFalse="distinguishTrueFalse"
+      @show-more="AddvisibleInformation"
+   ></show-more-comment>
 </template>
 
 <script>
 import comments from "@/components/itineraryPeriod/comments.vue";
+import showMoreComment from "@/components/itineraryPeriod/showMoreComment.vue"
 
 export default {
     components:{
-        comments
+        comments,
+        showMoreComment
     },
     data(){
         return{
@@ -69,13 +75,25 @@ export default {
                     stars: "*",
                     date: "2022-11-11"
                 },
-            ]
-        }
+            ],
+            commentsVisible: 3,
+        };
+    },
+    computed:{
+        visibleComments() {
+            return this.comments.slice(0, this.commentsVisible);
+        },
+        distinguishTrueFalse() {
+            return this.commentsVisible !== comments.length ? true : false;
+        },
     },
     methods:{
         report(){
             alert('檢舉成功，將有人進行審核');
-        }
+        },
+        AddvisibleInformation() {
+            this.commentsVisible += 2;
+        },
     }
 }
 

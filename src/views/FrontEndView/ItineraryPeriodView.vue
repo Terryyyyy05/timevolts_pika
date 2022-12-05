@@ -25,13 +25,15 @@
 import carousel from "@/components/itineraryPeriod/carousel.vue";
 import commentsInfo from "@/components/itineraryPeriod/commentsInfo.vue";
 export default {
-  name: "itiniraryPeriodView",
-  components: {
+    name: "itiniraryPeriodView",
+    components: {
     carousel,
     commentsInfo,
-  },
-  mounted() {},
-  methods: {},
+    },
+    mounted() {
+
+    },
+    methods: {},
 };
 </script>
 
