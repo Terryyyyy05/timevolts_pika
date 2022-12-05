@@ -83,6 +83,16 @@ const routes = [
     component: () => import("../views/FrontEndView/MemberProfileEditView.vue"),
   },
   {
+    path: "/itineray-order",
+    name: "itineray-order",
+    component: () => import("../views/FrontEndView/MemberItineraryOrderView.vue"),
+  },
+  {
+    path: "/product-order",
+    name: "product-order",
+    component: () => import("../views/FrontEndView/MemberProductOrderView.vue"),
+  },
+  {
     path: "/coupon",
     name: "coupon",
     component: () => import("../views/FrontEndView/MemberCouponView.vue"),

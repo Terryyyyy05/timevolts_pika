@@ -12,7 +12,7 @@
         required
       />
       <div class="btn">
-        <button>確認註冊</button>
+        <router-link to="/login"><button class="btn-signup">確認註冊</button></router-link>
       </div>
     </form>
   </div>
