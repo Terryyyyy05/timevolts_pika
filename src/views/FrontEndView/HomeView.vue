@@ -50,6 +50,7 @@
           <span>Historcal</span>
         </h2>
       </div>
+      <home-historcal></home-historcal>
 
     </div>
 
@@ -61,12 +62,20 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import HomeItinerary from '../../components/home/HomeItinerary.vue'
+import HomeHistorcal from '../../components/home/HomeHistorcal.vue'
 
 export default {
   name: 'HomeView',
+  datas(){
+    imgs:[
+      // {src:"@/assets/image/home/sideTotem.svg",art:"時萬伏特-文字圖樣"},
+      // {src:"@/assets/image/home/bitLightning.svg",art:"閃電圖樣"},
+    ]
+  },
   components: {
     HelloWorld,
-    HomeItinerary
+    HomeItinerary,
+    HomeHistorcal
   }
 }
 </script>
@@ -115,6 +124,13 @@ h2{
     display: inline-block;
     font-size: 32px;
   }
+  @media screen and (max-width: $m-breakpoint) {
+    width: 200px;
+    font-size: 38px;
+    span{
+      font-size: 17px;
+    }
+  } 
 }
 
 
@@ -223,6 +239,8 @@ h2{
     padding: 30px;
     color: map-get($color, "primary") ;
     background-image: url(@/assets/image/home/bg2_1440.jpg);
+    background-position: center;
+    background-size: cover;
   }
   .historcal_block{
     padding: 30px;

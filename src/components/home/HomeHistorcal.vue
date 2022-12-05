@@ -2,9 +2,9 @@
     <div class="wrapper">
         <div class="carousel">
             <div class="slide"
-            v-for="(i) in itinerarys" :key="i.id"
-            @click="clickeye(i)"  >
-                <img v-bind:src="i.story_cover" />
+            v-for="i in itinerarys" :key="i.id"
+            @click="slat(i)">
+                <img :src="require('@/assets/image/itin/titanic.jpg')" :key="i.story_cover"/>
             </div>
         </div>
         <div>
@@ -19,12 +19,10 @@
                 <img src="#" alt="">
                 <button>了解更多</button>
             </div>
+            <div>
+                <p>危險度:{{eye.story_risk}}</p>
+            </div>
         </div>
-        <div>
-            <p>危險度:{{eye.story_risk}}</p>
-            <p>地點:{{eye.story_spot}}</p>
-        </div>
-        
    </div>
 </template>
 
@@ -39,7 +37,7 @@ export default {
         itinerarys:[
             {   
                 id:1,
-                story_cover: require('@/assets/image/itin/titanic.jpg'),
+                story_cover:'@/assets/image/itin/titanic.jpg',
                 itinerary_name : "鐵達尼號沈船事件",
                 story_age : "西元1912年",
                 itinerary_memo:"回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
@@ -48,23 +46,21 @@ export default {
             },
             {   
                 id:2,
-                story_cover: require('@/assets/image/itin/crusades.webp'),
-                itinerary_name : "馬雅文化",
+                story_cover:'@',
+                itinerary_name : "鐵達尼號沈船事件2",
                 story_age : "西元1912年",
                 itinerary_memo:"回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
                 story_risk:"中",
-                story_spot:"南美洲",
+                story_spot:"北美洲",
             },
             {   
                 id:3,
-                story_cover: require('@/assets/image/itin/atlantis.png'),
-                itinerary_name : "亞特蘭提斯",
-                story_age : "西元前一萬兩千年",
-                itinerary_memo:`亞特蘭提斯，一夜之間在地球上消失的亞特蘭提斯。
-讓我們帶您乘坐時光機前往西元前一萬兩千年，究竟這場大洪水有沒有發生，亦或是帶你一窺究竟亞特蘭提斯的存在吧!
-穿越年代為西元前一萬兩千年，時空背景與現今差異甚大，生存環境危險，冒險者快來挑戰吧!`,
+                story_cover:'@',
+                itinerary_name : "鐵達尼號沈船事件3",
+                story_age : "西元1912年",
+                itinerary_memo:`回到過去的英國，體驗號稱「永不沉沒」的夢幻之船`,
                 story_risk:"中",
-                story_spot:"姆大陸",
+                story_spot:"北美洲",
             },
         ],
         eye:{},
@@ -72,9 +68,9 @@ export default {
       };
    },
    methods: {
-    clickeye(i){
+    slat(i){
         console.log(i);
-        this.eye = i
+        this.atttt = i
     }
     
       
@@ -96,16 +92,10 @@ export default {
         width: calc(100vw - 17px);
         display: flex;
         overflow: hidden;
-        .slide{ 
-            margin:30px;
-            width: 40vw;
-            height: calc(30vw);
-            border-radius: 20px;
+        .slide{
             img{
-                width: 100%;
-                border-radius: 20px;
                 border: 1px solid map-get($color, "primary");
-                
+                width: 50vw;
             }
         }
     }    
