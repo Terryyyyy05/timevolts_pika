@@ -88,7 +88,26 @@ $b2-primary : (2px solid map-get($color , "primary" ));
 $b20-primary : (20px solid map-get($color , "primary" ));
 
 
-
+// 酷酷的雜訊效果
+h1::before{
+  width: 100%;
+  height: 100%;
+  content: '';
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  pointer-events: none;
+  background:radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.3) 0%, rgba(54, 54, 54, 0.3) 100%),
+  url(@/assets/image/noise.gif) ;
+  mix-blend-mode: overlay;
+  opacity: .5;
+  background-repeat: repeat;
+  position: fixed;
+  z-index: 1000;
+}
 
 // 12/1溝通過，說透明色用到的地方太少，寫在自己頁面就好
 
@@ -109,6 +128,9 @@ $b20-primary : (20px solid map-get($color , "primary" ));
 
 
 // .bg_dark{}
+
+
+
 
 .bg_dark_75{
   background-color: rgba(map-get($color , "dark" ),75%);
@@ -146,6 +168,7 @@ h2{
     background-position: center;
     background-size: cover;
 
+    align-items: center;
     display: grid;
     grid-template-columns: 2fr 4.5fr 4.5fr 1fr;
     grid-template-rows: 1.5fr 3fr 0.5fr;
