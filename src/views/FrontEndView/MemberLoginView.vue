@@ -9,8 +9,8 @@
         <a href="#"><span>忘記密碼</span></a>
       </div>
       <div class="btn">
-        <button>登入</button>
-        <router-link to="/signup"><button>註冊會員</button></router-link>
+        <router-link to="/profile"><button class="btn-login">登入</button></router-link>
+        <router-link to="/signup"><button class="btn-signup">註冊會員</button></router-link>
       </div>
     </form>
   </div>
@@ -91,14 +91,14 @@ button {
   cursor: pointer;
 }
 
-button:first-child {
+.btn-login {
   background-color: #fab042;
   color: #1e1e1e;
   border-left: none;
   border-top: none;
 }
 
-button:last-child {
+.btn-signup {
   background-color: initial;
   color: #fab042;
   border: 3px solid #fab042;
