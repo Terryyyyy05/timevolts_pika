@@ -30,23 +30,27 @@ export default {
             
             let ul = document.querySelector(".imageul");
             let btnRight = document.querySelector("#btnRight");
-    
-            this.curIndex++;
-            ul.style.left = -400*this.curIndex + "px";
-            if(this.curIndex == 3){
-                btnRight.disabled = true;
+            if(this.curIndex<3){
+                this.curIndex++;
+            }else{
+                this.curIndex = 3;
             }
+            ul.style.left = -400*this.curIndex + "px";
+            //console.log(this.curIndex);
+            console.log(ul.style.left);
         },
         carouselMoveLeft (){
             
             let ul = document.querySelector(".imageul");
             let btnLeft = document.querySelector("#btnRight");
-    
-            this.curIndex--;
-            ul.style.left = 400*this.curIndex + "px";
-            if(this.curIndex == 0){
-                btnLeft.disabled = true;
+            if(this.curIndex>0){
+                this.curIndex--;
+            }else{
+                this.curIndex = 0;
             }
+            ul.style.left = -400*this.curIndex + "px";
+            //console.log(this.curIndex);
+            console.log(ul.style.left);
         }
         
     },
