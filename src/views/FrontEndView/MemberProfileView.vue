@@ -8,13 +8,11 @@
 </template>
 
 <script>
-import innerpageHeader from "@/components/innerpageHeader.vue";
 import MemberSidebar from "@/components/member/MemberSidebar.vue";
 import MemberBox from "@/components/member/MemberBox.vue";
 export default {
   name: "MemberProfile",
   components: {
-    innerpageHeader,
     MemberSidebar,
     MemberBox,
   },
