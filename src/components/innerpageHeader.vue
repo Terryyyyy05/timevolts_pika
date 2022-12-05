@@ -16,7 +16,8 @@ export default {
     div.innerpageHeader{
         background-image: url("/public/Union.png");
         background-repeat: no-repeat;
-        background-position: center bottom;
+        background-position: center 0%;
+        background-size: 50% 100%;
         position: absolute;
         left: 0;
         right: 0;
@@ -27,15 +28,35 @@ export default {
         justify-content: center;
         align-items: center;
         .title{
-            font-size: 23px;
-            letter-spacing: 4%;
+            font-size: 16px;
+            letter-spacing: 1.5%;
             font-weight: bold;
             color: #ffe1b5;
             margin: 5px 0;
         }
         .icon{
             margin-bottom: 5px;
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            img {
+                width: 100%;
+                height: 100%;
+            }
         }
     }
-    
+    @media screen and (min-width: 768px) {
+        div.innerpageHeader{
+        .title{
+            font-size: 23px;
+            letter-spacing: 4%;
+            margin: 5px 0;
+        }
+        .icon{
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+    }
+    }
 </style>
