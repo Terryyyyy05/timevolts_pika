@@ -71,16 +71,25 @@ export default {
          region: "歐洲",
          singlePrice: 50000,
          memLev: "白金",
-         attendNum: 2,
+         attendNum: 1,
          originPrice: null,
          memDiscout: 9,
          discoutPrice: null,
          totalPrice: null,
+         orderNum: "O26572548",
+         feature: "宗教事件",
+         itineraryName: "十字軍東征",
       };
    },
    provide() {
       return {
+         orderNum: this.orderNum,
+         totalPrice: this.totalPrice,
          attendNum: this.attendNum,
+         classification: this.classification,
+         feature: this.feature,
+         itineraryName: this.itineraryName,
+         dangerLev: this.dangerLev,
       };
    },
    computed: {
