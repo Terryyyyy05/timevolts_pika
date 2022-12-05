@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import BaseCard from "@/components/all_UI/BaseCard.vue";
+// import BaseCard from "@/components/all_UI/BaseCard.vue";
 import ProductInformation from "@/components/product/ProductInformation.vue";
 export default {
   components: {
-    BaseCard,
+    // BaseCard,
     ProductInformation,
   },
 };
