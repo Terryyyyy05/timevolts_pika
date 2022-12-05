@@ -1,4 +1,7 @@
 <template>
+    <innerpageHeader></innerpageHeader>
+    <div class="about">
+      <h1>行程</h1>
     <div class="container">
         <the-heading heading="時光行程" subheading="Itinerary"></the-heading>
     </div>
@@ -52,6 +55,7 @@
     import itinPrdCrsl from '@/components/itinerary/itinPrdCrsl.vue';
     import itineraryFilter from "@/components/itinerary/filter/itineraryFilter.vue";
     import itinCardInfo from "@/components/itinerary/card/itinCardInfo.vue";
+    import innerpageHeader from "@/components/innerpageHeader.vue";
 
 
     export default{
@@ -61,7 +65,8 @@
             itinClsCrsl,
             itinPrdCrsl,
             itineraryFilter,
-            itinCardInfo
+            itinCardInfo,
+            innerpageHeader,
         },
         mounted() {
             this.initThree()

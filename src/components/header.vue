@@ -1,7 +1,7 @@
 <template>
     <header>
       <div class="icon-container">
-        <div><router-link to="/member"><img src="Group604.png" alt=""></router-link></div>
+        <div><router-link to="/login"><img src="Group604.png" alt=""></router-link></div>
         <div><img src="Group605.png" alt=""></div>
       </div>
       <div class="nav">
@@ -57,6 +57,7 @@ export default {
       .hbicon{
         height: 85px;
         width: 85px;
+        animation: rotate 1.5s infinite;
         img{
         width: 100%;
         height: 100%;
@@ -92,6 +93,29 @@ export default {
           color: #ffe1b5;
         }
       }
+    }
+    @keyframes rotate {
+      0%{ rotate: (0deg);}
+      5%{ rotate: (18deg);}
+      10%{ rotate: (36deg);}
+      15%{ rotate: (54deg);}
+      20%{ rotate: (72deg);}
+      25%{ rotate: (90deg);}
+      30%{ rotate: (108deg);}
+      35%{ rotate: (126deg);}
+      40%{ rotate: (144deg);}
+      45%{ rotate: (162deg);}
+      50%{ rotate: (180deg);}
+      55%{ rotate: (198deg);}
+      60%{ rotate: (216deg);}
+      65%{ rotate: (234deg);}
+      70%{ rotate: (252deg);}
+      75%{ rotate: (270deg);}
+      80%{ rotate: (288deg);}
+      85%{ rotate: (306deg);}
+      90%{ rotate: (324deg);}
+      95%{ rotate: (342deg);}
+      100%{ rotate: (360deg);}
     }
   }
   
