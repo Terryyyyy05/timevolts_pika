@@ -26,62 +26,62 @@
 </select>
 
   <ul v-if="currentTab == 'all'">
-    <li class="news" v-for="(item, index) in newsData" :key="index">
+    <li class="news" v-for="item in newsData" :key="item.id">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>
-      <button type="button" class="more" @click="openBox">
+      <button type="button" class="more" @click="handleOpen">
         看更多...
       </button>
     </li>
   </ul>
   <ul v-if="currentTab == 'itinerary'">
-    <li class="news" v-for="(item, index) in itineraryData" :key="index">
+    <li class="news" v-for="item in itineraryData" :key="item.id">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>
-      <button type="button" class="more" @click="openBox">
+      <button type="button" class="more" @click="handleOpen">
         看更多...
       </button>
     </li>
   </ul>
   <ul v-if="currentTab == 'history'">
-    <li class="news" v-for="(item, index) in historyDataSort" :key="index">
+    <li class="news" v-for="item in historyDataSort" :key="item.id">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button type="button" class="more" @click="openBox">
+      <button type="button" class="more" @click="handleOpen">
         看更多...
       </button>
     </li>
   </ul>
   <ul v-if="currentTab == 'shopping'">
-    <li class="news" v-for="(item, index) in shoppingData" :key="index">
+    <li class="news" v-for="item in shoppingData" :key="item.id">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button type="button" class="more" @click="openBox">
+      <button type="button" class="more" @click="handleOpen">
         看更多..
       </button>
     </li>
   </ul>
   <ul v-if="currentTab == 'other'">
-    <li class="news" v-for="(item, index) in otherData" :key="index">
+    <li class="news" v-for="item in otherData" :key="item.id">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button type="button" class="more" @click="openBox">
+      <button type="button" class="more" @click="handleOpen()">
         看更多...
       </button>
     </li>
   </ul>
 
-  <div class="l-box" v-for="(item,index) in newsData" :key="index" :style="modalStyle">
+  <div class="l-box" v-for="item in newsData" :key="item.id" :class="{isOpen: isOpen && openId  === item.id}">
     <button class="close-l-box" @click="close">
       <font-awesome-icon icon="fa-solid fa-xmark" />
     </button>
@@ -116,7 +116,8 @@ export default {
       currentTab:'all',
       tabs:['全部消息','行程預訂','歷史事件','購物商城','其他消息'],
       itineraryData:[
-        {
+        { 
+          
           title:'穿梭於史前時代',
           date:'2022-12-10',
           hashtag:'#經典行程 #高度危險',
@@ -125,6 +126,7 @@ export default {
           img: require(`@/assets/image/news/prehistoric.jpg`),
         },
         {
+          
           title:'埃及五千年的黃金時代',
           date:'2022-11-10',
           hashtag:'#經典行程 #中度危險',
@@ -133,6 +135,7 @@ export default {
           img: require(`@/assets/image/news/egypt.jpg`),
         },
         {
+          
           title:'赤壁之戰',
           date:'2022-10-10',
           hashtag:'#經典行程 #高度危險 #亞洲',
@@ -141,6 +144,7 @@ export default {
           img: require(`@/assets/image/news/chibi.jpg`),
         },
         {
+          
           title:'哥倫布發現新大陸',
           date:'2022-09-10',
           hashtag:'#經典行程 #中度危險 #歐洲 #美洲',
@@ -293,12 +297,16 @@ export default {
       let lightBox = document.querySelector('.l-box');
       lightBox.classList.add('show-lightbox');
     },
+    handleOpen() {
+      this.isOpen = true;
+      this.openId = item.id;
+    },
     close(){
       let lightBox = document.querySelector('.l-box');
       lightBox.classList.remove('show-lightbox');
-    }
-  },
- }
+    },
+  }
+}
 
 </script>
 <style lang="scss" scoped>
