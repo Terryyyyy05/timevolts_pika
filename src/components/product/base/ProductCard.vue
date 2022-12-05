@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link to="/history-details">
+    <router-link to="/product-item">
       <slot></slot>
     </router-link>
   </div>
