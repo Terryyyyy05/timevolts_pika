@@ -4,10 +4,13 @@
       <img :src="require('@/assets/image/product/product_1.png')" alt="" />
     </div>
     <div class="content">
-      <h2>商品名稱：{{ cardContext[0].title }}</h2>
-      <span class="p_md">商品適用年代： {{ cardContext[0].year }}</span>
+      <h2>{{ cardContext[0].title }}</h2>
       <p class="p_lg">商品用途： <br />{{ cardContext[0].purpose }}</p>
-      <span class="p_md">價錢： ${{ cardContext[0].price }}</span>
+      <div>
+        <span class="p_md">價錢： </span>
+        <span class="p_md">${{ cardContext[0].price }}</span>
+      </div>
+
       <div class="num p_md">
         <font-awesome-icon
           class="minus-plus"
@@ -89,35 +92,38 @@ export default {
     width: 50%;
 
     > :nth-child(1) {
+      color: map-get($color, accent);
       font-size: 38px;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
     }
 
     > :nth-child(2) {
-      display: block;
-      margin-bottom: 50px;
+      margin-bottom: 100px;
     }
 
     > :nth-child(3) {
-      margin-bottom: 80px;
+      margin-bottom: 30px;
+
+      > span {
+        font-size: 24px;
+      }
+      > span:nth-child(2) {
+        color: map-get($color, accent);
+      }
     }
 
     > :nth-child(4) {
-      display: block;
-      margin-bottom: 50px;
-    }
-
-    > :nth-child(5) {
       margin-bottom: 50px;
       display: flex;
       column-gap: 10px;
 
       > span {
+        color: map-get($color, accent);
         font-size: 28px;
       }
     }
 
-    > :nth-child(6) {
+    > :nth-child(5) {
       display: flex;
       column-gap: 50px;
       // margin-bottom: 50px;
