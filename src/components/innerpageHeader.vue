@@ -1,10 +1,8 @@
 <template>
-    <router-link to="/">
-        <div class="innerpageHeader">
-            <div class="title">TIMEVOLTS</div>
-            <div class="icon"><img src="Group.png" alt=""></div>
-        </div>
-    </router-link>
+    <div class="innerpageHeader">
+        <div class="title"><router-link to="/">TIMEVOLTS</router-link></div>
+        <div class="icon"><router-link to="/"><img src="Group.png" alt=""></router-link></div>
+    </div>
 </template>
 
 <script>
@@ -32,6 +30,10 @@ export default {
             font-weight: bold;
             color: #ffe1b5;
             margin: 5px 0;
+            a{
+                text-decoration: none;
+                color: #ffe1b5;
+            }
         }
         .icon{
             margin-bottom: 5px;
