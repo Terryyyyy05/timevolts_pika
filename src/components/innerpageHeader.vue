@@ -12,6 +12,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     div.innerpageHeader{
+        pointer-events: none;
         background-image: url("/public/Union.png");
         background-repeat: no-repeat;
         background-position: center 100%;
@@ -25,6 +26,7 @@ export default {
         justify-content: center;
         align-items: center;
         .title{
+            pointer-events: auto;
             font-size: 16px;
             letter-spacing: 1.5%;
             font-weight: bold;
@@ -33,9 +35,11 @@ export default {
             a{
                 text-decoration: none;
                 color: #ffe1b5;
+                pointer-events: auto;
             }
         }
         .icon{
+            pointer-events: auto;
             margin-bottom: 5px;
             width: 30px;
             height: 30px;

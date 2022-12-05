@@ -55,7 +55,6 @@
     import itinPrdCrsl from '@/components/itinerary/itinPrdCrsl.vue';
     import itineraryFilter from "@/components/itinerary/filter/itineraryFilter.vue";
     import itinCardInfo from "@/components/itinerary/card/itinCardInfo.vue";
-    import innerpageHeader from "@/components/innerpageHeader.vue";
 
 
     export default{
@@ -66,7 +65,6 @@
             itinPrdCrsl,
             itineraryFilter,
             itinCardInfo,
-            innerpageHeader,
         },
         mounted() {
             this.initThree()
