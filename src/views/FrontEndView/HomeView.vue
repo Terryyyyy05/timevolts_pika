@@ -39,8 +39,8 @@
           時光行程
           <span>Itinerary</span>
         </h2>
+        <home-itinerary me-itinerary></home-itinerary>
       </div>
-      <home-itinerary></home-itinerary>
     </div>
 
     <div class="historcal_block">
@@ -49,8 +49,8 @@
           歷史故事
           <span>Historcal</span>
         </h2>
+        <home-historcal></home-historcal>
       </div>
-      <home-historcal></home-historcal>
 
     </div>
 
@@ -203,8 +203,9 @@ h2{
     .title{
       grid-column: 2/4;
       grid-row: 1;
+      padding: 30px 0 48px;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       align-content: center;
       border:$b2-primary ;
       border-top:$b20-primary ;
