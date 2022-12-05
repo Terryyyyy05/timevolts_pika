@@ -91,8 +91,10 @@
     <div class="l-box-content">
       <h2>{{item.title}}</h2>
       <p class="date">{{item.date}}</p>
-      <span class="hashtag">{{item.hashtag}}</span>
-      <p class="content">{{item.content}}</p>     
+      <div class="l-box-content-item">
+        <span class="hashtag">{{item.hashtag}}</span>
+        <p class="content">{{item.content}}</p>     
+      </div>
     </div>
   </div>
 
@@ -232,7 +234,7 @@ export default {
           title:'亞特蘭提斯',
           date:'2022-07-15',
           hashtag:'#奇聞軼事 #高危險度 #遠古歷史',
-          content:'亞特蘭提斯，一夜之間在地球上消失的亞特蘭提斯。讓我們帶您乘坐時光機前往西元前一萬兩千年，究竟這場大洪水有沒有發生，亦或是帶你一窺究竟亞特蘭提斯的存在吧!穿越年代為西元前一萬兩千年，時空背景與現今差異甚大，生存環境危險，冒險者快來挑戰吧!',
+          content:'亞特蘭提斯，一夜之間在地球上消失的亞特蘭提斯。讓我們帶您乘坐時光機前往西元前一萬兩千年，究竟這場大洪水有沒有發生，亦或是帶你一窺究竟亞特蘭提斯的存在吧!穿越年代為西元前一萬兩千年，時空背景與現今差異甚大，生存環境危險，冒險者快來挑戰吧! ',
           content_box:'',
           img: require(`@/assets/image/news/atlantis.png`),
         },
@@ -393,7 +395,6 @@ ul{
 .l-box-img{
   margin: 10px;
   height: 300px;
-  overflow: hidden;
     img{
       width: 100%;
       height: 100%;
@@ -407,14 +408,34 @@ h2{
     text-align: right;
     margin: 10px;
   }
-  .hashtag{
-    margin: 10px;
+  .l-box-content-item{
+    height: 230px;
+    overflow-y: auto;
+    .hashtag{
+      margin: 10px;
+    }
+    .content{
+      margin: 10px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
   }
-  .content{
-    margin: 10px;
-    font-size: 15px;
-    line-height: 1.5;
-  }
+}
+//捲軸寬度
+::-webkit-scrollbar {
+   width: 13px;
+}
+
+//捲軸底色
+::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 3px grey;
+   border-radius: 10px;
+}
+
+//捲軸本體顏色
+::-webkit-scrollbar-thumb {
+   background: map-get($color,muted);
+   border-radius: 10px;
 }
 .show-lightbox{
   display: block;

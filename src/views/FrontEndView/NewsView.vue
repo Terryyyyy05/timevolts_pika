@@ -7,13 +7,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import Tab from '@/components/news/Tab.vue'
-
-=======
-import Tab from '@/components/Tab.vue'
 import innerpageHeader from "@/components/innerpageHeader.vue";
->>>>>>> 97356efa7a72c9c1cc84edfa111cd393fcf19286
 export default {
   components :{
     Tab,
