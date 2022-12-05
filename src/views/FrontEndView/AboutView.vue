@@ -1,4 +1,5 @@
 <template>
+  <innerpageHeader></innerpageHeader>
   <div class="container">
     <the-heading heading="關於我們" subheading="About us"></the-heading>
       
@@ -58,8 +59,13 @@
 </template>
 
 <script>
+  import innerpageHeader from "@/components/innerpageHeader.vue";
+
   export default {
     name:"AboutView",
+    components:{
+      innerpageHeader,
+    },
     data(){
       return{
           title:['組織介紹','機型介紹','會員制度'],

@@ -1,7 +1,5 @@
 <template>
     <innerpageHeader></innerpageHeader>
-    <div class="about">
-      <h1>行程</h1>
     <div class="container">
         <the-heading heading="時光行程" subheading="Itinerary"></the-heading>
     </div>
@@ -41,7 +39,9 @@
     <section class="section">
         <div class="container">
             <itinerary-filter/>
-            <itin-card-info/>
+            <div class="cardwrap">
+                <itin-card-info/>
+            </div>
         </div>
     </section>
 </template>
@@ -274,5 +274,10 @@
 .clsCrslWrap{
     overflow: hidden;
 }
-
+.cardwrap{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center;
+}
 </style>

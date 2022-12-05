@@ -1,4 +1,5 @@
 <template>
+  <innerpageHeader></innerpageHeader>
   <div class="container">
     <the-heading heading="最新消息" subheading="News"></the-heading>
     <Tab/>
@@ -9,10 +10,11 @@
 
 <script>
 import Tab from '@/components/Tab.vue'
-
+import innerpageHeader from "@/components/innerpageHeader.vue";
 export default {
   components :{
     Tab,
+    innerpageHeader,
   }
 };
 </script>

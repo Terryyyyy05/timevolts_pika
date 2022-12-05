@@ -1,4 +1,5 @@
 <template>
+
     <itin-card v-for="info in visibleInformation" :key="info.title" >
         <div class="outterwrap">
             <h3>{{ info.title }}</h3>

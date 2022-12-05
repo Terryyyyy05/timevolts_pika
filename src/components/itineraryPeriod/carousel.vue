@@ -7,8 +7,8 @@
             <li><img src="@/assets/image/itin/lochNessMonster01.jpg" alt="圖片4" class="img4"></li>
         </ul>
         <div class="button">
-            <input type="button" id="btnLeft" value="<<" disabled >
-            <input type="button" id="btnLeft" value=">>" :click="carouselMoveRight">
+            <input type="button" id="btnLeft" value="<<"  @click="carouselMoveLeft">
+            <input type="button" id="btnRight" value=">>" @click="carouselMoveRight">
         </div>
     </div>
 </template>
@@ -20,22 +20,37 @@ export default {
     components:{
         
     },
+    data(){
+        return{
+            curIndex: 0
+        }
+    },
     methods:{
         carouselMoveRight (){
             
             let ul = document.querySelector(".imageul");
-            let btnRight = this.document.querySelector("#btnRight");
-            let curIndex = 0;
+            let btnRight = document.querySelector("#btnRight");
     
-            btnRight.onclick = function(){
-                curIndex++;
-                ul.style.right = 400*curIndex + "px";
-                if(curIndex == 4){
-                    btnRight.disabled = true;
-                }
+            this.curIndex++;
+            ul.style.left = -400*this.curIndex + "px";
+            if(this.curIndex == 3){
+                btnRight.disabled = true;
+            }
+        },
+        carouselMoveLeft (){
+            
+            let ul = document.querySelector(".imageul");
+            let btnLeft = document.querySelector("#btnRight");
+    
+            this.curIndex--;
+            ul.style.left = 400*this.curIndex + "px";
+            if(this.curIndex == 0){
+                btnLeft.disabled = true;
             }
         }
-    }
+        
+    },
+    
 }
 
 </script>
