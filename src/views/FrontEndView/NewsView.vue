@@ -8,11 +8,10 @@
 
 <script>
 import Tab from '@/components/news/Tab.vue'
-import innerpageHeader from "@/components/innerpageHeader.vue";
+import innerpageHeader from "@/components/innerpageHeader.vue"
 export default {
   components :{
     Tab,
-    innerpageHeader,
   }
 };
 </script>

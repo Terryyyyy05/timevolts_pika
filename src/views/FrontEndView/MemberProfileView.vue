@@ -1,23 +1,14 @@
 <template>
-  <innerpageHeader></innerpageHeader>
-  <div class="container">
-    <the-heading heading="會員中心" subheading="Member"></the-heading>
-  </div>
-  <MemberSidebar />
+  <MemberModule />
 </template>
 
 <script>
-import innerpageHeader from "@/components/innerpageHeader.vue";
-import MemberSidebar from "@/components/member/MemberSidebar.vue";
+import MemberModule from "@/components/member/MemberModule.vue";
 export default {
-  name: "MemberProfile",
   components: {
-    innerpageHeader,
-    MemberSidebar,
+    MemberModule
   },
 };
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/css/app.scss";
-</style>
+<style lang="scss" scoped></style>

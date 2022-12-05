@@ -12,7 +12,9 @@
         required
       />
       <div class="btn">
-        <router-link to="/login"><button class="btn-signup">確認註冊</button></router-link>
+        <router-link to="/login"
+          ><button class="btn-signup">確認註冊</button></router-link
+        >
       </div>
     </form>
   </div>
@@ -81,5 +83,8 @@ button {
   cursor: pointer;
   background-color: #fab042;
   color: #1e1e1e;
+}
+a {
+  text-decoration: none;
 }
 </style>

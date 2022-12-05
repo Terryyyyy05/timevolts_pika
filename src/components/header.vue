@@ -1,34 +1,80 @@
 <template>
     <header>
-      <div class="icon-container">
+      <div v-if="show" class="icon-container">
         <div><router-link to="/login"><img src="Group604.png" alt=""></router-link></div>
         <div><img src="Group605.png" alt=""></div>
       </div>
       <div class="nav">
-        <div class="hbicon"><img src="Group603.png" alt=""></div>
-        <div class="link-container">
-          <div class="bar"></div>
-          <router-link to="/news">最新消息</router-link>
-          <div class="bar"></div>
-          <router-link to="/itinerary">時光行程</router-link>
-          <div class="bar"></div>
-          <router-link to="/history">歷史故事</router-link>
-          <div class="bar"></div>
-          <router-link to="/product">購物商城</router-link>
-          <div class="bar"></div>
-          <router-link to="/about">關於我們</router-link>
-          <div class="bar"></div>
-          <router-link to="/member">會員中心</router-link>
-          <div class="chatbot"><img src="Group243.png" alt=""></div>
+        <div @click="shownav" class="hbicon"><img src="Group603.png" alt="寶貝球"></div>
+        <div class="vertical-nav" v-if="show">
+          <div v-for="(item, index) in pageName" :key="index" class="link-container" >
+            <div class="bar"></div>
+            <router-link @mouseover="changeColor" @mouseleave="changeBack" :to="item.router" :data-item="index" >{{item.ch}}</router-link>
+          </div>
+          <div class="chatbot"><img src="Group243.png" alt="時空管理局"></div>
         </div>
       </div>
     </header>
 </template>
-
 <script>
 export default {
   name: "header",
-  
+  data(){
+    return{
+      pageName:[
+        {
+          'router': '/news',
+          'ch':"最新消息",
+          'en':"NEWS",
+        },
+        {
+          'router': '/itinerary',
+          'ch':"行程預定",
+          'en':"ITINERARY",
+        },
+        {
+          'router': '/history',
+          'ch':"歷史故事",
+          'en':"HISTORY",
+        },
+        {
+          'router': '/product',
+          'ch':"購物商城",
+          'en':"PRODUCTS",
+        },
+        {
+          'router': '/about',
+          'ch':"關於我們",
+          'en':"ABOUT US",
+        },
+        {
+          'router': '/login',
+          'ch':"會員中心",
+          'en':"MEMBER",
+        }
+        ],
+        show: false,
+    }
+  },
+  methods: {
+    changeColor(e){
+      e.target.style.transition = 'all .3s';
+      e.target.style.backgroundColor = '#ffe1b5';
+      e.target.style.color = '#1e1e1e';
+      e.target.innerText = this.pageName[e.target.dataset.item].en;
+    },
+    changeBack(e){
+      e.target.style.transition = 'all .3s';
+      e.target.style.color = '#ffe1b5';
+      e.target.style.backgroundColor = 'transparent';
+      e.target.style.backdropFilter = 'blur(5px)';
+      e.target.innerText = this.pageName[e.target.dataset.item].ch
+    },
+    shownav(){
+      this.show = !this.show;
+      console.log('aaaaa')
+    },
+  }
 };
 </script>
 
@@ -38,52 +84,62 @@ export default {
     position: fixed;
     top: 2%;
     right: 2%;
-    z-index: 100;
+    z-index: 101;
+    pointer-events: none;
     .icon-container{
     display: flex;
     height: fit-content;
     margin-top: calc((55px - 15px) / 2);
+    pointer-events: none;
     div{
       width: 15px;
       height: 15px;
       margin-right: 10px;
+      pointer-events: auto;
       img{
+        pointer-events: auto;
         width: 100%;
         height: 100%;
       }
     }
     }
     div.nav{
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       .hbicon{
+        pointer-events: auto;
         height: 55px;
         width: 55px;
         animation: rotate 1.5s infinite;
         img{
         width: 100%;
         height: 100%;
+        pointer-events: auto;
         }
       }
-      .link-container{
+      .vertical-nav{
+        pointer-events: auto;
+        .link-container{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         a{
           font-size: 12px;
-        height: 54px;
-        width: 54px;
-        text-decoration: none;
-        color: #ffe1b5;
-        border: 2px solid #ffe1b5;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:hover{
-          color: #1e1e1e;
-          background-color: #ffe1b5;  
-          transition: .5s;
-          }
+          font-weight: bold;
+          height: 54px;
+          width: 54px;
+          text-decoration: none;
+          color: #ffe1b5;
+          backdrop-filter: blur(5px);
+          border: 2px solid #ffe1b5;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
         div.bar {
           height: 5px;
@@ -93,6 +149,13 @@ export default {
           margin: 0 20px;
           color: #ffe1b5;
         }
+      }
+      }
+    }
+    .chatbot {
+      img{
+        width: 100%;
+        height: 100%;
       }
     }
     @keyframes rotate {
@@ -139,7 +202,8 @@ export default {
         height: 85px;
         width: 85px;
       }
-      .link-container{
+      .vertical-nav{
+        .link-container{
         a{
         height: 80px;
         width: 80px;
@@ -150,6 +214,8 @@ export default {
           margin: 0 40px;
         }
       }
+      }
+      
     }
   }
 }

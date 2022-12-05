@@ -1,13 +1,14 @@
 <template>
-
+  <MemberModule />
 </template>
 
 <script>
+import MemberModule from "@/components/member/MemberModule.vue";
 export default {
-
-}
+  components: {
+    MemberModule,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style lang="scss" scoped></style>

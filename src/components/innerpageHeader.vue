@@ -1,10 +1,8 @@
 <template>
-    <router-link to="/">
-        <div class="innerpageHeader">
-            <div class="title">TIMEVOLTS</div>
-            <div class="icon"><img src="Group.png" alt=""></div>
-        </div>
-    </router-link>
+    <div class="innerpageHeader">
+        <div class="title"><router-link to="/">TIMEVOLTS</router-link></div>
+        <div class="icon"><router-link to="/"><img src="Group.png" alt=""></router-link></div>
+    </div>
 </template>
 
 <script>
@@ -14,10 +12,10 @@ export default {
 </script>
 <style lang="scss" scoped>
     div.innerpageHeader{
+        pointer-events: none;
         background-image: url("/public/Union.png");
         background-repeat: no-repeat;
-        background-position: center 0%;
-        background-size: 50% 100%;
+        background-position: center 100%;
         position: absolute;
         left: 0;
         right: 0;
@@ -28,13 +26,20 @@ export default {
         justify-content: center;
         align-items: center;
         .title{
+            pointer-events: auto;
             font-size: 16px;
             letter-spacing: 1.5%;
             font-weight: bold;
             color: #ffe1b5;
             margin: 5px 0;
+            a{
+                text-decoration: none;
+                color: #ffe1b5;
+                pointer-events: auto;
+            }
         }
         .icon{
+            pointer-events: auto;
             margin-bottom: 5px;
             width: 30px;
             height: 30px;

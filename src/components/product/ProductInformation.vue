@@ -15,8 +15,9 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from "vue";
-// import BaseHistoryCard from "./base/BaseHistoryCard.vue";
+import { ref, computed } from "vue";
+import { cardContext } from "./js/data.js";
+
 import ShowMoreButton from "../../components/history/UI/ShowMoreButton.vue";
 import ProductCard from "./base/ProductCard.vue";
 
@@ -27,68 +28,6 @@ export default {
   },
   setup() {
     const perPageCardNum = ref(8);
-    const cardContext = reactive([
-      {
-        title: "翻譯蒟蒻",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻1",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻2",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻3",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻4",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻5",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻6",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻7",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻8",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻9",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻10",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻11",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻12",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻13",
-        price: 1000,
-      },
-      {
-        title: "翻譯蒟蒻14",
-        price: 1000,
-      },
-    ]);
 
     const addCardNum = () => {
       return (perPageCardNum.value += 4);
@@ -102,22 +41,12 @@ export default {
     });
 
     return {
-      cardContext,
       perPageCardNum,
       cardList,
       addCardNum,
       distinguishTrueFalse,
     };
   },
-
-  // methods: {
-  //   AddVisibleInformation() {
-  //     this.informationVisible += 4;
-  //   },
-  //   scrollToTop() {
-  //     window.scrollTo(0, 0);
-  //   },
-  // },
 };
 </script>
 
