@@ -66,10 +66,6 @@ img {
   row-gap: 100px;
   margin: 100px 0 50px;
 
-  .pic {
-    // width: 90%;
-  }
-
   h3 {
     color: map-get($color, primary);
     text-align: center;
