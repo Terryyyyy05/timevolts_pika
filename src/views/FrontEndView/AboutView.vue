@@ -87,9 +87,7 @@
 
 <style scoped lang="scss">
 @import '@/assets/css/utils/variables';
-*{
-  font-family: "Cube11";
-}
+
 .about{
   width: 80%;
   margin: 50px auto;
