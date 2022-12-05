@@ -59,13 +59,9 @@
 </template>
 
 <script>
-  import innerpageHeader from "@/components/innerpageHeader.vue";
 
   export default {
     name:"AboutView",
-    components:{
-      innerpageHeader,
-    },
     data(){
       return{
           title:['組織介紹','機型介紹','會員制度'],

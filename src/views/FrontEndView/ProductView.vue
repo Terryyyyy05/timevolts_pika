@@ -11,12 +11,10 @@
 <script>
 // import BaseCard from "@/components/all_UI/BaseCard.vue";
 import ProductInformation from "@/components/product/ProductInformation.vue";
-import innerpageHeader from "@/components/innerpageHeader.vue"
 export default {
   components: {
     // BaseCard,
     ProductInformation,
-    innerpageHeader,
   },
 };
 </script>

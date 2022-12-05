@@ -9,6 +9,7 @@ import "@/assets/css/app.scss";
 // Import Components
 import TheHeading from "./components/all_layout/TheHeading.vue";
 import BaseCard from "./components/all_UI/BaseCard.vue";
+import innerpageHeader from "./components/innerpageHeader.vue";
 
 // fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -38,6 +39,6 @@ app.use(router);
 app.component("the-heading", TheHeading);
 app.component("base-card", BaseCard);
 app.component("font-awesome-icon", FontAwesomeIcon);
-// app.component("innerpageHeader", innerpageHeader);
+app.component("innerpageHeader", innerpageHeader);
 
 app.mount("#app");
