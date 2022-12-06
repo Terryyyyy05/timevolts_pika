@@ -142,8 +142,8 @@
           border: 1px solid map-get($color, primary);
           background-color: map-get($color, primary);
           color: map-get($color, dark);
-          height: 200px;
           padding: 10px 30px;
+          height: 200px;
           li{
             list-style:square;
             line-height: 2;
