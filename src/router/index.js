@@ -59,7 +59,7 @@ const routes = [
   },
   {
     path: "/ProductCheckOut",
-    name: "product",
+    name: "ProductCheckOut",
     component: () => import("../views/FrontEndView/ProductCheckOutView.vue"),
   },
   {
@@ -70,7 +70,7 @@ const routes = [
   {
     path: "/ProductCheckOut",
     name: "productCheckOut",
-    component: ()=> import("../views/FrontEndView/ProductCheckOutView.vue"),
+    component: () => import("../views/FrontEndView/ProductCheckOutView.vue"),
   },
   {
     path: "/member",
@@ -85,17 +85,20 @@ const routes = [
   {
     path: "/signup",
     name: "signup",
-    component: () => import("../views/FrontEndView/Member/MemberSignupView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberSignupView.vue"),
   },
   {
     path: "/profile",
     name: "profile",
-    component: () => import("../views/FrontEndView/Member/MemberProfileView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberProfileView.vue"),
   },
   {
     path: "/profile-edit",
     name: "profile-edit",
-    component: () => import("../views/FrontEndView/Member/MemberProfileEditView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberProfileEditView.vue"),
   },
   {
     path: "/itineray-order",
@@ -107,12 +110,15 @@ const routes = [
     path: "/itinerary-order-details",
     name: "itinerary-order-details",
     component: () =>
-      import("../views/FrontEndView/Member/MemberItineraryOrderDetailsView.vue"),
+      import(
+        "../views/FrontEndView/Member/MemberItineraryOrderDetailsView.vue"
+      ),
   },
   {
     path: "/product-order",
     name: "product-order",
-    component: () => import("../views/FrontEndView/Member/MemberProductOrderView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberProductOrderView.vue"),
   },
   {
     path: "/product-order-details",
@@ -123,7 +129,8 @@ const routes = [
   {
     path: "/coupon",
     name: "coupon",
-    component: () => import("../views/FrontEndView/Member/MemberCouponView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberCouponView.vue"),
   },
   {
     path: "/itinerary-wishlist",
