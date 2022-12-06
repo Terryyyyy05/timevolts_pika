@@ -1,9 +1,11 @@
 <template>
+  <all-header/>
   <innerpageHeader></innerpageHeader>
   <div class="container">
     <the-heading heading="最新消息" subheading="News"></the-heading>
     <tab />
   </div>
+  <all-footer/>
 </template>
 
 <script>
