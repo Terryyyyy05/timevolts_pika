@@ -17,7 +17,8 @@
       >
       | <router-link to="/Customizetk">客製票根(預覽)</router-link> |
    </nav>
-   <router-view />
+   <pageTop/>
+  <router-view />
 </template>
 
 <script>
