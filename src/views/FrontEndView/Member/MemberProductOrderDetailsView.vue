@@ -1,10 +1,12 @@
 <template>
+  <all-header />
   <innerpageHeader></innerpageHeader>
   <div class="container">
     <the-heading heading="會員中心" subheading="Member"></the-heading>
   </div>
   <MemberBoxProductOrderDetails />
   <MemberSidebar />
+  <all-footer />
 </template>
 
 <script>
@@ -13,11 +15,9 @@ import MemberBoxProductOrderDetails from "@/components/member/memberBox/MemberBo
 export default {
   components: {
     MemberSidebar,
-    MemberBoxProductOrderDetails
-},
+    MemberBoxProductOrderDetails,
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

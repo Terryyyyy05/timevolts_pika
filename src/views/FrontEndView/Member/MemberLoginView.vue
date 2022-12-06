@@ -9,7 +9,7 @@
         <a href="#"><span>忘記密碼</span></a>
       </div>
       <div class="btn">
-        <router-link to="/profile"
+        <router-link to="/profile/info"
           ><button class="btn-login">登入</button></router-link
         >
         <router-link to="/signup"
@@ -93,6 +93,8 @@ button {
   border-radius: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  border-left: none;
+  border-top: none;
 }
 .btn-login {
   background-color: #fab042;
