@@ -19,5 +19,6 @@
    .btn-lightbox{
         width: 100%;
         justify-content: center;
+        border-radius: 0;
    }
 </style>

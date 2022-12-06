@@ -7,12 +7,10 @@
 </template>
 
 <script>
-import innerpageHeader from "@/components/innerpageHeader.vue";
 import MemberLoginView from './MemberLoginView.vue';
 
 export default {
   components: {
-    "innerpageHeader": innerpageHeader,
     "Login": MemberLoginView,
   },
 };

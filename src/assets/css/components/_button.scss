@@ -26,6 +26,7 @@ $transform:translate(-3px,-3px);
     cursor: pointer;
     transition: all 0.2s;
     transform: $transform;
+    margin: auto 10px;
   
     &:hover {
       transform: translate(0, 0);

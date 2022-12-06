@@ -82,41 +82,34 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: () => import("../views/FrontEndView/MemberProfileView.vue"),
-    children: [
-      {
-        path: "edit",
-        name: "edit",
-        component: () =>
-          import("../views/FrontEndView/MemberProfileEditView.vue"),
-      },
-    ],
+  },
+  {
+    path: "/profile-edit",
+    name: "profile-edit",
+    component: () => import("../views/FrontEndView/MemberProfileEditView.vue"),
   },
   {
     path: "/itineray-order",
     name: "itineray-order",
     component: () =>
       import("../views/FrontEndView/MemberItineraryOrderView.vue"),
-    children: [
-      {
-        path: "details",
-        name: "details",
-        component: () =>
-          import("../views/FrontEndView/MemberItineraryOrderDetailsView.vue"),
-      },
-    ],
+  },
+  {
+    path: "/itinerary-order-details",
+    name: "itinerary-order-details",
+    component: () =>
+      import("../views/FrontEndView/MemberItineraryOrderDetailsView.vue"),
   },
   {
     path: "/product-order",
     name: "product-order",
     component: () => import("../views/FrontEndView/MemberProductOrderView.vue"),
-    children: [
-      {
-        path: "details",
-        name: "details",
-        component: () =>
-          import("../views/FrontEndView/MemberProductOrderDetailsView.vue"),
-      },
-    ],
+  },
+  {
+    path: "/product-order-details",
+    name: "product-order-details",
+    component: () =>
+      import("../views/FrontEndView/MemberProductOrderDetailsView.vue"),
   },
   {
     path: "/coupon",
@@ -134,6 +127,11 @@ const routes = [
     name: "product-wishlist",
     component: () =>
       import("../views/FrontEndView/MemberProductWishlistView.vue"),
+  },
+  {
+    path: "/customizetk",
+    name: "customizetk",
+    component: () => import("../views/FrontEndView/Customizetk.vue"),
   },
   {
     path: "/managelogin",

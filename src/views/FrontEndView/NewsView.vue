@@ -11,7 +11,8 @@ import Tab from '@/components/news/Tab.vue'
 export default {
   components: {
     Tab,
-  },
+    innerpageHeader,
+  }
 };
 </script>
 <style lang="scss" scoped>
