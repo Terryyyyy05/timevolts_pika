@@ -1,14 +1,20 @@
 <template>
   <div class="flex">
     <div class="pic">
-      <img :src="require('@/assets/image/product/product_1.png')" alt="" />
+      <img
+        :src="require('@/assets/image/product/product_1.png')"
+        alt=""
+        ref="img"
+      />
     </div>
     <div class="content">
-      <h2>{{ cardContext[0].title }}</h2>
+      <h2 id="title" ref="title">{{ cardContext[0].title }}</h2>
       <p class="p_lg">商品用途： <br />{{ cardContext[0].purpose }}</p>
       <div>
-        <span class="p_md">價錢： </span>
-        <span class="p_md">${{ cardContext[0].price }}</span>
+        <span class="p_md">價錢： $</span>
+        <span class="p_md" id="price" ref="price">{{
+          cardContext[0].price * totalNumber
+        }}</span>
       </div>
 
       <div class="num p_md">
@@ -17,7 +23,7 @@
           icon="fa-solid fa-minus"
           @click="minusNum"
         />
-        <span>{{ totalNumber }}</span>
+        <span id="amount" ref="amount">{{ totalNumber }}</span>
         <font-awesome-icon
           class="minus-plus"
           icon="fa-solid fa-plus"
@@ -28,16 +34,18 @@
         <span>
           <img src="@/assets/image/product/heart.svg" alt="" />
         </span>
-        <button class="btn-primary">加入購物車</button>
+        <button class="btn-primary" @click="addItem">加入購物車</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
-
+import { ref, onMounted } from "vue";
 import { cardContext } from "../../js/data";
+
+// test
+import { storage } from "@/components/product/js/localStorage";
 
 export default {
   components: {},
@@ -52,14 +60,54 @@ export default {
 
     const addNum = () => {
       totalNumber.value += 1;
-      console.log(totalNumber.value);
     };
+
+    // test
+    const title = ref(null);
+    const price = ref(null);
+    const amount = ref(null);
+    const img = ref(null);
+
+    const addItem = () => {
+      // console.log(title.value.innerText);
+      // console.log(price.value.innerText);
+      // console.log(amount.value.innerText);
+      // console.log(img.value.src);
+
+      let newItemData = {
+        title: title.value.innerText,
+        price: price.value.innerText,
+        amount: amount.value.innerText,
+        imgSrc: img.value.src,
+      };
+
+      let totalItemData = [];
+
+      if (storage.get("memId")) {
+        totalItemData = storage.get("memId");
+      }
+
+      totalItemData.push(newItemData);
+      storage.set("memId", totalItemData);
+
+      // console.log(storage.get("memId"));
+    };
+
+    // onMounted(() => {
+
+    // });
 
     return {
       cardContext,
       totalNumber,
       minusNum,
       addNum,
+      addItem,
+      // DOM
+      title,
+      price,
+      amount,
+      img,
     };
   },
 };

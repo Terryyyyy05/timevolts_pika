@@ -7,7 +7,7 @@
     />
     <h3>購物車</h3>
     <ul>
-      <li>
+      <li v-for="(item, index) in itemData" :key="index">
         <div class="cart-item">
           <div class="pic">
             <img
@@ -16,8 +16,8 @@
             />
           </div>
           <div class="item-content">
-            <h4></h4>
-            <span></span>
+            <h4>{{ item.title }}</h4>
+            <span>{{ item.price }}</span>
           </div>
           <div class="item-amount">
             <font-awesome-icon
@@ -25,7 +25,7 @@
               icon="fa-solid fa-minus"
               @click="minusNum"
             />
-            <span>{{ totalNumber }}</span>
+            <span>{{ item.amount }}</span>
             <font-awesome-icon
               class="minus-plus"
               icon="fa-solid fa-plus"
@@ -41,7 +41,10 @@
 
 <script>
 import { cardContext } from "@/components/product/js/data";
-import { ref } from "vue";
+import { ref, reactive, watchEffect, computed } from "vue";
+
+// cart
+import { storage } from "@/components/product/js/localStorage";
 
 export default {
   name: "cart",
@@ -54,6 +57,21 @@ export default {
   emits: ["xmark"],
   setup(props, { emit }) {
     emit("xmark");
+
+    // cart
+    // const itemData = reactive(storage.get("memId")
+
+    const itemData = computed(() => {
+      return reactive(storage.get("memId"));
+    });
+
+    console.log(itemData);
+    // itemData = [];
+    console.log(itemData);
+
+    return {
+      itemData,
+    };
   },
 };
 </script>
