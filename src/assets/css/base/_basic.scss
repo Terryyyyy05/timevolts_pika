@@ -2,21 +2,25 @@
 @import "../utils/mixin";
 
 @font-face {
-  font-family: "Cube11";
-  src: url("@/assets/css/font/Cubic.WOFF") format("truetype");
+   font-family: "Cube11";
+   src: url("@/assets/css/font/Cubic.WOFF") format("truetype");
 }
 
 @font-face {
-  font-family: "Cube&8";
-  src: url("@/assets/css/font/Cubic.WOFF") format("truetype");
-  unicode-range: U+4E00-9FFF;
+   font-family: "Cube&8";
+   src: url("@/assets/css/font/Cubic.WOFF") format("truetype");
+   unicode-range: U+4E00-9FFF;
 }
 
 @font-face {
-  font-family: "Cube&8";
-  src: url("@/assets/css/font/8BIT.TTF") format("truetype");
-  unicode-range: U+00-024F;
+   font-family: "Cube&8";
+   src: url("@/assets/css/font/8BIT.TTF") format("truetype");
+   unicode-range: U+00-024F;
 }
 
 // 背景顏色
 @include bgc($color);
+
+a {
+   text-decoration: none;
+}
