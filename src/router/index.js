@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/FrontEndView/HomeView.vue";
+import Switchpage from "../views/SwitchpageView.vue";
+
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "Switchpage",
+    component: () => import("../views/SwitchpageView.vue"),
+  },
+  {
+    path:"/home",
+    name: "FrontEndHome",
+    component: () => import("../views/FrontEndView/HomeView.vue"),
   },
   {
     path: "/about",
