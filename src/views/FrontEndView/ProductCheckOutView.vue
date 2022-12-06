@@ -15,7 +15,7 @@
          <component :is="selectedStep"></component>
       </keep-alive>
       <div class="buttons">
-         <button class="btn-primary" style="margin: auto" @click="lastStep">
+         <button class="btn-primary" id="btnLeft" style="margin: auto" @click="lastStep">
             {{ buttonLeft }}
          </button>
          <button class="btn-primary" style="margin: auto" @click="nextStep">
@@ -26,7 +26,7 @@
             style="margin: auto"
             v-if="this.selectedStep === 'done'"
          >
-            使用預設樣式，晚點再做
+            查看訂單
          </button>
       </div>
    </div>
@@ -37,6 +37,7 @@ import ProgressBar from "../../components/product/checkout/ProgressBar.vue";
 import ItineraryInformation from "../../components/ItineraryBooking/ItineraryInformation.vue";
 import Checkout from "../../components/ItineraryBooking/Checkout.vue";
 import ConfirmOrder from "../../components/ItineraryBooking/ConfirmOrder.vue";
+import router from "@/router";
 
 export default {
    components: {
@@ -98,6 +99,18 @@ export default {
          }
          window.scrollTo(0, 0);
       },
+      lastStep(){
+         if(this.selectedStep === "productCheckout"){
+            let routerLink = document.createElement('router-link');
+            let btnLeft = document.getElementById('btnLeft');
+
+            btnLeft.parentNode.insertBefore(routerLink, btnLeft.nextElementSibling)
+            routerLink.appendChild(btnLeft);
+            routerLink.setAttribute('to','/product');
+            // <router-link to="/product"/>
+
+         }
+      }
    },
 };
 </script>
