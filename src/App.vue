@@ -24,7 +24,10 @@
 
 <script>
 export default {
-   name: "app",
+  name: "app",
+  mounted() {
+    this.$store.commit("updateCartFromLocalStorage");
+  },
 };
 </script>
 <style lang="scss">
