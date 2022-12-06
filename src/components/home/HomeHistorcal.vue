@@ -2,25 +2,28 @@
     <div class="wrapper">
         <div class="carousel">
             <div class="slide"
-            v-for="i in itinerarys" :key="i.id"
-            @click="slat(i)">
-                <img :src="require('@/assets/image/itin/titanic.jpg')" :key="i.story_cover"/>
+            v-for="(i) in itinerarys" :key="i.id"
+            @click="clicklook(i)" :nth-of-type(2):class="click"  >
+                <img v-bind:src="i.story_cover" />
             </div>
         </div>
-        <div>
-            <h3>{{eye.itinerary_name}}</h3>
-        </div>
-        <div>
-            <div>
-            <p>{{eye.story_age}}</p>
-            <p>{{eye.itinerary_memo}}</p>
+        <div class="content">
+            <div class="itineraryTitle">
+                <h3>{{look.itinerary_name}}</h3>
             </div>
-            <div>
-                <img src="#" alt="">
-                <button>了解更多</button>
+            <div class="itineraryText">
+                <div class="summary">
+                <p>{{look.story_age}}</p>
+                <p>{{look.itinerary_memo}}</p>
+                </div>
+                <div>
+                    <img src="#" alt="">
+                    <button>了解更多</button>
+                </div>
             </div>
-            <div>
-                <p>危險度:{{eye.story_risk}}</p>
+            <div class="itineraryTeg">
+                <p>危險度:{{look.story_risk}}</p>
+                <p>地點:{{look.story_spot}}</p>
             </div>
         </div>
    </div>
@@ -37,7 +40,7 @@ export default {
         itinerarys:[
             {   
                 id:1,
-                story_cover:'@/assets/image/itin/titanic.jpg',
+                story_cover: require('@/assets/image/itin/titanic.jpg'),
                 itinerary_name : "鐵達尼號沈船事件",
                 story_age : "西元1912年",
                 itinerary_memo:"回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
@@ -46,7 +49,27 @@ export default {
             },
             {   
                 id:2,
-                story_cover:'@',
+                story_cover: require('@/assets/image/itin/crusades.webp'),
+                itinerary_name : "馬雅文化",
+                story_age : "西元前2000年",
+                itinerary_memo:"回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
+                story_risk:"中",
+                story_spot:"南美洲",
+            },
+            {   
+                id:3,
+                story_cover: require('@/assets/image/itin/atlantis.png'),
+                itinerary_name : "亞特蘭提斯",
+                story_age : "西元前12000年",
+                itinerary_memo:`亞特蘭提斯，一夜之間在地球上消失的亞特蘭提斯。
+讓我們帶您乘坐時光機前往西元前一萬兩千年，究竟這場大洪水有沒有發生，亦或是帶你一窺究竟亞特蘭提斯的存在吧!
+穿越年代為西元前一萬兩千年，時空背景與現今差異甚大，生存環境危險，冒險者快來挑戰吧!`,
+                story_risk:"中",
+                story_spot:"姆大陸",
+            },
+            {   
+                id:4,
+                story_cover: require('@/assets/image/itin/titanic.jpg'),
                 itinerary_name : "鐵達尼號沈船事件2",
                 story_age : "西元1912年",
                 itinerary_memo:"回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
@@ -54,52 +77,114 @@ export default {
                 story_spot:"北美洲",
             },
             {   
-                id:3,
-                story_cover:'@',
-                itinerary_name : "鐵達尼號沈船事件3",
+                id:5,
+                story_cover: require('@/assets/image/itin/crusades.webp'),
+                itinerary_name : "馬雅文化2",
                 story_age : "西元1912年",
-                itinerary_memo:`回到過去的英國，體驗號稱「永不沉沒」的夢幻之船`,
+                itinerary_memo:"回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
+                story_risk:"中",
+                story_spot:"南美洲",
+            },
+        ],
+        look:{   
+            //暫用粗暴解法，之後要串接正確內容才可
+                id:1,
+                story_cover: require('@/assets/image/itin/titanic.jpg'),
+                itinerary_name : "鐵達尼號沈船事件",
+                story_age : "西元1912年",
+                itinerary_memo:"回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
                 story_risk:"中",
                 story_spot:"北美洲",
             },
-        ],
-        eye:{},
         filterExtension: false,
       };
    },
+   
    methods: {
-    slat(i){
+    prompt(){
+    return look = itinerarys[0]
+    },
+    clicklook(i){
         console.log(i);
-        this.atttt = i
-    }
-    
-      
+        this.look = i
+    } 
    },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+
+
+
 .wrapper {
+    height: 100vh;
+    // width: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
-    padding: 10px 20px;
-    width: fit-content;
+    overflow: hidden;
+    // gap: 10px;
+    position: relative;
+    // padding: 10px 20px;
     margin: 0 auto;
     .carousel{
-        width: calc(100vw - 17px);
+        position: absolute;
         display: flex;
-        overflow: hidden;
-        .slide{
+        overflow: visible;
+        // left: 0px;
+        // transform: skewX(calc(-50% - 45px));
+        .slide{ 
+            margin:15px;
+            width: 40vw;
+            height: 20vw;
+            border-radius: 20px;
             img{
+                width: 100%;
+                height: 20vw;
+                border-radius: 20px;
                 border: 1px solid map-get($color, "primary");
-                width: 50vw;
+                object-fit: cover;
             }
         }
+        .click{
+            width: 60vw;
+            height: 30vw;
+            img{
+                height: 30vw;
+            }
+            
+        }
     }    
-    
+    .content{
+        width: 80%;
+        height: 150px;
+        margin-top: calc(35vw);
+        margin-left: 15px;
+        margin-right: 15px;
+        border-radius: 20px;
+        border: 1px solid map-get($color, "primary");
+        background: map-get($color, "dark_sub");
+
+        display: flex;
+        justify-content: center;
+        
+        box-sizing: border-box;
+        .itineraryTitle{
+            width: 15vw;
+            padding: 20px;
+        }
+        .itineraryText{
+            width: 40vw;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .itineraryTeg{
+            width: 15vw;
+            padding: 20px;
+        }
+    }
     }
 
 </style>

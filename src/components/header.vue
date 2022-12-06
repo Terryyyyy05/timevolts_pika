@@ -3,7 +3,7 @@
   <header>
     <div v-if="show" class="icon-container">
       <div>
-        <router-link to="/login"><img src="Group604.png" alt="" /></router-link>
+        <router-link to="/member"><img src="Group604.png" alt="" /></router-link>
       </div>
       <div @click="toggleCart"><img src="Group605.png" alt="" /></div>
     </div>
@@ -69,7 +69,7 @@ export default {
           en: "ABOUT US",
         },
         {
-          router: "/login",
+          router: "/member",
           ch: "會員中心",
           en: "MEMBER",
         },
@@ -98,7 +98,6 @@ export default {
     },
     shownav() {
       this.show = !this.show;
-      console.log("aaaaa");
     },
   },
 };
@@ -122,25 +121,25 @@ header {
       height: 15px;
       margin-right: 10px;
       pointer-events: auto;
-      img {
-        pointer-events: auto;
+      img{
         width: 100%;
         height: 100%;
       }
     }
-  }
-  div.nav {
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .hbicon {
-      pointer-events: auto;
-      height: 55px;
-      width: 55px;
-      animation: rotate 1.5s infinite;
-      img {
+    }
+    div.nav{
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .hbicon{
+        pointer-events: auto;
+        cursor: pointer;
+        height: 55px;
+        width: 55px;
+        animation: rotate 1.5s infinite;
+        img{
         width: 100%;
         height: 100%;
         pointer-events: auto;
@@ -168,7 +167,7 @@ header {
           align-items: center;
         }
         div.bar {
-          height: 5px;
+          height: 3px;
           width: 1.5px;
           background-color: #ffe1b5;
           position: relative;
