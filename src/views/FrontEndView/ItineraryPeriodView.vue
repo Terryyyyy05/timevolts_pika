@@ -52,7 +52,7 @@
 import carousel from "@/components/itineraryPeriod/carousel.vue";
 import commentsInfo from "@/components/itineraryPeriod/commentsInfo.vue";
 import itinPeriodCardInfo from "@/components/itineraryPeriod/itinPeriodCardInfo.vue";
-import asideBar from "@/components/itineraryPeriod/asideBar.vue"
+import asideBar from "@/components/itineraryPeriod/asideBar.vue";
 
 export default {
     name: "itiniraryPeriodView",
@@ -124,14 +124,14 @@ export default {
 @import "@/assets/css/app.scss";
 
 .section {
-    width: 100%;
-    // height: 90vh;
-    margin: 100px 0;
+   width: 100%;
+   // height: 90vh;
+   margin: 100px 0;
 }
 
 .container {
-    width: map-get($container, each(d_container));
-    // height: 100%;
+   width: map-get($container, each(d_container));
+   // height: 100%;
 }
 .carouselWrap{
     display: flex;
@@ -139,64 +139,26 @@ export default {
     flex-wrap: wrap;
     align-items: center;
 }
-.commentwrap{
-    margin: 0 auto;
+.commentwrap {
+   margin: 0 auto;
 }
 
-.button{
-    margin: 0 auto;
+a {
+   text-decoration: none;
 }
-.watchmorewrap{
-    display: flex;
-    flex-wrap: wrap;
+
+.button {
+   margin: 0 auto;
+}
+.watchmorewrap {
+   display: flex;
+   flex-wrap: wrap;
 }
 .infoWrap{
-    width: fit-content;
-    height: fit-content;
+    border: 3px solid red;
+    width: 500px;
+    height: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    color: #fff;
-    background-color: map-get($color, "dark_sub");
-
-}
-.infoTitle{
-    width: 500px;
-    height: 30px;
-    margin: 0 0 5px 0;
-    padding: 20px 10px;
-    font-size: 32px;
-    text-align: center;
-    border: 2px solid map-get($color, "primary");
-    background-color: map-get($color, "dark_sub");
-}
-.tagWrap{
-    width: 500px;
-    height: 30px;
-    margin: 5px 0;
-    padding: 20px 10px;
-    font-size: 24px;
-    display: flex;
-    justify-content: space-between;
-    border: 2px solid map-get($color, "primary");
-    background-color: map-get($color, "dark_sub");
-}
-.infoDate{
-    width: 500px;
-    height: 30px;
-    margin: 5px 0;
-    padding: 20px 10px;
-    font-size: 24px;
-    border: 2px solid map-get($color, "primary");
-    background-color: map-get($color, "dark_sub");
-}
-.infoContent{
-    width: 500px;
-    margin: 5px 0 0 0;
-    padding: 20px 10px;
-    font-size: 24px;
-    line-height: 1.6;
-    border: 2px solid map-get($color, "primary");
-    background-color: map-get($color, "dark_sub");
 }
 </style>
