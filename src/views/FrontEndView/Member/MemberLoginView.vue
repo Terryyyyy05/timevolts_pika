@@ -9,7 +9,7 @@
         <a href="#"><span>忘記密碼</span></a>
       </div>
       <div class="btn">
-        <router-link to="/profile/info"
+        <router-link to="/profile"
           ><button class="btn-login">登入</button></router-link
         >
         <router-link to="/signup"

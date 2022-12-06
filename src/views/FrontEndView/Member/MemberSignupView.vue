@@ -17,7 +17,7 @@
         required
       />
       <div class="btn">
-        <router-link to="/profile/info"
+        <router-link to="/profile"
           ><button class="btn-signup">確認註冊</button></router-link
         >
       </div>
