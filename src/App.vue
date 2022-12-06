@@ -12,6 +12,7 @@
     <router-link to="/itineraryPeriodView">時光行程-期間限定(預覽)</router-link> |
     <router-link to="/itiItineraryClassicView">時光行程-經典(預覽)</router-link> |
     <router-link to="/Customizetk">客製票根(預覽)</router-link> |
+    <router-link to="/ProductCheckOut">結帳(預覽)</router-link> 
   </nav>
   <router-view />
 </template>
