@@ -10,6 +10,8 @@ import "@/assets/css/app.scss";
 import TheHeading from "./components/all_layout/TheHeading.vue";
 import BaseCard from "./components/all_UI/BaseCard.vue";
 import innerpageHeader from "./components/innerpageHeader.vue";
+import header from "./components/header.vue";
+import footer from "./components/footer.vue";
 
 // fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -42,5 +44,7 @@ app.component("the-heading", TheHeading);
 app.component("base-card", BaseCard);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("innerpageHeader", innerpageHeader);
+app.component("all-header", header);
+app.component("all-footer", footer);
 
 app.mount("#app");
