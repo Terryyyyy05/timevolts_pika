@@ -66,67 +66,67 @@ const routes = [
   {
     path: "/member",
     name: "member",
-    component: () => import("../views/FrontEndView/MemberView.vue"),
+    component: () => import("../views/FrontEndView/Member/MemberView.vue"),
   },
   {
     path: "/login",
     name: "login",
-    component: () => import("../views/FrontEndView/MemberLoginView.vue"),
+    component: () => import("../views/FrontEndView/Member/MemberLoginView.vue"),
   },
   {
     path: "/signup",
     name: "signup",
-    component: () => import("../views/FrontEndView/MemberSignupView.vue"),
+    component: () => import("../views/FrontEndView/Member/MemberSignupView.vue"),
   },
   {
     path: "/profile",
     name: "profile",
-    component: () => import("../views/FrontEndView/MemberProfileView.vue"),
+    component: () => import("../views/FrontEndView/Member/MemberProfileView.vue"),
   },
   {
     path: "/profile-edit",
     name: "profile-edit",
-    component: () => import("../views/FrontEndView/MemberProfileEditView.vue"),
+    component: () => import("../views/FrontEndView/Member/MemberProfileEditView.vue"),
   },
   {
     path: "/itineray-order",
     name: "itineray-order",
     component: () =>
-      import("../views/FrontEndView/MemberItineraryOrderView.vue"),
+      import("../views/FrontEndView/Member/MemberItineraryOrderView.vue"),
   },
   {
     path: "/itinerary-order-details",
     name: "itinerary-order-details",
     component: () =>
-      import("../views/FrontEndView/MemberItineraryOrderDetailsView.vue"),
+      import("../views/FrontEndView/Member/MemberItineraryOrderDetailsView.vue"),
   },
   {
     path: "/product-order",
     name: "product-order",
-    component: () => import("../views/FrontEndView/MemberProductOrderView.vue"),
+    component: () => import("../views/FrontEndView/Member/MemberProductOrderView.vue"),
   },
   {
     path: "/product-order-details",
     name: "product-order-details",
     component: () =>
-      import("../views/FrontEndView/MemberProductOrderDetailsView.vue"),
+      import("../views/FrontEndView/Member/MemberProductOrderDetailsView.vue"),
   },
   {
     path: "/coupon",
     name: "coupon",
-    component: () => import("../views/FrontEndView/MemberCouponView.vue"),
+    component: () => import("../views/FrontEndView/Member/MemberCouponView.vue"),
   },
   {
     path: "/itinerary-wishlist",
     name: "itinerary-wishlist",
     component: () =>
-      import("../views/FrontEndView/MemberItineraryWishlistView.vue"),
+      import("../views/FrontEndView/Member/MemberItineraryWishlistView.vue"),
   },
   {
     path: "/product-wishlist",
     name: "product-wishlist",
     component: () =>
-      import("../views/FrontEndView/MemberProductWishlistView.vue"),
+      import("../views/FrontEndView/Member/MemberProductWishlistView.vue"),
   },
   {
     path: "/customizetk",
