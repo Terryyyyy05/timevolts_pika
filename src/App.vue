@@ -13,6 +13,7 @@
     <router-link to="/itiItineraryClassicView">時光行程-經典(預覽)</router-link> |
     <router-link to="/Customizetk">客製票根(預覽)</router-link> |
   </nav>
+  <pageTop/>
   <router-view />
 </template>
 

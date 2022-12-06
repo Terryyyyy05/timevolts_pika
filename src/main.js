@@ -12,6 +12,7 @@ import BaseCard from "./components/all_UI/BaseCard.vue";
 import innerpageHeader from "./components/innerpageHeader.vue";
 import header from "./components/header.vue";
 import footer from "./components/footer.vue";
+import pageTop from "./components/pageTop.vue";
 
 // fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -24,6 +25,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faAnglesUp } from "@fortawesome/free-solid-svg-icons";
 // add icons from library
 library.add(faChevronDown);
 library.add(faChevronRight);
@@ -33,6 +35,7 @@ library.add(faXmark);
 library.add(faMinus);
 library.add(faPlus);
 library.add(faCircleCheck);
+library.add(faAnglesUp);
 
 // Vue 實體
 const app = createApp(App);
@@ -46,5 +49,6 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("innerpageHeader", innerpageHeader);
 app.component("all-header", header);
 app.component("all-footer", footer);
+app.component("pageTop", pageTop);
 
 app.mount("#app");
