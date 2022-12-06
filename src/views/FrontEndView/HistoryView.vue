@@ -10,13 +10,11 @@
 <script>
 import HistoryFilter from "../../components/history/HistoryFilter.vue";
 import HistoryInformation from "../../components/history/HistoryInformation.vue";
-import innerpageHeader from "@/components/innerpageHeader.vue";
 
 export default {
    components: {
       HistoryFilter,
       HistoryInformation,
-      innerpageHeader,
    },
 };
 </script>
