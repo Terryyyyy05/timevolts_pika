@@ -21,6 +21,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 // add icons from library
 library.add(faChevronDown);
 library.add(faChevronRight);
@@ -29,6 +30,7 @@ library.add(faMagnifyingGlass);
 library.add(faXmark);
 library.add(faMinus);
 library.add(faPlus);
+library.add(faCircleCheck);
 
 // Vue 實體
 const app = createApp(App);

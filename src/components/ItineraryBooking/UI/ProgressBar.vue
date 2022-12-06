@@ -5,8 +5,6 @@
       <div :class="secondMode"><span>2</span></div>
       <div :class="thirdMode"><span>3</span></div>
    </div>
-   <button class="progress-btn" disabled>Prev</button>
-   <button class="progress-btn">Next</button>
 </template>
 
 <script>
@@ -70,32 +68,5 @@ export default {
 
 .circle.progress-active {
    background-color: map-get($color, "accent");
-}
-
-.progress-btn {
-   background-color: #7ad7a7;
-   color: #fff;
-   border: 0;
-   border-radius: 9px;
-   cursor: pointer;
-   padding: 0.8rem 3rem;
-   margin: 0.6rem;
-   font-size: 1.4rem;
-}
-
-.progress-btn:nth-of-type(1) {
-   background-color: #eee;
-}
-
-.progress-btn:active {
-   transform: scale(0.98);
-}
-
-.progress-btn:focus {
-   outline: 0;
-}
-
-.progress-btn:disabled {
-   cursor: not-allowed;
 }
 </style>
