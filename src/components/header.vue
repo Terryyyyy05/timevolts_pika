@@ -1,7 +1,7 @@
 <template>
     <header>
       <div v-if="show" class="icon-container">
-        <div><router-link to="/login"><img src="Group604.png" alt=""></router-link></div>
+        <div><router-link to="/member"><img src="Group604.png" alt=""></router-link></div>
         <div><img src="Group605.png" alt=""></div>
       </div>
       <div class="nav">
@@ -48,7 +48,7 @@ export default {
           'en':"ABOUT US",
         },
         {
-          'router': '/login',
+          'router': '/member',
           'ch':"會員中心",
           'en':"MEMBER",
         }
@@ -72,7 +72,6 @@ export default {
     },
     shownav(){
       this.show = !this.show;
-      console.log('aaaaa')
     },
   }
 };
@@ -97,7 +96,6 @@ export default {
       margin-right: 10px;
       pointer-events: auto;
       img{
-        pointer-events: auto;
         width: 100%;
         height: 100%;
       }
@@ -111,6 +109,7 @@ export default {
       align-items: center;
       .hbicon{
         pointer-events: auto;
+        cursor: pointer;
         height: 55px;
         width: 55px;
         animation: rotate 1.5s infinite;
@@ -142,7 +141,7 @@ export default {
           align-items: center;
         }
         div.bar {
-          height: 5px;
+          height: 3px;
           width: 1.5px;
           background-color: #ffe1b5;
           position: relative;
