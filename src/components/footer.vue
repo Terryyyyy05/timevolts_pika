@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="footer-nav">
-      <router-link to="/">首頁</router-link> |
+      <router-link to="/home">首頁</router-link> |
       <router-link to="/news">最新消息</router-link> |
       <router-link to="/itinerary">時光行程</router-link> |
       <router-link to="/history">歷史故事</router-link> |
@@ -49,9 +49,9 @@ export default {
           text-decoration: underline;
         }
       }
-    .container {
-      margin-top: 15px;
     }
+    div.container {
+      margin: 10px auto;
     }
   }
   @media screen and (min-width:768px) {

@@ -1,4 +1,5 @@
 <template>
+  <all-header />
   <div class="product-item">
     <section class="need-wrap">
       <Need />
@@ -12,6 +13,7 @@
       </router-link>
     </section>
   </div>
+  <all-footer />
 </template>
 
 <script>

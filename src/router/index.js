@@ -1,15 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Switchpage from "../views/SwitchpageView.vue";
 
-
 const routes = [
   {
     path: "/",
     name: "Switchpage",
-    component: () => import("../views/SwitchpageView.vue"),
+    component: Switchpage,
   },
   {
-    path:"/home",
+    path: "/home",
     name: "FrontEndHome",
     component: () => import("../views/FrontEndView/HomeView.vue"),
   },
@@ -59,9 +58,19 @@ const routes = [
     component: () => import("../views/FrontEndView/ProductView.vue"),
   },
   {
+    path: "/ProductCheckOut",
+    name: "ProductCheckOut",
+    component: () => import("../views/FrontEndView/ProductCheckOutView.vue"),
+  },
+  {
     path: "/product-item",
     name: "product-item",
     component: () => import("../views/FrontEndView/ProductItemView.vue"),
+  },
+  {
+    path: "/ProductCheckOut",
+    name: "productCheckOut",
+    component: () => import("../views/FrontEndView/ProductCheckOutView.vue"),
   },
   {
     path: "/member",
@@ -76,17 +85,20 @@ const routes = [
   {
     path: "/signup",
     name: "signup",
-    component: () => import("../views/FrontEndView/Member/MemberSignupView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberSignupView.vue"),
   },
   {
     path: "/profile",
     name: "profile",
-    component: () => import("../views/FrontEndView/Member/MemberProfileView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberProfileView.vue"),
   },
   {
     path: "/profile-edit",
     name: "profile-edit",
-    component: () => import("../views/FrontEndView/Member/MemberProfileEditView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberProfileEditView.vue"),
   },
   {
     path: "/itineray-order",
@@ -98,12 +110,15 @@ const routes = [
     path: "/itinerary-order-details",
     name: "itinerary-order-details",
     component: () =>
-      import("../views/FrontEndView/Member/MemberItineraryOrderDetailsView.vue"),
+      import(
+        "../views/FrontEndView/Member/MemberItineraryOrderDetailsView.vue"
+      ),
   },
   {
     path: "/product-order",
     name: "product-order",
-    component: () => import("../views/FrontEndView/Member/MemberProductOrderView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberProductOrderView.vue"),
   },
   {
     path: "/product-order-details",
@@ -114,7 +129,8 @@ const routes = [
   {
     path: "/coupon",
     name: "coupon",
-    component: () => import("../views/FrontEndView/Member/MemberCouponView.vue"),
+    component: () =>
+      import("../views/FrontEndView/Member/MemberCouponView.vue"),
   },
   {
     path: "/itinerary-wishlist",
@@ -136,8 +152,8 @@ const routes = [
   {
     path: "/managelogin",
     name: "managelogin",
-    component: ()=> import("../views/BackEndView/manageloginView.vue"),
-  }
+    component: () => import("../views/BackEndView/manageloginView.vue"),
+  },
 ];
 
 const router = createRouter({

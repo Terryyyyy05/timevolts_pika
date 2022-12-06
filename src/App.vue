@@ -6,6 +6,7 @@
       <router-link to="/itinerary">時光行程</router-link> |
       <router-link to="/history">歷史故事</router-link> |
       <router-link to="/product">購物商城Test</router-link> |
+      <router-link to="/ProductCheckOut">結帳</router-link> |
       <router-link to="/about">關於我們</router-link> |
       <router-link to="/member">會員中心</router-link> |
       <router-link to="/itineraryPeriodView"
@@ -23,7 +24,10 @@
 
 <script>
 export default {
-   name: "app",
+  name: "app",
+  mounted() {
+    this.$store.commit("updateCartFromLocalStorage");
+  },
 };
 </script>
 <style lang="scss">
