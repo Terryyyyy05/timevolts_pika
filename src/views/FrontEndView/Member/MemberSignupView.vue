@@ -1,5 +1,10 @@
 <template>
+  <all-header />
+  <innerpageHeader />
   <div class="container">
+    <the-heading heading="會員中心" subheading="Member"></the-heading>
+  </div>
+  <div class="container-signup">
     <div class="upper-color"></div>
     <h2>註冊</h2>
     <form class="login">
@@ -12,12 +17,13 @@
         required
       />
       <div class="btn">
-        <router-link to="/login"
+        <router-link to="/profile"
           ><button class="btn-signup">確認註冊</button></router-link
         >
       </div>
     </form>
   </div>
+  <all-footer />
 </template>
 
 <script>
@@ -25,12 +31,12 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.container,
-.container h2,
+.container-signup,
+.container-signup h2,
 input {
   border: 3px solid #e6dfc7;
 }
-.container {
+.container-signup {
   width: 400px;
   margin: 150px auto;
   text-align: center;
@@ -38,7 +44,7 @@ input {
   border-radius: 3px;
   position: relative;
 }
-.container .upper-color {
+.container-signup .upper-color {
   position: absolute;
   top: 0;
   left: 0;
@@ -46,7 +52,7 @@ input {
   height: 20px;
   width: 100%;
 }
-.container h2 {
+.container-signup h2 {
   display: inline-block;
   color: #e6dfc7;
   padding: 10px 40px;
@@ -83,6 +89,8 @@ button {
   cursor: pointer;
   background-color: #fab042;
   color: #1e1e1e;
+  border-left: none;
+  border-top: none;
 }
 a {
   text-decoration: none;

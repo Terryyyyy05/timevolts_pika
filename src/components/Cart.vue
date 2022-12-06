@@ -6,8 +6,8 @@
       @click="$emit('xmark')"
     />
     <h3>購物車</h3>
-    <ul>
-      <li v-for="(item, index) in itemData" :key="index">
+    <ul class="cart-content">
+      <li v-for="item in items" :key="item.title">
         <div class="cart-item">
           <div class="pic">
             <img
@@ -32,19 +32,26 @@
               @click="addNum"
             />
           </div>
-          <div class="item-dele"></div>
+          <div
+            class="item-dele"
+            :data-title="item.title"
+            @click="removeFromCart"
+          >
+            <font-awesome-icon icon="fa-solid fa-trash-can" />刪除
+          </div>
         </div>
       </li>
     </ul>
+    <button class="btn-lightbox">結帳</button>
   </div>
 </template>
 
 <script>
 import { cardContext } from "@/components/product/js/data";
-import { ref, reactive, watchEffect, computed } from "vue";
+import { ref, reactive, computed } from "vue";
 
 // cart
-import { storage } from "@/components/product/js/localStorage";
+import { useStore } from "vuex";
 
 export default {
   name: "cart",
@@ -59,18 +66,23 @@ export default {
     emit("xmark");
 
     // cart
-    // const itemData = reactive(storage.get("memId")
 
-    const itemData = computed(() => {
-      return reactive(storage.get("memId"));
+    const store = useStore();
+
+    const items = computed(() => {
+      return store.getters.cartItems;
     });
 
-    console.log(itemData);
-    // itemData = [];
-    console.log(itemData);
+    const removeFromCart = (e) => {
+      console.log(e.target.dataset.title);
+      store.commit("removeFromCart", e.target.dataset.title);
+    };
 
     return {
-      itemData,
+      items,
+      removeFromCart,
+      // DOM
+      // dele,
     };
   },
 };
@@ -120,5 +132,69 @@ export default {
       margin: auto;
     }
   }
+  > .cart-content {
+    height: 75%;
+    margin: 5% 0;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 5%;
+
+    overflow: scroll;
+
+    .cart-item {
+      display: flex;
+      // justify-content: space-around;
+      font-size: 20px;
+      color: aliceblue;
+
+      .pic {
+        width: 30%;
+        img {
+          width: 100%;
+        }
+      }
+
+      .item-content {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 15%;
+        h4 {
+          font-size: 20px;
+        }
+      }
+
+      .item-amount {
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 5%;
+      }
+      .item-dele {
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 5%;
+      }
+    }
+  }
+
+  > button {
+    margin: auto;
+  }
+}
+
+// .cart-content::-webkit-scrollbar-track {
+//   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+//   background-color: #f5f5f5;
+// }
+
+.cart-content::-webkit-scrollbar {
+  width: 0px;
 }
 </style>

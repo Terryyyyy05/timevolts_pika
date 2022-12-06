@@ -50,7 +50,7 @@ export default {
         },
         {
           router: "/itinerary",
-          ch: "行程預定",
+          ch: "時光行程",
           en: "ITINERARY",
         },
         {
@@ -67,11 +67,6 @@ export default {
           router: "/about",
           ch: "關於我們",
           en: "ABOUT US",
-        },
-        {
-          router: "/member",
-          ch: "會員中心",
-          en: "MEMBER",
         },
       ],
       cartStatus: true,

@@ -1,7 +1,7 @@
 <template>
     <div class="innerpageHeader">
-        <div class="title"><router-link to="/">TIMEVOLTS</router-link></div>
-        <div class="icon"><router-link to="/"><img src="Group.png" alt=""></router-link></div>
+        <div class="title"><router-link to="/Home">TIMEVOLTS</router-link></div>
+        <div class="icon"><router-link to="/Home"><img src="Group.png" alt=""></router-link></div>
     </div>
 </template>
 
@@ -41,8 +41,7 @@ export default {
         .icon{
             pointer-events: auto;
             margin-bottom: 10px;
-            width: 30px;
-            height: 30px;
+            width: 40px;
             object-fit: cover;
             img {
                 width: 100%;
@@ -58,8 +57,7 @@ export default {
             margin: 5px 0;
         }
         .icon{
-            width: 60px;
-            height: 60px;
+            width: 66px;
             object-fit: cover;
         }
     }

@@ -62,8 +62,8 @@
           />
         </div>
         <div class="profile-btn">
-          <button class="btn-cancel">取消</button>
-          <button class="btn-save">儲存</button>
+          <router-link to="/profile"><button class="btn-cancel">取消</button></router-link>
+          <router-link to="/profile"><button class="btn-save">儲存</button></router-link>
         </div>
       </div>
     </section>
@@ -179,7 +179,7 @@ export default {
 }
 .btn-save {
   color: #1e1e1e;
-  background-color: #fec570;
-  border: 2px solid #fec570;
+  background-color: #FAB042;
+  border: 2px solid #FAB042;
 }
 </style>

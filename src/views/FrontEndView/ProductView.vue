@@ -1,4 +1,5 @@
 <template>
+  <all-header />
   <innerpageHeader></innerpageHeader>
   <section class="product-wrap">
     <div class="container">
@@ -6,6 +7,7 @@
       <product-information />
     </div>
   </section>
+  <all-footer />
 </template>
 
 <script>

@@ -1,17 +1,19 @@
 <template>
+  <all-header />
   <innerpageHeader />
   <div class="container">
     <the-heading heading="會員中心" subheading="Member"></the-heading>
-  </div> 
+  </div>
   <Login />
+  <all-footer />
 </template>
 
 <script>
-import MemberLoginView from './MemberLoginView.vue';
+import MemberLoginView from "./MemberLoginView.vue";
 
 export default {
   components: {
-    "Login": MemberLoginView,
+    Login: MemberLoginView,
   },
 };
 </script>

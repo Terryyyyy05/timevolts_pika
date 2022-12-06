@@ -1,4 +1,5 @@
 <template>
+    <all-header/>
     <innerpageHeader></innerpageHeader>
     <div class="container">
         <the-heading heading="時光行程" subheading="Itinerary"></the-heading>
@@ -44,6 +45,7 @@
             </div>
         </div>
     </section>
+    <all-footer/>
 </template>
 <script type="module">
     import * as THREE from 'three';

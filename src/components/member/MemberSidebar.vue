@@ -25,7 +25,7 @@ export default {
         {
           id: 0,
           router: "/profile",
-          menuList: "會員資料管理",
+          menuList: "會員資料",
         },
         {
           id: 1,

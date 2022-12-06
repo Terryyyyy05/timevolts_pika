@@ -5,6 +5,9 @@
 </template>
 
 <style lang="scss" scoped>
+@import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
+
 .banner {
    position: relative;
    &::before {
@@ -19,6 +22,14 @@
       top: 0;
       height: 100vh;
       z-index: -1;
+   }
+}
+
+@include m() {
+   .banner {
+      &::before {
+         background-attachment: inherit;
+      }
    }
 }
 </style>

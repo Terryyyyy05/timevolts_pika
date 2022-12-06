@@ -30,9 +30,14 @@ export default {
         height: 300px;
         border-radius: 50%;
         border: 2px solid #fec570;
+        background-color: #333333;
+        opacity: .5;
         display: flex;
         justify-content: center;
         align-items: center;
+         &:hover{
+                opacity: 1;
+            }
         a{  
             text-decoration: none;
             color: #fab042;
@@ -46,6 +51,11 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #333333;
+            opacity: .5;
+            &:hover{
+                opacity: 1;
+            }
             a{
                 text-decoration: none;
                 color: #fab042;
