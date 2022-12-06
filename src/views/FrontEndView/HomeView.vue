@@ -40,6 +40,7 @@
           <span>Itinerary</span>
         </h2>
         <home-itinerary me-itinerary></home-itinerary>
+        <a href="/itinerary">更多時光行程</a>
       </div>
     </div>
 
@@ -50,6 +51,7 @@
           <span>Historcal</span>
         </h2>
         <home-historcal></home-historcal>
+        <a href="/history">更多歷史故事</a>
       </div>
 
     </div>
@@ -158,8 +160,6 @@ h2{
 
   .introduce_block{
     vertical-align: middle;
-    // width: 100%;
-    // height: 100vh;
     box-sizing: border-box;
     padding: 30px;
     padding-top: 80px;
@@ -254,21 +254,28 @@ h2{
       object-fit: scale-down;
       }
       @media screen and (max-width: $m-breakpoint) {display: none;}
-    }
-  
-    
+    }  
   }
 
-  .itinerary_block{
+  .itinerary_block,.historcal_block{
     padding: 30px;
-    color: map-get($color, "primary") ;
+    background-size: cover;
+    color: map-get($color, "primary");
+    a{
+      display: block;
+      align-items: center;
+      width: 60vw;
+      margin: auto;
+      padding: 10px;
+      border:$b2-primary ;
+      color: map-get($color, "primary");
+      background: map-get($color , "dark" );
+      text-decoration:none;
+    }
+  }
+  .itinerary_block{
     background-image: url(@/assets/image/home/bg2_1440.jpg);
     background-position: center;
-    background-size: cover;
-  }
-  .historcal_block{
-    padding: 30px;
-    color: map-get($color, "primary") ;
   }
 
 
