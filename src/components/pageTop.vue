@@ -34,6 +34,7 @@ export default {
         width: 30px;
         height: 30px;
         animation: move 3s infinite;
+        z-index: 10;
     }
     @keyframes move{
         0%{
@@ -48,8 +49,8 @@ export default {
     }
     @media screen and (min-width: 768px){
     .fa-angles-up {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
     }
     }
 </style>
