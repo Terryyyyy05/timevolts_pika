@@ -34,7 +34,8 @@ export default {
     font-size: 12px;
     text-align: center;
     line-height: 1.5;
-    outline: 1px solid red;
+    padding-bottom: 10px;
+    margin-bottom: 0;
     .footer-nav{
       color: #fffaec;
       display: flex;

@@ -1,5 +1,4 @@
 <template>
-  <all-header/>
   <nav>
     <router-link to="/">切換頁</router-link> |
     <router-link to="/home">首頁</router-link>
@@ -14,21 +13,12 @@
     <router-link to="/itiItineraryClassicView">時光行程-經典(預覽)</router-link> |
   </nav>
   <router-view />
-  
-  <all-footer/>
 </template>
 
 <script>
-import header from './components/header.vue'
-import footer from './components/footer.vue'
 
 export default {
   name: 'app',
-
-  components:{
-    'all-header':header,
-    'all-footer':footer,
-  }
 
 }
 </script>
@@ -38,22 +28,17 @@ body {
   background-color: map-get($color, body_dark);
 }
 
-// nav {
-//   padding: 30px;
-//   color: #2c3e50;
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-//     text-decoration: none;
-//     &.router-link-exact-active {
-//       color: #42b983;
-//       text-decoration: none;
-//     }
-//   }
-// }
-
-footer{
-    padding-bottom: 0;
-    margin-bottom: 0;
+nav {
+  padding: 30px;
+  color: #2c3e50;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+    &.router-link-exact-active {
+      color: #42b983;
+      text-decoration: none;
+    }
   }
+}
 </style>

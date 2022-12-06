@@ -135,6 +135,11 @@ const routes = [
     component: () =>
       import("../views/FrontEndView/MemberProductWishlistView.vue"),
   },
+  {
+    path: "/managelogin",
+    name: "managelogin",
+    component: ()=> import("../views/BackEndView/manageloginView.vue")
+  }
 ];
 
 const router = createRouter({
