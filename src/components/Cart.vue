@@ -194,8 +194,7 @@ export default {
 //   background-color: #f5f5f5;
 // }
 
-// .cart-content::-webkit-scrollbar-y {
-//   width: 6px;
-//   background-color: black;
-// }
+.cart-content::-webkit-scrollbar {
+  width: 0px;
+}
 </style>
