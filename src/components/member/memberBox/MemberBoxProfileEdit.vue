@@ -32,7 +32,7 @@ export default {
 .member-box {
   position: relative;
   border: 2px solid #e6dfc7;
-  width: 60%;
+  width: 50%;
   margin: 50px auto 100px;
   height: 50vh;
   left: 5%;
@@ -72,4 +72,5 @@ export default {
   background-color: #e6dfc7;
   padding: 5px 20px;
 }
+
 </style>
