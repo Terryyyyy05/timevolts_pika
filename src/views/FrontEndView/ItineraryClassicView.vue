@@ -27,8 +27,10 @@
     <section class="section">
         <div class="container">
             <div class="signup">
-                <p>參加活動話可以繪製個人專屬旅行計畫圖</p>
-                <button class="btn-secondary button">我要參加活動</button>
+                <p class="signupText">參加活動話可以繪製個人專屬旅行計畫圖</p>
+                <button class="btn-secondary button">
+                    <router-link to="/itinerary-booking">我要參加活動</router-link>
+                </button>               
             </div>
         </div>
     </section>
@@ -143,9 +145,17 @@ export default {
 .commentwrap{
     margin: 0 auto;
 }
-
+.signup{
+    display: flex;
+    flex-direction: column;
+}
+.signupText{
+   color: map-get($color, accent_sub);  
+   text-align: center;
+   font-size: 32px;
+}
 .button{
-    margin: 0 auto;
+    margin: 20px auto;
 }
 .watchmorewrap{
     display: flex;

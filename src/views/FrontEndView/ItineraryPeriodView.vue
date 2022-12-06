@@ -27,7 +27,9 @@
     <section class="section">
         <div class="container">
             <div class="signup">
-                <button class="btn-secondary button">我要參加活動</button>
+                <button class="btn-secondary button">
+                    <router-link to="/itinerary-booking">我要參加活動</router-link>
+                </button>   
             </div>
         </div>
     </section>
