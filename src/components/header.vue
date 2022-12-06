@@ -50,7 +50,7 @@ export default {
         },
         {
           router: "/itinerary",
-          ch: "行程預定",
+          ch: "時光行程",
           en: "ITINERARY",
         },
         {

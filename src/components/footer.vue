@@ -49,9 +49,9 @@ export default {
           text-decoration: underline;
         }
       }
-    .container {
-      margin-top: 15px;
     }
+    div.container {
+      margin: 10px 0;
     }
   }
   @media screen and (min-width:768px) {
