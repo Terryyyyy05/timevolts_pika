@@ -1,18 +1,11 @@
 <template>
     <div class="wrapper">
-
+        
         <div class="carousel" :style=Carousel>
             <div class="slide"
-            :style="{
-                        left : `${(slide-currentPage)*15}rem`
-                    }"
-            v-for="(i) in itinerarys"
-            :class="{
-                        'slideActive': (currentPage === slide),
-                        'slideShow': (currentPage + 3 >= slide),
-                    }"
-            :key="i.id"
-            @click="clicklook(i),selectPage(slide)">
+                v-for="(i) in itinerarys" :key="i.id"
+                :class="{'is-active': activeId == i.id}"
+                @click="clickslide(i),lookis(i)">
                 <img v-bind:src="i.story_cover"/>
             </div>
         </div>
@@ -25,10 +18,10 @@
                 <p>年代:{{look.story_age}}</p>
                 <p>{{look.itinerary_memo}}</p>
                 </div>
-                <div class="more">
-                    <img v-bind:src=imgsrc alt="圖騰">
-                    <button>了解更多</button>
-                </div>
+            </div>
+            <div class="more">
+                <img v-bind:src='imgsrc' alt="圖騰">
+                <button>了解更多</button>
             </div>
             <div class="itineraryTeg">
                 <p>危險度:{{look.story_risk}}</p>
@@ -51,7 +44,7 @@ export default {
     // },
     data() {
         return {
-            paginations:5,
+            paginations: 5,
             currentPage: 1,
             clickRight: true,
             clickLeft: false,
@@ -119,22 +112,26 @@ export default {
                     tagFeature:null,
             },
             Carousel:{
-                childInfo: {
-                    title: 'PPP',
-                    // content: 1000,
-                }
+                // childInfo: {
+                //     title: 'PPP',
+                //     content: 1000,
+                // }
             },
             seat:[],
             imgsrc:require('@/assets/image/home/icon/icon_1.svg'),
             filterExtension: false,
+            activeId: 0,
         };
     },
     computed:{
-        prompt(){
-            console.log(itinerarys);
-            const itin =itinerarys[1];
-            this.look = itin;
-        },
+        // pagination(){
+        //     this.paginations = itinerarys.index;
+        // },
+        // prompt(){
+        //     console.log(itinerarys);
+        //     const itin = itinerarys;
+        //     this.look = itin[1];
+        // },
     },
     methods: {
         prevPage(){
@@ -158,10 +155,10 @@ export default {
         selectPage(val){
                 this.currentPage = val
         },
-        clicklook(i){
+        clickslide(i){
             console.log(i);
             this.look = i;
-
+            this.activeId = i.id;
         },
         lookis(i){
 
@@ -176,6 +173,11 @@ export default {
         },
         
     },
+    created() {
+    //   pagination();
+        this.look = this.itinerarys[0]
+    },
+
 }
 </script>
 
@@ -190,13 +192,10 @@ export default {
     left: -30px;
     padding: -30px;
     display: flex;
-    // flex-direction: column;
     justify-content: center;
-    // align-self: column;
     overflow: hidden;
     
     position: relative;
-    // padding: 10px 20px;
     margin: 0 auto;
     #ladd,#radd{
         left: -5%;
@@ -209,7 +208,7 @@ export default {
         font-size: 30px;
         transform: translate(-50% , -50%);
         position: absolute;
-        background: map-get($color , "accent" );
+        background: map-get($color , "primary" );
         border:  1px solid map-get($color, "primary");
         border-radius: 20px;
     }
@@ -248,7 +247,7 @@ export default {
     }    
     .content{
         width: fit-content;
-        height: 180px;
+        height: 170px;
         margin-top: calc(25vw);
         margin-left: 15px;
         margin-right: 15px;
@@ -260,6 +259,7 @@ export default {
         justify-content: center;
         align-items: top;
         position: relative;
+        &div{vertical-align: text-top;}
         .itineraryTitle{
             width: 15vw;
             height: 100%;
@@ -270,38 +270,48 @@ export default {
             align-items: top;
         }
         .itineraryText{
-            width: 40vw;
-            // height: 100%;
-            padding: 0 15 0px;
+            width: 32vw;
+            height: 100%;
+            // padding: 0 15px 0px;
             box-sizing: border-box;
             display: flex;
             justify-content: space-between;
+           
             border: 2px solid map-get($color, "primary");
             align-items: center;
+            text-overflow: ellipsis;
             .summary{
                 width: 80%;
+                height: 100%;
+                padding: 20px;
+                align-self: start;
+                line-height: 1.4;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
                 :nth-child(1){
                     font-size: 24px;
-                    line-height: 33px;
                 }
             }
-            .more{
-                width: 20%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                border-left: 2px solid map-get($color , "primary" );
-                img{
-                    margin: 20px;
-                }
-                button{
-                    width: 100%;
-                    padding: 10px;
-                    background-color:  map-get($color , "accent" );
-                    color:map-get($color , "dark" );
-                    border: 2px solid map-get($color , "primary" );
-                }
+        }
+        .more{
+            width: 8vw;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+            border: 2px solid map-get($color , "primary" );
+            img{
+                margin:2rem 1rem;
+            }
+            button{
+                left: -1px;
+                width: 8vw;
+                padding: .7rem;
+                box-sizing: border-box;
+                color:map-get($color , "dark" );
+                background-color:  map-get($color , "accent" );
+                border: 1px solid map-get($color , "primary" );
             }
         }
         .itineraryTeg{

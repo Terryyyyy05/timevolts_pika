@@ -1,7 +1,7 @@
 <template>
+  <all-header/>
   <div class="home">
     <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div class="introduce_block">
       <div class="sideTotem">
         <img src="@/assets/image/home/sideTotem.svg" alt="時萬伏特-文字圖樣">
@@ -40,24 +40,33 @@
           <span>Itinerary</span>
         </h2>
         <home-itinerary me-itinerary></home-itinerary>
-        <a href="/itinerary">更多時光行程</a>
+        <router-link class="link" to="/itinerary">更多時光行程</router-link>
       </div>
     </div>
-
-    <div class="historcal_block">
-      <div class="title">
-        <h2>
-          歷史故事
-          <span>Historcal</span>
-        </h2>
-        <home-historcal></home-historcal>
-        <a href="/history">更多歷史故事</a>
+    <div class="historcal-news">
+      <div class="historcal_block">
+        <div class="title">
+          <h2>
+            歷史故事
+            <span>Historcal</span>
+          </h2>
+          <home-historcal></home-historcal>
+          <router-link class="link" to="/history">更多歷史故事</router-link>
+        </div>
       </div>
 
+      <div class="new_block">
+        <div class="title">
+          <h2>
+            最新消息
+            <span>News</span>
+          </h2>
+          <router-link class="link" to="/news">更多最新消息</router-link>
+        </div>
+      </div>
     </div>
-
-
   </div>
+  <all-footer/>
 </template>
 
 <script>
@@ -65,6 +74,7 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 import HomeItinerary from '../../components/home/HomeItinerary.vue'
 import HomeHistorcal from '../../components/home/HomeHistorcal.vue'
+import HomeNews from '../../components/home/HomeNews.vue'
 
 export default {
   name: 'HomeView',
@@ -77,7 +87,8 @@ export default {
   components: {
     HelloWorld,
     HomeItinerary,
-    HomeHistorcal
+    HomeHistorcal,
+    HomeNews
   }
 }
 </script>
@@ -144,6 +155,8 @@ h2{
   display: inline-block;
   width: 400px;
   font-size: 68px;
+  padding: 20px 0;
+  vertical-align: text-top;
   span{
     display: inline-block;
     font-size: 32px;
@@ -164,7 +177,10 @@ h2{
     padding: 30px;
     padding-top: 80px;
     color: map-get($color, "primary") ;
-    background-image: url(@/assets/image/home/bg1_1440.jpg);
+    background:
+    linear-gradient(180deg, #131313 0%, rgba(19, 19, 19, 0) 10%, rgba(19, 19, 19, 0) 90%, #131313 100%),
+    url(@/assets/image/home/bg1_1440.jpg);
+    background-repeat: repeat;
     background-position: center;
     background-size: cover;
 
@@ -257,25 +273,32 @@ h2{
     }  
   }
 
-  .itinerary_block,.historcal_block{
+  .itinerary_block,.historcal_block,.new_block{
     padding: 30px;
     background-size: cover;
     color: map-get($color, "primary");
-    a{
+    .link{
       display: block;
-      align-items: center;
-      width: 60vw;
+      text-align: center;
+      width: 70vw;
       margin: auto;
       padding: 10px;
       border:$b2-primary ;
       color: map-get($color, "primary");
-      background: map-get($color , "dark" );
+      background: map-get($color , "dark_sub" );
       text-decoration:none;
     }
   }
   .itinerary_block{
-    background-image: url(@/assets/image/home/bg2_1440.jpg);
+    background: linear-gradient(180deg, #131313 0%, rgba(19, 19, 19, 0) 10%, rgba(19, 19, 19, 0) 90%, #131313 100%),
+    url(@/assets/image/home/bg2_1440.jpg);
     background-position: center;
+  }
+  .historcal-news{
+    background: linear-gradient(180deg, #131313 0%, rgba(19, 19, 19, 0) 10%, rgba(19, 19, 19, 0) 90%, #131313 100%),
+    url(@/assets/image/home/bg3.jpg);
+    background-position: top;
+    background-size: cover;
   }
 
 
