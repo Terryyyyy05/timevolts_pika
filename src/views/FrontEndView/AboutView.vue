@@ -1,4 +1,5 @@
 <template>
+  <all-header/>
   <innerpageHeader></innerpageHeader>
   <div class="container">
     <the-heading heading="關於我們" subheading="About us"></the-heading>
@@ -53,6 +54,7 @@
     </div>
   </div>
 </div>
+<all-footer/>
 </template>
 
 <script>

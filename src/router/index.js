@@ -133,6 +133,11 @@ const routes = [
     name: "customizetk",
     component: () => import("../views/FrontEndView/Customizetk.vue"),
   },
+  {
+    path: "/managelogin",
+    name: "managelogin",
+    component: ()=> import("../views/BackEndView/manageloginView.vue"),
+  }
 ];
 
 const router = createRouter({
