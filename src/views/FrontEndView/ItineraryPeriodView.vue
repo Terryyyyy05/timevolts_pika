@@ -1,97 +1,103 @@
 <template>
-    <div class="container">
-        <the-heading
-            heading="時光行程-期間限定"
-            subheading="Itinerary"
-        ></the-heading>
-    </div>
-  
-    <section class="section">
-        <div class="container carouselWrap">
-            <carousel></carousel>
-            <div class="infoWrap">
-                <div class="infoTitle">{{period[itinerary].title}}</div>
-                <div class="tagWrap">
-                    <span class="infoDanderLevel">{{period[itinerary].dangerLevel}}</span>
-                    <span class="infoFeature">{{period[itinerary].feature}}</span>
-                    <span class="infoRegion">{{period[itinerary].region}}</span>
-                </div>
-                <div class="infoDate">{{period[itinerary].date}}</div>
-                <div class="infoContent">{{period[itinerary].content[contentOneToFive]}}</div>
-            </div>
-            <aside-bar></aside-bar>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="signup">
-                <button class="btn-secondary button">我要參加活動</button>
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="commentwrap">
-                <comments-info></comments-info> 
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="watchmorewrap">
-                <itin-period-card-info></itin-period-card-info>
-            </div>
-        </div>
-    </section>
+   <div class="container">
+      <the-heading
+         heading="時光行程-期間限定"
+         subheading="Itinerary"
+      ></the-heading>
+   </div>
 
+   <section class="section">
+      <div class="container carouselWrap">
+         <carousel></carousel>
+         <div class="infoWrap">
+            <div class="infoTitle">{{ period[itinerary].title }}</div>
+            <div class="tagWrap">
+               <span class="infoDanderLevel">{{
+                  period[itinerary].dangerLevel
+               }}</span>
+               <span class="infoFeature">{{ period[itinerary].feature }}</span>
+               <span class="infoRegion">{{ period[itinerary].region }}</span>
+            </div>
+            <div class="infoDate">{{ period[itinerary].date }}</div>
+            <div class="infoContent">
+               {{ period[itinerary].content[contentOneToFive] }}
+            </div>
+         </div>
+         <aside-bar></aside-bar>
+      </div>
+   </section>
+   <section class="section">
+      <div class="container">
+         <div class="signup">
+            <router-link to="/itinerary-booking">
+               <button class="btn-secondary button">我要參加活動</button>
+            </router-link>
+         </div>
+      </div>
+   </section>
+   <section class="section">
+      <div class="container">
+         <div class="commentwrap">
+            <comments-info></comments-info>
+         </div>
+      </div>
+   </section>
+   <section class="section">
+      <div class="container">
+         <div class="watchmorewrap">
+            <itin-period-card-info></itin-period-card-info>
+         </div>
+      </div>
+   </section>
 </template>
 
 <script>
 import carousel from "@/components/itineraryPeriod/carousel.vue";
 import commentsInfo from "@/components/itineraryPeriod/commentsInfo.vue";
 import itinPeriodCardInfo from "@/components/itineraryPeriod/itinPeriodCardInfo.vue";
-import asideBar from "@/components/itineraryPeriod/asideBar.vue"
+import asideBar from "@/components/itineraryPeriod/asideBar.vue";
 
 export default {
-    name: "itiniraryPeriodView",
-    components: {
-    carousel,
-    commentsInfo,
-    itinPeriodCardInfo,
-    asideBar
-    },
-    data(){
-        
-        return{
-            itinerary : 0,
-            contentOneToFive: 0,
-            period:[
-                {
-                    title: "尼斯湖水怪",
-                    dangerLevel: "低",
-                    feature: "奇聞軼事",
-                    region: "歐洲",
-                    date: "??",
-                    content: ["尼斯湖水怪絕對是上個世紀最有名的一個不明生物。最早有人看到尼斯湖水怪是在1933年4月份的時候，直到今天80多年過去了，它的目擊情報從來沒有斷過。你相不相信水怪的存在呢?我們將帶您穿越回1933年，讓您親自見證!此行程穿越年份較短，時代背景與現今較無差異，適合新手體驗!","尼斯湖駕船，帶您觀賞尼斯湖之美。尼斯湖古城冒險。尋找尼斯湖水怪","蘇格蘭威士忌，獨特風味，是從蒸餾大麥酒和泥炭水中提煉而出。蘇格蘭的黑暗料理Haggis的魅力。","安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則","取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策",
-                    ]
-                },
-                {
-                    title: "不存在的車站-如月車站",
-                    dangerLevel: "高",
-                    feature: "奇聞軼事",
-                    region: "亞洲",
-                    date: "西元2004年",
-                    content: "一名日本網友以葉純（はすみ）的名義進行文字直播，兼尋求協助。她表示自己在新濱松站登上西鹿島線後，列車駛了一段長時間都沒有到站，不久後她停止發文，音訊全無...",
-                },
-            ]
-        }
-    },
-    mounted() {
-
-    },
-    methods: {
-
-    },
+   name: "itiniraryPeriodView",
+   components: {
+      carousel,
+      commentsInfo,
+      itinPeriodCardInfo,
+      asideBar,
+   },
+   data() {
+      return {
+         itinerary: 0,
+         contentOneToFive: 0,
+         period: [
+            {
+               title: "尼斯湖水怪",
+               dangerLevel: "低",
+               feature: "奇聞軼事",
+               region: "歐洲",
+               date: "??",
+               content: [
+                  "尼斯湖水怪絕對是上個世紀最有名的一個不明生物。最早有人看到尼斯湖水怪是在1933年4月份的時候，直到今天80多年過去了，它的目擊情報從來沒有斷過。你相不相信水怪的存在呢?我們將帶您穿越回1933年，讓您親自見證!此行程穿越年份較短，時代背景與現今較無差異，適合新手體驗!",
+                  "尼斯湖駕船，帶您觀賞尼斯湖之美。尼斯湖古城冒險。尋找尼斯湖水怪",
+                  "蘇格蘭威士忌，獨特風味，是從蒸餾大麥酒和泥炭水中提煉而出。蘇格蘭的黑暗料理Haggis的魅力。",
+                  "安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則",
+                  "取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策",
+               ],
+            },
+            {
+               title: "不存在的車站-如月車站",
+               dangerLevel: "高",
+               feature: "奇聞軼事",
+               region: "亞洲",
+               date: "西元2004年",
+               content:
+                  "一名日本網友以葉純（はすみ）的名義進行文字直播，兼尋求協助。她表示自己在新濱松站登上西鹿島線後，列車駛了一段長時間都沒有到站，不久後她停止發文，音訊全無...",
+            },
+         ],
+      };
+   },
+   mounted() {},
+   methods: {},
 };
 </script>
 
@@ -99,34 +105,38 @@ export default {
 @import "@/assets/css/app.scss";
 
 .section {
-    width: 100%;
-    // height: 90vh;
-    margin: 100px 0;
+   width: 100%;
+   // height: 90vh;
+   margin: 100px 0;
 }
 
 .container {
-    width: map-get($container, each(d_container));
-    // height: 100%;
+   width: map-get($container, each(d_container));
+   // height: 100%;
 }
-.carouselWrap{
-    display: flex;
+.carouselWrap {
+   display: flex;
 }
-.commentwrap{
-    margin: 0 auto;
+.commentwrap {
+   margin: 0 auto;
 }
 
-.button{
-    margin: 0 auto;
+a {
+   text-decoration: none;
 }
-.watchmorewrap{
-    display: flex;
-    flex-wrap: wrap;
+
+.button {
+   margin: 0 auto;
 }
-.infoWrap{
-    border: 3px solid red;
-    width: 500px;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
+.watchmorewrap {
+   display: flex;
+   flex-wrap: wrap;
+}
+.infoWrap {
+   border: 3px solid red;
+   width: 500px;
+   height: 500px;
+   display: flex;
+   flex-direction: column;
 }
 </style>
