@@ -24,6 +24,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 // add icons from library
 library.add(faChevronDown);
 library.add(faChevronRight);
@@ -33,6 +34,7 @@ library.add(faXmark);
 library.add(faMinus);
 library.add(faPlus);
 library.add(faCircleCheck);
+library.add(faTrashCan);
 
 // Vue 實體
 const app = createApp(App);

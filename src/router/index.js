@@ -1,15 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Switchpage from "../views/SwitchpageView.vue";
 
-
 const routes = [
   {
     path: "/",
     name: "Switchpage",
-    component: () => import("../views/SwitchpageView.vue"),
+    component: Switchpage,
   },
   {
-    path:"/home",
+    path: "/home",
     name: "FrontEndHome",
     component: () => import("../views/FrontEndView/HomeView.vue"),
   },
@@ -136,8 +135,8 @@ const routes = [
   {
     path: "/managelogin",
     name: "managelogin",
-    component: ()=> import("../views/BackEndView/manageloginView.vue"),
-  }
+    component: () => import("../views/BackEndView/manageloginView.vue"),
+  },
 ];
 
 const router = createRouter({

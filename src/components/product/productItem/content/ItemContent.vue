@@ -34,7 +34,7 @@
         <span>
           <img src="@/assets/image/product/heart.svg" alt="" />
         </span>
-        <button class="btn-primary" @click="addItem">加入購物車</button>
+        <button class="btn-primary" @click="addToCart()">加入購物車</button>
       </div>
     </div>
   </div>
@@ -46,10 +46,12 @@ import { cardContext } from "../../js/data";
 
 // test
 import { storage } from "@/components/product/js/localStorage";
+import { useStore } from "vuex";
 
 export default {
   components: {},
   setup() {
+    const store = useStore();
     const totalNumber = ref(1);
 
     const minusNum = () => {
@@ -63,23 +65,18 @@ export default {
     };
 
     // test
-    const title = ref(null);
-    const price = ref(null);
-    const amount = ref(null);
-    const img = ref(null);
+    // const title = ref(null);
+    // const price = ref(null);
+    // const amount = ref(null);
+    // const img = ref(null);
 
     const addItem = () => {
-      // console.log(title.value.innerText);
-      // console.log(price.value.innerText);
-      // console.log(amount.value.innerText);
-      // console.log(img.value.src);
-
-      let newItemData = {
-        title: title.value.innerText,
-        price: price.value.innerText,
-        amount: amount.value.innerText,
-        imgSrc: img.value.src,
-      };
+      // let newItemData = {
+      //   title: title.value.innerText,
+      //   price: price.value.innerText,
+      //   amount: amount.value.innerText,
+      //   imgSrc: img.value.src,
+      // };
 
       let totalItemData = [];
 
@@ -90,7 +87,25 @@ export default {
       totalItemData.push(newItemData);
       storage.set("memId", totalItemData);
 
+      console.log(totalItemData);
       // console.log(storage.get("memId"));
+
+      store.commit("addItem", totalItemData);
+    };
+
+    const title = ref(null);
+    const price = ref(null);
+    const amount = ref(null);
+    const img = ref(null);
+    const addToCart = () => {
+      let newProduct = {
+        title: title.value.innerText,
+        price: price.value.innerText,
+        amount: amount.value.innerText,
+        imgSrc: img.value.src,
+      };
+
+      store.commit("addToCart", newProduct);
     };
 
     // onMounted(() => {
@@ -103,6 +118,7 @@ export default {
       minusNum,
       addNum,
       addItem,
+      addToCart,
       // DOM
       title,
       price,
