@@ -12,6 +12,7 @@ import innerpageHeader from "@/components/innerpageHeader.vue"
 export default {
   components :{
     Tab,
+    innerpageHeader,
   }
 };
 </script>

@@ -11,6 +11,7 @@
     <router-link to="/itinerary-booking">行程訂票(預覽)</router-link> |
     <router-link to="/itineraryPeriodView">時光行程-期間限定(預覽)</router-link> |
     <router-link to="/itiItineraryClassicView">時光行程-經典(預覽)</router-link> |
+    <router-link to="/Customizetk">客製票根(預覽)</router-link> |
   </nav>
   <router-view />
   

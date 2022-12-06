@@ -117,6 +117,11 @@ const routes = [
     name: "product-wishlist",
     component: () => import("../views/FrontEndView/MemberProductWishlistView.vue"),
   },
+  {
+    path: "/customizetk",
+    name: "customizetk",
+    component: () => import("../views/FrontEndView/Customizetk.vue"),
+  },
 ];
 
 const router = createRouter({
