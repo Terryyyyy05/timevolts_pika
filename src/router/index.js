@@ -76,31 +76,41 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: () => import("../views/FrontEndView/MemberProfileView.vue"),
-  },
-  {
-    path: "/profile-edit",
-    name: "profile-edit",
-    component: () => import("../views/FrontEndView/MemberProfileEditView.vue"),
+    children: [
+      {
+        path: "edit",
+        name: "edit",
+        component: () =>
+          import("../views/FrontEndView/MemberProfileEditView.vue"),
+      },
+    ],
   },
   {
     path: "/itineray-order",
     name: "itineray-order",
-    component: () => import("../views/FrontEndView/MemberItineraryOrderView.vue"),
-  },
-  {
-    path: "/itineray-order-details",
-    name: "itineray-order-details",
-    component: () => import("../views/FrontEndView/MemberItineraryOrderDetailsView.vue"),
+    component: () =>
+      import("../views/FrontEndView/MemberItineraryOrderView.vue"),
+    children: [
+      {
+        path: "details",
+        name: "details",
+        component: () =>
+          import("../views/FrontEndView/MemberItineraryOrderDetailsView.vue"),
+      },
+    ],
   },
   {
     path: "/product-order",
     name: "product-order",
     component: () => import("../views/FrontEndView/MemberProductOrderView.vue"),
-  },
-  {
-    path: "/product-order-details",
-    name: "product-order-details",
-    component: () => import("../views/FrontEndView/MemberProductOrderDetailsView.vue"),
+    children: [
+      {
+        path: "details",
+        name: "details",
+        component: () =>
+          import("../views/FrontEndView/MemberProductOrderDetailsView.vue"),
+      },
+    ],
   },
   {
     path: "/coupon",
@@ -110,12 +120,14 @@ const routes = [
   {
     path: "/itinerary-wishlist",
     name: "itinerary-wishlist",
-    component: () => import("../views/FrontEndView/MemberItineraryWishlistView.vue"),
+    component: () =>
+      import("../views/FrontEndView/MemberItineraryWishlistView.vue"),
   },
   {
     path: "/product-wishlist",
     name: "product-wishlist",
-    component: () => import("../views/FrontEndView/MemberProductWishlistView.vue"),
+    component: () =>
+      import("../views/FrontEndView/MemberProductWishlistView.vue"),
   },
 ];
 

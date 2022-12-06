@@ -8,18 +8,14 @@
 </template>
 
 <script>
-import innerpageHeader from "@/components/innerpageHeader.vue";
 import MemberSidebar from "@/components/member/MemberSidebar.vue";
 import MemberBoxProfile from "@/components/member/memberBox/MemberBoxProfile.vue";
 export default {
   components: {
-    innerpageHeader,
     MemberSidebar,
     MemberBoxProfile,
   },
 };
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/css/app.scss";
-</style>
+<style lang="scss" scoped></style>
