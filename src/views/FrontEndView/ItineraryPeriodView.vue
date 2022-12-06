@@ -8,18 +8,20 @@
   
     <section class="section">
         <div class="container carouselWrap">
-            <carousel></carousel>
+            <div>
+                <carousel></carousel>
+                <aside-bar></aside-bar>
+            </div>
             <div class="infoWrap">
                 <div class="infoTitle">{{period[itinerary].title}}</div>
                 <div class="tagWrap">
-                    <span class="infoDanderLevel">{{period[itinerary].dangerLevel}}</span>
-                    <span class="infoFeature">{{period[itinerary].feature}}</span>
-                    <span class="infoRegion">{{period[itinerary].region}}</span>
+                    <span class="infoDanderLevel">#難度:{{period[itinerary].dangerLevel}}</span>
+                    <span class="infoFeature">#{{period[itinerary].feature}}</span>
+                    <span class="infoRegion">#{{period[itinerary].region}}</span>
                 </div>
-                <div class="infoDate">{{period[itinerary].date}}</div>
+                <div class="infoDate">穿越年代:{{period[itinerary].date}}</div>
                 <div class="infoContent">{{period[itinerary].content[contentOneToFive]}}</div>
-            </div>
-            <aside-bar></aside-bar>
+            </div>    
         </div>
     </section>
     <section class="section">
@@ -110,6 +112,9 @@ export default {
 }
 .carouselWrap{
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
 }
 .commentwrap{
     margin: 0 auto;
@@ -123,10 +128,52 @@ export default {
     flex-wrap: wrap;
 }
 .infoWrap{
-    border: 3px solid red;
-    width: 500px;
-    height: 500px;
+    width: fit-content;
+    height: fit-content;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    background-color: map-get($color, "dark_sub");
+
+}
+.infoTitle{
+    width: 500px;
+    height: 30px;
+    margin: 0 0 5px 0;
+    padding: 20px 10px;
+    font-size: 32px;
+    text-align: center;
+    border: 2px solid map-get($color, "primary");
+    background-color: map-get($color, "dark_sub");
+}
+.tagWrap{
+    width: 500px;
+    height: 30px;
+    margin: 5px 0;
+    padding: 20px 10px;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid map-get($color, "primary");
+    background-color: map-get($color, "dark_sub");
+}
+.infoDate{
+    width: 500px;
+    height: 30px;
+    margin: 5px 0;
+    padding: 20px 10px;
+    font-size: 24px;
+    border: 2px solid map-get($color, "primary");
+    background-color: map-get($color, "dark_sub");
+}
+.infoContent{
+    width: 500px;
+    margin: 5px 0 0 0;
+    padding: 20px 10px;
+    font-size: 24px;
+    line-height: 1.6;
+    border: 2px solid map-get($color, "primary");
+    background-color: map-get($color, "dark_sub");
 }
 </style>

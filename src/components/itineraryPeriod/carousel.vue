@@ -29,26 +29,24 @@ export default {
         carouselMoveRight (){
             
             let ul = document.querySelector(".imageul");
-            let btnRight = document.querySelector("#btnRight");
             if(this.curIndex<3){
                 this.curIndex++;
             }else{
                 this.curIndex = 3;
             }
-            ul.style.left = -400*this.curIndex + "px";
+            ul.style.left = -500*this.curIndex + "px";
             //console.log(this.curIndex);
             console.log(ul.style.left);
         },
         carouselMoveLeft (){
             
             let ul = document.querySelector(".imageul");
-            let btnLeft = document.querySelector("#btnRight");
             if(this.curIndex>0){
                 this.curIndex--;
             }else{
                 this.curIndex = 0;
             }
-            ul.style.left = -400*this.curIndex + "px";
+            ul.style.left = -500*this.curIndex + "px";
             //console.log(this.curIndex);
             console.log(ul.style.left);
         }
@@ -64,13 +62,13 @@ export default {
 .carousel{
     margin: 50px;
     outline: 3px solid red;
-    width: 400px;
+    width: 500px;
     height: 450px;
     position: relative;
     overflow: hidden;
 }
 img{
-    width: 400px;
+    width: 500px;
     height: 400px;
 }
 .imageul{
