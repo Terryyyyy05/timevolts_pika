@@ -61,7 +61,7 @@ export default {
 @import "@/assets/css/utils/variables";
 .carousel{
     margin: 50px;
-    outline: 3px solid red;
+    border: 2px solid map-get($color, "primary");
     width: 500px;
     height: 450px;
     position: relative;
