@@ -1,22 +1,25 @@
 <template>
+  <all-header />
   <innerpageHeader></innerpageHeader>
   <div class="container">
     <the-heading heading="會員中心" subheading="Member"></the-heading>
   </div>
-  <MemberBoxCoupon />
+  <MemberBoxProductWishlist />
   <MemberSidebar />
+  <all-footer />
 </template>
 
 <script>
 import MemberSidebar from "@/components/member/MemberSidebar.vue";
-import MemberBoxCoupon from "@/components/member/memberBox/MemberBoxCoupon.vue";
+import MemberBoxProductWishlist from "@/components/member/memberBox/MemberBoxProductWishlist.vue";
 export default {
   components: {
     MemberSidebar,
-    MemberBoxCoupon
+    MemberBoxProductWishlist
 },
 };
 </script>
 
 <style lang="scss" scoped>
+
 </style>

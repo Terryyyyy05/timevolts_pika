@@ -68,11 +68,6 @@ export default {
           ch: "關於我們",
           en: "ABOUT US",
         },
-        {
-          router: "/member",
-          ch: "會員中心",
-          en: "MEMBER",
-        },
       ],
       cartStatus: true,
       show: false,

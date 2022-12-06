@@ -46,6 +46,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
+
 .wrapper {
    form {
       display: flex;
@@ -77,6 +79,12 @@ export default {
       margin: 10px 10px 0;
       color: map-get($color, "accent");
       cursor: pointer;
+   }
+}
+
+@include m() {
+   .wrapper {
+      margin-top: 48px;
    }
 }
 </style>

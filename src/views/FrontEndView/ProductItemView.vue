@@ -1,11 +1,4 @@
 <template>
-  <!-- test -->
-  <!-- <div
-    style="width: 50px; height: 50px; background-color: aliceblue"
-    @click="toggleCart"
-  ></div> -->
-  <!-- <cart :cartStatus="cartStatus" /> -->
-  <!-- test -->
   <div class="product-item">
     <section class="need-wrap">
       <Need />

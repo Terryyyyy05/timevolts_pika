@@ -19,12 +19,60 @@
         />
       </div>
     </div>
+    <section class="profile">
+      <div class="member-profile-left">
+        <div class="member-info">
+          <label for="姓名" name="姓名">姓名:</label>
+          <input type="text" value="王大壯" />
+        </div>
+        <div class="member-info">
+          <label for="生日" name="生日">生日:</label>
+          <input type="date" value="1995-11-11" />
+        </div>
+        <div class="member-info">
+          <label for="電話" name="電話">電話:</label>
+          <input type="tel" value="0987-878878" pattern="[0-9]{4}-[0-9]{6}" />
+        </div>
+        <div class="member-info">
+          <label for="地址" name="地址">地址:</label>
+          <input type="text" value="不提供" />
+        </div>
+        <div class="member-info">
+          <label for="email" name="email">Email:</label>
+          <input type="email" value="pikapika@gmail.com" />
+        </div>
+        <div class="member-info">
+          <label for="舊密碼" name="舊密碼">舊密碼:</label>
+          <input type="password" value="pikapika@gmail.com" />
+        </div>
+        <div class="member-info">
+          <label for="新密碼" name="新密碼">新密碼:</label>
+          <input type="password" value="********" />
+        </div>
+        <div class="member-info">
+          <label for="新密碼" name="新密碼">新密碼:</label>
+          <input type="password" value="********" />
+        </div>
+      </div>
+      <div class="member-profile-right">
+        <div class="profile-img">
+          <img
+            src="../../../assets/image/member/profile-change-img.png"
+            alt="profile-pika"
+          />
+        </div>
+        <div class="profile-btn">
+          <router-link to="/profile"><button class="btn-cancel">取消</button></router-link>
+          <router-link to="/profile"><button class="btn-save">儲存</button></router-link>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MemberBoxProfileEdit",
+  name: "MemberBoxProfile",
 };
 </script>
 
@@ -73,4 +121,65 @@ export default {
   padding: 5px 20px;
 }
 
+// member-box-upper
+.profile {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+}
+.member-profile-left {
+  color: #fff;
+}
+.member-profile-left input {
+  color: #fff;
+  background-color: #333333;
+  border: none;
+  font-size: 1rem;
+  margin-left: 20px;
+  width: 180px;
+  padding: 5px;
+}
+.member-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+// member-profile-left
+
+.member-profile-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-img {
+  width: 70%;
+  margin-bottom: 20px;
+}
+.profile-img img {
+  width: 100%;
+}
+.profile-btn {
+  display: flex;
+  flex-direction: column;
+}
+.profile-btn button {
+  padding: 5px 35px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-cancel {
+  background-color: initial;
+  color: #e6dfc7;
+  border: 2px solid #e6dfc7;
+  margin-bottom: 20px;
+}
+.btn-save {
+  color: #1e1e1e;
+  background-color: #FAB042;
+  border: 2px solid #FAB042;
+}
 </style>

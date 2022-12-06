@@ -55,9 +55,11 @@
             :heading="activeParagraph && activeParagraph.title"
             :text="activeParagraph && activeParagraph.content"
          ></active-paragraph>
+         <router-link to="/itineraryPeriodView"
+            ><button class="btn-secondary">我想參加</button></router-link
+         >
       </div>
    </div>
-   <div></div>
 </template>
 
 <script>
@@ -142,6 +144,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 .container {
    margin-bottom: 48px;
@@ -194,9 +197,10 @@ export default {
    display: flex;
    justify-content: center;
    align-items: center;
+
    .big-image {
-      width: 800px;
-      height: 600px;
+      width: 100%;
+      height: 80%;
    }
 }
 
@@ -215,5 +219,39 @@ h3 {
    margin: 24px auto 0;
    padding: 24px 64px;
    border-top: 2px solid map-get($color, "primary");
+}
+
+.btn-secondary {
+   margin: 24px auto 0;
+}
+
+@include m() {
+   .grid {
+      grid-template-columns: 1fr;
+   }
+
+   .switch-p-icon {
+      font-size: 48px;
+      &:nth-of-type(1) {
+         left: 10%;
+         top: 95%;
+      }
+      &:nth-of-type(2) {
+         left: 90%;
+         top: 95%;
+      }
+   }
+
+   .small-images {
+      display: none;
+   }
+
+   .big-image-container.big-image {
+      width: 100%;
+   }
+
+   .tag {
+      justify-content: center;
+   }
 }
 </style>

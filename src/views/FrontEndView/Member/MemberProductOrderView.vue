@@ -1,19 +1,21 @@
 <template>
+  <all-header />
   <innerpageHeader></innerpageHeader>
   <div class="container">
     <the-heading heading="會員中心" subheading="Member"></the-heading>
   </div>
-  <MemberBoxProductWishlist />
+  <MemberBoxProductOrder />
   <MemberSidebar />
+  <all-footer />
 </template>
 
 <script>
 import MemberSidebar from "@/components/member/MemberSidebar.vue";
-import MemberBoxProductWishlist from "@/components/member/memberBox/MemberBoxProductWishlist.vue";
+import MemberBoxProductOrder from "@/components/member/memberBox/MemberBoxProductOrder.vue";
 export default {
   components: {
     MemberSidebar,
-    MemberBoxProductWishlist
+    MemberBoxProductOrder
 },
 };
 </script>

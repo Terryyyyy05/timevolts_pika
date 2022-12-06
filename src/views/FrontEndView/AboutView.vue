@@ -54,6 +54,7 @@
     </div>
   </div>
 </div>
+<pageTop/>
 <all-footer/>
 </template>
 

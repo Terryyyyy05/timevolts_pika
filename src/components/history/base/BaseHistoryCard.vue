@@ -6,13 +6,15 @@
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
-   div {
-      width: 1000px;
-      height: 500px;
-      padding: 25px 50px;
-      border: 2px solid map-get($color, "primary");
-      background-color: map-get($color, "dark_sub");
-      margin: 50px auto;
-   }
+div {
+   width: fit-content;
+   height: fit-content;
+   padding: 50px;
+   border: 2px solid map-get($color, "primary");
+   background-color: map-get($color, "dark_sub");
+   margin: 50px auto;
+}
+
 </style>

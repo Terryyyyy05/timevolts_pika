@@ -13,6 +13,6 @@ export default {
 
 <style lang="scss" scoped>
 button {
-   margin: 0 auto;
+   margin: 20px auto;
 }
 </style>

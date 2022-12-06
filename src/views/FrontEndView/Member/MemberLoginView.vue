@@ -93,6 +93,8 @@ button {
   border-radius: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  border-left: none;
+  border-top: none;
 }
 .btn-login {
   background-color: #fab042;

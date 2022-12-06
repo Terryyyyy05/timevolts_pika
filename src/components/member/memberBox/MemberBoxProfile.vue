@@ -60,7 +60,6 @@
         </div>
         <div class="profile-btn">
           <button><router-link to="/profile-edit">編輯</router-link></button>
-          <router-view></router-view>
         </div>
       </div>
     </section>
@@ -134,6 +133,7 @@ export default {
   border: none;
   font-size: 1rem;
   margin-left: 20px;
+  width: 180px;
 }
 .member-info {
   display: flex;
