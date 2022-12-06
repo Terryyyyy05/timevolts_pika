@@ -32,7 +32,11 @@
               @click="addNum"
             />
           </div>
-          <div class="item-dele">
+          <div
+            class="item-dele"
+            :data-title="item.title"
+            @click="removeFromCart"
+          >
             <font-awesome-icon icon="fa-solid fa-trash-can" />刪除
           </div>
         </div>
@@ -69,8 +73,16 @@ export default {
       return store.getters.cartItems;
     });
 
+    const removeFromCart = (e) => {
+      console.log(e.target.dataset.title);
+      store.commit("removeFromCart", e.target.dataset.title);
+    };
+
     return {
       items,
+      removeFromCart,
+      // DOM
+      // dele,
     };
   },
 };
@@ -172,8 +184,18 @@ export default {
     }
   }
 
-  > button{
+  > button {
     margin: auto;
   }
 }
+
+// .cart-content::-webkit-scrollbar-track {
+//   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+//   background-color: #f5f5f5;
+// }
+
+// .cart-content::-webkit-scrollbar-y {
+//   width: 6px;
+//   background-color: black;
+// }
 </style>

@@ -12,7 +12,20 @@ export default createStore({
   },
   mutations: {
     addToCart(state, newData) {
-      state.cart.push({ ...newData });
+      let item = state.cart.find((i) => i.title === newData.title);
+
+      if (item) {
+        item.amount = parseInt(item.amount) + parseInt(newData.amount);
+      } else {
+        state.cart.push({ ...newData });
+      }
+
+      storage.set("cart", state.cart);
+    },
+    removeFromCart(state, title) {
+      // let item = state.cart.find((i) => i.title === newData.title);
+      // state.cart = state.cart.filter((i) => i.title !== newData.title);
+      state.cart = state.cart.filter((i) => i.title !== title);
       storage.set("cart", state.cart);
     },
     updateCartFromLocalStorage(state) {
