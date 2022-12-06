@@ -18,7 +18,6 @@
 
 <script>
 export default {
-  props: ["changeSidebar"],
   name: "sidebar",
   data() {
     return {
@@ -61,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar {
-  position: fixed;
+  position: absolute;
   margin: 20px;
   top: 25%;
   left: 1%;

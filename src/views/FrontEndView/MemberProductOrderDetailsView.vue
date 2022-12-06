@@ -8,12 +8,10 @@
 </template>
 
 <script>
-import innerpageHeader from "@/components/innerpageHeader.vue";
 import MemberSidebar from "@/components/member/MemberSidebar.vue";
 import MemberBoxProductOrderDetails from "@/components/member/memberBox/MemberBoxProductOrderDetails.vue";
 export default {
   components: {
-    innerpageHeader,
     MemberSidebar,
     MemberBoxProductOrderDetails
 },
@@ -21,5 +19,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/app.scss";
+
 </style>
