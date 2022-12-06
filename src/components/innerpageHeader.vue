@@ -16,6 +16,7 @@ export default {
         background-image: url("/public/Union.png");
         background-repeat: no-repeat;
         background-position: center 100%;
+        background-size: contain;
         position: absolute;
         left: 0;
         right: 0;
@@ -35,12 +36,11 @@ export default {
             a{
                 text-decoration: none;
                 color: #ffe1b5;
-                pointer-events: auto;
             }
         }
         .icon{
             pointer-events: auto;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             width: 30px;
             height: 30px;
             object-fit: cover;

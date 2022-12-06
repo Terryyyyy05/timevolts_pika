@@ -1,7 +1,8 @@
 <template>
   <all-header/>
   <nav>
-    <router-link to="/">首頁</router-link> |
+    <router-link to="/">切換頁</router-link> |
+    <router-link to="/home">首頁</router-link>
     <router-link to="/news">最新消息</router-link> |
     <router-link to="/itinerary">時光行程</router-link> |
     <router-link to="/history">歷史故事</router-link> |

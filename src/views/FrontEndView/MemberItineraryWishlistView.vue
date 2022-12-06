@@ -1,14 +1,23 @@
 <template>
-  <MemberModule />
+  <innerpageHeader></innerpageHeader>
+  <div class="container">
+    <the-heading heading="會員中心" subheading="Member"></the-heading>
+  </div>
+  <MemberBoxItinerayWishlist />
+  <MemberSidebar />
 </template>
 
 <script>
-import MemberModule from "@/components/member/MemberModule.vue";
+import MemberSidebar from "@/components/member/MemberSidebar.vue";
+import MemberBoxItinerayWishlist from "@/components/member/memberBox/MemberBoxItinerayWishlist.vue";
 export default {
   components: {
-    MemberModule,
-  },
+    MemberSidebar,
+    MemberBoxItinerayWishlist
+},
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

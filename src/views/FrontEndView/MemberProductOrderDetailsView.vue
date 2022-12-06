@@ -1,14 +1,23 @@
 <template>
-  <MemberModule />
+  <innerpageHeader></innerpageHeader>
+  <div class="container">
+    <the-heading heading="會員中心" subheading="Member"></the-heading>
+  </div>
+  <MemberBoxProductOrderDetails />
+  <MemberSidebar />
 </template>
 
 <script>
-import MemberModule from "@/components/member/MemberModule.vue";
+import MemberSidebar from "@/components/member/MemberSidebar.vue";
+import MemberBoxProductOrderDetails from "@/components/member/memberBox/MemberBoxProductOrderDetails.vue";
 export default {
   components: {
-    MemberModule,
-  },
+    MemberSidebar,
+    MemberBoxProductOrderDetails
+},
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

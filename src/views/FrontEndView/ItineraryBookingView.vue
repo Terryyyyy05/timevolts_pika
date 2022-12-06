@@ -13,9 +13,18 @@
       <keep-alive>
          <component :is="selectedStep"></component>
       </keep-alive>
-      <button class="btn-secondary" style="margin: auto" @click="nextStep">
-         {{ button }}
-      </button>
+      <div class="buttons">
+         <button class="btn-primary" style="margin: auto" @click="nextStep">
+            {{ button }}
+         </button>
+         <button
+            class="btn-secondary"
+            style="margin: auto"
+            v-if="this.selectedStep === 'confirm-order'"
+         >
+            使用預設樣式，晚點再做
+         </button>
+      </div>
    </div>
 </template>
 
@@ -91,13 +100,20 @@ export default {
    font-size: 36px;
    color: map-get($color, "primary");
    margin: 4.8rem 0;
+
+   &::before,
+   &::after {
+      content: "";
+      height: 1px;
+      display: block;
+      background-color: currentColor;
+   }
 }
 
-.main-text::before,
-.main-text::after {
-   content: "";
-   height: 1px;
-   display: block;
-   background-color: currentColor;
+.buttons {
+   display: flex;
+   gap: 48px;
+   width: fit-content;
+   margin: 24px auto 0
 }
 </style>
