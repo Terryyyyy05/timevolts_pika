@@ -17,12 +17,12 @@
   </button>
 </nav>
 
-<select id="select-item-choose">
-  <option>全部消息</option>
-  <option>行程預訂</option>
-  <option>歷史事件</option>
-  <option>購物商城</option>
-  <option>其他消息</option>
+<select id="select-item-choose" v-model="currentTab">
+  <option value="all">全部消息</option>
+  <option value="itinerary">行程預訂</option>
+  <option value="history">歷史事件</option>
+  <option value="shopping">購物商城</option>
+  <option value="other">其他消息</option>
 </select>
 
   <ul v-if="currentTab == 'all'">
@@ -31,7 +31,7 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>
-      <button type="button" class="more" @click="handleOpen">
+      <button type="button" class="more" @click="openBox(item.id)">
         看更多...
       </button>
     </li>
@@ -42,7 +42,7 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>
-      <button type="button" class="more" @click="handleOpen">
+      <button type="button" class="more" @click="openBox(item.id)">
         看更多...
       </button>
     </li>
@@ -53,7 +53,7 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button type="button" class="more" @click="handleOpen">
+      <button type="button" class="more" @click="openBox(item.id)">
         看更多...
       </button>
     </li>
@@ -64,7 +64,7 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button type="button" class="more" @click="handleOpen">
+      <button type="button" class="more" @click="openBox(item.id)">
         看更多..
       </button>
     </li>
@@ -75,25 +75,25 @@
       <p class="date">{{item.date}}</p>
       <span class="hashtag">{{item.hashtag}}</span>
       <p class="content">{{item.content}}</p>     
-      <button type="button" class="more" @click="handleOpen()">
+      <button type="button" class="more" @click="openBox(item.id)">
         看更多...
       </button>
     </li>
   </ul>
 
-  <div class="l-box" v-for="item in newsData" :key="item.id" :class="{isOpen: isOpen && openId  === item.id}">
+  <div class="l-box" :class="{'show-lightbox': isOpen}">
     <button class="close-l-box" @click="close">
       <font-awesome-icon icon="fa-solid fa-xmark" />
     </button>
     <div class="l-box-img">
-      <img :src="item.img" />  <!-- 自閉合 -->
+      <img :src="popupData.img" />  <!-- 自閉合 -->
     </div>
     <div class="l-box-content">
-      <h2>{{item.title}}</h2>
-      <p class="date">{{item.date}}</p>
+      <h2>{{popupData.title}}</h2>
+      <p class="date">{{popupData.date}}</p>
       <div class="l-box-content-item">
-        <span class="hashtag">{{item.hashtag}}</span>
-        <p class="content">{{item.content}}</p>     
+        <span class="hashtag">{{popupData.hashtag}}</span>
+        <p class="content">{{popupData.content}}</p>     
       </div>
     </div>
   </div>
@@ -114,10 +114,10 @@ export default {
   data(){
     return{
       currentTab:'all',
-      tabs:['全部消息','行程預訂','歷史事件','購物商城','其他消息'],
+      activeId: NaN,
       itineraryData:[
         { 
-          
+          id:1001,
           title:'穿梭於史前時代',
           date:'2022-12-10',
           hashtag:'#經典行程 #高度危險',
@@ -126,7 +126,7 @@ export default {
           img: require(`@/assets/image/news/prehistoric.jpg`),
         },
         {
-          
+          id:1002,
           title:'埃及五千年的黃金時代',
           date:'2022-11-10',
           hashtag:'#經典行程 #中度危險',
@@ -135,7 +135,7 @@ export default {
           img: require(`@/assets/image/news/egypt.jpg`),
         },
         {
-          
+          id:1003,
           title:'赤壁之戰',
           date:'2022-10-10',
           hashtag:'#經典行程 #高度危險 #亞洲',
@@ -144,7 +144,7 @@ export default {
           img: require(`@/assets/image/news/chibi.jpg`),
         },
         {
-          
+          id:1004,
           title:'哥倫布發現新大陸',
           date:'2022-09-10',
           hashtag:'#經典行程 #中度危險 #歐洲 #美洲',
@@ -155,6 +155,7 @@ export default {
       ],
       historyData:[
         {
+          id:2001,
           title:'鐵達尼號沈船',
           date:'2022-12-15',
           hashtag:'#歷史事件 #歐洲',
@@ -163,6 +164,7 @@ export default {
           img: require(`@/assets/image/news/egypt.jpg`),
         },
         {
+          id:2002,
           title:'鄭和下西洋',
           date:'2022-12-01',
           hashtag:'#歷史事件 #亞洲',
@@ -171,6 +173,7 @@ export default {
           img: require(`@/assets/image/news/egypt.jpg`),
         },
         {
+          id:2003,
           title:'馬雅文明',
           date:'2022-11-15',
           hashtag:'#歷史事件 #南美洲',
@@ -179,6 +182,7 @@ export default {
           img: require(`@/assets/image/news/maya.jpg`),
         },
         {
+          id:2004,
           title:'澳洲淘金熱',
           date:'2022-11-01',
           hashtag:'#歷史事件 #低危險度 #大洋洲',
@@ -187,6 +191,7 @@ export default {
           img: require(`@/assets/image/news/australia.jpg`),
         },
         {
+          id:2005,
           title:'馬利帝國與曼薩．穆薩的朝聖之旅',
           date:'2022-10-15',
           hashtag:'#歷史事件 #低危險度 #非洲',
@@ -195,6 +200,7 @@ export default {
           img: require(`@/assets/image/news/mali-empire.jpg`),
         },
         {
+          id:2006,
           title:'十字軍東征',
           date:'2022-10-01',
           hashtag:'#歷史事件 #高危險度 #歐洲',
@@ -203,6 +209,7 @@ export default {
           img: require(`@/assets/image/news/crusades.jpg`),
         },
         {
+          id:2007,
           title:'耶穌被釘十字架',
           date:'2022-09-15',
           hashtag:'#歷史事件 #中危險度 #西亞',
@@ -211,6 +218,7 @@ export default {
           img: require(`@/assets/image/news/jesus.jpg`),
         },
         {
+          id:2008,
           title:'穆罕穆德和古蘭經',
           date:'2022-09-01',
           hashtag:'#歷史事件 #低危險度 #西亞',
@@ -219,6 +227,7 @@ export default {
           img: require(`@/assets/image/news/muhammad.jpg`),
         },
         {
+          id:2009,
           title:'尼斯湖水怪',
           date:'2022-08-15',
           hashtag:'#奇聞軼事 #低危險度 #蘇格蘭  #近代歷史',
@@ -227,6 +236,7 @@ export default {
           img: require(`@/assets/image/news/nessiteras.jpg`),
         },
         {
+          id:2010,
           title:'不存在的車站-如月車站',
           date:'2022-08-01',
           hashtag:'#奇聞軼事 #高危險度 #懸疑冒險 #亞洲',
@@ -235,6 +245,7 @@ export default {
           img: require(`@/assets/image/news/kisaragi.jpg`),
         },
         {
+          id:2011,
           title:'亞特蘭提斯',
           date:'2022-07-15',
           hashtag:'#奇聞軼事 #高危險度 #遠古歷史',
@@ -246,15 +257,17 @@ export default {
       ],
       shoppingData:[
         {
-        title:'購物須知',
-        date:'2022-11-11',
-        hashtag:'#最新公告',
-        content:'【購物流程】1.點選您需要的商品規格及數量，加入購物車。2.購物車內確認購買項目後，點選前往結帳（請注意：購物車內商品尚未結帳前，如商品已無庫存，進入結帳時系統會取消商品數量，請注意核對結帳數量及項目）。',
-        content_box:'',
-        img: require(`@/assets/image/news/egypt.jpg`),
-        
+          id:3001,
+          title:'購物須知',
+          date:'2022-11-11',
+          hashtag:'#最新公告',
+          content:'【購物流程】1.點選您需要的商品規格及數量，加入購物車。2.購物車內確認購買項目後，點選前往結帳（請注意：購物車內商品尚未結帳前，如商品已無庫存，進入結帳時系統會取消商品數量，請注意核對結帳數量及項目）。',
+          content_box:'',
+          img: require(`@/assets/image/news/egypt.jpg`),
+          
         },
         {
+          id:3002,
           title:'新商品出爐囉!!',
           date:'2022-12-11',
           hashtag:'#新品上架',
@@ -265,6 +278,7 @@ export default {
       ],
       otherData:[
         {
+          id:4001,
           title:'官網維護公告',
           date:'2022-11-09',
           hashtag:'#公告 #維修中',
@@ -273,6 +287,17 @@ export default {
           img: require(`@/assets/image/news/egypt.jpg`),
         }
       ],
+      // isOpen: false,
+      // tabs:[{
+      //   title: '全部消息',
+      //   data: [],
+      //   key: 'all',
+      // },
+      // {
+      //   title: '行程預訂',
+      //   data: [],
+      //   key: '1111',
+      // }],
     }
   },
   computed: {
@@ -286,24 +311,25 @@ export default {
         return new Date(a.date).valueOf()-new Date(b.date).valueOf()
       })
     },
-    
+    popupData() {
+      return this.newsData.find(v => v.id === this.activeId) ?? {};
+    },
+    isOpen() {
+      return !isNaN(this.activeId);
+    },
     
   },
   methods: {
     selectTab(selectedTab){
       this.currentTab = selectedTab
     },
-    openBox(){
-      let lightBox = document.querySelector('.l-box');
-      lightBox.classList.add('show-lightbox');
-    },
-    handleOpen() {
-      this.isOpen = true;
-      this.openId = item.id;
+    openBox(id){
+      // this.isOpen = true;
+      this.activeId = id;
     },
     close(){
-      let lightBox = document.querySelector('.l-box');
-      lightBox.classList.remove('show-lightbox');
+      // this.isOpen = false;
+      this.activeId = NaN;
     },
   }
 }
