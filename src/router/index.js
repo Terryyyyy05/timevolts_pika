@@ -145,11 +145,6 @@ const routes = [
       import("../views/FrontEndView/Member/MemberProductWishlistView.vue"),
   },
   {
-    path: "/customizetk",
-    name: "customizetk",
-    component: () => import("../views/FrontEndView/Customizetk.vue"),
-  },
-  {
     path: "/managelogin",
     name: "managelogin",
     component: () => import("../views/BackEndView/manageloginView.vue"),
