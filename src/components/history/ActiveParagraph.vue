@@ -15,6 +15,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 div {
    display: flex;
@@ -42,5 +43,12 @@ div {
 ::-webkit-scrollbar-thumb {
    background: map-get($color, "light");
    border-radius: 10px;
+}
+
+@include m() {
+   .p_md {
+      overflow-y: inherit;
+      height: auto;
+   }
 }
 </style>

@@ -1,10 +1,12 @@
 <template>
+   <all-header />
    <innerpageHeader></innerpageHeader>
    <div class="container">
       <the-heading heading="歷史故事" subheading="history"></the-heading>
       <history-filter></history-filter>
       <history-information></history-information>
    </div>
+   <all-footer />
 </template>
 
 <script>

@@ -1,5 +1,9 @@
 <template>
-   <base-history-card v-for="info in VisibleInformation" :key="info.title">
+   <base-history-card
+      v-for="info in VisibleInformation"
+      :key="info.title"
+      class="hirtory-card"
+   >
       <h3>{{ info.title }}</h3>
       <div class="history-content">
          <img :src="require('@/assets/image/history/test.png')" />
@@ -211,6 +215,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 h3 {
    color: #fff;
@@ -239,7 +244,7 @@ span {
 
 a {
    text-decoration: none;
-   color: #000
+   color: #000;
 }
 
 .more-button {
@@ -254,6 +259,16 @@ a {
          margin: auto;
          font-size: 20px;
       }
+   }
+}
+
+@include m() {
+   .history-content {
+      grid-template-columns: 1fr;
+   }
+
+   img {
+      width: 100%;
    }
 }
 </style>
