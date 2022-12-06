@@ -101,7 +101,13 @@ export default {
       },
       lastStep(){
          if(this.selectedStep === "productCheckout"){
-            this.$router.push({path:'/product'})
+            let routerLink = document.createElement('router-link');
+            let btnLeft = document.getElementById('btnLeft');
+
+            btnLeft.parentNode.insertBefore(routerLink, btnLeft.nextElementSibling)
+            routerLink.appendChild(btnLeft);
+            routerLink.setAttribute('to','/product');
+            // <router-link to="/product"/>
 
          }
       }
