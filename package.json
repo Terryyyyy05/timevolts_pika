@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "初始安裝套件(install)": "npm install"
+    "初始安裝套件(install)": "npm install",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",

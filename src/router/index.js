@@ -147,8 +147,13 @@ const routes = [
   {
     path: "/managelogin",
     name: "managelogin",
-    component: () => import("../views/BackEndView/manageloginView.vue"),
+    component: ()=> import("../views/BackEndView/manageloginView.vue"),
   },
+  {
+    path: "/manage-main",
+    name: "manageMain",
+    component: ()=> import("../views/BackEndView/ManageMain.vue"),
+  }
 ];
 
 const router = createRouter({
