@@ -2,7 +2,7 @@
   <div class="container">
     <div class="wrapper">
       <TransitionGroup id="list" class="transition-container" name="list">
-        <img
+        <div
           class="slide"
           v-for="(item, index) in itinerarys"
           :key="item.id"
@@ -11,8 +11,9 @@
             'is-active': activeIndex == index,
             'img-index': activeIndex != index,
           }"
-          v-bind:src="item.story_cover"
-        />
+        >
+          <img v-bind:src="item.story_cover" />
+        </div>
       </TransitionGroup>
     </div>
   </div>
@@ -227,12 +228,12 @@ export default {
   right: 110%;
 }
 .wrapper {
-  // width: calc(200vw - 17.6px);
+  left: calc(-20vw - 30px);
   height: 35vw;
   display: flex;
   align-items: center;
   // justify-content: center;
-  overflow: hidden;
+  //   overflow: hidden;
 
   position: relative;
   margin: 0 auto;
@@ -244,16 +245,27 @@ export default {
     width: 40vw;
     height: 20vw;
     border-radius: 20px;
-    border-radius: 20px;
-    border: 1px solid map-get($color, "primary");
+
+    // border: 2px solid map-get($color, "primary");
     object-fit: cover;
     transition: 0.7s;
+    img {
+      width: 40vw;
+      height: 20vw;
+      border-radius: 20px;
+      border: 2px solid map-get($color, "primary");
+      transition: 0.7s;
+    }
   }
   .is-active {
     width: 60vw;
     height: 30vw;
     transition: 0.7s;
     z-index: 10;
+    img {
+      width: 60vw;
+      height: 30vw;
+    }
   }
 }
 .content {
