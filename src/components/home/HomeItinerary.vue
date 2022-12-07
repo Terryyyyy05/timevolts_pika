@@ -2,21 +2,21 @@
 <div class="container">
     <div class="wrapper">
         <TransitionGroup
-        id="list" 
-        class="transition-container"
-        name="list">
+            id="list" 
+            class="transition-container"
+            name="list">
                 <img
                 class="slide"
-                v-for="(i) in itinerarys" :key="i.id"
-                :class="{'is-active': activeId == i.id}"
-                @click="clickslide(i)"
-                v-bind:src="i.story_cover"/>
-            
+                v-for="(item) in itinerarys" 
+                :key="item.id"
+                :class="{'is-active': activeId == item.id}"
+                @click="clickslide(item)"
+                v-bind:src="item.story_cover"/>
         </TransitionGroup>
     </div>
 </div>    
     <div class="content">
-        <div class="itineraryTitle" >
+        <div class="itineraryTitle">
             <h3>{{look.itinerary_name}}</h3>
         </div>
         <div class="itineraryText">
@@ -35,7 +35,7 @@
             <p>{{look.tagFeature}}</p>
         </div>
     <button class="next" @click="nextPage">&lt;</button>
-    <button class="previous"  @click="previous">&gt;</button>
+    <button class="previous" @click="previous">&gt;</button>
     </div>
 </template>
 
@@ -51,8 +51,6 @@ export default {
         return {
             paginations: 5,
             currentPage: 1,
-            clickRight: true,
-            clickLeft: false,
             itinerarys:[
                 {   
                     id:1,
@@ -79,7 +77,7 @@ export default {
                     story_cover: require('@/assets/image/itin/atlantis.png'),
                     itinerary_name : "亞特蘭提斯",
                     story_age : "西元前12000年",
-                    itinerary_memo:`這個地方是個傳說中的地方，存不存在沒人知道，。柏拉圖說，公元前9560年的時候，在直布羅陀海峽的對面有一個非常大的島，也就是現在的非洲大陸，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯。...`,
+                    itinerary_memo:`這個地方是個傳說中的地方，存不存在沒人知道。柏拉圖說，公元前9560年的時候，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯。...`,
                     story_risk:"低",
                     story_spot:null,
                     tagFeature:"奇聞軼事",
@@ -105,70 +103,47 @@ export default {
                     tagFeature:null,
                 },
             ],
-            look:{   
-                //暫用粗暴解法，之後要串接正確內容才可
-                    id:2,
-                    story_cover: require('@/assets/image/itin/culturaMaya.webp'),
-                    itinerary_name : "馬雅文化",
-                    story_age : "未知",
-                    itinerary_memo:"回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-                    story_risk:"低",
-                    story_spot:"南美洲",
-                    tagFeature:null,
-            },
+            look:{},
             imgsrc:require('@/assets/image/home/icon/icon_1.svg'),
             filterExtension: false,
             activeId: 0,
         };
     },
-    computed:{
-        // pagination(){
-        //     this.paginations = itinerarys.index;
+
+    computed: {
+        // pictures(){
+        //     Array.from({ length: 
+		// 		5 }, (_, item) => ({ src:`https://picsum.photos/600/400?random=${item + 1}`
+        //     }))
         // },
-        // prompt(){
-        //     console.log(itinerarys);
-        //     const itin = itinerarys;
-        //     this.look = itin[1];
+        // previous(){
+        //     // 頁面往前，循環補上
+        //     const lastSlide = pictures.value.pop();
+        //     pictures.value = [lastSlide].concat(pictures.value);
         // },
+
+        // next(){
+        //     // 頁面往後，循環補上
+        //     const firstPicture = pictures.value.shift();
+        //     pictures.value = pictures.value.concat(firstPicture);
+        // },
+
     },
     methods: {
-        pictures(){
-            itinerarys.from({ length: 
-				7 }, (_, i) => ({ src:``
-                    }))
-        },
-        previous(){
-            // 頁面往前，循環補上
-            const lastSlide = pictures.value.pop();
-            pictures.value = [lastSlide].concat(pictures.value);
-        },
-
-        next(){
-            // 頁面往後，循環補上
-            const firstPicture = pictures.value.shift();
-            pictures.value = pictures.value.concat(firstPicture);
-        },
+       
         selectPage(val){
                 this.currentPage = val
         },
-        clickslide(i){
-            console.log(i);
-            this.look = i;
-            this.activeId = i.id;
+        clickslide(item){
+            console.log(item);
+            this.look = item;
+            this.activeId = item.id;
         },
-        // rightadd(index){
-        //     this.seat[index] +=1;
-        //     console.log(this.seat[index]);
-        // },
-        // leftadd(index){
-        //     this.seat[index] -=1;
-        //     console.log(this.seat[index]);
-        // },
         
     },
     created() {
-    //   pagination();
         this.look = this.itinerarys[0]
+        
     },
 
 }
@@ -181,6 +156,11 @@ export default {
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(calc(40vw + 30px));
 }
 .swipe-move {
 	transition: all 0.3s;
@@ -215,7 +195,7 @@ export default {
     right: -10%;
 }
 .wrapper {
-    width: calc(200vw - 17.6px);
+    // width: calc(200vw - 17.6px);
     height: 35vw;
     display: flex;
     align-items: center;
@@ -233,15 +213,12 @@ export default {
         border-radius: 20px;
         border: 1px solid map-get($color, "primary");
         object-fit: cover;
+        transition: .7s;
     }
     .is-active{
         width: 60vw;
         height: 30vw;
         transition: .7s;
-        img{
-            height: 30vw;
-        }
-        
     }    
     }
     .content{
