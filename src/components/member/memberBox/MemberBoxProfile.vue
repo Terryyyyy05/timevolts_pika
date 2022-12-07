@@ -78,7 +78,7 @@ export default {
   border: 2px solid #e6dfc7;
   width: 50%;
   margin: 50px auto 100px;
-  height: 50vh;
+  height: 65vh;
   left: 5%;
 }
 .member-box-upper {
@@ -122,7 +122,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 80px;
 }
 .member-profile-left {
   color: #fff;

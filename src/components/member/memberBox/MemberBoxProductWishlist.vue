@@ -73,7 +73,7 @@ export default {
   border: 2px solid #e6dfc7;
   width: 50%;
   margin: 50px auto 100px;
-  height: 60vh;
+  height: 65vh;
   left: 5%;
 }
 .member-box-upper {
@@ -116,7 +116,7 @@ export default {
 .product-card-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin: 30px auto 20px;
+  margin: 35px auto;
 }
 
 .product-card {
@@ -124,7 +124,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #ffe1b5;
+  border: 2px solid #ffe1b5;
   width: 80%;
   margin: 20px;
   border-top-left-radius: 25%;
@@ -133,8 +133,8 @@ export default {
 .product-card::after {
   content: "";
   position: absolute;
-  top: -1px;
-  right: -10%;
+  top: -2px;
+  right: -11%;
   width: 10%;
   height: 70%;
   background-color: #ffe1b5;
@@ -143,8 +143,8 @@ export default {
   content: "";
   position: absolute;
   bottom: 1px;
-  right: -11%;
-  width: 10%;
+  right: -12%;
+  width: 11%;
   height: 40%;
   background-color: #131313;
   z-index: 10;
