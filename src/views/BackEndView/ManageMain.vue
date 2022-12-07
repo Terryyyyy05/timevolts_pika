@@ -1,5 +1,5 @@
 <template>
-   <side-bar @clickTab="setActiveTab"></side-bar>
+   <side-bar @clickTab="setActiveTab" :mode="setTabMode"></side-bar>
    <div class="container">
       <h2>{{ activeTab.name }}</h2>
       <keep-alive>
@@ -89,10 +89,18 @@ export default {
          activeTab: null,
       };
    },
+   computed: {},
    methods: {
       setActiveTab(tab) {
          this.activeTab = this.systems.find((sys) => sys.id === tab);
          console.log(this.activeTab);
+      },
+      setTabMode(num) {
+         if (this.activeTab.id === num) {
+            return "active";
+         } else {
+            return null;
+         }
       },
    },
    created() {

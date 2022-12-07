@@ -1,35 +1,71 @@
 <template>
-   <div class="banner">
-      <slot></slot>
-   </div>
+   <section class="banner">
+      <div class="containter">
+         <div id="scene">
+            <div class="layer" data-depth="0.2">
+               <img
+                  src="@/assets/image/history/test.png"
+                  alt="hirtory main image"
+               />
+            </div>
+         </div>
+      </div>
+   </section>
 </template>
+
+<script type="module">
+import Parallax from "parallax-js";
+
+export default {
+   mounted() {
+      this.intscence();
+   },
+   methods: {
+      intscence() {
+         var scene = document.getElementById("scene");
+         var parallaxInstance = new Parallax(scene);
+      },
+   },
+};
+</script>
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
 @import "@/assets/css/utils/mixin";
 
-.banner {
-   position: relative;
-   &::before {
-      content: "";
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
-      background-image: url("@/assets/image/history/test.png");
-      // position: absolute;
-      display: block;
-      left: 0;
-      top: 0;
-      height: 100vh;
-      z-index: -1;
-   }
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
 }
 
-@include m() {
-   .banner {
-      &::before {
-         background-attachment: inherit;
-      }
-   }
+.banner {
+   position: relative;
+   width: 100%;
+   height: 100vh;
+}
+
+.containter {
+   position: absolute;
+   width: 100%;
+   height: 100vh;
+   background-image: url('@/assets/image/history/test.png');
+}
+
+.containter #scene .layer {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100vh;
+}
+
+.containter #scene .layer img {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100vh;
+   object-fit: cover;
 }
 </style>

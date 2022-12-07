@@ -4,6 +4,7 @@
          v-for="(system, index) in systems"
          :key="system.id"
          @click="$emit('clickTab', index)"
+         :class="$emit('mode', index)"
       >
          {{ system.name }}
       </li>
@@ -12,7 +13,8 @@
 
 <script>
 export default {
-   emits: ["clickTab"],
+   // props: ["mode"],
+   emits: ["clickTab", "mode"],
    inject: ["systems"],
 };
 </script>
@@ -34,6 +36,7 @@ ul {
    justify-content: center;
    li {
       margin-left: 24px;
+      cursor: pointer;
    }
 }
 
