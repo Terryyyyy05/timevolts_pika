@@ -1,11 +1,11 @@
 <template>
     <div>
-        我等等就做
+        我們下次見~
     </div>
 </template>
 <style scoped lang="scss">
     div{
-        font-size: 100px;
-        color: red;
+        margin: 10px;
+        color: #ffe1b5;
     }
 </style>
