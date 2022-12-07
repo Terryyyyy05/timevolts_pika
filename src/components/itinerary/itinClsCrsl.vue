@@ -49,9 +49,7 @@ export default {
         animation-delay: 0s;
         animation-direction: normal;
     }
-    .cardWrap:hover {
-        animation-play-state:paused;
-    }
+    
     @keyframes classicScroll {
         0% {
             transform: translateX(0%);
