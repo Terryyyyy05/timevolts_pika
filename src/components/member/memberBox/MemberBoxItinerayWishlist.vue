@@ -31,9 +31,9 @@
             <p>地點 &#58;歐洲</p>
             <p>西元1204年</p>
           </div>
-          <div class="trash-can">
+          <!-- <div class="trash-can">
             <font-awesome-icon icon="fa-solid fa-trash-can"></font-awesome-icon>
-          </div>
+          </div> -->
         </div>
       </MemberItinerayWishlistCard>
     </div>
@@ -132,6 +132,8 @@ export default {
 .content p:first-child {
   font-size: 1.2rem;
 }
+
+// itinerary card list
 .pagination {
   display: flex;
   justify-content: center;
