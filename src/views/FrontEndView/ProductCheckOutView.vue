@@ -102,7 +102,8 @@ export default {
       lastStep(){
          if(this.selectedStep === "productCheckout"){
             this.$router.push({path:'/product'})
-
+         }else if(this.selectedStep === "toPage3"){
+            this.$router.push({path:'//ProductCheckOut'})
          }
       }
    },
