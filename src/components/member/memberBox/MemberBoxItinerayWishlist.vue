@@ -19,11 +19,24 @@
         />
       </div>
     </div>
-    <MemberItinerayWishlistCard v-for="card in cards" :key="card.id">
-
-      
-
-    </MemberItinerayWishlistCard>
+    <div class="itineray-card-container">
+      <MemberItinerayWishlistCard v-for="card in cards" :key="card.id">
+        <div class="itinerary-card">
+          <div class="img">
+            <img src="../../../assets/image/member/crusade.png" alt="crusade" />
+          </div>
+          <div class="content">
+            <p>十字軍東征</p>
+            <p>危險度:高</p>
+            <p>地點 &#58;歐洲</p>
+            <p>西元1204年</p>
+          </div>
+          <div class="trash-can">
+            <font-awesome-icon icon="fa-solid fa-trash-can"></font-awesome-icon>
+          </div>
+        </div>
+      </MemberItinerayWishlistCard>
+    </div>
     <!-- <div class="pagination-container">
       <ul class="pagination">
         <li class="page-item">1</li>
@@ -95,6 +108,30 @@ export default {
 }
 
 // member-box-upper
+.itineray-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 20px auto;
+}
+.itinerary-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ffe1b5;
+  width: 80%;
+  margin: 20px;
+  border-bottom-left-radius: 25%;
+}
+.content {
+  color: #ffe1b5;
+}
+.content p {
+  margin: 10px;
+}
+.content p:first-child {
+  font-size: 1.2rem;
+}
 .pagination {
   display: flex;
   justify-content: center;
@@ -109,4 +146,5 @@ export default {
   color: #313131;
   background-color: #ffe1b5;
 }
+// pagination
 </style>
