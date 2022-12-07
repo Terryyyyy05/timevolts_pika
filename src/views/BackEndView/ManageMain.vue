@@ -87,17 +87,16 @@ export default {
             },
          ],
          activeTab: null,
-         count: 0,
       };
    },
    methods: {
       setActiveTab(tab) {
-         this.activeTab = this.systems.find((sys) => sys.id === this.count);
+         this.activeTab = this.systems.find((sys) => sys.id === tab);
          console.log(this.activeTab);
       },
    },
    created() {
-      this.setActiveTab();
+      this.activeTab = this.systems.find((sys) => sys.id === 0);
    },
 };
 </script>
