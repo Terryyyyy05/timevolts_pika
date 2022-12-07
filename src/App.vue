@@ -16,6 +16,7 @@
          >時光行程-經典(預覽)</router-link
       >
       | <router-link to="/Customizetk">客製票根(預覽)</router-link> |
+      | <router-link to="/manage-main">後台</router-link> |
    </nav>
    <router-view />
 </template>
