@@ -37,7 +37,7 @@ import ProgressBar from "../../components/product/checkout/ProgressBar.vue";
 import ItineraryInformation from "../../components/ItineraryBooking/ItineraryInformation.vue";
 import Checkout from "../../components/ItineraryBooking/Checkout.vue";
 import ConfirmOrder from "../../components/ItineraryBooking/ConfirmOrder.vue";
-import router from "@/router";
+// import router from "@/router";
 
 export default {
    components: {
