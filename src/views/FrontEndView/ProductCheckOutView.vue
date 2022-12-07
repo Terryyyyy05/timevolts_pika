@@ -18,7 +18,7 @@
          <button class="btn-primary" id="btnLeft" style="margin: auto" @click="lastStep">
             {{ buttonLeft }}
          </button>
-         <button class="btn-primary" style="margin: auto" @click="nextStep">
+         <button class="btn-primary" id="btnRight" style="margin: auto" @click="nextStep">
             {{ buttonRight }}
          </button>
          <button
@@ -94,8 +94,12 @@ export default {
          } else if (this.selectedStep === "toPage4"){
             this.selectedStep = "done";
             this.currentStep = "訂單完成";
-            this.buttonLeft.style.display = "none";
-            this.buttonRight.style.display = "none";
+            let btnLeft = document.getElementById('btnLeft');
+            let btnRight = document.getElementById('btnRight');
+
+            btnLeft.style.display = 'none';
+            btnRight.style.display = "none";
+            
          }
          window.scrollTo(0, 0);
       },
