@@ -19,12 +19,33 @@
         />
       </div>
     </div>
+    <MemberItinerayWishlistCard v-for="card in cards" :key="card.id">
+
+      
+
+    </MemberItinerayWishlistCard>
+    <!-- <div class="pagination-container">
+      <ul class="pagination">
+        <li class="page-item">1</li>
+        <li class="page-item">2</li>
+        <li class="page-item">3</li>
+        <li class="page-item">4</li>
+        <li class="page-item">5</li>
+      </ul>
+    </div> -->
   </div>
 </template>
 
 <script>
+import MemberItinerayWishlistCard from "../MemberItinerayWishlistCard.vue";
 export default {
   name: "MemberBoxItinerayWishlist",
+  components: "MemberItinerayWishlistCard",
+  data() {
+    return {
+      cards: [{ id: 1 }, { id: 2 }, { id: 3 }],
+    };
+  },
 };
 </script>
 
@@ -71,5 +92,21 @@ export default {
 .member-data span {
   background-color: #e6dfc7;
   padding: 5px 20px;
+}
+
+// member-box-upper
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffe1b5;
+}
+.page-item {
+  border: 1px solid #ffe1b5;
+  padding: 10px;
+}
+.page-item:first-child {
+  color: #313131;
+  background-color: #ffe1b5;
 }
 </style>

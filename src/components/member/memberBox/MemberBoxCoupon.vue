@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="coupon-card-right">
-            <p>立即使用</p>
+            <a href="#">立即使用</a>
           </div>
         </div>
       </MemberCouponCard>
@@ -60,11 +60,6 @@ export default {
     return {
       cards: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],
     };
-  },
-  methods: {
-    clickCallback(pageNum) {
-      console.log(pageNum);
-    },
   },
 };
 </script>
@@ -175,12 +170,14 @@ export default {
   width: 20px;
   height: 10px;
 }
-.coupon-card-right p {
+.coupon-card-right a {
   writing-mode: vertical-lr;
   border: 3px solid #434343;
   border-radius: 48px;
   padding: 10px;
   margin: 0 auto;
+  text-decoration: none;
+  color: #fff;
 }
 
 // coupon-card
@@ -193,5 +190,10 @@ export default {
 .page-item {
   border: 1px solid #ffe1b5;
   padding: 10px;
+  cursor: pointer;
+}
+.page-item:first-child {
+  color: #313131;
+  background-color: #ffe1b5;
 }
 </style>
