@@ -19,7 +19,7 @@
         />
       </div>
     </div>
-    <div class="itineray-card-container">
+    <div class="itinerary-card-container">
       <MemberItinerayWishlistCard v-for="card in cards" :key="card.id">
         <div class="itinerary-card">
           <div class="img">
@@ -31,13 +31,17 @@
             <p>地點 &#58;歐洲</p>
             <p>西元1204年</p>
           </div>
-          <!-- <div class="trash-can">
-            <font-awesome-icon icon="fa-solid fa-trash-can"></font-awesome-icon>
-          </div> -->
+          <div class="trash-can">
+            <font-awesome-icon
+              icon="fa-solid fa-trash-can"
+              color="#FFE1B5"
+              cursor="pointer"
+            ></font-awesome-icon>
+          </div>
         </div>
       </MemberItinerayWishlistCard>
     </div>
-    <!-- <div class="pagination-container">
+    <div class="pagination-container">
       <ul class="pagination">
         <li class="page-item">1</li>
         <li class="page-item">2</li>
@@ -45,7 +49,7 @@
         <li class="page-item">4</li>
         <li class="page-item">5</li>
       </ul>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -68,7 +72,7 @@ export default {
   border: 2px solid #e6dfc7;
   width: 50%;
   margin: 50px auto 100px;
-  height: 50vh;
+  height: 60vh;
   left: 5%;
 }
 .member-box-upper {
@@ -108,10 +112,10 @@ export default {
 }
 
 // member-box-upper
-.itineray-card-container {
+.itinerary-card-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin: 20px auto;
+  margin: 30px auto 20px;
 }
 .itinerary-card {
   display: flex;
@@ -132,7 +136,9 @@ export default {
 .content p:first-child {
   font-size: 1.2rem;
 }
-
+.trash-can svg {
+  margin: 5px 0 10px 0;
+}
 // itinerary card list
 .pagination {
   display: flex;
@@ -143,6 +149,7 @@ export default {
 .page-item {
   border: 1px solid #ffe1b5;
   padding: 10px;
+  cursor: pointer;
 }
 .page-item:first-child {
   color: #313131;
