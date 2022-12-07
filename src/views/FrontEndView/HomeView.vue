@@ -39,7 +39,7 @@
           時光行程
           <span>Itinerary</span>
         </h2>
-        <home-itinerary me-itinerary></home-itinerary>
+        <HomeItinerary/>
         <router-link class="link" to="/itinerary">更多時光行程</router-link>
       </div>
     </div>
@@ -50,7 +50,7 @@
             歷史故事
             <span>Historcal</span>
           </h2>
-          <home-historcal></home-historcal>
+          <HomeHistorcal/>
           <router-link class="link" to="/history">更多歷史故事</router-link>
         </div>
       </div>
