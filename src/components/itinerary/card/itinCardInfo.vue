@@ -1,5 +1,5 @@
 <template>
-    <itin-card v-for="(info, index) in visibleInformation" :key="info.title" >
+    <itin-card v-for="info in visibleInformation" :key="info.title" >
         <div class="outterwrap">
             <h3>{{ info.title }}</h3>
             <div class="wrap">
@@ -242,7 +242,7 @@ export default{
         },
         btnHover(e){
            this.showBtn = true;
-           console.log(e.target.nextSibling)
+        //    console.log(e.target.nextSibling)
         },
         btnNoHover(){
            this.showBtn = false;

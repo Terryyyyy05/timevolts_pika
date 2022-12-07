@@ -226,7 +226,7 @@
             mouse.x = (e.clientX / innerWidth) * 2 - 1;
             mouse.y = (e.clientY / innerHeight) * 2 - 1;
 
-            console.log(mouse);
+            // console.log(mouse);
         });
     },
   },
