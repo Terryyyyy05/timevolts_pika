@@ -24,17 +24,19 @@
                <div>
                   <p class="attend-num">
                      參加人數 :
-                     <font-awesome-icon
-                        class="minus-plus"
-                        icon="fa-solid fa-minus"
-                        @click="minusAttNum"
-                     />
-                     <span>{{ attendNum }}</span>
-                     <font-awesome-icon
-                        class="minus-plus"
-                        icon="fa-solid fa-plus"
-                        @click="addAttNum"
-                     />
+                     <div>
+                        <font-awesome-icon
+                           class="minus-plus"
+                           icon="fa-solid fa-minus"
+                           @click="minusAttNum"
+                        />
+                        <span>{{ attendNum }}</span>
+                        <font-awesome-icon
+                           class="minus-plus"
+                           icon="fa-solid fa-plus"
+                           @click="addAttNum"
+                        />
+                     </div>
                   </p>
                   <p>原始費用 : {{ computeOriginPrice }}</p>
                   <p>
@@ -121,11 +123,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 @mixin grid($column, $gap) {
    display: grid;
    grid-template-columns: $column;
-   column-gap: $gap;
+   gap: $gap;
 }
 
 .information {
@@ -147,6 +150,10 @@ export default {
 .attend-num {
    color: #fff;
    display: flex;
+   div {
+      display: flex;
+      align-items: center;
+   }
 }
 
 .minus-plus {
@@ -162,5 +169,20 @@ export default {
    display: flex;
    justify-content: flex-end;
    align-items: center;
+}
+
+@include m() {
+   .information {
+      @include grid(1fr, 48px);
+   }
+
+   .attend-num {
+      flex-direction: column;
+      gap: 12px;
+   }
+
+   .minus-plus {
+      padding: 0 20px;
+   }
 }
 </style>
