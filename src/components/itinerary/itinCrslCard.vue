@@ -25,19 +25,19 @@ export default {
         flex-direction: column;
         width: 500px;
         height: fit-content;
-        outline: 1px solid rgb(166, 0, 255);
+        // outline: 1px solid rgb(166, 0, 255);
 
     }
     img{
         width: 500px;
         height: 300px;
         background: #fdfdfd;
-        outline: 1px solid red;
+        // outline: 1px solid red;
     }
     p{
         width: 500px;
         height: 100px;
-        outline: 1px solid red;
+        // outline: 1px solid red;
         font-size: 26px;
         text-align: center;
         color: map-get($color, primary);
