@@ -143,6 +143,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 .base-card {
    background-color: transparent;
@@ -252,5 +253,13 @@ export default {
    -webkit-transform: rotate(45deg);
    -ms-transform: rotate(45deg);
    transform: rotate(45deg);
+}
+
+@include m() {
+   .buyer-info {
+      input {
+         width: 200px;
+      }
+   }
 }
 </style>

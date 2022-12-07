@@ -15,6 +15,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 .progress-number {
    display: flex;
@@ -22,7 +23,7 @@ export default {
    position: relative;
    margin: 0 auto 3rem;
    width: 30%;
-   min-width: 30rem;
+   min-width: 20rem;
 }
 
 .progress-number::before {
@@ -68,5 +69,20 @@ export default {
 
 .circle.progress-active {
    background-color: map-get($color, "accent");
+}
+
+@include m() {
+   .circle {
+      height: 48px;
+      width: 48px;
+      span {
+         font-size: 24px;
+      }
+   }
+
+   .progress-number::before,
+.progress-line {
+   height: 6px;
+}
 }
 </style>
