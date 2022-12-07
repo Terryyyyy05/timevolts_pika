@@ -46,10 +46,23 @@ export default {
 }
 
 .containter {
-   position: absolute;
-   width: 100%;
-   height: 100vh;
-   background-image: url('@/assets/image/history/test.png');
+   // position: absolute;
+   // width: 100%;
+   // height: 100vh;
+   // background-image: url("@/assets/image/history/test.png");
+   &::before {
+      content: "";
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
+      background-image: url("@/assets/image/history/test.png");
+      // position: absolute;
+      display: block;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      z-index: -1;
+   }
 }
 
 .containter #scene .layer {
