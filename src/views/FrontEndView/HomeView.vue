@@ -88,7 +88,7 @@ export default {
     HelloWorld,
     HomeItinerary,
     HomeHistorcal,
-    HomeNews
+    HomeNews,
   }
 }
 </script>
@@ -121,23 +121,6 @@ h1::before{
   position: fixed;
   z-index: 1000;
 }
-
-// 12/1溝通過，說透明色用到的地方太少，寫在自己頁面就好
-
-// -------- 透明背景顏色
-// @mixin bgca($color) {
-//   @each $k , $v in $color{
-//     .bg_#{$k}_75{
-//       background-color: rgba($v,75%);
-//     }
-//     .bg_#{$k}_50{
-//       background-color: rgba($v,50%);
-//     }
-//     .bg_#{$k}_25{
-//       background-color: rgba($v,25%);
-//     }
-//   }
-// }
 
 
 // .bg_dark{}

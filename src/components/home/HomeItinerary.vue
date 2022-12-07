@@ -1,17 +1,20 @@
 <template>
+<div class="container">
     <div class="wrapper">
         <TransitionGroup
         id="list" 
         class="transition-container"
         name="list">
-            <div class="slide"
+                <img
+                class="slide"
                 v-for="(i) in itinerarys" :key="i.id"
                 :class="{'is-active': activeId == i.id}"
-                @click="clickslide(i)">
-                <img v-bind:src="i.story_cover"/>
-            </div>
+                @click="clickslide(i)"
+                v-bind:src="i.story_cover"/>
+            
         </TransitionGroup>
     </div>
+</div>    
     <div class="content">
         <div class="itineraryTitle" >
             <h3>{{look.itinerary_name}}</h3>
@@ -31,9 +34,9 @@
             <p>地點:{{look.story_spot}}</p>
             <p>{{look.tagFeature}}</p>
         </div>
-    </div>
     <button class="next" @click="nextPage">&lt;</button>
     <button class="previous"  @click="previous">&gt;</button>
+    </div>
 </template>
 
 <script>
@@ -129,6 +132,11 @@ export default {
         // },
     },
     methods: {
+        pictures(){
+            itinerarys.from({ length: 
+				7 }, (_, i) => ({ src:``
+                    }))
+        },
         previous(){
             // 頁面往前，循環補上
             const lastSlide = pictures.value.pop();
@@ -147,9 +155,6 @@ export default {
             console.log(i);
             this.look = i;
             this.activeId = i.id;
-        },
-        lookis(i){
-
         },
         // rightadd(index){
         //     this.seat[index] +=1;
@@ -177,21 +182,18 @@ export default {
 .list-leave-active {
   transition: all 0.5s ease;
 }
-.wrapper {
-    // height: 100vh;
+.swipe-move {
+	transition: all 0.3s;
+}
+.container{
     width: calc(100vw - 17.6px);
+    top: -30px;
     left: -30px;
     padding: -30px;
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    overflow: visible;
-    
+    overflow: hidden;
     position: relative;
-    margin: 0 auto;
-    .next,.previous{
-        left: -5%;
-        right: 105%;
+}
+.next,.previous{
         top: 50%;
         bottom: 50%;
         width: 40px;
@@ -204,22 +206,33 @@ export default {
         border:  1px solid map-get($color, "primary");
         border-radius: 20px;
     }
-    #next{
-        left: 105%;
-        right: -5%;
-        }
+.next{
+    left: -10%;
+    right: 110%;
+    }
+.previous{
+    left: 110%;
+    right: -10%;
+}
+.wrapper {
+    width: calc(200vw - 17.6px);
+    height: 35vw;
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    overflow: hidden;
+    
+    position: relative;
+    margin: 0 auto;
+    
     .slide{ 
         margin:15px;
         width: 40vw;
         height: 20vw;
         border-radius: 20px;
-        img{
-            width: 100%;
-            height: 20vw;
-            border-radius: 20px;
-            border: 1px solid map-get($color, "primary");
-            object-fit: cover;
-        }
+        border-radius: 20px;
+        border: 1px solid map-get($color, "primary");
+        object-fit: cover;
     }
     .is-active{
         width: 60vw;
