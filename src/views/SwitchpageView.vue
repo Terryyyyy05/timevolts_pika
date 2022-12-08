@@ -13,10 +13,11 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-    main{
-        height: 100vh;
-        position: relative;
-        .wrap{
+main {
+    height: 100vh;
+    position: relative;
+
+    .wrap {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -25,42 +26,59 @@ export default {
         bottom: 0;
         margin: auto;
         width: 100%;
-        .front-end{
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        border: 2px solid #fec570;
-        background-color: #333333;
-        opacity: .5;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-         &:hover{
-                opacity: 1;
-            }
-        a{  
-            text-decoration: none;
-            color: #fab042;
-        }
-        }
-        .back-end{
+
+        .front-end, .back-end {
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            border: 2px solid #fec570;
+            border: 5px solid #fec570;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #333333;
-            opacity: .5;
-            &:hover{
-                opacity: 1;
+            cursor: pointer;
+            position: relative;
+            &:hover {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+                box-shadow: inset 0 0 20px #fec570, 0 0 20px #fec570;
             }
-            a{
+
+            &::after {
+                position: absolute;
+                content: "";
+                top: -10px;
+                left: -10px;
+                right: -10px;
+                bottom: -10px;
+                transition:
+                    .5s outline-color,
+                    .5s outline,
+                    .5s transform;
+                transition-timing-function: cubic-bezier(0.2, .8, 0.25, .8);
+                transform: scale3d(1.3, 1.3, 0.7);
+                outline: 0px solid;
+                outline-color: rgba(255, 255, 255, .05);
+                outline-offset: -10px;
+                border-radius: 50%;
+            }
+
+            &:hover::after {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                transform: scale(1);
+                outline: 1px solid;
+                outline-color: rgba(255, 255, 255, 0.6);
+                outline-offset: 10px;
+                border-radius: 50%;
+                transition: .5s outline-offset cubic-bezier(0.2, .8, 0.25, .8), .5s outline-color cubic-bezier(0.2, .8, 0.25, .8), .5s outline cubic-bezier(0.2, .8, 0.25, .8);
+            }
+            a {
                 text-decoration: none;
                 color: #fab042;
             }
         }
+        
         }
         p{  
             font-size: 16px;
@@ -80,5 +98,4 @@ export default {
             }
         }
     }
-    
 </style>
