@@ -49,6 +49,7 @@ export default {
         animation-delay: 0s;
         animation-direction: normal;
     }
+    
     @keyframes classicScroll {
         0% {
             transform: translateX(0%);

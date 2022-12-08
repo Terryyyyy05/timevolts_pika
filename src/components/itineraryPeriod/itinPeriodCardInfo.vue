@@ -213,7 +213,7 @@ export default{
 .imgblock{
     width: 100%;
     height: 170px;    
-    outline: 1px solid blue;
+    // outline: 1px solid blue;
     padding: 2px;
     margin: 2px;    
     box-sizing: border-box;
@@ -228,7 +228,7 @@ img{
     width: 100%;
     padding: 2px;
     margin: 2px;    
-    outline: 1px solid green;
+    // outline: 1px solid green;
     box-sizing: border-box;
 }
 h3{

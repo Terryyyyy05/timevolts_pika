@@ -70,7 +70,7 @@ export default {
   border: 2px solid #e6dfc7;
   width: 50%;
   margin: 50px auto 100px;
-  height: 60vh;
+  height: 70vh;
   left: 5%;
 }
 .member-box-upper {
@@ -113,7 +113,8 @@ export default {
 .coupon-card-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 .coupon-card {
   color: #fff;

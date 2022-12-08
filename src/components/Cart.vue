@@ -42,7 +42,9 @@
         </div>
       </li>
     </ul>
-    <button class="btn-lightbox">結帳</button>
+    <router-link to="/ProductCheckOut" class="mid">
+      <button class="btn-lightbox">結帳</button>
+    </router-link>
   </div>
 </template>
 
@@ -99,6 +101,12 @@ export default {
   font-size: 28px;
   cursor: pointer;
   color: map-get($color, primary_sub);
+}
+
+.mid {
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
 }
 
 .cart {
@@ -182,10 +190,6 @@ export default {
         column-gap: 5%;
       }
     }
-  }
-
-  > button {
-    margin: auto;
   }
 }
 

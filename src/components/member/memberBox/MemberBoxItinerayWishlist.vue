@@ -19,12 +19,29 @@
         />
       </div>
     </div>
-    <MemberItinerayWishlistCard v-for="card in cards" :key="card.id">
-
-      
-
-    </MemberItinerayWishlistCard>
-    <!-- <div class="pagination-container">
+    <div class="itinerary-card-container">
+      <MemberItinerayWishlistCard v-for="card in cards" :key="card.id">
+        <div class="itinerary-card">
+          <div class="img">
+            <img src="../../../assets/image/member/crusade.png" alt="crusade" />
+          </div>
+          <div class="content">
+            <p>十字軍東征</p>
+            <p>危險度:高</p>
+            <p>地點 &#58;歐洲</p>
+            <p>西元1204年</p>
+          </div>
+          <div class="trash-can">
+            <font-awesome-icon
+              icon="fa-solid fa-trash-can"
+              color="#FFE1B5"
+              cursor="pointer"
+            ></font-awesome-icon>
+          </div>
+        </div>
+      </MemberItinerayWishlistCard>
+    </div>
+    <div class="pagination-container">
       <ul class="pagination">
         <li class="page-item">1</li>
         <li class="page-item">2</li>
@@ -32,7 +49,7 @@
         <li class="page-item">4</li>
         <li class="page-item">5</li>
       </ul>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -55,7 +72,7 @@ export default {
   border: 2px solid #e6dfc7;
   width: 50%;
   margin: 50px auto 100px;
-  height: 50vh;
+  height: 70vh;
   left: 5%;
 }
 .member-box-upper {
@@ -95,6 +112,34 @@ export default {
 }
 
 // member-box-upper
+.itinerary-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 45px auto;
+}
+.itinerary-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ffe1b5;
+  width: 80%;
+  margin: 20px;
+  border-bottom-left-radius: 25%;
+}
+.content {
+  color: #ffe1b5;
+}
+.content p {
+  margin: 10px;
+}
+.content p:first-child {
+  font-size: 1.2rem;
+}
+.trash-can svg {
+  margin: 5px 0 10px 0;
+}
+// itinerary card list
 .pagination {
   display: flex;
   justify-content: center;
@@ -104,9 +149,11 @@ export default {
 .page-item {
   border: 1px solid #ffe1b5;
   padding: 10px;
+  cursor: pointer;
 }
 .page-item:first-child {
   color: #313131;
   background-color: #ffe1b5;
 }
+// pagination
 </style>
