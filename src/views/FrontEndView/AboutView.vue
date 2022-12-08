@@ -5,6 +5,7 @@
     <the-heading heading="關於我們" subheading="About us"></the-heading>
       
   <div class="about">
+
     <div class="about-title">
       <img src="@/assets/image/about/4lighting.svg"/>
       <h2>{{title[0]}}</h2>
@@ -17,6 +18,7 @@
       </div>
       <p class="content">{{content[0]}}</p>
       </div>
+
     </div>
 
     <div class="about">
@@ -27,10 +29,14 @@
       </div>
 
     <div class="about-content">
-      <p class="content">{{content[1]}}</p>
+      <div class="content">
+        <p>{{content[1]}}</p>
+        <button class="btn-primary">我要體驗</button>
+      </div>
       <div class="about-pic">
         <img class="machine" src="@/assets/image/about/timemachine.png" alt="">
       </div>
+      
       </div>
     </div>
 
@@ -123,6 +129,7 @@
           animation: Move 3s infinite;
         }
       }
+    
     .member-list{
       width: 33.33%;
       margin: 10px;
@@ -158,6 +165,7 @@
       50% {transform: translate(0,20px);}
       100% {transform: translate(0,0);}
     }
+    
     .content{
       width: 50%;
       margin: 10px;
@@ -166,8 +174,12 @@
       letter-spacing: 1px;
       align-self: center;
       text-indent: 2rem;
+      .btn-primary{
+        margin: 30px auto 0;
+      }
     }
   }
+  
 
 @media screen and (max-width:768px) {
   .about{
@@ -200,5 +212,4 @@
     }
   }
 }
-
 </style>
