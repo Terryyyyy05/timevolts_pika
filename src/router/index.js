@@ -157,6 +157,7 @@ const routes = [
       name: "manageMain",
       component: () => import("../views/BackEndView/ManageMain.vue"),
    },
+   
 ];
 
 const router = createRouter({
