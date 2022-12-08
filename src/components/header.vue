@@ -24,7 +24,9 @@
             @mouseleave="changeBack"
             :to="item.router"
             :data-item="index"
-            >{{ item.ch }}</router-link
+            >
+            <p class="glitched">{{ item.ch }}</p>
+            </router-link
           >
         </div>
         <div class="chatbot"><img src="Group243.png" alt="時空管理局" /></div>
@@ -148,7 +150,7 @@ header {
         justify-content: center;
         align-items: center;
         a {
-          font-size: 12px;
+          font-size: 14px;
           font-weight: bold;
           height: 54px;
           width: 54px;
@@ -278,5 +280,26 @@ header {
       }
     }
   }
+}
+.glitched {
+  animation-name: glitched;
+  animation-duration: calc(.9s * 1.4);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes glitched {
+    0% {left: -4px;
+        transform: skew(-20deg);}
+
+    11% {left: 2px;
+        transform: skew(0deg);}
+
+    50% {transform: skew(0deg);}
+
+    51% {transform: skew(10deg);}
+
+    60% {transform: skew(0deg);}
+
+    100% {transform: skew(0deg);}
 }
 </style>
