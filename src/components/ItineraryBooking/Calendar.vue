@@ -1,6 +1,12 @@
 <template>
-   <div>calendar</div>
+   <div></div>
 </template>
+
+<script>
+export default {
+   components: {},
+};
+</script>
 
 <style lang="scss" scoped>
 div {
