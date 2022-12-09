@@ -171,7 +171,7 @@ table {
   position: relative;
   border: 2px solid #e6dfc7;
   width: 50%;
-  height: 60vh;
+  // height: 60vh;
   margin: 50px auto 100px;
   left: 5%;
 
