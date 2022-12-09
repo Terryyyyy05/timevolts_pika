@@ -4,10 +4,7 @@
 $border: 1px solid #fab042;
 $box-shadow-none: 0px 0px;
 $padding:10px 30px;
-$border-radius:10px;
 $font-size:20px;
-$box-shadow:4px 4px 0px #673e00;
-$transform:translate(-3px,-3px);
 
 // btn //直接套class名稱即可
 
@@ -17,77 +14,94 @@ $transform:translate(-3px,-3px);
   // btn-disable
 
 @mixin btnCommon {
+  display: flex;
+  font-size: $font-size;
+  padding: $padding;
+  text-align: center;
+  cursor: pointer;
+  margin: 20px 10px;
+  transition: .2s all;
+  position: relative;
+
+  &:hover {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 0 20px #fec570, 0 0 20px #fec570;
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    transition:
+      .5s outline-color,
+      .5s outline,
+      .5s transform;
+    transition-timing-function: cubic-bezier(0.2, .8, 0.25, .8);
+    transform: scale3d(1.1, 1.3, 0);
+    outline: 0px solid;
+    outline-color: rgba(255, 255, 255, .05);
+    outline-offset: -10px;
+  }
+
+  &:hover::after {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    transform: scale(1);
+    outline: 1px solid;
+    outline-color: rgba(255, 255, 255, 0.6);
+    outline-offset: 10px;
+    transition: .5s outline-offset cubic-bezier(0.2, .8, 0.25, .8), .5s outline-color cubic-bezier(0.2, .8, 0.25, .8), .5s outline cubic-bezier(0.2, .8, 0.25, .8);
+  }
+}
+
+
+@mixin btn-primary {
+  .btn-primary {
+    border: $border;
+    background: none;
+    color: map-get($color, accent);
+    @include btnCommon;
+  }
+}
+
+@mixin btn-secondary {
+  .btn-secondary {
+    border: $border;
+    background-color: map-get($color, accent);
+    color: map-get($color, dark);
+
+    @include btnCommon;
+  }
+}
+
+@mixin btn-lightbox {
+  .btn-lightbox {
+    border: $border;
+    background-color: map-get($color, accent_reverse);
+    color: map-get($color, accent);
+
+    @include btnCommon;
+  }
+}
+
+@mixin btn-disable {
+  .btn-disable {
     display: flex;
-    box-shadow: $box-shadow;
     font-size: $font-size;
     padding: $padding;
-    border-radius: $border-radius;
     text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    transform: $transform;
-    margin: auto 10px;
-  
-    &:hover {
-      transform: translate(0, 0);
-      transition: all 0.2s cubic-bezier(0.15, 0.62, 0.43, 0.8);
-      box-shadow: $box-shadow-none;
-    }
+    border: none;
+    background-color: map-get($color, muted);
+    color: map-get($color, light_sub);
   }
-  
-  
-  @mixin btn-primary {
-    .btn-primary {
-      border: none;
-      background-color: map-get($color, accent);
-      color: map-get($color, dark);
-      
-      @include btnCommon;
-    }
-  }
-  
-  @mixin btn-secondary {
-    .btn-secondary {
-      border: $border;
-      background-color: map-get($color, dark);
-      color: map-get($color, accent);
-  
-      &:hover {
-        color: map-get($color, accent_sub);
-      }
-  
-      @include btnCommon;
-    }
-  }
-  
-  @mixin btn-lightbox {
-    .btn-lightbox {
-      border: $border;
-      background-color: map-get($color, accent_reverse);
-      color: map-get($color, accent);
-  
-      &:hover {
-        color: map-get($color, accent_sub);
-      }
-  
-      @include btnCommon;
-    }
-  }
-  
-  @mixin btn-disable {
-    .btn-disable {
-      display: flex;
-      font-size: $font-size;
-      padding: $padding;
-      border-radius: $border-radius;
-      text-align: center;
-      border: none;
-      background-color: map-get($color, muted);
-      color: map-get($color, light_sub);
-    }
-  }
-  
-  @include btn-primary;
-  @include btn-secondary;
-  @include btn-lightbox;
-  @include btn-disable;
+}
+
+@include btn-primary;
+@include btn-secondary;
+@include btn-lightbox;
+@include btn-disable;
