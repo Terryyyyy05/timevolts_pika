@@ -28,9 +28,6 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faAnglesUp } from "@fortawesome/free-solid-svg-icons";
 
-// parallax.js
-import Parallax from "parallax-js";
-
 // add icons from library
 library.add(faChevronDown);
 library.add(faChevronRight);
