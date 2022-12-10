@@ -1,5 +1,7 @@
 <template>
   <all-header />
+  <div id="mouse"></div>
+  <!-- <LeadingView v-if="one" /> -->
   <div class="home">
     <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
     <div class="introduce_block">
@@ -76,6 +78,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
 import HomeItinerary from "../../components/home/HomeItinerary.vue";
 import HomeHistorcal from "../../components/home/HomeHistorcal.vue";
 import HomeNews from "../../components/home/HomeNews.vue";
+import LeadingView from "../../views/FrontEndView/LeadingView.vue";
 
 export default {
   name: "HomeView",
@@ -120,6 +123,7 @@ export default {
     HomeItinerary,
     HomeHistorcal,
     HomeNews,
+    LeadingView,
   },
 };
 </script>
@@ -130,6 +134,14 @@ export default {
 $b1-primary: (1px solid map-get($color, "primary"));
 $b2-primary: (2px solid map-get($color, "primary"));
 $b20-primary: (20px solid map-get($color, "primary"));
+
+#mouse {
+  width: 30px;
+  height: 30px;
+  background: map-get($color, "primary");
+  mix-blend-mode: difference;
+  position: absolute;
+}
 
 // 酷酷的雜訊效果
 h1::before {
@@ -264,7 +276,7 @@ h2 {
     }
     h1 {
       @media screen and (max-width: $t-breakpoint) {
-        font-size: 42px;
+        font-size: 64px;
       }
       @media screen and (max-width: $ts-breakpoint) {
         font-size: 38px;
@@ -290,8 +302,14 @@ h2 {
     display: flex;
     align-items: center;
     font-size: 42px;
+
     img {
       width: 100px;
+    }
+    @media screen and (max-width: $m-breakpoint) {
+      strong {
+        font-size: 24px;
+      }
     }
   }
   .pic {
