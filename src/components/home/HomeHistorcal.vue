@@ -217,7 +217,7 @@ export default {
   right: 110%;
 }
 #list {
-  //   display: flex;
+  display: flex;
 }
 .wrapper {
   height: 40vw;
