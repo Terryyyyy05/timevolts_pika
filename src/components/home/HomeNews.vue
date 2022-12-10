@@ -72,7 +72,7 @@ export default {
 
 .news {
   width: 70vw;
-  height: calc(26vw + 8px);
+  height: calc(26vw + 6px);
   margin: auto;
   display: flex;
   gap: 10px;
@@ -84,7 +84,7 @@ export default {
   display: flex;
   // margin: 0 5px;
   flex-direction: column;
-  background-color: map-get($color, "dark_sub");
+  // background-color: map-get($color, "dark_sub");
   line-height: 1.4;
   // box-sizing: border-box;
   h3 {
@@ -93,10 +93,12 @@ export default {
     display: inline-block;
     color: map-get($color, "accent_sub");
     border: 2px solid map-get($color, "primary");
+    background-color: map-get($color, "dark_sub");
   }
   .newsText {
     height: 10vw;
     border: 2px solid map-get($color, "primary");
+    background-color: map-get($color, "dark_sub");
     p {
       padding: 10px;
     }
@@ -106,6 +108,7 @@ export default {
     display: flex;
     justify-content: space-between;
     border: 2px solid map-get($color, "primary");
+    background-color: map-get($color, "dark_sub");
     p {
       padding: 10px;
     }
@@ -121,6 +124,7 @@ export default {
     justify-content: center;
     // align-self: center;
     border: 2px solid map-get($color, "primary");
+    background-color: map-get($color, "dark_sub");
     img {
       padding: 1rem;
       width: 50%;

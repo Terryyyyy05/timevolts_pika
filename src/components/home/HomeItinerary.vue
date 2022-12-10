@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="slide-container">
     <div class="wrapper">
       <TransitionGroup id="list" class="transition-container" name="list">
         <div
@@ -185,25 +185,30 @@ export default {
   z-index: -1;
 }
 
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(calc(40vw + 30px));
-}
+// .list-enter-active,
+// .list-leave-active {
+//   transition: all 0.5s ease;
+// }
+// .list-enter-from,
+// .list-leave-to {
+//   opacity: 0;
+//   transform: translateX(calc(40vw + 30px));
+// }
 .swipe-move {
   transition: all 0.3s;
 }
-.container {
+.slide-container {
   width: calc(100vw - 17.6px);
   top: -30px;
   left: -30px;
   padding: -30px;
   overflow: hidden;
   position: relative;
+  @media screen and (max-width: $m-breakpoint) {
+    .slide-container {
+      width: 100vw;
+    }
+  }
 }
 .next,
 .previous {
@@ -228,12 +233,10 @@ export default {
   right: 110%;
 }
 .wrapper {
-  left: calc(-20vw - 30px);
+  left: calc(-20vw - 60px);
   height: 35vw;
   display: flex;
   align-items: center;
-  // justify-content: center;
-  //   overflow: hidden;
 
   position: relative;
   margin: 0 auto;
@@ -242,35 +245,37 @@ export default {
   }
   .slide {
     margin: 15px;
-    width: 40vw;
+    width: calc(40vw + 4px);
     height: 20vw;
-    border-radius: 20px;
 
     // border: 2px solid map-get($color, "primary");
-    object-fit: cover;
     transition: 0.7s;
     img {
       width: 40vw;
       height: 20vw;
+      box-sizing: border-box;
       border-radius: 20px;
       border: 2px solid map-get($color, "primary");
       transition: 0.7s;
+      object-fit: cover;
     }
   }
   .is-active {
-    width: 60vw;
+    width: calc(60vw + 4px);
     height: 30vw;
     transition: 0.7s;
     z-index: 10;
     img {
       width: 60vw;
       height: 30vw;
+      box-sizing: border-box;
+      object-fit: cover;
     }
   }
 }
 .content {
   width: fit-content;
-  height: 170px;
+  height: fit-content;
   margin: 0 auto;
   border-radius: 20px;
   // border: 2px solid map-get($color, "primary");
@@ -280,21 +285,26 @@ export default {
   justify-content: center;
   align-items: top;
   position: relative;
-  &div {
-    vertical-align: text-top;
+
+  @media screen and (max-width: $m-breakpoint) {
+    flex-direction: column;
+    width: 70vw;
   }
   .itineraryTitle {
     width: 15vw;
-    height: 100%;
+    // height: 100%;
     padding: 15px;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
     border-radius: 20px 0 0 20px;
     align-items: top;
+    @media screen and (max-width: $m-breakpoint) {
+      width: 100%;
+      border-radius: 20px 20px 0 0px;
+    }
   }
   .itineraryText {
     width: 32vw;
-    height: 100%;
     // padding: 0 15px 0px;
     box-sizing: border-box;
     display: flex;
@@ -303,13 +313,16 @@ export default {
     border: 2px solid map-get($color, "primary");
     align-items: center;
     text-overflow: ellipsis;
+    @media screen and (max-width: $m-breakpoint) {
+      width: 100%;
+      min-height: 30vh;
+    }
     .summary {
-      width: 80%;
-      height: 100%;
       padding: 20px;
+      box-sizing: border-box;
       align-self: start;
       line-height: 1.4;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       :nth-child(1) {
         font-size: 24px;
@@ -318,35 +331,49 @@ export default {
   }
   .more {
     width: 8vw;
-    height: 100%;
+    // height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
+    @media screen and (max-width: $m-breakpoint) {
+      width: 100%;
+      flex-direction: row;
+    }
     img {
       margin: 2rem 1rem;
     }
     button {
-      left: -1px;
       width: 8vw;
       padding: 0.7rem;
       box-sizing: border-box;
       color: map-get($color, "dark");
       background-color: map-get($color, "accent");
-      border: 1px solid map-get($color, "primary");
+      border: none;
+      border-top: 2px solid map-get($color, "primary");
+      @media screen and (max-width: $m-breakpoint) {
+        max-width: 100%;
+        border-top: none;
+        border-left: 2px solid map-get($color, "primary");
+      }
     }
   }
   .itineraryTeg {
     width: 15vw;
     // height: 100%;
-    padding: 15px;
+    padding: 20px;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
     border-radius: 0 20px 20px 0;
     align-items: center;
     font-size: 24px;
     line-height: 33px;
+    @media screen and (max-width: $m-breakpoint) {
+      width: 100%;
+      border-radius: 0px 0px 20px 20px;
+      font-size: 14px;
+    }
   }
 }
 </style>
