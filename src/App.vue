@@ -10,8 +10,7 @@
       <router-link to="/about">關於我們</router-link> |
       <router-link to="/member">會員中心</router-link> |
       <router-link to="/itineraryPeriodView">時光行程-期間限定(預覽)</router-link> |
-      <router-link to="/itiItineraryClassicView">時光行程-經典(預覽)</router-link
-      > | 
+      <router-link to="/itiItineraryClassicView">時光行程-經典(預覽)</router-link> | 
        <router-link to="/manage-main">後台</router-link> |
    </nav>
    <pageTop/>

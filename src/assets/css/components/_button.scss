@@ -15,11 +15,13 @@ $font-size:20px;
 
 @mixin btnCommon {
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: $font-size;
   padding: $padding;
   text-align: center;
   cursor: pointer;
-  margin: 20px 10px;
+  margin: 20px auto;
   transition: .2s all;
   position: relative;
 
@@ -55,7 +57,10 @@ $font-size:20px;
     outline: 1px solid;
     outline-color: rgba(255, 255, 255, 0.6);
     outline-offset: 10px;
-    transition: .5s outline-offset cubic-bezier(0.2, .8, 0.25, .8), .5s outline-color cubic-bezier(0.2, .8, 0.25, .8), .5s outline cubic-bezier(0.2, .8, 0.25, .8);
+    transition: 
+    .5s outline-offset cubic-bezier(0.2, .8, 0.25, .8), 
+    .5s outline-color cubic-bezier(0.2, .8, 0.25, .8), 
+    .5s outline cubic-bezier(0.2, .8, 0.25, .8);
   }
 }
 

@@ -116,6 +116,12 @@ const routes = [
          ),
    },
    {
+      path: "/customizetk",
+      name: "customizetk",
+      component: () =>
+         import("../components/ItineraryBooking/Customizetk.vue"),
+   },
+   {
       path: "/product-order",
       name: "product-order",
       component: () =>
