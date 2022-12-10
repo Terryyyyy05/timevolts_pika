@@ -15,7 +15,7 @@
 </template>
 <script>
 export default {
-  name: "footer",
+  name: "all-footer",
   data(){
     return{
       copyright: 'Copyright © 2022 Timevolts.All rights reserved.',

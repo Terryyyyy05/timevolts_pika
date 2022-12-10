@@ -38,7 +38,7 @@
 import Cart from "@/components/Cart.vue";
 
 export default {
-  name: "header",
+  name: "all-header",
   components: {
     Cart,
   },

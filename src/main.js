@@ -10,8 +10,8 @@ import "@/assets/css/app.scss";
 import TheHeading from "./components/all_layout/TheHeading.vue";
 import BaseCard from "./components/all_UI/BaseCard.vue";
 import innerpageHeader from "./components/innerpageHeader.vue";
-import header from "./components/header.vue";
-import footer from "./components/footer.vue";
+import allHeader from "./components/header.vue";
+import allFooter from "./components/footer.vue";
 import pageTop from "./components/pageTop.vue";
 
 // fontawesome
@@ -50,8 +50,8 @@ app.component("the-heading", TheHeading);
 app.component("base-card", BaseCard);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("innerpageHeader", innerpageHeader);
-app.component("all-header", header);
-app.component("all-footer", footer);
+app.component("all-header", allHeader);
+app.component("all-footer", allFooter);
 app.component("pageTop", pageTop);
 
 app.mount("#app");
