@@ -545,7 +545,7 @@ body {
     border: none;
     text-decoration: none;
     background: none;
-    font-size: 20px;
+    font-size: 18px;
     color: map-get($color, accent);
     cursor: pointer;
 
@@ -578,8 +578,10 @@ ul {
     }
 
     .hashtag {
-
+      display: flex;
+      flex-wrap: wrap;
       margin: 10px;
+      line-height: 1.5;
     }
 
     .content {
@@ -703,10 +705,18 @@ ul {
       outline: none;
     }
   }
-
+  
   .l-box {
     width: 70%;
-  }
+    .l-box-img {
+    height: auto;
+    }
+    .l-box-content-item {
+    height: 310px;
+    }
+    
+  
+}
 }
 </style>
 
