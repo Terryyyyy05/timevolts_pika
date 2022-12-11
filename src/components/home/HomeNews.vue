@@ -2,12 +2,12 @@
   <div class="news">
     <div class="box" v-for="item in newsData" :key="item.id">
       <h3>{{ item.title }}</h3>
-      <div class="newsText p_md">
+      <div class="p_md newsText">
         <p>{{ item.content }}</p>
       </div>
       <div class="more">
         <p>{{ item.date }}</p>
-        <a class="link">了解更多</a>
+        <router-link class="link" to="/itinerary">了解更多</router-link>
       </div>
       <div class="img">
         <img v-bind:src="imgsrc" alt="圖騰" />
@@ -72,7 +72,7 @@ export default {
 
 .news {
   width: 70vw;
-  height: calc(26vw + 6px);
+  height: fit-content;
   margin: auto;
   display: flex;
   gap: 10px;
@@ -85,6 +85,7 @@ export default {
 }
 .box {
   width: 100%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   line-height: 1.4;
@@ -97,7 +98,8 @@ export default {
     background-color: map-get($color, "dark_sub");
   }
   .newsText {
-    height: 10vw;
+    min-height: 17vw;
+
     border: 2px solid map-get($color, "primary");
     background-color: map-get($color, "dark_sub");
     p {

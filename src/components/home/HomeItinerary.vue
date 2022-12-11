@@ -29,7 +29,9 @@
     </div>
     <div class="more">
       <img v-bind:src="imgsrc" alt="圖騰" />
-      <button>了解更多</button>
+      <router-link class="link" to="/itiItineraryClassicView"
+        >了解更多</router-link
+      >
     </div>
     <div class="itineraryTeg">
       <p>危險度:{{ look.story_risk }}</p>
@@ -342,14 +344,15 @@ export default {
     img {
       margin: 2rem 1rem;
     }
-    button {
-      width: 8vw;
-      padding: 0.7rem;
+    .link {
+      width: calc(8vw - 4px);
+      text-align: center;
+      padding: 0.7rem 0rem;
       box-sizing: border-box;
       color: map-get($color, "dark");
       background-color: map-get($color, "accent");
       border: none;
-      border-top: 2px solid map-get($color, "primary");
+      border-top: 4px solid map-get($color, "primary");
       @media screen and (max-width: $m-breakpoint) {
         max-width: 100%;
         border-top: none;

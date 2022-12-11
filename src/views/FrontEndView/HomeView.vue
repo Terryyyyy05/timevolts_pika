@@ -1,6 +1,6 @@
 <template>
   <all-header />
-  <div id="mouse"></div>
+  <!-- <div id="mouse"></div> -->
   <!-- <LeadingView v-if="one" /> -->
   <div class="home">
     <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
