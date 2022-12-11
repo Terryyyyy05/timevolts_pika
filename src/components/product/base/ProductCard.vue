@@ -8,6 +8,7 @@
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 div {
   box-sizing: border-box;
@@ -16,5 +17,11 @@ div {
   padding: 20px 10px;
   border: 2px solid map-get($color, "primary");
   background-color: map-get($color, "dark_sub");
+}
+
+@include m() {
+  div {
+    width: 45%;
+  }
 }
 </style>

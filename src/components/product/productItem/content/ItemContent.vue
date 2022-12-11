@@ -131,6 +131,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 .pic > img {
   width: 100%;
   vertical-align: top;
@@ -190,6 +191,47 @@ export default {
       display: flex;
       column-gap: 50px;
       // margin-bottom: 50px;
+      align-items: center;
+    }
+  }
+}
+
+@include m() {
+  .flex {
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: center;
+    .pic {
+      width: 80%;
+    }
+    .content {
+      width: 90%;
+
+      > :nth-child(1) {
+        font-size: 26px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+      }
+
+      > :nth-child(2) {
+        margin-bottom: 50px;
+      }
+
+      > :nth-child(3) {
+        margin-bottom: 30px;
+
+        > span {
+          font-size: 20px;
+        }
+      }
+
+      > :nth-child(4) {
+        align-items: flex-end;
+      }
+
+      > :nth-child(5) {
+        margin-bottom: 50px;
+      }
     }
   }
 }

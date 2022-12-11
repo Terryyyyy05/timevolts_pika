@@ -232,7 +232,6 @@ $price-width: 25%;
     padding-top: 15px;
     position: relative;
     font-size: 28px;
-    // background-color:  lighten(map-get($color, dark_sub), 10%);
     background-color: map-get($color, dark_sub);
     color: map-get($color, primary);
     width: 120%;
@@ -265,6 +264,83 @@ $price-width: 25%;
     span {
       width: 180px;
       font-size: 16px;
+    }
+  }
+
+  // QQ
+  $info-width: 35%;
+  $amount-width: 25%;
+  $price-width: 40%;
+  .title {
+    display: flex;
+    border-bottom: 3px solid currentColor;
+    padding: 0 1% 2%;
+
+    > span:nth-child(2),
+    > span:nth-child(3) {
+      display: none;
+    }
+  }
+
+  .content {
+    font-size: 16px;
+
+    .item {
+      display: flex;
+      padding: 3% 0;
+
+      .item-info {
+        width: $info-width;
+
+        flex-direction: column;
+
+        .pic {
+          width: 70%;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .item-name {
+          margin-right: 0%;
+        }
+      }
+      .item-amount {
+        width: $amount-width;
+
+        justify-content: center;
+      }
+      .price {
+        width: $price-width;
+      }
+    }
+  }
+
+  .total-price {
+    padding: 5% 5% 0;
+    width: 80%;
+    .discount {
+      .btn-primary {
+        font-size: 14px;
+        padding: 5px 5px;
+        margin: 10px 0;
+      }
+    }
+    > div {
+      column-gap: 0px;
+      font-size: 14px;
+    }
+
+    > div:last-child {
+      font-size: 16px;
+      width: 110%;
+      right: 5%;
+
+      &::before {
+        width: 110%;
+        right: -5%;
+      }
     }
   }
 }

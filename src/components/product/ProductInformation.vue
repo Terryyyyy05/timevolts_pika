@@ -11,6 +11,7 @@
   <show-more-button
     :trueOrFalse="distinguishTrueFalse"
     @show-more="addCardNum"
+    class="mb"
   ></show-more-button>
 </template>
 
@@ -52,6 +53,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 img {
   width: 100%;
@@ -64,7 +66,7 @@ img {
   column-gap: 6%;
   padding-left: 3%;
   row-gap: 100px;
-  margin: 100px 0 50px;
+  margin: 100px 0 100px;
 
   h3 {
     color: map-get($color, primary);
@@ -81,18 +83,41 @@ img {
   }
 }
 
-.more-button {
-  margin: auto 0 0 auto;
-  div {
-    width: 80px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    span {
-      margin: auto;
-      font-size: 20px;
+// .more-button {
+//   margin: auto 0 0 auto;
+//   div {
+//     width: 80px;
+//     height: 40px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     span {
+//       margin: auto;
+//       font-size: 20px;
+//     }
+//   }
+// }
+
+.mb {
+  margin-bottom: 100px;
+}
+
+@include m() {
+  .cardList {
+    justify-content: space-between;
+    column-gap: 0%;
+    padding-left: 0%;
+    row-gap: 50px;
+    margin: 80px 0 50px;
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: 15px;
     }
+  }
+
+  .mb {
+    margin-bottom: 50px;
   }
 }
 </style>

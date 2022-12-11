@@ -10,10 +10,7 @@
       <li v-for="item in items" :key="item.title">
         <div class="cart-item">
           <div class="pic">
-            <img
-              :src=item.imgSrc
-              alt=""
-            />
+            <img :src="item.imgSrc" alt="" />
           </div>
           <div class="item-content">
             <h4>{{ item.title }}</h4>
@@ -83,7 +80,6 @@ export default {
     // test imgSrc
     // console.log(items.value[0].imgSrc);
     // console.log(items);
-    
 
     return {
       items,
@@ -97,6 +93,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 .xmark {
   position: absolute;
   top: 10px;
@@ -199,12 +196,49 @@ export default {
   }
 }
 
-// .cart-content::-webkit-scrollbar-track {
-//   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-//   background-color: #f5f5f5;
-// }
-
 .cart-content::-webkit-scrollbar {
   width: 0px;
+}
+
+@include m() {
+  * {
+    box-sizing: border-box;
+  }
+
+  .cart {
+    aspect-ratio: none;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    right: 0px;
+    top: 0px;
+
+    > h3 {
+      &:after {
+        width: 40%;
+      }
+    }
+    > .cart-content {
+      height: 80%;
+
+      .cart-item {
+        font-size: 16px;
+
+        margin: 2% 0;
+
+        .pic {
+          width: 25%;
+        }
+
+        .item-content {
+          width: 35%;
+
+          h4 {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
 }
 </style>
