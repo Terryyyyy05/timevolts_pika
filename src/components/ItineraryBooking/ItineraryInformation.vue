@@ -1,7 +1,7 @@
 <template>
    <h2>{{}}</h2>
    <div class="information p_md">
-      <calendar></calendar>
+      <calendar :selected-date="departDate"></calendar>
       <div>
          <div class="info-list">
             <div>
@@ -67,7 +67,7 @@ export default {
       return {
          latestDate: "2023-01-01",
          departDate: "2022-12-04",
-         returnDate: "2022-12-04",
+         returnDate: "2022-12-08",
          classification: "期間限定行程",
          dangerLev: "高",
          region: "歐洲",
