@@ -1,7 +1,7 @@
 <template>
     <div class="innerpageHeader">
         <div class="title"><router-link to="/Home">TIMEVOLTS</router-link></div>
-        <div class="icon"><router-link to="/Home"><img src="Group.png" alt=""></router-link></div>
+        <div class="icon"><router-link to="/Home"><img src="Group.png" alt="LOGO"></router-link></div>
     </div>
 </template>
 
