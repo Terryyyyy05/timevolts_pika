@@ -159,11 +159,6 @@ const routes = [
       component: () => import("../views/BackEndView/manageloginView.vue"),
    },
    {
-      path: "/manage-main",
-      name: "manageMain",
-      component: () => import("../views/BackEndView/ManageMain.vue"),
-   },
-   {
       path: "/memberCenter",
       name: "memberCenter",
       component: () => import("../views/FrontEndView/memberCenterView.vue"),
