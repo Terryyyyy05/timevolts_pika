@@ -195,6 +195,7 @@ export default {
 .infoContent{
     width: 500px;
     height: 300px;
+    overflow-y: auto;
     margin: 5px 0 0 0;
     padding: 20px 10px;
     font-size: 24px;
