@@ -242,7 +242,7 @@ export default {
 
     > h3 {
       font-size: 24px;
-      margin-top: 8%;
+      margin-top: 15%;
       margin-bottom: 8%;
       &::before,
       &::after {
