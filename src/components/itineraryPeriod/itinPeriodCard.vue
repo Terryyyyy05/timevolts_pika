@@ -12,7 +12,7 @@
         display: flex;
         flex-direction: row;
         // flex-wrap: wrap;
-        width: 300px;
+        width: 280px;
         height: 600px;
         box-sizing: border-box;
         margin: 10px;
