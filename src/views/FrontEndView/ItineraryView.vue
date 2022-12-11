@@ -187,13 +187,11 @@
                 function animate() {
                     requestAnimationFrame(animate)
                     renderer.render(scene, camera)
-                    sphere.rotation.Y += 0.06
-                    sphere.rotation.x += 0.07
-                    sphere.rotation.z += 0.1
+                    sphere.rotation.y += 0.006
                     group.rotation.y = mouse.x * 0.5
                     gsap.to(group.rotation, {
-                        x: -mouse.y * 60,
-                        y: mouse.x * 60,
+                        x: -mouse.y * 0.6,
+                        y: mouse.x * 0.6,
                         duration:1
                     })
                 }
@@ -242,7 +240,7 @@
 }
 .bannersec{
     height: 90vh;
-    outline:  1px solid red;
+    // outline:  1px solid red;
     margin-top: 30px;
 }
 .container {
@@ -279,5 +277,20 @@
     flex-wrap: wrap;
     margin: 0 auto;
     justify-content: center;
+}
+@include m (){
+    .banner1{
+        flex-direction: column;
+    }
+    .globe_wrap {
+        width: 100%;
+        height: 80vh;
+        margin: 50px auto;
+    }
+    .word_wrap {
+        width: 100%;
+        margin: 50px auto 0;
+        
+    }
 }
 </style>
