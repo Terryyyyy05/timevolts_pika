@@ -44,6 +44,7 @@
               </div>
               <div class="upper-x">
                 <font-awesome-icon
+                  @click="showChatbox"
                   icon="fa-solid fa-xmark"
                   color="#FFE1B5"
                   cursor="pointer"
@@ -180,7 +181,7 @@ export default {
       this.show = !this.show;
     },
     showChatbox() {
-      this.openRobot = !this.openRobot
+      this.openRobot = !this.openRobot;
     },
     // 用戶發送訊息
     sentMsg() {
