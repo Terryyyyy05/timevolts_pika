@@ -1,5 +1,5 @@
 <template>
-    <div class="innerpageHeader">
+    <div class="innerpageHeader" v-show="scrollshow">
         <div class="title"><router-link to="/Home">TIMEVOLTS</router-link></div>
         <div class="icon"><router-link to="/Home"><img src="Group.png" alt="LOGO"></router-link></div>
     </div>
@@ -8,6 +8,11 @@
 <script>
 export default {
     name: "innerpageHeader",
+    data(){
+        return{
+            scrollshow: true
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
