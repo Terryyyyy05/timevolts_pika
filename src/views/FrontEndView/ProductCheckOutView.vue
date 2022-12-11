@@ -1,144 +1,267 @@
 <template>
-   <div class="container">
-      <the-heading
-         heading="結帳"
-         subheading="Checkout"
-      ></the-heading>
-      <progress-bar
-         :secondMode="setSecondMode"
-         :thirdMode="setThirdMode"
-         :fourthMode="setFourthMode"
-         :line="setProgressLine"
-      ></progress-bar>
-      <div class="main-text">{{ currentStep }}</div>
-      <keep-alive>
-         <component :is="selectedStep"></component>
-      </keep-alive>
-      <div class="buttons">
-         <button class="btn-primary" id="btnLeft" style="margin: auto" @click="lastStep">
-            {{ buttonLeft }}
-         </button>
-         <button class="btn-primary" id="btnRight" style="margin: auto" @click="nextStep">
-            {{ buttonRight }}
-         </button>
-         <button
-            class="btn-secondary"
-            style="margin: auto"
-            v-if="this.selectedStep === 'done'"
-         >
-            查看訂單
-         </button>
+  <header>
+    <all-header />
+    <innerpageHeader></innerpageHeader>
+  </header>
+  <div class="container">
+    <the-heading heading="結帳" subheading="Checkout"></the-heading>
+    <progress-bar
+      class="mt"
+      :secondMode="setSecondMode"
+      :thirdMode="setThirdMode"
+      :fourthMode="setFourthMode"
+      :line="setProgressLine"
+      v-if="this.selectedStep !== 'done'"
+    ></progress-bar>
+    <section class="check-form">
+      <h3>
+        {{ currentStep }}
+      </h3>
+      <div class="form-content">
+        <keep-alive>
+          <component :is="selectedStep"></component>
+        </keep-alive>
       </div>
-   </div>
+    </section>
+
+    <div class="buttons">
+      <button
+        class="btn-primary"
+        id="btnLeft"
+        style="margin: auto"
+        @click="lastStep"
+      >
+        {{ buttonLeft }}
+      </button>
+      <button
+        class="btn-primary"
+        id="btnRight"
+        style="margin: auto"
+        @click="nextStep"
+      >
+        {{ buttonRight }}
+      </button>
+      <button
+        class="btn-secondary"
+        style="margin: auto"
+        v-if="this.selectedStep === 'done'"
+      >
+        查看訂單
+      </button>
+    </div>
+  </div>
 </template>
 
 <script>
 import ProgressBar from "../../components/product/checkout/ProgressBar.vue";
-import ItineraryInformation from "../../components/ItineraryBooking/ItineraryInformation.vue";
-import Checkout from "../../components/ItineraryBooking/Checkout.vue";
-import ConfirmOrder from "../../components/ItineraryBooking/ConfirmOrder.vue";
-// import router from "@/router";
+
+// start
+import CheckOutStepOne from "@/components/product/checkout/CheckOutStepOne.vue";
+import CheckOutStepTwo from "@/components/product/checkout/CheckOutStepTwo.vue";
+import CheckOutStepThree from "@/components/product/checkout/CheckOutStepThree.vue";
+import done from "@/components/product/checkout/done.vue";
+
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 export default {
-   components: {
-      ProgressBar,
-      ItineraryInformation,
-      Checkout,
-      ConfirmOrder,
-   },
-   data() {
-      return {
-         selectedStep: "productCheckout",
-         currentStep: "確認商品",
-         buttonLeft: "返回商品頁",
-         buttonRight: "填寫收件人資料",
-      };
-   },
-   computed: {
-      setSecondMode() {
-         if (
-            this.selectedStep === "toPage3" ||
-            this.selectedStep === "toPage4" ||
-            this.selectedStep === "done"
-         ) {
-            return "circle progress-active";
-         } else {
-            return "circle";
-         }
-      },
-      setThirdMode() {
-         return this.selectedStep === "toPage4" || this.selectedStep === "done"
-            ? "circle progress-active"
-            : "circle";
-      },
-      setProgressLine() {
-         if (this.selectedStep === "toPage3") {
-            return "width: 50%";
-         } else if (this.selectedStep === "toPage4" || this.selectedStep === "done") {
-            return "width: 100%";
-         }
-      },
-   },
-   methods: {
-      nextStep() {
-         if (this.selectedStep === "productCheckout") {
-            this.selectedStep = "toPage3";
-            this.currentStep = "填寫收件人資訊";
-            this.buttonLeft = "上一步";
-            this.buttonRight = "下一步";
-         } else if (this.selectedStep === "toPage3") {
-            this.selectedStep = "toPage4";
-            this.currentStep = "填寫信用卡資訊";
-            this.buttonLeft = "上一步";
-            this.buttonRight = "確認購買";
-         } else if (this.selectedStep === "toPage4"){
-            this.selectedStep = "done";
-            this.currentStep = "訂單完成";
-            let btnLeft = document.getElementById('btnLeft');
-            let btnRight = document.getElementById('btnRight');
+  components: {
+    ProgressBar,
+    // start
+    CheckOutStepOne,
+    CheckOutStepTwo,
+    CheckOutStepThree,
+    done,
+  },
+  setup() {
+    const router = useRouter();
+    const store = useStore();
+    // data
+    const selectedStep = ref("check-out-step-one");
+    const currentStep = ref("確認商品");
+    const buttonLeft = ref("返回商品頁");
+    const buttonRight = ref("填寫收件人資料");
 
-            btnLeft.style.display = 'none';
-            btnRight.style.display = "none";
-            
-         }
-         window.scrollTo(0, 0);
-      },
-      lastStep(){
-         if(this.selectedStep === "productCheckout"){
-            this.$router.push({path:'/product'})
-         }else if(this.selectedStep === "toPage3"){
-            this.$router.push({path:'//ProductCheckOut'})
-         }
+    // computed
+    const setSecondMode = computed(() => {
+      if (
+        selectedStep.value === "check-out-step-two" ||
+        selectedStep.value === "check-out-step-three" ||
+        selectedStep.value === "check-out-step-fourth" ||
+        selectedStep.value === "done"
+      ) {
+        return "circle progress-active";
+      } else {
+        return "circle";
       }
-   },
+    });
+
+    const setThirdMode = computed(() => {
+      return selectedStep.value === "check-out-step-three" ||
+        selectedStep.value === "check-out-step-fourth" ||
+        selectedStep.value === "done"
+        ? "circle progress-active"
+        : "circle";
+    });
+
+    // const setFourthMode = computed(() => {
+    //   return selectedStep.value === "check-out-step-fourth" ||
+    //     selectedStep.value === "done"
+    //     ? "circle progress-active"
+    //     : "circle";
+    // });
+
+    const setProgressLine = computed(() => {
+      if (selectedStep.value === "check-out-step-two") {
+        return "width: 50%";
+      } else if (selectedStep.value === "check-out-step-three") {
+        return "width: 100%";
+      }
+      // else if (selectedStep.value === "check-out-step-fourth") {
+      //   return "width: 100%";
+      // }
+    });
+
+    // methods
+    const nextStep = () => {
+      if (selectedStep.value === "check-out-step-one") {
+        selectedStep.value = "check-out-step-two";
+        currentStep.value = "填寫收件人資訊";
+        buttonLeft.value = "上一步";
+        buttonRight.value = "下一步";
+      } else if (selectedStep.value === "check-out-step-two") {
+        selectedStep.value = "check-out-step-three";
+        currentStep.value = "確認資訊";
+        buttonLeft.value = "上一步";
+        buttonRight.value = "信用卡付款";
+      } else if (selectedStep.value === "check-out-step-three") {
+        selectedStep.value = "done";
+        currentStep.value = "訂單完成";
+
+        let btnLeft = document.getElementById("btnLeft");
+        let btnRight = document.getElementById("btnRight");
+        btnLeft.style.display = "none";
+        btnRight.style.display = "none";
+
+        store.commit("addBuyerInfo");
+      }
+      window.scrollTo(0, 0);
+    };
+
+    const lastStep = () => {
+      if (selectedStep.value === "check-out-step-one") {
+        router.push({ path: "/product" });
+      } else if (selectedStep.value === "check-out-step-two") {
+        selectedStep.value = "check-out-step-one";
+        currentStep.value = "確認商品";
+        buttonLeft.value = "返回商品頁";
+        buttonRight.value = "填寫收件人資料";
+      } else if (selectedStep.value === "check-out-step-three") {
+        selectedStep.value = "check-out-step-two";
+        currentStep.value = "填寫收件人資訊";
+        buttonLeft.value = "上一步";
+        buttonRight.value = "下一步";
+      }
+    };
+
+    return {
+      // data
+      selectedStep,
+      currentStep,
+      buttonLeft,
+      buttonRight,
+      // computed
+      setSecondMode,
+      setThirdMode,
+      // setFourthMode,
+      setProgressLine,
+      // method
+      nextStep,
+      lastStep,
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
-.main-text {
-   display: grid;
-   grid-template-columns: 1fr max-content 1fr;
-   column-gap: 1.5rem;
-   align-items: center;
-   font-size: 36px;
-   color: map-get($color, "primary");
-   margin: 4.8rem 0;
+.check-form {
+  color: aliceblue;
+  font-size: 28px;
 
-   &::before,
-   &::after {
+  > h3 {
+    position: relative;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 3%;
+
+    font-size: 36px;
+    color: map-get($color, "primary");
+    &::before,
+    &::after {
       content: "";
+      width: 30%;
       height: 1px;
-      display: block;
       background-color: currentColor;
-   }
+
+      position: absolute;
+      top: 60%;
+    }
+
+    &::before {
+      left: 5%;
+    }
+
+    &::after {
+      right: 5%;
+    }
+  }
+
+  > .form-content {
+    background-color: rgba(map-get($color, primary), 40%);
+  }
 }
 
 .buttons {
-   display: flex;
-   gap: 48px;
-   width: fit-content;
-   margin: 24px auto 0
+  display: flex;
+  gap: 48px;
+  width: fit-content;
+  margin: 24px auto 0;
+}
+
+.mt {
+  margin-top: 5%;
+}
+
+@include m() {
+  .check-form {
+    font-size: 20px;
+
+    > h3 {
+      font-size: 24px;
+      margin-top: 8%;
+      margin-bottom: 8%;
+      &::before,
+      &::after {
+        content: "";
+        width: 10%;
+      }
+    }
+  }
+
+  .buttons {
+    margin: 50px auto 0;
+  }
+  .btn-primary {
+    font-size: 16px;
+    padding: 5px 5px;
+  }
+
+  .mt {
+    margin-top: 15%;
+  }
 }
 </style>

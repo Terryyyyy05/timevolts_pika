@@ -11,7 +11,7 @@
         <div class="cart-item">
           <div class="pic">
             <img
-              :src="require('@/assets/image/product/product_1.png')"
+              :src=item.imgSrc
               alt=""
             />
           </div>
@@ -79,6 +79,11 @@ export default {
       console.log(e.target.dataset.title);
       store.commit("removeFromCart", e.target.dataset.title);
     };
+
+    // test imgSrc
+    // console.log(items.value[0].imgSrc);
+    // console.log(items);
+    
 
     return {
       items,
@@ -188,6 +193,7 @@ export default {
         align-items: center;
         justify-content: center;
         column-gap: 5%;
+        cursor: pointer;
       }
     }
   }

@@ -4,6 +4,10 @@ import { storage } from "@/components/product/js/localStorage";
 export default createStore({
   state: {
     cart: [],
+    buyerOrder: [],
+    curBuyerInfo: {
+      addressee: {},
+    },
   },
   getters: {
     cartItems(state) {
@@ -33,6 +37,13 @@ export default createStore({
       if (cart) {
         state.cart = cart;
       }
+    },
+    // 購物資訊
+    addBuyerInfo(state) {
+      state.buyerOrder.push({ ...state.curBuyerInfo.addressee });
+    },
+    curBuyerInfo(state, infoData) {
+      state.curBuyerInfo.addressee = { ...infoData };
     },
   },
   actions: {
