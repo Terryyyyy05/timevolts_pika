@@ -29,7 +29,9 @@
             </router-link
           >
         </div>
-        <div class="chatbot"><img src="Group243.png" alt="時空管理局" /></div>
+        <div class="chatbox">
+          <img src="Group243.png" alt="時空管理局" />
+        </div>
       </div>
     </div>
   </header>
