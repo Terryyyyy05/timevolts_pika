@@ -238,7 +238,7 @@ h2 {
 
   @media screen and (max-width: $m-breakpoint) {
     height: auto;
-    grid-template-columns: 2fr 4.5fr 4.5fr 1fr;
+    grid-template-columns: 2fr 4.5fr 4.5fr;
     grid-template-rows: 1fr 4fr 0.5fr;
   }
   .sideTotem {
@@ -269,7 +269,7 @@ h2 {
     align-content: center;
     border: $b2-primary;
     border-top: $b20-primary;
-    font-size: 128px;
+    font-size: 72px;
 
     @media screen and (max-width: $m-breakpoint) {
       grid-column: 1/4;
@@ -281,6 +281,12 @@ h2 {
       @media screen and (max-width: $ts-breakpoint) {
         font-size: 38px;
       }
+      @media screen and (max-width: $m-breakpoint) {
+        font-size: 30px;
+      }
+      // @media screen and (max-width: 320px) {
+      //   font-size: 24px;
+      // }
       margin: auto;
       span {
         display: none;

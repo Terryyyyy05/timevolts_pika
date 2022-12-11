@@ -1,43 +1,44 @@
 <template>
-  <div class="slide-container">
-    <div class="wrapper">
-      <TransitionGroup id="list" class="transition-container" name="list">
-        <div
-          class="slide"
-          v-for="(item, index) in itinerarys"
-          :key="item.id"
-          @click="clickslide(index)"
-          :class="{
-            'is-active': activeIndex == index,
-            'img-index': activeIndex != index,
-          }"
-        >
-          <img v-bind:src="item.story_cover" />
+  <div class="historcal-slide">
+    <div class="content">
+      <div class="title">EGYPT</div>
+      <div class="historcalText">
+        <div class="">
+          <h3>{{ look.itinerary_name }}</h3>
         </div>
-      </TransitionGroup>
-      <button class="next" @click="nextPage">&gt;</button>
-    </div>
-  </div>
-  <div class="content">
-    <div class="itineraryTitle">
-      <h3>{{ look.itinerary_name }}</h3>
-    </div>
-    <div class="itineraryText">
-      <div class="summary">
-        <p>年代:{{ look.story_age }}</p>
-        <p>{{ look.itinerary_memo }}</p>
+        <div class="summary">
+          <p>年代:{{ look.story_age }}</p>
+          <p>{{ look.itinerary_memo }}</p>
+          <div class="historcalTeg">
+            <p>危險度:{{ look.story_risk }}</p>
+            <p>地點:{{ look.story_spot }}</p>
+            <p>{{ look.tagFeature }}</p>
+          </div>
+          <div class="more">
+            <button>了解更多</button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="more">
-      <img v-bind:src="imgsrc" alt="圖騰" />
-      <button>了解更多</button>
+    <div class="slide-container">
+      <div class="wrapper">
+        <TransitionGroup id="list" class="transition-container" name="list">
+          <div
+            class="slide"
+            v-for="(item, index) in itinerarys"
+            :key="item.id"
+            @click="clickslide(index)"
+            :class="{
+              'is-active': activeIndex == index,
+              'img-index': activeIndex != index,
+            }"
+          >
+            <img v-bind:src="item.story_cover" />
+          </div>
+        </TransitionGroup>
+        <button class="next" @click="nextPage">&gt;</button>
+      </div>
     </div>
-    <div class="itineraryTeg">
-      <p>危險度:{{ look.story_risk }}</p>
-      <p>地點:{{ look.story_spot }}</p>
-      <p>{{ look.tagFeature }}</p>
-    </div>
-    <!-- <button class="previous" @click="previous">&lt;</button> -->
   </div>
 </template>
 
@@ -172,20 +173,21 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+$b1-primary: (1px solid map-get($color, "primary"));
+$b2-primary: (2px solid map-get($color, "primary"));
 
-.img-index {
-  z-index: -1;
+// 整體容器
+.historcal-slide {
+  display: flex;
 }
 
-.swipe-move {
-  transition: all 0.3s;
-}
+// 輪播圖
 
 .slide-container {
-  width: calc(100vw - 17.6px);
-  top: -30px;
-  left: -30px;
-  padding: -30px;
+  //   width: calc(100vw - 17.6px);
+  //   top: -30px;
+  left: 30px;
+  padding: 30px;
   display: flex;
   overflow: hidden;
   position: relative;
@@ -195,32 +197,22 @@ export default {
     }
   }
 }
-.next,
-.previous {
-  top: 50%;
-  bottom: 50%;
-  width: 40px;
-  height: 40px;
+.next {
+  top: 15vw;
+  width: 45px;
+  height: 45px;
   padding: 3px;
-  font-size: 30px;
+  font-size: 35px;
   transform: translate(-50%, -50%);
   position: absolute;
-  background: map-get($color, "primary");
-  border: 1px solid map-get($color, "primary");
-}
-.next {
-  left: 110%;
-  right: -10%;
-}
-.previous {
-  left: -10%;
-  right: 110%;
-}
-#list {
-  display: flex;
+  background: map-get($color, "dark");
+  border: 2px solid map-get($color, "primary");
+  color: map-get($color, "primary");
+  z-index: 22;
 }
 .wrapper {
-  height: 40vw;
+  width: 40vw;
+  padding: 20vw;
   align-items: center;
   position: relative;
   margin: 20px auto;
@@ -232,8 +224,6 @@ export default {
     //left控制滑走的移動速度
     top: -5vw;
     left: 30vw;
-    // width: calc(20vw + 4px);
-    // height: calc(20vw + 4px);
     transition: 0.7s;
     position: absolute;
     z-index: 21;
@@ -297,8 +287,6 @@ export default {
   }
 
   .is-active {
-    width: calc(30vw + 4px);
-    height: calc(30vw + 4px);
     transition: 0.7s;
     top: 0px;
     left: 0px;
@@ -313,86 +301,83 @@ export default {
     }
   }
 }
+.swipe-move {
+  transition: all 0.3s;
+}
+
+// 標題與內文
+
 .content {
   width: fit-content;
-  height: 170px;
-  margin: 0 auto;
-  border-radius: 20px;
-  // border: 2px solid map-get($color, "primary");
-  background: map-get($color, "dark_sub");
+
+  margin: 20px;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
-  align-items: top;
+  flex-direction: column;
   position: relative;
-  &div {
-    vertical-align: text-top;
-  }
-  .itineraryTitle {
-    width: 15vw;
-    height: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-    border: 2px solid map-get($color, "primary");
-    border-radius: 20px 0 0 20px;
-    align-items: top;
-  }
-  .itineraryText {
-    width: 32vw;
-    height: 100%;
-    // padding: 0 15px 0px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
+}
 
-    border: 2px solid map-get($color, "primary");
-    align-items: center;
-    text-overflow: ellipsis;
-    .summary {
-      //   width: 80%;
-      height: 100%;
-      padding: 20px;
-      box-sizing: border-box;
-      align-self: start;
-      line-height: 1.4;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      :nth-child(1) {
-        font-size: 24px;
-      }
+.title {
+  width: 40vw;
+  padding: 2vw;
+  text-align: center;
+  border: $b2-primary;
+  background: map-get($color, "dark");
+  font-family: "Cube&8";
+  font-size: 72px;
+  @media screen and (max-width: $t-breakpoint) {
+    font-size: 64px;
+  }
+  @media screen and (max-width: $ts-breakpoint) {
+    font-size: 38px;
+  }
+  @media screen and (max-width: $m-breakpoint) {
+    font-size: 30px;
+  }
+  //   @media screen and (max-width: 320px) {
+  //     font-size: 24px;
+  //   }
+}
+.historcalText {
+  //   width: 40vw;
+  //   height: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 2px solid map-get($color, "primary");
+  background: map-get($color, "dark_sub");
+
+  align-items: top;
+  .summary {
+    //   width: 80%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    align-self: start;
+    line-height: 1.4;
+    :nth-child(1) {
+      font-size: 24px;
     }
   }
+
+  .historcalTeg {
+    box-sizing: border-box;
+    align-items: center;
+    font-size: 24px;
+    line-height: 33px;
+  }
   .more {
-    width: 8vw;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
-    border: 2px solid map-get($color, "primary");
-    img {
-      margin: 2rem 1rem;
-    }
     button {
-      width: 8vw;
       padding: 0.7rem;
       box-sizing: border-box;
       color: map-get($color, "dark");
       background-color: map-get($color, "accent");
-      border: none;
-      border-top: 2px solid map-get($color, "primary");
+      border: 2px solid map-get($color, "primary");
     }
-  }
-  .itineraryTeg {
-    width: 15vw;
-    // height: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    border: 2px solid map-get($color, "primary");
-    border-radius: 0 20px 20px 0;
-    align-items: center;
-    font-size: 24px;
-    line-height: 33px;
   }
 }
 </style>

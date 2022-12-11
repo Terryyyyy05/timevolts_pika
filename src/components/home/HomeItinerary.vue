@@ -205,9 +205,7 @@ export default {
   overflow: hidden;
   position: relative;
   @media screen and (max-width: $m-breakpoint) {
-    .slide-container {
-      width: 100vw;
-    }
+    width: 100vw;
   }
 }
 .next,

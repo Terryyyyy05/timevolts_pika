@@ -2,7 +2,7 @@
   <div class="news">
     <div class="box" v-for="item in newsData" :key="item.id">
       <h3>{{ item.title }}</h3>
-      <div class="newsText">
+      <div class="newsText p_md">
         <p>{{ item.content }}</p>
       </div>
       <div class="more">
@@ -77,16 +77,17 @@ export default {
   display: flex;
   gap: 10px;
 
+  @media screen and (max-width: $m-breakpoint) {
+    height: auto;
+    flex-direction: column;
+  }
   // border: 2px solid map-get($color , "primary" );
 }
 .box {
   width: 100%;
   display: flex;
-  // margin: 0 5px;
   flex-direction: column;
-  // background-color: map-get($color, "dark_sub");
   line-height: 1.4;
-  // box-sizing: border-box;
   h3 {
     height: 4vw;
     padding: 10px;
@@ -109,6 +110,9 @@ export default {
     justify-content: space-between;
     border: 2px solid map-get($color, "primary");
     background-color: map-get($color, "dark_sub");
+    @media screen and (max-width: $m-breakpoint) {
+      height: auto;
+    }
     p {
       padding: 10px;
     }
@@ -125,6 +129,9 @@ export default {
     // align-self: center;
     border: 2px solid map-get($color, "primary");
     background-color: map-get($color, "dark_sub");
+    @media screen and (max-width: $m-breakpoint) {
+      display: none;
+    }
     img {
       padding: 1rem;
       width: 50%;
@@ -135,6 +142,9 @@ export default {
   .img {
     // background-color: #fff;
     order: -3;
+    @media screen and (max-width: $m-breakpoint) {
+      order: 1;
+    }
   }
 }
 </style>
