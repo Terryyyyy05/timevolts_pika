@@ -6,6 +6,8 @@
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/app.scss";
+
 
     div {
         
@@ -20,4 +22,11 @@
         border: 2px solid map-get($color, "primary");
         background-color: map-get($color, "dark_sub");
     }
+
+@include m (){
+    div{
+        width: 100%;
+    }
+}
+
 </style>
