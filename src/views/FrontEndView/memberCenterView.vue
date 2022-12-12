@@ -15,7 +15,7 @@
             <router-link to="/memberCenter/productCollection">商品收藏</router-link>
         </nav>
         <div class="sub-content">
-            <div class="content-frame">
+            <div class="content-deco">
                 <div>{{title}}</div>
             </div>
             <router-view/>
@@ -28,7 +28,7 @@
 export default {
     data(){
         return{
-            
+            // title : $router.name
         }
     }
 }
@@ -62,6 +62,9 @@ export default {
             width: 100%;
             height: 100%;
             box-sizing: border-box;
+            .content-deco {
+                border-bottom: 1px solid #ffe1b5;
+            }
         }
     }
     @media screen and (min-width: 768px){
