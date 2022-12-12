@@ -16,8 +16,9 @@
         </nav>
         <div class="sub-content">
             <div class="content-frame">
-                <router-view/>
+                <div>{{title}}</div>
             </div>
+            <router-view/>
         </div>
     </div>
     <all-footer />
@@ -34,8 +35,8 @@ export default {
         // height: 75vh;
         outline: 1px solid red;
         nav {
-            width: 20%;
-            margin: 10% 10% 0 0;
+            width: 30%;
+            margin: 5% 5% 5% 0;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -43,7 +44,7 @@ export default {
             border: 1px solid #ffe1b5;
             a{
                 font-size: 12px;
-                padding: 10% 3%;
+                padding: 10% 2%;
                 border-bottom: 1px solid #ffe1b5;
                 &:last-child{
                     border-bottom: 0;
@@ -51,7 +52,7 @@ export default {
             }
         }
         .sub-content{
-            padding: 20px;
+            border: 1px solid #ffe1b5;
             outline: 1px solid yellow;
             width: 100%;
             height: 100%;
@@ -61,7 +62,9 @@ export default {
     @media screen and (min-width: 768px){
         .container.main-content{
             nav{
+                width: 20%;
                 a{
+                    padding: 10% 5%;
                     font-size: 20px;
                 }
             }
