@@ -1,0 +1,104 @@
+<template>
+   <base-history-card class="hirtory-card">
+      <h3>{{ title }}</h3>
+      <div class="history-content">
+         <img :src="require('@/assets/image/history/test.png')" />
+         <div class="history-text">
+            <div>
+               <span class="p_md">#{{ tagDanderLevel }}</span>
+               <span class="p_md">#{{ tagFeature }}</span>
+               <span class="p_md">#{{ tagRegion }}</span>
+            </div>
+            <p class="p_md">發生年代 --- {{ happenYear }}</p>
+            <p class="p_lg">{{ description }}</p>
+            <router-link
+               @click="scrollToTop"
+               to="/history-details"
+               class="more-button"
+            >
+               <div class="bg_accent">
+                  <span>more</span>
+               </div>
+            </router-link>
+         </div>
+      </div>
+   </base-history-card>
+</template>
+
+<script>
+import BaseHistoryCard from "./base/BaseHistoryCard.vue";
+
+export default {
+   components: {
+      BaseHistoryCard,
+   },
+   props: [
+      "title",
+      "tagDanderLevel",
+      "tagFeature",
+      "tagRegion",
+      "happenYear",
+      "description",
+   ],
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
+
+h3 {
+   color: #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 48px;
+}
+
+.history-content {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   color: #fff;
+}
+
+.history-text {
+   padding: 12px 24px 0;
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+}
+
+span {
+   margin-right: 8px;
+}
+
+a {
+   text-decoration: none;
+   color: #000;
+}
+
+.more-button {
+   margin: auto 0 0 auto;
+   div {
+      width: 80px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+         margin: auto;
+         font-size: 20px;
+      }
+   }
+}
+
+@include m() {
+   .history-content {
+      grid-template-columns: 1fr;
+   }
+
+   img {
+      width: 100%;
+   }
+}
+</style>
