@@ -253,6 +253,7 @@ export default{
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/layout/rwd.scss";
 
 .wrap {
     display: flex;
@@ -323,5 +324,11 @@ span{
     text-align: center;
     margin: auto;
     font-size: 20px;
+}
+@include m (){
+    h3{
+        font-size: 32px;
+        line-height: 80px;
+    }
 }
 </style>

@@ -1,4 +1,5 @@
 <template>
+    <all-header/>
     <div class="container">
         <the-heading
             heading="時光行程-期間限定"
@@ -47,7 +48,7 @@
             </div>
         </div>
     </section>
-
+    <all-footer/>
 </template>
 
 <script>
@@ -127,13 +128,11 @@ export default {
 
 .section {
     width: 100%;
-    // height: 90vh;
     margin: 100px 0;
 }
 
 .container {
     width: map-get($container, each(d_container));
-    // height: 100%;
 }
 .carouselWrap{
     display: flex;
@@ -202,5 +201,18 @@ export default {
     line-height: 1.6;
     border: 2px solid map-get($color, "primary");
     background-color: map-get($color, "dark_sub");
+}
+@include m (){
+    .infoTitle, .tagWrap, .infoDate{
+        font-size: 18px;
+        height: 20px;
+        padding: 10px;
+    }
+    
+    .infoContent{
+        font-size: 18px;
+        overflow-y: auto;
+        height: 180px;
+    }
 }
 </style>
