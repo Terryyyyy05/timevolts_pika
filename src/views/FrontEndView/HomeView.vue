@@ -148,46 +148,46 @@ a:visited.link {
 }
 
 // 酷酷的雜訊效果
-h1::before {
-  width: 100%;
-  height: 100%;
-  content: "";
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: block;
-  pointer-events: none;
-  background: url(@/assets/image/noise.gif);
-  mix-blend-mode: overlay;
-  opacity: 0.5;
-  background-repeat: repeat;
-  position: fixed;
-  z-index: 1000;
-}
-h1::after {
-  width: 100%;
-  height: 100%;
-  content: "";
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: block;
-  pointer-events: none;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(54, 54, 54, 1) 100%
-  );
-  // rgba(13, 13, 13, 1) 100%
-  // mix-blend-mode: overlay;
-  opacity: 0.4;
-  position: fixed;
-  z-index: 1000;
-}
+// h1::before {
+//   width: 100%;
+//   height: 100%;
+//   content: "";
+//   margin: auto;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   display: block;
+//   pointer-events: none;
+//   background: url(@/assets/image/noise.gif);
+//   mix-blend-mode: overlay;
+//   opacity: 0.5;
+//   background-repeat: repeat;
+//   position: fixed;
+//   z-index: 1000;
+// }
+// h1::after {
+//   width: 100%;
+//   height: 100%;
+//   content: "";
+//   margin: auto;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   display: block;
+//   pointer-events: none;
+//   background: radial-gradient(
+//     50% 50% at 50% 50%,
+//     rgba(255, 255, 255, 0.7) 0%,
+//     rgba(54, 54, 54, 1) 100%
+//   );
+//   // rgba(13, 13, 13, 1) 100%
+//   // mix-blend-mode: overlay;
+//   opacity: 0.4;
+//   position: fixed;
+//   z-index: 1000;
+// }
 
 // .bg_dark{}
 
