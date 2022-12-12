@@ -5,15 +5,15 @@
       <div v-if="show" class="icon-container">
         <div>
           <router-link to="/member"
-            ><img src="Group604.png" alt=""
+            ><img src="../../public/Group604.png" alt=""
           /></router-link>
         </div>
-        <div @click="toggleCart"><img src="Group605.png" alt="" /></div>
+        <div @click="toggleCart"><img src="../../public/Group605.png" alt="" /></div>
       </div>
 
       <div class="nav">
         <div @click="shownav" class="hbicon">
-          <img src="Group603.png" alt="寶貝球" />
+          <img src="../../public/Group603.png" alt="寶貝球" />
         </div>
         <div class="vertical-nav" v-if="show">
           <div
@@ -32,7 +32,7 @@
             </router-link>
           </div>
           <div @click="showChatbox" class="chatbox-icon">
-            <img src="Group243.png" alt="時空管理局" />
+            <img src="../../public/Group243.png" alt="時空管理局" />
           </div>
           <div v-if="openRobot" class="chatbox full-screen">
             <div class="chatbox-container">
@@ -298,13 +298,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.test {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  background: transparent;
-  z-index: 100000;
-}
+// .test {
+//   width: 100%;
+//   height: 100vh;
+//   position: fixed;
+//   background: transparent;
+//   z-index: 100000;
+// }
 .test2 {
   width: 100%;
   height: 100vh;
