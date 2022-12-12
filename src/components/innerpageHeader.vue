@@ -21,7 +21,7 @@ export default {
         background-image: url("/public/Union.png");
         background-repeat: no-repeat;
         background-position: center 100%;
-        background-size: contain;
+        background-size: 35% 100%;
         position: absolute;
         left: 0;
         right: 0;
@@ -56,6 +56,7 @@ export default {
     }
     @media screen and (min-width: 768px) {
         div.innerpageHeader{
+            background-size: contain;
         .title{
             font-size: 23px;
             letter-spacing: 4%;

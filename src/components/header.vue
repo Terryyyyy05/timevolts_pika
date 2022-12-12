@@ -165,16 +165,21 @@ export default {
     changeColor(e) {
       e.target.style.transition = "all .3s";
       e.target.style.backgroundColor = "#ffe1b5";
-      e.target.style.color = "#1e1e1e";
-
-      e.target.innerText = this.pageName[e.target.dataset.item].en;
+      // e.target.style.color = "#1e1e1e";
+      e.target.childNodes[0].innerText = this.pageName[e.target.dataset.item].en;
+      e.target.childNodes[0].style.color = "#1e1e1e";
+      e.target.childNodes[0].style.backgroundColor = "transparent";
+       e.target.childNodes[0].style.transition = "all .05s";
     },
     changeBack(e) {
       e.target.style.transition = "all .3s";
-      e.target.style.color = "#ffe1b5";
+      // e.target.style.color = "#ffe1b5";
       e.target.style.backgroundColor = "transparent";
       e.target.style.backdropFilter = "blur(5px)";
-      e.target.innerText = this.pageName[e.target.dataset.item].ch;
+      e.target.childNodes[0].innerText = this.pageName[e.target.dataset.item].ch;
+      e.target.childNodes[0].style.color = "#ffe1b5";
+      e.target.childNodes[0].style.backgroundColor = "transparent";
+      e.target.childNodes[0].style.transition = "all 0s";
     },
     toggleCart() {
       return (this.cartStatus = !this.cartStatus);
@@ -361,7 +366,7 @@ header {
         justify-content: center;
         align-items: center;
         a {
-          font-size: 14px;
+          font-size: 12px;
           font-weight: bold;
           height: 54px;
           width: 54px;
