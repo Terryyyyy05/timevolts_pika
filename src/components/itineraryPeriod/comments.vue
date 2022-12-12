@@ -19,6 +19,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/layout/rwd.scss";
+
 div{
     width: 1000px;
     height: 100px;
@@ -27,4 +29,11 @@ div{
     margin: 0 auto;
 }
 
+@include m(){
+    div{
+        width: 100%;
+        height: 130px;
+    }
+
+}
 </style>
