@@ -199,6 +199,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
 }
 .next {
   top: calc(15vw + 20px + 23px);
+  left: calc(30vw + 27px);
   width: 45px;
   height: 45px;
   padding: 3px;
@@ -211,8 +212,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
   z-index: 22;
 }
 .wrapper {
-  width: 40vw;
-  padding: 20vw;
+  width: 50vw;
   align-items: center;
   position: relative;
   margin: 20px auto;

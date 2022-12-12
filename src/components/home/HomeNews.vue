@@ -7,7 +7,7 @@
       </div>
       <div class="more">
         <p>{{ item.date }}</p>
-        <router-link class="link" to="/itinerary">了解更多</router-link>
+        <router-link class="link" to="/news">了解更多</router-link>
       </div>
       <div class="img">
         <img v-bind:src="imgsrc" alt="圖騰" />
@@ -120,6 +120,7 @@ export default {
     }
     .link {
       border-left: 4px solid map-get($color, "primary");
+      color: map-get($color, "accent");
       padding: 10px;
     }
   }

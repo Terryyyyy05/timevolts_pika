@@ -135,6 +135,10 @@ $b1-primary: (1px solid map-get($color, "primary"));
 $b2-primary: (2px solid map-get($color, "primary"));
 $b20-primary: (20px solid map-get($color, "primary"));
 
+a:visited.link {
+  color: map-get($color, "accent");
+}
+
 #mouse {
   width: 30px;
   height: 30px;
