@@ -154,6 +154,9 @@ input{
     height: 10px;
 }
 @include m(){
+    h4{
+        width: 100%;
+    }
     .wrap{
         display: flex;
         flex-direction: column-reverse;
