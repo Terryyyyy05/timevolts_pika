@@ -1,89 +1,91 @@
 <template>
   <cart :cartStatus="cartStatus" @xmark="() => (cartStatus = false)" />
-  <header>
-    <div v-if="show" class="icon-container">
-      <div>
-        <router-link to="/member"
-          ><img src="Group604.png" alt=""
-        /></router-link>
+  <div class="test" :class="{ test2: openRobot }">
+    <header>
+      <div v-if="show" class="icon-container">
+        <div>
+          <router-link to="/member"
+            ><img src="Group604.png" alt=""
+          /></router-link>
+        </div>
+        <div @click="toggleCart"><img src="Group605.png" alt="" /></div>
       </div>
-      <div @click="toggleCart"><img src="Group605.png" alt="" /></div>
-    </div>
 
-    <div class="nav">
-      <div @click="shownav" class="hbicon">
-        <img src="Group603.png" alt="寶貝球" />
-      </div>
-      <div class="vertical-nav" v-if="show">
-        <div
-          v-for="(item, index) in pageName"
-          :key="index"
-          class="link-container"
-        >
-          <div class="bar"></div>
-          <router-link
-            @mouseover="changeColor"
-            @mouseleave="changeBack"
-            :to="item.router"
-            :data-item="index"
+      <div class="nav">
+        <div @click="shownav" class="hbicon">
+          <img src="Group603.png" alt="寶貝球" />
+        </div>
+        <div class="vertical-nav" v-if="show">
+          <div
+            v-for="(item, index) in pageName"
+            :key="index"
+            class="link-container"
           >
-            <p class="glitched">{{ item.ch }}</p>
-          </router-link>
-        </div>
-        <div @click="showChatbox" class="chatbox-icon">
-          <img src="Group243.png" alt="時空管理局" />
-        </div>
-        <div v-if="openRobot" class="chatbox">
-          <div class="chatbox-container">
-            <div class="chatbox-upper">
-              <div class="upper-img-title">
-                <img src="../assets/image/chatbox.png" alt="chatbox" />
-                <div class="upper-title">
-                  <p>時空管理局</p>
-                </div>
-              </div>
-              <div class="upper-x">
-                <font-awesome-icon
-                  @click="showChatbox"
-                  icon="fa-solid fa-xmark"
-                  color="#FFE1B5"
-                  cursor="pointer"
-                  size="2x"
-                />
-              </div>
-            </div>
-            <div class="chatbox-lower">
-              <div class="lower-box">
-                <div class="lower-img">
+            <div class="bar"></div>
+            <router-link
+              @mouseover="changeColor"
+              @mouseleave="changeBack"
+              :to="item.router"
+              :data-item="index"
+            >
+              <p class="glitched">{{ item.ch }}</p>
+            </router-link>
+          </div>
+          <div @click="showChatbox" class="chatbox-icon">
+            <img src="Group243.png" alt="時空管理局" />
+          </div>
+          <div v-if="openRobot" class="chatbox full-screen">
+            <div class="chatbox-container">
+              <div class="chatbox-upper">
+                <div class="upper-img-title">
                   <img src="../assets/image/chatbox.png" alt="chatbox" />
+                  <div class="upper-title">
+                    <p>時空管理局</p>
+                  </div>
                 </div>
-                <div class="lower-content">
-                  <p>您好，這裡是時空管理局</p>
-                  <p>若有任何問題，歡迎隨時與我聯繫</p>
-                  <p>聯絡電話&#58;0800&#45;449&#45;449</p>
-                  <p>營業時間&#58;AM 1&#58;00&#126;5&#58;00</p>
-                </div>
-              </div>
-              <div class="lower-box">
-                <div class="lower-img">
-                  <img src="../assets/image/chatbox.png" alt="chatbox" />
-                </div>
-                <div class="lower-content">
-                  <p>你想要知道什麼呢&#63;</p>
-                  <p class="lower-content-rules">旅行規範</p>
-                  <p class="lower-content-rules">FAQ</p>
+                <div class="upper-x">
+                  <font-awesome-icon
+                    @click="showChatbox"
+                    icon="fa-solid fa-xmark"
+                    color="#FFE1B5"
+                    cursor="pointer"
+                    size="2x"
+                  />
                 </div>
               </div>
-            </div>
-            <div class="input-submit">
-              <input type="text" placeholder="請輸入關鍵字" />
-              <button type="submit">送出</button>
+              <div class="chatbox-lower">
+                <div class="lower-box">
+                  <div class="lower-img">
+                    <img src="../assets/image/chatbox.png" alt="chatbox" />
+                  </div>
+                  <div class="lower-content">
+                    <p>您好，這裡是時空管理局</p>
+                    <p>若有任何問題，歡迎隨時與我聯繫</p>
+                    <p>聯絡電話&#58;0800&#45;449&#45;449</p>
+                    <p>營業時間&#58;AM 1&#58;00&#126;5&#58;00</p>
+                  </div>
+                </div>
+                <div class="lower-box">
+                  <div class="lower-img">
+                    <img src="../assets/image/chatbox.png" alt="chatbox" />
+                  </div>
+                  <div class="lower-content">
+                    <p>你想要知道什麼呢&#63;</p>
+                    <p class="lower-content-rules">旅行規範</p>
+                    <p class="lower-content-rules">FAQ</p>
+                  </div>
+                </div>
+              </div>
+              <div class="input-submit">
+                <input type="text" placeholder="請輸入關鍵字" />
+                <button type="submit">送出</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 </template>
 <script>
 import Cart from "@/components/Cart.vue";
@@ -296,6 +298,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.test {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: transparent;
+  z-index: 100000;
+}
+.test2 {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 100000;
+}
 header {
   display: flex;
   position: fixed;
@@ -378,6 +394,7 @@ header {
       cursor: pointer;
     }
   }
+
   .chatbox {
     color: #fff;
     position: fixed;
@@ -388,6 +405,7 @@ header {
     transform: translate(-50%, -50%);
     border: 2.5px solid #ffe1b5;
     border-radius: 30px 30px 0 0;
+    z-index: 100000;
     img {
       width: 55px;
       height: 55px;
@@ -449,16 +467,18 @@ header {
       }
     }
     .input-submit {
-      // position: relative;
-      // top: 140px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       input {
         padding: 5px 10px;
         border-radius: 15px;
         margin: 10px;
         background-color: #545454;
         border: initial;
-        width: 60%;
+        width: 80%;
         font-size: 1rem;
+        color: #fff;
       }
       input:focus {
         color: #fff;
@@ -475,6 +495,7 @@ header {
         cursor: pointer;
         width: 20%;
         font-size: 1rem;
+        margin-right: 10px;
       }
     }
   }
@@ -588,12 +609,7 @@ header {
       }
     }
     .chatbox {
-      width: 50%;
-      .input-submit {
-        input {
-          width: 50%;
-        }
-      }
+      width: 40%;
     }
   }
 }
