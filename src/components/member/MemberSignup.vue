@@ -7,11 +7,26 @@
                <p class="p_xl">S I G N&nbsp;&nbsp;U P</p>
             </div>
             <div class="inputs">
-               <input type="text" placeholder="信箱" />
-               <input type="text" placeholder="密碼" />
-               <input type="text" placeholder="確認密碼" />
+               <input
+                  for="email"
+                  type="email"
+                  placeholder="信箱"
+                  v-model.trim="email.val"
+               />
+               <input
+                  type="text"
+                  placeholder="密碼"
+                  v-model.trim="password.val"
+               />
+               <input
+                  type="text"
+                  placeholder="確認密碼"
+                  v-model.trim="comfirmPsw.val"
+               />
             </div>
-            <button class="btn-secondary" @click="$emit('confirmSignUp')">
+            <p v-if="!signupIsValid" class="alert">請輸入完整資訊</p>
+            <p v-if="!emailIsVerified" class="alert">請輸入正確信箱格式</p>
+            <button class="btn-secondary" @click="signup">
                <span>確認註冊</span>
             </button>
          </div>
@@ -21,7 +36,54 @@
 
 <script>
 export default {
-   emits: ["confirmSignUp"],
+   emits: ["confirm-signup"],
+   data() {
+      return {
+         email: {
+            val: "",
+            isValid: true,
+         },
+         password: {
+            val: "",
+            isValid: true,
+         },
+         comfirmPsw: {
+            val: "",
+            isValid: true,
+         },
+         signupIsValid: true,
+         emailIsVerified: true,
+      };
+   },
+   methods: {
+      validateSignup() {
+         this.signupIsValid = true;
+         this.emailIsVerified = true;
+         if (this.email.val === "") {
+            this.email.isValid = false;
+            this.signupIsValid = false;
+         }
+         if (this.password.val === "") {
+            this.password.isValid = false;
+            this.signupIsValid = false;
+         }
+         if (this.comfirmPsw.val === "") {
+            this.comfirmPsw.isValid = false;
+            this.signupIsValid = false;
+         }
+         if (!/^[^@]+@\w+(\.\w+)+\w$/.test(this.email.val)) {
+            this.emailIsVerified = false;
+         }
+      },
+      signup() {
+         this.validateSignup();
+         if (!this.signupIsValid) {
+            return;
+         }
+
+         this.$emit("confirm-signup");
+      },
+   },
 };
 </script>
 
@@ -104,6 +166,10 @@ section {
    align-items: center;
    justify-content: center;
    gap: 24px;
+}
+
+.alert {
+   color: red;
 }
 
 button {

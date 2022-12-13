@@ -22,10 +22,10 @@
             </div>
             <p v-if="!loginIsValid" class="alert">請輸入完整資訊</p>
             <p class="forgot-psw">忘記密碼</p>
-            <button class="btn-secondary" @click="logIn">
+            <button class="btn-secondary" @click="login">
                <span>登入</span>
             </button>
-            <button class="btn-primary" @click="$emit('signUp')">
+            <button class="btn-primary" @click="$emit('signup')">
                <span>註冊會員</span>
             </button>
          </div>
@@ -35,7 +35,7 @@
 
 <script>
 export default {
-   emits: ["signUp"],
+   emits: ["signup"],
    data() {
       return {
          email: {
@@ -64,7 +64,7 @@ export default {
             this.loginIsValid = false;
          }
       },
-      logIn() {
+      login() {
          this.validateLogin();
          if (!this.loginIsValid) {
             return;

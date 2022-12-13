@@ -199,10 +199,11 @@ export default {
    display: flex;
    justify-content: center;
    align-items: center;
+   height: 600px;
 
    .big-image {
       width: 100%;
-      height: 80%;
+      height: 100%;
    }
 }
 
@@ -219,7 +220,7 @@ h3 {
    display: flex;
    gap: 8px;
    margin: 24px auto 0;
-   padding: 24px 64px;
+   padding: 24px 48px;
    border-top: 2px solid map-get($color, "primary");
 }
 
@@ -246,6 +247,10 @@ h3 {
 
    .small-images {
       display: none;
+   }
+
+   .big-image-container {
+      height: 300px;
    }
 
    .big-image-container.big-image {

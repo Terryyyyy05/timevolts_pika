@@ -1,5 +1,4 @@
 <template>
-   <h2>{{}}</h2>
    <div class="information p_md">
       <calendar :selected-date="departDate"></calendar>
       <div>

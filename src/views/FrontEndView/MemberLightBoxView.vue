@@ -5,8 +5,8 @@
       <keep-alive>
          <component
             :is="selectedComponent"
-            @signUp="signUp"
-            @confirmSignUp="confirmSignUp"
+            @signup="signup"
+            @confirm-signup="confirmSignup"
          ></component>
       </keep-alive>
    </div>
@@ -28,10 +28,10 @@ export default {
       };
    },
    methods: {
-      signUp() {
+      signup() {
          this.selectedComponent = "member-signup";
       },
-      confirmSignUp() {
+      confirmSignup() {
          this.selectedComponent = "member-login";
       },
    },
