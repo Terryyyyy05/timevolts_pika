@@ -287,7 +287,6 @@ img {
 }
 
 .textblock {
-  overflow-y: scroll;
   color: #fff;
   width: 50%;
   padding: 1%;
@@ -317,6 +316,7 @@ span {
 .description {
   margin: 2% 0;
   height: 250px;
+  overflow-y: auto;
   padding: 5px;
   font-size: 16px;
 }
