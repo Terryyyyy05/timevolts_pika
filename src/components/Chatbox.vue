@@ -1,5 +1,5 @@
 <template>
-  <div class="chatbox full-screen">
+  <div class="chatbox">
     <div class="chatbox-container">
       <div class="chatbox-upper">
         <div class="upper-img-title">
@@ -23,18 +23,28 @@
           <div class="lower-img">
             <img src="../assets/image/chatbox.png" alt="chatbox" />
           </div>
-          <div class="lower-content">
-            <p>您好，這裡是時空管理局</p>
-            <p>若有任何問題，歡迎隨時與我聯繫</p>
-            <p>聯絡電話&#58;0800&#45;449&#45;449</p>
-            <p>營業時間&#58;AM 1&#58;00&#126;5&#58;00</p>
+          <div class="lower-content-one">
+            <p>
+              您好，這裡是時空管理局<br />
+              若有任何問題&#44;歡迎隨時與我聯繫<br />
+              聯絡電話&#58;0800&#45;449&#45;449<br />
+              營業時間&#58;AM 1&#58;00&#126;5&#58;00<br />
+            </p>
           </div>
         </div>
         <div class="lower-box">
           <div class="lower-img">
             <img src="../assets/image/chatbox.png" alt="chatbox" />
           </div>
-          <div class="lower-content">
+          <div class="lower-content-two">
+            <p>我想詢問如何搭乘時光機</p>
+          </div>
+        </div>
+        <div class="lower-box">
+          <div class="lower-img">
+            <img src="../assets/image/chatbox.png" alt="chatbox" />
+          </div>
+          <div class="lower-content-three">
             <p>你想要知道什麼呢&#63;</p>
             <p class="lower-content-rules">旅行規範</p>
             <p class="lower-content-rules">FAQ</p>
@@ -52,7 +62,7 @@
 <script>
 export default {
   name: "Chatbox",
-  emits: ['closeThisBox'],
+  emits: ["closeThisBox"],
   data() {
     return {
       openRobot: false,
@@ -102,7 +112,6 @@ export default {
       if (text != "") {
         var obj = {
           type: "rightinfo",
-          time: this.getTodayTime(),
           content: text,
         };
         this.info.push(obj);
@@ -222,11 +231,11 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 60%;
+  width: 45%;
   transform: translate(-50%, -50%);
   border: 2.5px solid #ffe1b5;
   border-radius: 30px 30px 0 0;
-  z-index: 100000;
+  z-index: 100;
   img {
     width: 55px;
     height: 55px;
@@ -253,7 +262,7 @@ export default {
       }
       p {
         color: #fab042;
-        font-size: 2rem;
+        font-size: 1.8rem;
         margin-left: 10px;
         white-space: nowrap;
       }
@@ -269,9 +278,33 @@ export default {
     }
     .lower-box {
       display: flex;
-      margin: 40px 0;
+      align-items: center;
+      margin: 40px 10px 40px 0;
     }
-    .lower-content {
+    .lower-box:nth-child(2) {
+      justify-content: flex-end;
+      margin-right: 0;
+      margin-left: 10px;
+      .lower-img {
+        order: 2;
+      }
+    }
+    .lower-content-one {
+      background-color: #545454;
+      border-radius: 10px;
+      p {
+        margin: 10px;
+        line-height: 25px;
+      }
+    }
+    .lower-content-two {
+      background-color: #545454;
+      border-radius: 10px;
+      p {
+        margin: 10px;
+      }
+    }
+    .lower-content-three {
       background-color: #545454;
       border-radius: 10px;
       p {
@@ -297,7 +330,7 @@ export default {
       margin: 10px;
       background-color: #545454;
       border: initial;
-      width: 80%;
+      width: 60%;
       font-size: 1rem;
       color: #fff;
     }
@@ -314,14 +347,56 @@ export default {
       padding: 5px 10px;
       border: initial;
       cursor: pointer;
-      width: 20%;
+      width: 15%;
       font-size: 1rem;
       margin-right: 10px;
     }
   }
-  @media screen and (min-width: 768px) {
-    .chatbox {
-      width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .chatbox {
+    .chatbox-container {
+      width: 70%;
+      .chatbox-upper {
+        .upper-img-title {
+          width: 60px;
+          height: 60px;
+          img {
+            width: 60px;
+            height: 60px;
+          }
+          p {
+            font-size: 1.4rem;
+          }
+        }
+      }
+      .chatbox-lower {
+        .lower-img {
+          width: 40px;
+          height: 40px;
+          margin: 10px;
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+        .lower-content-one,
+        .lower-content-two,
+        .lower-content-three {
+          font-size: 0.9rem;
+        }
+      }
+      .input-submit {
+        input {
+          width: 70%;
+          font-size: 0.9rem;
+        }
+        button {
+          white-space: nowrap;
+          width: 20%;
+          font-size: 0.9rem;
+        }
+      }
     }
   }
 }

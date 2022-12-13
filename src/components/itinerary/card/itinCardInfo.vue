@@ -297,7 +297,8 @@ h3 {
   color: #fff;
   text-align: center;
   width: 100%;
-  height: 100px;
+  font-size: 32px;
+  height: 70px;
 }
 span {
   display: inline-block;
@@ -314,20 +315,22 @@ span {
 }
 .description {
   margin: 2% 0;
+  height: 250px;
+  overflow-y: auto;
   padding: 5px;
   font-size: 16px;
 }
-.outterwrap {
-  position: relative;
-}
+// .outterwrap {
+//   position: relative;
+// }
 .morewrap {
   width: 60px;
   height: 30px;
   display: flex;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: auto;
+  //   position: absolute;
+  //   bottom: 0;
+  //   right: 0;
+  margin-left: auto;
 }
 .morespan {
   text-align: center;
@@ -336,8 +339,8 @@ span {
 }
 @include m() {
   h3 {
-    font-size: 32px;
-    line-height: 80px;
+    font-size: 28px;
+    line-height: 70px;
   }
 }
 </style>

@@ -1,10 +1,8 @@
 <template>
   <all-header />
+  <innerpageHeader></innerpageHeader>
   <div class="container">
-    <the-heading
-      heading="時光行程-期間限定"
-      subheading="Itinerary"
-    ></the-heading>
+    <the-heading heading="期間行程" subheading="Period"></the-heading>
   </div>
 
   <section class="section">
@@ -155,8 +153,11 @@ export default {
   margin: 0 auto;
 }
 .watchmorewrap {
+  height: 580px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow: hidden;
 }
 .infoWrap {
   width: fit-content;

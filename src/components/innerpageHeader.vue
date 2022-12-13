@@ -1,18 +1,27 @@
 <template>
-    <div class="innerpageHeader" v-show="scrollshow">
+    <div class="innerpageHeader">
         <div class="title"><router-link to="/Home">TIMEVOLTS</router-link></div>
         <div class="icon"><router-link to="/Home"><img src="../../public/Group.png" alt="LOGO"></router-link></div>
     </div>
 </template>
 
 <script>
+import $ from 'jquery';
 export default {
     name: "innerpageHeader",
     data(){
         return{
-            scrollshow: true
         }
-    }
+    },
+    // mounted(){
+    //     const header = document.querySelector('.innerpageHeader');
+    //     window.addEventListener("scroll", ()=>{
+    //         if(window.scrollY > 10){
+    //             $(header).slideDown(2000);
+    //         } 
+    //         lastScrollY = window.scrollY;
+    //         })
+    //     }
 }
 </script>
 <style lang="scss" scoped>

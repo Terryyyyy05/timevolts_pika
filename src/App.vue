@@ -9,7 +9,6 @@
     <router-link to="/product">購物商城Test</router-link> |
     <router-link to="/ProductCheckOut">結帳</router-link> |
     <router-link to="/about">關於我們</router-link> |
-    <router-link to="/member">會員中心</router-link> |
     <router-link to="/itineraryPeriodView">時光行程-期間限定(預覽)</router-link>
     |
     <router-link to="/itiItineraryClassicView">時光行程-經典(預覽)</router-link>
