@@ -107,8 +107,7 @@ const routes = [
    {
       path: "/customizetk",
       name: "customizetk",
-      component: () =>
-         import("../components/ItineraryBooking/Customizetk.vue"),
+      component: () => import("../components/ItineraryBooking/Customizetk.vue"),
    },
    {
       path: "/product-order",
@@ -148,6 +147,11 @@ const routes = [
       component: () => import("../views/BackEndView/manageloginView.vue"),
    },
    {
+      path: "/memberLightBox",
+      name: "memberLightBox",
+      component: () => import("../views/FrontEndView/MemberLightBoxView.vue"),
+   },
+   {
       path: "/memberCenter",
       name: "memberCenter",
       component: () => import("../views/FrontEndView/memberCenterView.vue"),
@@ -156,36 +160,45 @@ const routes = [
          {
             path: "memberInfo",
             name: "memberInfo",
-            component: () => import("../views/FrontEndView/memberCenter/memberInfo.vue")
+            component: () =>
+               import("../views/FrontEndView/memberCenter/memberInfo.vue"),
          },
          {
             path: "itineraryOrder",
             name: "itineraryOrder",
-            component: () => import("../views/FrontEndView/memberCenter/itineraryOrder.vue")
+            component: () =>
+               import("../views/FrontEndView/memberCenter/itineraryOrder.vue"),
          },
          {
             path: "productOrder",
             name: "productOrder",
-            component: () => import("../views/FrontEndView/memberCenter/productOrder.vue")
+            component: () =>
+               import("../views/FrontEndView/memberCenter/productOrder.vue"),
          },
          {
             path: "memberCoupon",
             name: "memberCoupon",
-            component: () => import("../views/FrontEndView/memberCenter/memberCoupon.vue")
+            component: () =>
+               import("../views/FrontEndView/memberCenter/memberCoupon.vue"),
          },
          {
             path: "itineraryCollection",
             name: "itineraryCollection",
-            component: () => import("../views/FrontEndView/memberCenter/itineraryCollection.vue")
+            component: () =>
+               import(
+                  "../views/FrontEndView/memberCenter/itineraryCollection.vue"
+               ),
          },
          {
             path: "productCollection",
             name: "productCollection",
-            component: () => import("../views/FrontEndView/memberCenter/productCollection.vue")
-         }
-      ]
-   }
-   
+            component: () =>
+               import(
+                  "../views/FrontEndView/memberCenter/productCollection.vue"
+               ),
+         },
+      ],
+   },
 ];
 
 const router = createRouter({
