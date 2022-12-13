@@ -80,36 +80,36 @@ export default {
             ) {
                return true;
             }
-            if (this.activeFilters.asia && history.tagDanderLevel === "亞洲") {
+            if (this.activeFilters.asia && history.tagRegion === "亞洲") {
                return true;
             }
             if (
                this.activeFilters.europe &&
-               history.tagDanderLevel === "歐洲"
+               history.tagRegion === "歐洲"
             ) {
                return true;
             }
             if (
                this.activeFilters.northAmerica &&
-               history.tagDanderLevel === "北美洲"
+               history.tagRegion === "北美洲"
             ) {
                return true;
             }
             if (
                this.activeFilters.southAmerica &&
-               history.tagDanderLevel === "南美洲"
+               history.tagRegion === "南美洲"
             ) {
                return true;
             }
             if (
                this.activeFilters.africa &&
-               history.tagDanderLevel === "非洲"
+               history.tagRegion === "非洲"
             ) {
                return true;
             }
             if (
                this.activeFilters.oceania &&
-               history.tagDanderLevel === "大洋洲"
+               history.tagRegion === "大洋洲"
             ) {
                return true;
             }
