@@ -42,6 +42,7 @@
    <member-login v-if="loginboxIsActive"></member-login>
 </template>
 <script>
+import $ from 'jquery';
 import Cart from "@/components/Cart.vue";
 import Chatbox from "./Chatbox.vue";
 import MemberLogin from "./member/MemberLogin.vue";
