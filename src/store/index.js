@@ -15,11 +15,28 @@ export default createStore({
     },
   },
   mutations: {
+    addAmount(state, title) {
+      let item = state.cart.find((i) => i.title === title);
+      if (item) {
+        item.amount = parseInt(item.amount) + 1;
+        item.price = (parseInt(item.price) / (item.amount - 1)) * item.amount;
+      }
+      storage.set("cart", state.cart);
+    },
+    minusAmount(state, title) {
+      let item = state.cart.find((i) => i.title === title);
+      if (item && parseInt(item.amount) > 1) {
+        item.amount = parseInt(item.amount) - 1;
+        item.price = (parseInt(item.price) / (item.amount + 1)) * item.amount;
+      }
+      storage.set("cart", state.cart);
+    },
     addToCart(state, newData) {
       let item = state.cart.find((i) => i.title === newData.title);
 
       if (item) {
         item.amount = parseInt(item.amount) + parseInt(newData.amount);
+        item.price = parseInt(item.price) + parseInt(newData.price);
       } else {
         state.cart.push({ ...newData });
       }

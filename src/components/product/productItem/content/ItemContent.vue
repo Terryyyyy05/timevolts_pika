@@ -41,11 +41,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { cardContext } from "../../js/data";
-
-// test
-import { storage } from "@/components/product/js/localStorage";
 import { useStore } from "vuex";
 
 export default {
@@ -64,35 +61,6 @@ export default {
       totalNumber.value += 1;
     };
 
-    // test
-    // const title = ref(null);
-    // const price = ref(null);
-    // const amount = ref(null);
-    // const img = ref(null);
-
-    const addItem = () => {
-      // let newItemData = {
-      //   title: title.value.innerText,
-      //   price: price.value.innerText,
-      //   amount: amount.value.innerText,
-      //   imgSrc: img.value.src,
-      // };
-
-      let totalItemData = [];
-
-      if (storage.get("memId")) {
-        totalItemData = storage.get("memId");
-      }
-
-      totalItemData.push(newItemData);
-      storage.set("memId", totalItemData);
-
-      console.log(totalItemData);
-      // console.log(storage.get("memId"));
-
-      store.commit("addItem", totalItemData);
-    };
-
     const title = ref(null);
     const price = ref(null);
     const amount = ref(null);
@@ -108,16 +76,11 @@ export default {
       store.commit("addToCart", newProduct);
     };
 
-    // onMounted(() => {
-
-    // });
-
     return {
       cardContext,
       totalNumber,
       minusNum,
       addNum,
-      addItem,
       addToCart,
       // DOM
       title,
