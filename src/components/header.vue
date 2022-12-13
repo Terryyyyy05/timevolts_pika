@@ -2,9 +2,9 @@
    <cart :cartStatus="cartStatus" @xmark="() => (cartStatus = false)" />
    <header>
       <div v-if="show" class="icon-container">
-         <div class="member-icon" @click="toggleLoginBox">
-            <img src="../../public/Group604.png" alt="" />
-         </div>
+         <router-link to="/memberLightBox">
+            <div><img src="../../public/Group604.png" alt="" /></div>
+         </router-link>
          <div @click="toggleCart">
             <img src="../../public/Group605.png" alt="" />
          </div>
@@ -45,14 +45,12 @@
 import $ from 'jquery';
 import Cart from "@/components/Cart.vue";
 import Chatbox from "./Chatbox.vue";
-import MemberLogin from "./member/MemberLogin.vue";
 
 export default {
    name: "all-header",
    components: {
       Cart,
       Chatbox,
-      MemberLogin,
    },
    data() {
       return {
@@ -86,7 +84,6 @@ export default {
          cartStatus: true,
          show: false,
          openRobot: false,
-         loginboxIsActive: false,
       };
    },
    methods: {
@@ -122,9 +119,6 @@ export default {
       },
       closeTheBox() {
          this.openRobot = false;
-      },
-      toggleLoginBox() {
-         this.loginboxIsActive = !this.loginboxIsActive;
       },
    },
 };
@@ -357,9 +351,5 @@ header {
    100% {
       transform: skew(0deg);
    }
-}
-
-.member-icon {
-   cursor: pointer;
 }
 </style>

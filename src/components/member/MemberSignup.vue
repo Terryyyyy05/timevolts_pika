@@ -4,18 +4,15 @@
          <div class="flex-column">
             <div class="upper"></div>
             <div class="text-container">
-               <p class="p_xl">L O G&nbsp;&nbsp;I N</p>
+               <p class="p_xl">S I G N&nbsp;&nbsp;U P</p>
             </div>
             <div class="inputs">
                <input type="text" placeholder="信箱" />
                <input type="text" placeholder="密碼" />
-               <p>忘記密碼</p>
+               <input type="text" placeholder="確認密碼" />
             </div>
-            <button class="btn-secondary" @click="$router.go(-1)">
-               <span>登入</span>
-            </button>
-            <button class="btn-primary" @click="$emit('signUp')">
-               <span>註冊會員</span>
+            <button class="btn-secondary" @click="$emit('confirmSignUp')">
+               <span>確認註冊</span>
             </button>
          </div>
       </div>
@@ -24,7 +21,7 @@
 
 <script>
 export default {
-   emits: ["signUp"],
+   emits: ["confirmSignUp"],
 };
 </script>
 
@@ -92,16 +89,12 @@ section {
       }
       &:nth-child(2) {
          border-top: 0;
+      }
+      &:nth-child(3) {
+         border-top: 0;
          border-bottom-left-radius: 5px;
          border-bottom-right-radius: 5px;
       }
-   }
-   p {
-      text-align: end;
-      width: 90%;
-      margin-top: 16px;
-      cursor: pointer;
-      color: #eee;
    }
 }
 
@@ -117,7 +110,5 @@ button {
    border-radius: 10px;
    width: 40%;
    height: 48px;
-   margin-top: 24px;
-   margin-bottom: -24px;
 }
 </style>
