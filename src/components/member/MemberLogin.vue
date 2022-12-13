@@ -7,11 +7,22 @@
                <p class="p_xl">L O G&nbsp;&nbsp;I N</p>
             </div>
             <div class="inputs">
-               <input type="text" placeholder="信箱" />
-               <input type="text" placeholder="密碼" />
+               <input
+                  type="email"
+                  placeholder="信箱"
+                  v-model.trim="email.val"
+                  @blur="clearValidity('email')"
+               />
+               <input
+                  type="text"
+                  placeholder="密碼"
+                  v-model.trim="password.val"
+                  @blur="clearValidity('password')"
+               />
+               <p v-if="!loginIsValid">請輸入完整資訊</p>
                <p>忘記密碼</p>
             </div>
-            <button class="btn-secondary" @click="$router.go(-1)">
+            <button class="btn-secondary" @click="logIn">
                <span>登入</span>
             </button>
             <button class="btn-primary" @click="$emit('signUp')">
@@ -25,6 +36,42 @@
 <script>
 export default {
    emits: ["signUp"],
+   data() {
+      return {
+         email: {
+            val: "",
+            isValid: true,
+         },
+         password: {
+            val: "",
+            isValid: true,
+         },
+         loginIsValid: true,
+      };
+   },
+   methods: {
+      clearValidity(input) {
+         this[input].isValid = true;
+      },
+      validateLogin() {
+         this.loginIsValid = true;
+         if (this.email.val === "") {
+            this.email.isValid = false;
+            this.loginIsValid = false;
+         }
+         if (this.password.val === "") {
+            this.password.isValid = false;
+            this.loginIsValid = false;
+         }
+      },
+      logIn() {
+         this.validateLogin();
+         if (!this.loginIsValid) {
+            return;
+         }
+         this.$router.go(-1);
+      },
+   },
 };
 </script>
 

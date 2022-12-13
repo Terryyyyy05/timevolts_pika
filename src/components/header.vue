@@ -5,7 +5,7 @@
          <router-link to="/memberLightBox">
             <div><img src="../../public/Group604.png" alt="" /></div>
          </router-link>
-         <div @click="toggleCart">
+         <div @click="toggleCart" style="cursor: pointer">
             <img src="../../public/Group605.png" alt="" />
          </div>
       </div>
@@ -42,7 +42,7 @@
    <member-login v-if="loginboxIsActive"></member-login>
 </template>
 <script>
-import $ from 'jquery';
+import $ from "jquery";
 import Cart from "@/components/Cart.vue";
 import Chatbox from "./Chatbox.vue";
 
