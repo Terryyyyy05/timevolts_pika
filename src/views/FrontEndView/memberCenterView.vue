@@ -7,29 +7,23 @@
 
   <div class="container main-content">
     <nav>
-      <router-link to="/memberCenter/memberInfo" :title="title">{{
-        title[0]
-      }}</router-link>
-      <router-link to="/memberCenter/itineraryOrder" :title="title">{{
+      <router-link to="/memberCenter/memberInfo">{{ title[0] }}</router-link>
+      <router-link to="/memberCenter/itineraryOrder">{{
         title[1]
       }}</router-link>
-      <router-link to="/memberCenter/productOrder" :title="title">{{
-        title[2]
-      }}</router-link>
-      <router-link to="/memberCenter/memberCoupon" :title="title">{{
-        title[3]
-      }}</router-link>
-      <router-link to="/memberCenter/itineraryCollection" :title="title">{{
+      <router-link to="/memberCenter/productOrder">{{ title[2] }}</router-link>
+      <router-link to="/memberCenter/memberCoupon">{{ title[3] }}</router-link>
+      <router-link to="/memberCenter/itineraryCollection">{{
         title[4]
       }}</router-link>
-      <router-link to="/memberCenter/productCollection" :title="title">{{
+      <router-link to="/memberCenter/productCollection">{{
         title[5]
       }}</router-link>
     </nav>
     <div class="sub-content">
-      <div class="content-deco">
+      <!-- <div class="content-deco">
         <div>{{ title }}</div>
-      </div>
+      </div> -->
       <router-view />
     </div>
   </div>
