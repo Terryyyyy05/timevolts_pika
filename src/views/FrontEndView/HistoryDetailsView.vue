@@ -1,5 +1,6 @@
 <template>
-   <all-header></all-header>
+   <all-header />
+   <innerpageHeader></innerpageHeader>
    <div class="container">
       <the-heading heading="歷史故事" subheading="history"></the-heading>
    </div>
@@ -61,7 +62,12 @@
          >
       </div>
    </div>
-   <all-footer></all-footer>
+   <div class="container">
+      <button class="btn-lightbox btn-last-page" @click="backToLastPage">
+         回上一頁
+      </button>
+   </div>
+   <all-footer />
 </template>
 
 <script>
@@ -136,6 +142,9 @@ export default {
          this.count = index;
          this.activeParagraph = this.paragraph.find((p) => p.id === index);
          console.log(this.activeParagraph);
+      },
+      backToLastPage() {
+         this.$router.go(-1);
       },
    },
    created() {
@@ -226,6 +235,10 @@ h3 {
 
 .btn-secondary {
    margin: 24px auto 0;
+}
+
+.btn-last-page {
+   border-radius: 5px;
 }
 
 @include m() {
