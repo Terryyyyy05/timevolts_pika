@@ -1,10 +1,8 @@
 <template>
   <all-header />
+  <innerpageHeader></innerpageHeader>
   <div class="container">
-    <the-heading
-      heading="時光行程-經典行程"
-      subheading="Itinerary-Classic"
-    ></the-heading>
+    <the-heading heading="經典行程" subheading="Classic"></the-heading>
   </div>
 
   <section class="section">
