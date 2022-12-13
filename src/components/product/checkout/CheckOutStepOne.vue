@@ -6,7 +6,12 @@
       <span>金額</span>
     </div>
     <ul class="content">
-      <li class="item" v-for="item in items" :key="item.title">
+      <li
+        class="item"
+        v-for="item in items"
+        :key="item.title"
+        :data-item="item.title"
+      >
         <div class="item-info">
           <div class="pic">
             <img :src="item.imgSrc" alt="" />
@@ -14,17 +19,13 @@
           <div class="item-name">{{ item.title }}</div>
         </div>
         <div class="item-amount">
-          <font-awesome-icon
-            class="minus-plus"
-            icon="fa-solid fa-minus"
-            @click="minusNum"
-          />
+          <div @click="minusNum">
+            <font-awesome-icon class="minus-plus" icon="fa-solid fa-minus" />
+          </div>
           <span>{{ item.amount }}</span>
-          <font-awesome-icon
-            class="minus-plus"
-            icon="fa-solid fa-plus"
-            @click="addNum"
-          />
+          <div @click="addNum">
+            <font-awesome-icon class="minus-plus" icon="fa-solid fa-plus" />
+          </div>
         </div>
         <div class="price-and-dele">
           <div class="price">
@@ -90,19 +91,33 @@ export default {
   setup() {
     const store = useStore();
 
+    // computed
     const items = computed(() => {
       return store.getters.cartItems;
     });
 
+    // methods
     const removeFromCart = (e) => {
       console.log(e.target.dataset.title);
       console.log(e.target);
       store.commit("removeFromCart", e.target.dataset.title);
     };
 
+    const minusNum = (e) => {
+      const clickTitle = e.target.parentNode.parentNode.dataset.item;
+      store.commit("minusAmount", clickTitle);
+    };
+
+    const addNum = (e) => {
+      const clickTitle = e.target.parentNode.parentNode.dataset.item;
+      store.commit("addAmount", clickTitle);
+    };
+
     return {
       items,
       removeFromCart,
+      minusNum,
+      addNum,
     };
   },
 };
@@ -119,6 +134,10 @@ $price-width: 35%;
 
 * {
   box-sizing: border-box;
+}
+
+.minus-plus {
+  pointer-events: none;
 }
 
 .wrap {
@@ -167,6 +186,10 @@ $price-width: 35%;
       display: flex;
       align-items: center;
       column-gap: 5%;
+
+      > div {
+        cursor: pointer;
+      }
     }
     .price-and-dele {
       width: $price-width;

@@ -8,26 +8,22 @@
     <h3>購物車</h3>
     <ul class="cart-content">
       <li v-for="item in items" :key="item.title">
-        <div class="cart-item">
+        <div class="cart-item" :data-item="item.title">
           <div class="pic">
             <img :src="item.imgSrc" alt="" />
           </div>
           <div class="item-content">
             <h4>{{ item.title }}</h4>
-            <span>{{ item.price }}</span>
+            <span>$ {{ item.price }}</span>
           </div>
           <div class="item-amount">
-            <font-awesome-icon
-              class="minus-plus"
-              icon="fa-solid fa-minus"
-              @click="minusNum"
-            />
+            <div @click="minusNum">
+              <font-awesome-icon class="minus-plus" icon="fa-solid fa-minus" />
+            </div>
             <span>{{ item.amount }}</span>
-            <font-awesome-icon
-              class="minus-plus"
-              icon="fa-solid fa-plus"
-              @click="addNum"
-            />
+            <div @click="addNum">
+              <font-awesome-icon class="minus-plus" icon="fa-solid fa-plus" />
+            </div>
           </div>
           <div
             class="item-dele"
@@ -63,29 +59,37 @@ export default {
   emits: ["xmark"],
   setup(props, { emit }) {
     emit("xmark");
-
-    // cart
-
     const store = useStore();
 
+    // computed
     const items = computed(() => {
       return store.getters.cartItems;
     });
 
+    // methods
     const removeFromCart = (e) => {
       console.log(e.target.dataset.title);
       store.commit("removeFromCart", e.target.dataset.title);
     };
 
-    // test imgSrc
-    // console.log(items.value[0].imgSrc);
-    // console.log(items);
+    const minusNum = (e) => {
+      const clickTitle = e.target.parentNode.parentNode.dataset.item;
+      store.commit("minusAmount", clickTitle);
+    };
+
+    const addNum = (e) => {
+      const clickTitle = e.target.parentNode.parentNode.dataset.item;
+      store.commit("addAmount", clickTitle);
+    };
 
     return {
       items,
       removeFromCart,
       // DOM
       // dele,
+      // methods
+      addNum,
+      minusNum,
     };
   },
 };
@@ -109,6 +113,10 @@ export default {
   margin: 0 auto;
   display: block;
   width: fit-content;
+}
+
+.minus-plus {
+  pointer-events: none;
 }
 
 .cart {
@@ -154,7 +162,6 @@ export default {
 
     .cart-item {
       display: flex;
-      // justify-content: space-around;
       font-size: 20px;
       color: aliceblue;
 
@@ -183,6 +190,10 @@ export default {
         align-items: center;
         justify-content: center;
         column-gap: 5%;
+
+        > div {
+          cursor: pointer;
+        }
       }
       .item-dele {
         width: 20%;
