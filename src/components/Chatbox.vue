@@ -1,5 +1,5 @@
 <template>
-  <div class="chatbox full-screen">
+  <div class="chatbox">
     <div class="chatbox-container">
       <div class="chatbox-upper">
         <div class="upper-img-title">
@@ -23,18 +23,20 @@
           <div class="lower-img">
             <img src="../assets/image/chatbox.png" alt="chatbox" />
           </div>
-          <div class="lower-content">
-            <p>您好，這裡是時空管理局</p>
-            <p>若有任何問題，歡迎隨時與我聯繫</p>
-            <p>聯絡電話&#58;0800&#45;449&#45;449</p>
-            <p>營業時間&#58;AM 1&#58;00&#126;5&#58;00</p>
+          <div class="lower-content-one">
+            <p>
+              您好，這裡是時空管理局<br />
+              若有任何問題&#44;歡迎隨時與我聯繫<br />
+              聯絡電話&#58;0800&#45;449&#45;449<br />
+              營業時間&#58;AM 1&#58;00&#126;5&#58;00<br />
+            </p>
           </div>
         </div>
         <div class="lower-box">
           <div class="lower-img">
             <img src="../assets/image/chatbox.png" alt="chatbox" />
           </div>
-          <div class="lower-content">
+          <div class="lower-content-two">
             <p>你想要知道什麼呢&#63;</p>
             <p class="lower-content-rules">旅行規範</p>
             <p class="lower-content-rules">FAQ</p>
@@ -52,7 +54,7 @@
 <script>
 export default {
   name: "Chatbox",
-  emits: ['closeThisBox'],
+  emits: ["closeThisBox"],
   data() {
     return {
       openRobot: false,
@@ -222,11 +224,11 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 60%;
+  width: 50%;
   transform: translate(-50%, -50%);
   border: 2.5px solid #ffe1b5;
   border-radius: 30px 30px 0 0;
-  z-index: 100000;
+  z-index: 100;
   img {
     width: 55px;
     height: 55px;
@@ -271,7 +273,15 @@ export default {
       display: flex;
       margin: 40px 0;
     }
-    .lower-content {
+    .lower-content-one {
+      background-color: #545454;
+      border-radius: 10px;
+      p {
+        margin: 10px;
+        line-height: 25px;
+      }
+    }
+    .lower-content-two {
       background-color: #545454;
       border-radius: 10px;
       p {
@@ -297,7 +307,7 @@ export default {
       margin: 10px;
       background-color: #545454;
       border: initial;
-      width: 80%;
+      width: 50%;
       font-size: 1rem;
       color: #fff;
     }
@@ -319,9 +329,43 @@ export default {
       margin-right: 10px;
     }
   }
-  @media screen and (min-width: 768px) {
-    .chatbox {
-      width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .chatbox {
+    .chatbox-container {
+      width: 70%;
+      .chatbox-upper {
+        .upper-img-title {
+          width: 60px;
+          height: 60px;
+          img {
+            width: 60px;
+            height: 60px;
+          }
+          p {
+            font-size: 1.4rem;
+          }
+        }
+      }
+      .chatbox-lower {
+        .lower-img {
+          width: 40px;
+          height: 40px;
+          margin: 5px;
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+      .input-submit {
+        input {
+          width: 70%;
+        }
+        button {
+          white-space: nowrap;
+        }
+      }
     }
   }
 }
