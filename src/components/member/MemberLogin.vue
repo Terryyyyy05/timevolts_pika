@@ -19,9 +19,9 @@
                   v-model.trim="password.val"
                   @blur="clearValidity('password')"
                />
-               <p v-if="!loginIsValid">請輸入完整資訊</p>
-               <p>忘記密碼</p>
             </div>
+            <p v-if="!loginIsValid" class="alert">請輸入完整資訊</p>
+            <p class="forgot-psw">忘記密碼</p>
             <button class="btn-secondary" @click="logIn">
                <span>登入</span>
             </button>
@@ -143,13 +143,18 @@ section {
          border-bottom-right-radius: 5px;
       }
    }
-   p {
-      text-align: end;
-      width: 90%;
-      margin-top: 16px;
-      cursor: pointer;
-      color: #eee;
-   }
+}
+
+.alert {
+   color: red;
+}
+
+.forgot-psw {
+   width: fit-content;
+   cursor: pointer;
+   color: #eee;
+   align-self: flex-end;
+   margin-right: 15%;
 }
 
 .flex-column {
