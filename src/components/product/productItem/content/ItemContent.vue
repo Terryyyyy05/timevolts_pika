@@ -41,11 +41,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { cardContext } from "../../js/data";
-
-// test
-import { storage } from "@/components/product/js/localStorage";
 import { useStore } from "vuex";
 
 export default {
@@ -64,35 +61,6 @@ export default {
       totalNumber.value += 1;
     };
 
-    // test
-    // const title = ref(null);
-    // const price = ref(null);
-    // const amount = ref(null);
-    // const img = ref(null);
-
-    const addItem = () => {
-      // let newItemData = {
-      //   title: title.value.innerText,
-      //   price: price.value.innerText,
-      //   amount: amount.value.innerText,
-      //   imgSrc: img.value.src,
-      // };
-
-      let totalItemData = [];
-
-      if (storage.get("memId")) {
-        totalItemData = storage.get("memId");
-      }
-
-      totalItemData.push(newItemData);
-      storage.set("memId", totalItemData);
-
-      console.log(totalItemData);
-      // console.log(storage.get("memId"));
-
-      store.commit("addItem", totalItemData);
-    };
-
     const title = ref(null);
     const price = ref(null);
     const amount = ref(null);
@@ -108,16 +76,11 @@ export default {
       store.commit("addToCart", newProduct);
     };
 
-    // onMounted(() => {
-
-    // });
-
     return {
       cardContext,
       totalNumber,
       minusNum,
       addNum,
-      addItem,
       addToCart,
       // DOM
       title,
@@ -131,6 +94,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 .pic > img {
   width: 100%;
   vertical-align: top;
@@ -190,6 +154,47 @@ export default {
       display: flex;
       column-gap: 50px;
       // margin-bottom: 50px;
+      align-items: center;
+    }
+  }
+}
+
+@include m() {
+  .flex {
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: center;
+    .pic {
+      width: 80%;
+    }
+    .content {
+      width: 90%;
+
+      > :nth-child(1) {
+        font-size: 26px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+      }
+
+      > :nth-child(2) {
+        margin-bottom: 50px;
+      }
+
+      > :nth-child(3) {
+        margin-bottom: 30px;
+
+        > span {
+          font-size: 20px;
+        }
+      }
+
+      > :nth-child(4) {
+        align-items: flex-end;
+      }
+
+      > :nth-child(5) {
+        margin-bottom: 50px;
+      }
     }
   }
 }

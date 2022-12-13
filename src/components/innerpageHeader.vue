@@ -1,13 +1,18 @@
 <template>
-    <div class="innerpageHeader">
+    <div class="innerpageHeader" v-show="scrollshow">
         <div class="title"><router-link to="/Home">TIMEVOLTS</router-link></div>
-        <div class="icon"><router-link to="/Home"><img src="Group.png" alt="LOGO"></router-link></div>
+        <div class="icon"><router-link to="/Home"><img src="../../public/Group.png" alt="LOGO"></router-link></div>
     </div>
 </template>
 
 <script>
 export default {
     name: "innerpageHeader",
+    data(){
+        return{
+            scrollshow: true
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -16,7 +21,7 @@ export default {
         background-image: url("/public/Union.png");
         background-repeat: no-repeat;
         background-position: center 100%;
-        background-size: contain;
+        background-size: 35% 100%;
         position: absolute;
         left: 0;
         right: 0;
@@ -51,6 +56,7 @@ export default {
     }
     @media screen and (min-width: 768px) {
         div.innerpageHeader{
+            background-size: contain;
         .title{
             font-size: 23px;
             letter-spacing: 4%;

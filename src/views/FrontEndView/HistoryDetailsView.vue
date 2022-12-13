@@ -1,4 +1,5 @@
 <template>
+   <all-header></all-header>
    <div class="container">
       <the-heading heading="歷史故事" subheading="history"></the-heading>
    </div>
@@ -60,6 +61,7 @@
          >
       </div>
    </div>
+   <all-footer></all-footer>
 </template>
 
 <script>

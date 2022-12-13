@@ -1,29 +1,33 @@
 <template>
-  <div class="cart" v-show="cartStatus">
+  <div class="discount" v-show="cartStatus">
     <font-awesome-icon
       class="xmark"
       icon="fa-solid fa-xmark"
       @click="$emit('xmark')"
     />
-    <h3>購物車</h3>
+    <h3>領取折價卷</h3>
     <ul class="cart-content">
       <li v-for="item in items" :key="item.title">
-        <div class="cart-item" :data-item="item.title">
+        <div class="cart-item">
           <div class="pic">
             <img :src="item.imgSrc" alt="" />
           </div>
           <div class="item-content">
             <h4>{{ item.title }}</h4>
-            <span>$ {{ item.price }}</span>
+            <span>{{ item.price }}</span>
           </div>
           <div class="item-amount">
-            <div @click="minusNum">
-              <font-awesome-icon class="minus-plus" icon="fa-solid fa-minus" />
-            </div>
+            <font-awesome-icon
+              class="minus-plus"
+              icon="fa-solid fa-minus"
+              @click="minusNum"
+            />
             <span>{{ item.amount }}</span>
-            <div @click="addNum">
-              <font-awesome-icon class="minus-plus" icon="fa-solid fa-plus" />
-            </div>
+            <font-awesome-icon
+              class="minus-plus"
+              icon="fa-solid fa-plus"
+              @click="addNum"
+            />
           </div>
           <div
             class="item-dele"
@@ -59,37 +63,29 @@ export default {
   emits: ["xmark"],
   setup(props, { emit }) {
     emit("xmark");
+
+    // cart
+
     const store = useStore();
 
-    // computed
     const items = computed(() => {
       return store.getters.cartItems;
     });
 
-    // methods
     const removeFromCart = (e) => {
       console.log(e.target.dataset.title);
       store.commit("removeFromCart", e.target.dataset.title);
     };
 
-    const minusNum = (e) => {
-      const clickTitle = e.target.parentNode.parentNode.dataset.item;
-      store.commit("minusAmount", clickTitle);
-    };
-
-    const addNum = (e) => {
-      const clickTitle = e.target.parentNode.parentNode.dataset.item;
-      store.commit("addAmount", clickTitle);
-    };
+    // test imgSrc
+    // console.log(items.value[0].imgSrc);
+    // console.log(items);
 
     return {
       items,
       removeFromCart,
       // DOM
       // dele,
-      // methods
-      addNum,
-      minusNum,
     };
   },
 };
@@ -115,11 +111,7 @@ export default {
   width: fit-content;
 }
 
-.minus-plus {
-  pointer-events: none;
-}
-
-.cart {
+.discount {
   aspect-ratio: 3/4;
   width: 25%;
   background-color: map-get($color, dark_sub);
@@ -162,6 +154,7 @@ export default {
 
     .cart-item {
       display: flex;
+      // justify-content: space-around;
       font-size: 20px;
       color: aliceblue;
 
@@ -190,10 +183,6 @@ export default {
         align-items: center;
         justify-content: center;
         column-gap: 5%;
-
-        > div {
-          cursor: pointer;
-        }
       }
       .item-dele {
         width: 20%;

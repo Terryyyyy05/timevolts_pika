@@ -16,6 +16,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/layout/rwd.scss";
 
    .wrap {
         width: 200px;
@@ -27,4 +28,10 @@ export default {
         justify-content: center;
         border-radius: 0;
    }
+
+@include m (){
+    .btn-lightbox{
+        margin: 10px auto;
+    }
+}
 </style>

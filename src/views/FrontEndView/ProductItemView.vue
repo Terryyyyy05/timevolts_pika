@@ -47,6 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 .product-item {
   display: flex;
@@ -62,6 +63,27 @@ export default {
   color: map-get($color, "primary");
   .btn-secondary {
     margin: 100px auto;
+  }
+}
+
+@include m() {
+  .need-wrap {
+    display: none;
+  }
+
+  .product-item {
+    display: flex;
+    column-gap: 5%;
+
+    // flex-direction: column;
+  }
+
+  .item-content-wrap {
+    width: 100%;
+    color: map-get($color, "primary");
+    .btn-secondary {
+      display: none;
+    }
   }
 }
 </style>

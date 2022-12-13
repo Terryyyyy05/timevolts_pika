@@ -8,6 +8,7 @@
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 .container {
   display: flex;
@@ -24,10 +25,13 @@
 
   p {
     color: #fff;
-  }
-
-  p {
     margin: 24px 0;
+  }
+}
+
+@include m() {
+  .container p {
+    margin: 15px 0;
   }
 }
 </style>

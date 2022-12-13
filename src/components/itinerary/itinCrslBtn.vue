@@ -26,5 +26,9 @@ export default {
         padding: 10px;
         margin: 10px;
     }
-
+@include m(){
+    .p_xl{
+        font-size: 26px;
+    }
+}
 </style>

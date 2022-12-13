@@ -3,20 +3,19 @@
     <div class="content">
       <div class="title">EGYPT</div>
       <div class="historcalText">
-        <div class="">
+        <div>
           <h3>{{ look.itinerary_name }}</h3>
+        </div>
+        <div class="historcalTeg">
+          <p>危險度:{{ look.story_risk }} {{ look.tagFeature }}</p>
+          <p>地點:{{ look.story_spot }}</p>
         </div>
         <div class="summary">
           <p>年代:{{ look.story_age }}</p>
           <p>{{ look.itinerary_memo }}</p>
-          <div class="historcalTeg">
-            <p>危險度:{{ look.story_risk }}</p>
-            <p>地點:{{ look.story_spot }}</p>
-            <p>{{ look.tagFeature }}</p>
-          </div>
-          <div class="more">
-            <button>了解更多</button>
-          </div>
+        </div>
+        <div class="more">
+          <router-link class="link" to="/history-details">了解更多</router-link>
         </div>
       </div>
     </div>
@@ -36,8 +35,8 @@
             <img v-bind:src="item.story_cover" />
           </div>
         </TransitionGroup>
-        <button class="next" @click="nextPage">&gt;</button>
       </div>
+      <button class="next" @click="nextPage">&gt;</button>
     </div>
   </div>
 </template>
@@ -58,7 +57,7 @@ export default {
         {
           id: 1,
           story_cover: require("@/assets/image/itin/titanic.jpg"),
-          itinerary_name: "1鐵達尼號沈船事件",
+          itinerary_name: "鐵達尼號沈船事件",
           story_age: "西元1912年",
           itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
           story_risk: "中",
@@ -68,7 +67,7 @@ export default {
         {
           id: 2,
           story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "2馬雅文化",
+          itinerary_name: "馬雅文化",
           story_age: "未知",
           itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
           story_risk: "低",
@@ -78,7 +77,7 @@ export default {
         {
           id: 3,
           story_cover: require("@/assets/image/itin/atlantis.png"),
-          itinerary_name: "3亞特蘭提斯",
+          itinerary_name: "亞特蘭提斯",
           story_age: "西元前12000年",
           itinerary_memo: `這個地方是個傳說中的地方，存不存在沒人知道。柏拉圖說，公元前9560年的時候，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯。...`,
           story_risk: "低",
@@ -88,7 +87,7 @@ export default {
         {
           id: 4,
           story_cover: require("@/assets/image/itin/titanic.jpg"),
-          itinerary_name: "4鐵達尼號沈船事件",
+          itinerary_name: "鐵達尼號沈船事件",
           story_age: "西元1912年",
           itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
           story_risk: "中",
@@ -98,7 +97,7 @@ export default {
         {
           id: 5,
           story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "5馬雅文化",
+          itinerary_name: "馬雅文化",
           story_age: "西元1912年",
           itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
           story_risk: "中",
@@ -189,6 +188,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
   left: 30px;
   padding: 30px;
   display: flex;
+  justify-items: center;
   overflow: hidden;
   position: relative;
   @media screen and (max-width: $m-breakpoint) {
@@ -198,7 +198,8 @@ $b2-primary: (2px solid map-get($color, "primary"));
   }
 }
 .next {
-  top: 15vw;
+  top: calc(15vw + 20px + 23px);
+  left: calc(30vw + 27px);
   width: 45px;
   height: 45px;
   padding: 3px;
@@ -211,8 +212,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
   z-index: 22;
 }
 .wrapper {
-  width: 40vw;
-  padding: 20vw;
+  width: 50vw;
   align-items: center;
   position: relative;
   margin: 20px auto;
@@ -311,14 +311,18 @@ $b2-primary: (2px solid map-get($color, "primary"));
   width: fit-content;
 
   margin: 20px;
+  margin-left: 10vw;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   position: relative;
+  @media screen and (max-width: $ts-breakpoint) {
+    margin-left: 20px;
+  }
 }
 
 .title {
-  width: 40vw;
+  width: 30vw;
   padding: 2vw;
   text-align: center;
   border: $b2-primary;
@@ -346,12 +350,13 @@ $b2-primary: (2px solid map-get($color, "primary"));
   box-sizing: border-box;
   border: 2px solid map-get($color, "primary");
   background: map-get($color, "dark_sub");
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: top;
   .summary {
-    //   width: 80%;
-    height: 100%;
-    padding: 20px;
+    width: 30vw;
+    min-height: 30vh;
     box-sizing: border-box;
     align-self: start;
     line-height: 1.4;
@@ -363,6 +368,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
   .historcalTeg {
     box-sizing: border-box;
     align-items: center;
+    margin-top: 20px;
     font-size: 24px;
     line-height: 33px;
   }
@@ -371,7 +377,8 @@ $b2-primary: (2px solid map-get($color, "primary"));
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
-    button {
+    .link {
+      text-align: center;
       padding: 0.7rem;
       box-sizing: border-box;
       color: map-get($color, "dark");

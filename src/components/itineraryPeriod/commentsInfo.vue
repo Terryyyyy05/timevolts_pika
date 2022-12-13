@@ -58,7 +58,7 @@ export default {
                     date: "2022-10-29"
                 },
                 {
-                    user: "ˋ巫小弟",
+                    user: "巫小弟",
                     comment: "各種旅行商品和道具，尼斯湖風景優美，氣候宜人，希望有機會再來體驗，極度推薦",
                     stars: "*****",
                     date: "2022-11-15"
@@ -101,6 +101,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/layout/rwd.scss";
 
 
 h4 {
@@ -151,5 +152,44 @@ input{
 }
 .date{
     height: 10px;
+}
+@include m(){
+    h4{
+        width: 100%;
+    }
+    .wrap{
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: 130px;
+        padding: 10px;
+    }
+    .left{
+        width: 100%;
+        height: 110px;
+        padding: 0;
+    }
+    .right{
+        width: 100%;
+        height: 20px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: end;
+        align-self: center;
+        padding: 0;
+        margin: 0;
+    }
+    .date{
+        margin-right: 35%;
+    }
+    .usercomment{
+       width: 100%;
+    }
+    .user{
+        width: 15%;
+    }
+    .comment{
+        width: 85%;
+    }
 }
 </style>

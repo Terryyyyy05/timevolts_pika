@@ -73,17 +73,6 @@ const routes = [
       component: () => import("../views/FrontEndView/ProductCheckOutView.vue"),
    },
    {
-      path: "/member",
-      name: "member",
-      component: () => import("../views/FrontEndView/Member/MemberView.vue"),
-   },
-   {
-      path: "/login",
-      name: "login",
-      component: () =>
-         import("../views/FrontEndView/Member/MemberLoginView.vue"),
-   },
-   {
       path: "/signup",
       name: "signup",
       component: () =>
