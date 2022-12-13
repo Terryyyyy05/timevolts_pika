@@ -155,8 +155,11 @@ export default {
   margin: 0 auto;
 }
 .watchmorewrap {
+  height: 580px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow: hidden;
 }
 .infoWrap {
   width: fit-content;

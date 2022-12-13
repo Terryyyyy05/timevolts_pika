@@ -164,8 +164,11 @@ export default {
   margin: 20px auto;
 }
 .watchmorewrap {
+  height: 580px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow: hidden;
 }
 .infoWrap {
   width: fit-content;
@@ -218,15 +221,21 @@ export default {
   background-color: map-get($color, "dark_sub");
 }
 @include m() {
+  .infoWrap {
+    width: fit-content;
+    background-color: map-get($color, "dark_sub");
+  }
   .infoTitle,
   .tagWrap,
   .infoDate {
+    width: 100%;
     font-size: 18px;
     height: 20px;
     padding: 10px;
   }
 
   .infoContent {
+    width: 100%;
     font-size: 18px;
     overflow-y: auto;
     height: 180px;
