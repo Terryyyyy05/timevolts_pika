@@ -64,6 +64,7 @@ export default {
             box-sizing: border-box;
             .content-deco {
                 border-bottom: 1px solid #ffe1b5;
+                height: 50px;
             }
         }
     }
