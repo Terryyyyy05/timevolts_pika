@@ -37,7 +37,7 @@
             <img src="../assets/image/chatbox.png" alt="chatbox" />
           </div>
           <div class="lower-content-two">
-            <p>我想詢問如何搭乘時光機</p>
+            <p>{{ customerText }}</p>
           </div>
         </div>
         <div class="lower-box">
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="input-submit">
-        <input type="text" placeholder="請輸入關鍵字" />
+        <input type="text" placeholder="請輸入關鍵字" v-model="customerText" />
         <button type="submit">送出</button>
       </div>
     </div>
@@ -66,7 +66,7 @@ export default {
   data() {
     return {
       openRobot: false,
-      customerText: "",
+      customerText: "我想要詢問如何搭乘時光機",
       info: [
         {
           type: "leftinfo",
@@ -216,6 +216,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 1.2rem;
+}
+::-webkit-scrollbar-track {
+  background: #ffe1b5;
+}
 .chatbox {
   width: 100vw;
   height: 100vh;
@@ -263,12 +269,13 @@ export default {
       p {
         color: #fab042;
         font-size: 1.8rem;
-        margin-left: 10px;
+        margin-left: 15px;
         white-space: nowrap;
       }
     }
   }
   .chatbox-lower {
+    overflow-y: scroll;
     .lower-img {
       background-color: #464646;
       border-radius: 50%;
@@ -350,6 +357,7 @@ export default {
       width: 15%;
       font-size: 1rem;
       margin-right: 10px;
+      white-space: nowrap;
     }
   }
 }
@@ -392,7 +400,6 @@ export default {
           font-size: 0.9rem;
         }
         button {
-          white-space: nowrap;
           width: 20%;
           font-size: 0.9rem;
         }
