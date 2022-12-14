@@ -1,10 +1,7 @@
 <template>
   <div class="GetVoucherButton">
     <button class="btn-store-detail" @click="showbox()">
-      <p>
-        立即領取優惠卷
-        {{ unreceivedCoupon.length }}張
-      </p>
+      <p>立即領取<br />優惠卷 {{ unreceivedCoupon.length }}張</p>
     </button>
   </div>
 
@@ -12,7 +9,7 @@
     <font-awesome-icon
       class="xmark"
       icon="fa-solid fa-xmark"
-      @click.self="showbox"
+      @click.self="showbox()"
     />
     <h3>領取折價卷</h3>
     <ul class="cart-content">
@@ -150,7 +147,6 @@ export default {
   top: 10px;
   right: 10px;
   z-index: 1;
-
   font-size: 28px;
   cursor: pointer;
   color: map-get($color, primary_sub);
@@ -158,8 +154,8 @@ export default {
 
 // 開關按鈕
 .GetVoucherButton button {
-  top: 45px;
-  right: 220px;
+  top: 90px;
+  right: 125px;
   position: fixed;
   z-index: 101;
   color: map-get($color, primary_sub);
@@ -178,22 +174,24 @@ export default {
   width: fit-content;
 }
 
+// 燈箱卡片
 .GetVoucher {
   aspect-ratio: 3/4;
   width: 25%;
   background-color: map-get($color, dark_sub);
   border: 10px solid map-get($color, primary_sub);
   padding: 10px;
-
   position: fixed;
   z-index: 103;
-  left: 140px;
   top: 90px;
+  left: 37.5%;
+  right: 37.5%;
 
   @media screen and (max-width: $m-breakpoint) {
     width: 90%;
     top: 100px;
     left: 5%;
+    right: 5%;
   }
 
   > h3 {
@@ -201,6 +199,7 @@ export default {
     color: aliceblue;
     text-align: center;
     position: relative;
+    pointer-events: none;
 
     &:after {
       content: "";

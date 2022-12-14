@@ -3,7 +3,7 @@
   <!-- <div id="mouse"></div> -->
   <!-- <LeadingView v-if="one" /> -->
   <MyVoucher />
-  <GetVoucher />
+
   <div class="home">
     <div class="introduce_block">
       <div class="sideTotem">
@@ -16,7 +16,7 @@
         </h1>
       </div>
       <div class="text bg_dark_75 p_md">
-        <p>Last login: Wed Nov 16 10:53:48</p>
+        <p>Last login: {{ nowTime.data }}</p>
         <p>Restored session:</p>
         <p>TimeVolts ~ %</p>
         <p>
@@ -24,8 +24,10 @@
           .<br />
           .<br />
           歡迎來到時萬伏特<br />
-          假文字假文字假文字假文字假文字假文字假文字假文字<br />
-          假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字
+          我們開發了全新的時光機器<br />
+          假文字假文字假文字假文字假文字假文字<br />
+          假文字假文字<br />
+          假文字假文字
         </p>
       </div>
       <div class="slogan">
@@ -80,6 +82,7 @@ import HomeHistorcal from "../../components/home/HomeHistorcal.vue";
 import HomeNews from "../../components/home/HomeNews.vue";
 import MyVoucher from "../../components/voucher/MyVoucher.vue";
 import GetVoucher from "../../components/voucher/GetVoucher.vue";
+import { reactive, ref } from "vue";
 
 export default {
   name: "HomeView",
@@ -120,6 +123,46 @@ export default {
       ],
     };
   },
+  setup() {
+    //取得時間
+    const nowTime = reactive({
+      data: "",
+    });
+    let myDate = new Date();
+    function setTime(myDate) {
+      const year = myDate.getFullYear();
+      const month =
+        myDate.getMonth() + 1 < 10
+          ? "0" + (myDate.getMonth() + 1)
+          : myDate.getMonth() + 1;
+      const date =
+        myDate.getDate() < 10 ? "0" + myDate.getDate() : myDate.getDate();
+      const h = myDate.getHours();
+      const m =
+        myDate.getMinutes() < 10
+          ? "0" + myDate.getMinutes()
+          : myDate.getMinutes();
+      const s =
+        myDate.getSeconds() < 10
+          ? "0" + myDate.getSeconds()
+          : myDate.getSeconds();
+      const day = year + "-" + month + "-" + date;
+      const time = h + ":" + m + ":" + s;
+
+      nowTime.data = day + " " + time;
+    }
+    function nowTimes() {
+      setTime(myDate);
+      setInterval(() => {
+        myDate = new Date();
+        setTime(myDate);
+      }, 1000);
+    }
+    nowTimes();
+    return {
+      nowTime,
+    };
+  },
   components: {
     HomeItinerary,
     HomeHistorcal,
@@ -127,6 +170,7 @@ export default {
     MyVoucher,
     GetVoucher,
   },
+  props: ["text"],
   methods: {},
 };
 </script>
