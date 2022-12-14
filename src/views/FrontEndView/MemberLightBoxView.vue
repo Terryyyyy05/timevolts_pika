@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import MemberLogin from "../../components/member/MemberLogin.vue";
-import MemberSignup from "../../components/member/MemberSignup.vue";
+import MemberLogin from "../../components/memberCenter/MemberLogin.vue";
+import MemberSignup from "../../components/memberCenter/MemberSignup.vue";
 
 export default {
    components: {

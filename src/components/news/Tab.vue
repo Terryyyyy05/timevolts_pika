@@ -257,7 +257,7 @@ export default {
           hashtag: '#奇聞軼事 #高危險度 #遠古歷史',
           content: '亞特蘭提斯，一夜之間在地球上消失的亞特蘭提斯。讓我們帶您乘坐時光機前往西元前一萬兩千年，究竟這場大洪水有沒有發生，亦或是帶你一窺究竟亞特蘭提斯的存在吧!穿越年代為西元前一萬兩千年，時空背景與現今差異甚大，生存環境危險，冒險者快來挑戰吧! ',
           content_box: '',
-          img: require(`@/assets/image/news/atlantis.png`),
+          img: require(`@/assets/image/news/atlantis01.png`),
         },
 
       ],

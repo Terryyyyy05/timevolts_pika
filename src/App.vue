@@ -1,20 +1,5 @@
 <template>
   <div class="Noise"></div>
-  <nav>
-    <router-link to="/">切換頁</router-link> |
-    <router-link to="/home">首頁</router-link> |
-    <router-link to="/news">最新消息</router-link> |
-    <router-link to="/itinerary">時光行程</router-link> |
-    <router-link to="/history">歷史故事</router-link> |
-    <router-link to="/product">購物商城Test</router-link> |
-    <router-link to="/ProductCheckOut">結帳</router-link> |
-    <router-link to="/about">關於我們</router-link> |
-    <router-link to="/itineraryPeriodView">時光行程-期間限定(預覽)</router-link>
-    |
-    <router-link to="/itiItineraryClassicView">時光行程-經典(預覽)</router-link>
-    |
-    <router-link to="/memberCenter">會員中心</router-link>
-  </nav>
   <pageTop />
   <router-view />
 </template>

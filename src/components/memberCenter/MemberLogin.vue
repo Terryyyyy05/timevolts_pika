@@ -22,9 +22,11 @@
             </div>
             <p v-if="!loginIsValid" class="alert">請輸入完整資訊</p>
             <p class="forgot-psw">忘記密碼</p>
-            <button class="btn-secondary" @click="login">
-               <span>登入</span>
-            </button>
+            <router-link :to="toMemberCenter">
+               <button class="btn-secondary" @click="login">
+                  <span>登入</span>
+               </button>
+            </router-link>
             <button class="btn-primary" @click="$emit('signup')">
                <span>註冊會員</span>
             </button>
@@ -49,6 +51,13 @@ export default {
          loginIsValid: true,
       };
    },
+   computed: {
+      toMemberCenter() {
+         if (this.loginIsValid) {
+            return '/memberCenter'
+         }
+      },
+   },
    methods: {
       clearValidity(input) {
          this[input].isValid = true;
@@ -69,7 +78,7 @@ export default {
          if (!this.loginIsValid) {
             return;
          }
-         this.$router.go(-1);
+         // this.$router.go(-1);
       },
    },
 };
@@ -167,7 +176,7 @@ section {
 
 button {
    border-radius: 10px;
-   width: 40%;
+   width: 200px;
    height: 48px;
    margin-top: 24px;
    margin-bottom: -24px;
