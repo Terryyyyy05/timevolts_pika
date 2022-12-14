@@ -81,9 +81,11 @@ export default {
             this.selectedStep = "checkout";
             this.currentStep = "結帳";
             this.button = "前往付款";
+            window.scrollTo(0, 0);
          } else if (this.selectedStep === "checkout") {
             this.selectedStep = "confirm-order";
             this.currentStep = "訂單成立";
+            window.scrollTo(0, 0);
          }
       },
    },

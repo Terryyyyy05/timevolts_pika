@@ -56,17 +56,13 @@
    <base-card class="base-card">
       <h3>填寫旅客資料</h3>
       <span class="p_xl attend-num">參團人數 : {{ number }}</span>
-      <div class="buyer-info" v-for="(num, index) in number" :key="num">
+      <div class="buyer-info">
          <div class="info-top">
-            <span class="p_lg">旅客 {{ index + 1 }}</span>
-            <div class="checkbox" v-if="index === 0">
+            <span class="p_lg">旅客1</span>
+            <div class="checkbox">
                <label class="check-container"
                   >同訂購人資料
-                  <input
-                     type="checkbox"
-                     v-model="checked"
-                     @click="clickCheckbox($event)"
-                  />
+                  <input type="checkbox" @change="clickCheckbox" />
                   <span class="checkmark"></span>
                </label>
             </div>
@@ -92,6 +88,34 @@
             <input class="p_lg" type="text" v-model="travelerAddress" />
          </div>
       </div>
+
+      <div v-if="this.number > 1">
+         <div class="buyer-info" v-for="(num, index) in number - 1" :key="num">
+            <div class="info-top">
+               <span class="p_lg">旅客 {{ index + 2 }}</span>
+            </div>
+            <div>
+               <label class="p_lg">姓名</label>
+               <input class="p_lg" type="text" />
+            </div>
+            <div>
+               <label class="p_lg">生日</label>
+               <input class="p_lg" type="text" />
+            </div>
+            <div>
+               <label class="p_lg">電話</label>
+               <input class="p_lg" type="text" />
+            </div>
+            <div>
+               <label class="p_lg">信箱</label>
+               <input class="p_lg" type="text" />
+            </div>
+            <div>
+               <label class="p_lg">地址</label>
+               <input class="p_lg" type="text" />
+            </div>
+         </div>
+      </div>
    </base-card>
 </template>
 
@@ -106,7 +130,11 @@ export default {
    inject: ["attendNum"],
    data() {
       return {
-         checked: false,
+         travelerName: "",
+         travelerBirthday: "",
+         travelerPhone: "",
+         travelerEmail: "",
+         travelerAddress: "",
       };
    },
    methods: {
@@ -131,11 +159,11 @@ export default {
          this.travelerAddress = enteredAddress;
       },
       removeInfo() {
-         this.travelerName = null;
-         this.travelerBirthday = null;
-         this.travelerEmail = null;
-         this.travelerPhone = null;
-         this.travelerAddress = null;
+         this.travelerName = "";
+         this.travelerBirthday = "";
+         this.travelerEmail = "";
+         this.travelerPhone = "";
+         this.travelerAddress = "";
       },
    },
 };
