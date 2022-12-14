@@ -1,8 +1,5 @@
 <template>
   <div class="Noise"></div>
-  <nav>
-    <router-link to="/memberCenter">會員中心</router-link>
-  </nav>
   <pageTop />
   <router-view />
 </template>
