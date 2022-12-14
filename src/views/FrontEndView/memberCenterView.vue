@@ -2,7 +2,7 @@
   <all-header />
   <innerpageHeader></innerpageHeader>
   <div class="container">
-    <the-heading heading="會員中心" subheading="Member Center"></the-heading>
+    <the-heading heading="會員中心" subheading="Member"></the-heading>
   </div>
 
   <div class="container main-content">
@@ -49,7 +49,7 @@ export default {
 .container.main-content {
   display: flex;
   align-items: flex-start;
-  // height: 75vh;
+  margin: 50px auto;
   outline: 1px solid red;
   nav {
     width: 30%;
