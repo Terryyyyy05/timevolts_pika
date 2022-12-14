@@ -81,7 +81,7 @@ export default {
                en: "ABOUT US",
             },
          ],
-         cartStatus: true,
+         cartStatus: false,
          show: false,
          openRobot: false,
       };

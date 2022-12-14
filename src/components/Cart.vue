@@ -3,7 +3,7 @@
     <font-awesome-icon
       class="xmark"
       icon="fa-solid fa-xmark"
-      @click="$emit('xmark')"
+      @click="closeCart"
     />
     <h3>購物車</h3>
     <ul class="cart-content">
@@ -43,7 +43,7 @@
 
 <script>
 import { cardContext } from "@/components/product/js/data";
-import { ref, reactive, computed } from "vue";
+import { computed } from "vue";
 
 // cart
 import { useStore } from "vuex";
@@ -53,12 +53,11 @@ export default {
   props: {
     cartStatus: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   emits: ["xmark"],
   setup(props, { emit }) {
-    emit("xmark");
     const store = useStore();
 
     // computed
@@ -82,6 +81,10 @@ export default {
       store.commit("addAmount", clickTitle);
     };
 
+    const closeCart = () => {
+      emit("xmark");
+    };
+
     return {
       items,
       removeFromCart,
@@ -90,6 +93,7 @@ export default {
       // methods
       addNum,
       minusNum,
+      closeCart,
     };
   },
 };
