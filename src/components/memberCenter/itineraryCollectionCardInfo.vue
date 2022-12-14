@@ -1,5 +1,8 @@
 <template>
-    <itinerary-collection-card v-for="info in information" :key="info.title">
+    <itinerary-collection-card
+        v-for="info in visibleInformation"
+        :key="info.title"
+    >
         <div class="outterwrap">
             <h3>{{ info.title }}</h3>
             <div class="wrap">
@@ -65,8 +68,26 @@ export default {
                     description:
                         "孫劉為抵抗八十萬曹軍舉兵南下，於烏林、赤壁會面交戰，經武臣黃蓋詐降火計，重創曹軍。根據三國誌記載，曹操因多年北伐征討，將兵早已疲倦不堪，整個曹軍能夠作戰的兵力實則不到二十萬...",
                 },
+                {
+                    type: "經典事件",
+                    imgsrc: require(`@/assets/image/itinWar.jpg`),
+                    imgalt: "經典行程-赤壁之戰",
+                    title: "赤壁之戰",
+                    tagDangerLevel: "高",
+                    tagFeature: "經典事件",
+                    tagRegion: "中國",
+                    tourdate: "西元208年",
+                    description:
+                        "孫劉為抵抗八十萬曹軍舉兵南下，於烏林、赤壁會面交戰，經武臣黃蓋詐降火計，重創曹軍。根據三國誌記載，曹操因多年北伐征討，將兵早已疲倦不堪，整個曹軍能夠作戰的兵力實則不到二十萬...",
+                },
             ],
+            informationVisible: 3,
         };
+    },
+    computed: {
+        visibleInformation() {
+            return this.information.slice(0, this.informationVisible);
+        },
     },
 };
 </script>
@@ -128,11 +149,5 @@ span {
     padding: 3px;
     font-size: 14px;
     overflow-y: scroll;
-}
-@include m() {
-    h3 {
-        font-size: 28px;
-        line-height: 70px;
-    }
 }
 </style>
