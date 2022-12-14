@@ -432,11 +432,11 @@ export default {
       }
     }
   }
-}
-// chat bot
+  // chat bot
 
-::-webkit-scrollbar {
-  width: 0.6rem;
+  ::-webkit-scrollbar {
+    width: 0.6rem;
+  }
+  // scrollbar
 }
-// scrollbar
 </style>
