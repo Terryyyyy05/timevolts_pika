@@ -216,12 +216,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::-webkit-scrollbar {
-  width: 1.2rem;
-}
-::-webkit-scrollbar-track {
-  background: #ffe1b5;
-}
 .chatbox {
   width: 100vw;
   height: 100vh;
@@ -361,10 +355,42 @@ export default {
     }
   }
 }
+
+// chat bot
+
+::-webkit-scrollbar {
+  width: 1.2rem;
+}
+::-webkit-scrollbar-track {
+  background: hsl(36, 100%, 85%);
+  border-radius: 100vw;
+  margin-block: 0.5em;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(36, 100%, 55%);
+  border: 0.25em solid hsl(36, 100%, 85%);
+  border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(36, 100%, 65%);
+}
+@supports (scrollbar-color: red blue) {
+  * {
+    scrollbar-color: hsl(36, 100%, 55%) hsl(36, 100%, 85%);
+    scrollbar-width: auto;
+  }
+} // support firefox
+
+// scrollbar
+
 @media screen and (max-width: 768px) {
   .chatbox {
     .chatbox-container {
-      width: 70%;
+      width: 80%;
+      top: 8%;
+      left: 1%;
+      right: initial;
+      transform: initial;
       .chatbox-upper {
         .upper-img-title {
           width: 60px;
@@ -407,4 +433,10 @@ export default {
     }
   }
 }
+// chat bot
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+// scrollbar
 </style>
