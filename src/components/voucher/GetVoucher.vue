@@ -2,8 +2,8 @@
   <div class="GetVoucherButton">
     <button class="btn-store-detail" @click="showbox()">
       <p>
-        可領取優惠卷
-        {{ GetVouchers.length }}張
+        立即領取優惠卷
+        {{ unreceivedCoupon.length }}張
       </p>
     </button>
   </div>
@@ -16,7 +16,7 @@
     />
     <h3>領取折價卷</h3>
     <ul class="cart-content">
-      <li v-for="(item, index) in GetVouchers" :key="item.id">
+      <li v-for="(item, index) in unreceivedCoupon" :key="item.id">
         <div class="cart-item">
           <div class="coupon-card">
             <div class="coupon-card-left">
@@ -38,7 +38,14 @@
               </div>
             </div>
             <div class="coupon-card-right">
-              <a id="receive" v-on:click="receive(index)" href="#">立即領取</a>
+              <a
+                id="receive"
+                v-on:click="receive(index)"
+                href="#"
+                v-if="(itim = 1)"
+                >立即領取</a
+              >
+              <a id="receive" href="#" v-else>已領取</a>
             </div>
           </div>
         </div>
@@ -75,7 +82,7 @@ export default {
           coupon_quantity: 2000, //發行數量
           coupon_given_numbers: 0, //已發數量
           coupon_pricing_condition: 100, //消費門檻
-          coupon_status: 0, // 1=上架,0=下架
+          coupon_status: 1, // 1=上架,0=下架
         },
         {
           coupon_id: 3, //編號
@@ -89,11 +96,9 @@ export default {
           coupon_status: 0, // 1=上架,0=下架
         },
       ],
-      get: [{}],
-
-      showModal: false,
-      login: true,
-      getV: false,
+      unreceivedCoupon: [], //未領取的優惠卷
+      showModal: false, //燈箱開關
+      login: true, //是否登入
     };
   },
 
@@ -104,29 +109,35 @@ export default {
       this.showModal = !this.showModal;
     },
 
-    receive(e) {
+    receive(e, index) {
       // 判別是否登入
       if (this.login == true) {
-        // 計算可以領取數量
-        let get = this.GetVouchers;
-        get[e].coupon_status = 0;
-        console.log(get);
-
-        // getV = GetVouchers.length;
         // 判別是否可領取
-        // if (this.get.length != 0) {
-        if ((e.target = "已領取")) {
+        if (this.unreceivedCoupon[e].coupon_status == 1) {
+          // if ((e.target = )) {
           // 領取並傳回後端
-          this.getV = true;
-
-          e.target.innerText = "已領取";
-          // console.log(e);
-          alert(`恭喜您獲得`, `優惠卷~`);
+          // e.target.innerText = "已領取";
+          alert(`恭喜您獲得優惠卷~`);
+          console.log("BBB");
+          // 計算可以領取數量
+          this.unreceivedCoupon[e].coupon_status = 0;
+          console.log(this.unreceivedCoupon[e]);
+          itim();
         } else {
           // 前往登入頁面
+          // }
         }
       }
+      // this.GetVouchers[index].coupon_status = 0;
+
+      // e.target.innerText = "已領取";
     },
+  },
+
+  mounted() {
+    this.unreceivedCoupon = this.GetVouchers.filter(
+      (coupon) => coupon.coupon_status === 1
+    );
   },
 };
 </script>
@@ -154,6 +165,11 @@ export default {
   color: map-get($color, primary_sub);
   background-color: map-get($color, dark_sub);
   border: 2px solid map-get($color, primary_sub);
+  @media screen and (max-width: $m-breakpoint) {
+    top: 70px;
+    right: 70px;
+    font-size: 8px;
+  }
 }
 
 .mid {
@@ -173,6 +189,12 @@ export default {
   z-index: 103;
   left: 140px;
   top: 90px;
+
+  @media screen and (max-width: $m-breakpoint) {
+    width: 90%;
+    top: 100px;
+    left: 5%;
+  }
 
   > h3 {
     font-size: 28px;
