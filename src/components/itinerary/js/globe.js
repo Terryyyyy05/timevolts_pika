@@ -16,7 +16,7 @@ export const sceneInit = () => {
 
     renderer = new THREE.WebGLRenderer({
       antialias: true,
-      canvas: document.querySelector(".canvas_globe"),
+      canvas: document.querySelector(".canvas_globe"), 
     });
 
     // console.log(globe_container);
