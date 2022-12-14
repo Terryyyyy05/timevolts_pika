@@ -85,9 +85,15 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
+
+// test
+import modal from "@/components/modal.vue";
+
 export default {
   name: "CheckOutStepOne",
-
+  components: {
+    modal,
+  },
   setup() {
     const store = useStore();
 
