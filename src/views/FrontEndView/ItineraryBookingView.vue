@@ -1,4 +1,6 @@
 <template>
+   <all-header />
+   <innerpageHeader></innerpageHeader>
    <div class="container">
       <the-heading
          heading="行程訂票"
@@ -29,6 +31,7 @@
          >
       </div>
    </div>
+   <all-footer />
 </template>
 
 <script>
