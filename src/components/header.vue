@@ -45,7 +45,7 @@
 <script>
 // import $ from "jquery";
 import Cart from "@/components/Cart.vue";
-import Chatbox from "./Chatbox.vue";
+import Chatbox from "@/components/Chatbox.vue";
 import GetVoucher from "@/components/voucher/GetVoucher.vue";
 
 export default {
