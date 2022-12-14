@@ -1,7 +1,7 @@
 <template>
    <cart :cartStatus="cartStatus" @xmark="() => (cartStatus = false)" />
    <header>
-      <div v-if="show" class="icon-container">
+      <div class="icon-container">
          <router-link to="/memberLightBox">
             <div><img src="../../public/Group604.png" alt="" /></div>
          </router-link>
