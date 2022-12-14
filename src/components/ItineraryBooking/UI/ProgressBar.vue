@@ -21,9 +21,9 @@ export default {
    display: flex;
    justify-content: space-between;
    position: relative;
-   margin: 0 auto 3rem;
+   margin: 30px auto;
    width: 30%;
-   min-width: 20rem;
+   min-width: 200px;
 }
 
 .progress-number::before {
