@@ -175,6 +175,10 @@ export default {
       @include grid(1fr, 48px);
    }
 
+   .info-list {
+      @include grid(1fr, 24px)
+   }
+
    .attend-num {
       flex-direction: column;
       gap: 12px;
