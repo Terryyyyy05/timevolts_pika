@@ -15,8 +15,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .title {
+    width: 100%;
     color: #fff;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 10px;
