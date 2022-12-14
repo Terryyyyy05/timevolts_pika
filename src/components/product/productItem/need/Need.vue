@@ -4,6 +4,7 @@
     <product-card
       v-for="card in cardContext2"
       :key="card.title"
+      :id="card.id"
       style="width: 100%"
     >
       <div class="pic">
@@ -24,7 +25,7 @@ export default {
     ProductCard,
   },
   setup() {
-    const cardContext2 = cardContext.slice(0, 3);
+    const cardContext2 = cardContext.slice(1, 4);
 
     return {
       cardContext2,

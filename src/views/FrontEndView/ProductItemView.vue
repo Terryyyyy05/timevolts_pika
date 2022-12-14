@@ -9,7 +9,7 @@
         <ItemContent />
       </div>
       <router-link to="/product">
-        <button class="btn-secondary">返回商品頁</button>
+        <button class="btn-primary">返回商品頁</button>
       </router-link>
     </section>
   </div>
