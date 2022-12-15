@@ -8,10 +8,13 @@
       <label>密碼:<input type="password" /></label>
     </div>
     <div class="btnwrap">
-      <button value="登入">登入</button>
-    </div>
+        <button value="登入" @click="$router.push('https://tibamef2e.com/cgd103/g3/back/')">登入</button>
+      </div>
   </div>
 </template>
+<script>
+
+</script>
 <style scoped lang="scss">
 @import "@/assets/css/utils/variables";
 
