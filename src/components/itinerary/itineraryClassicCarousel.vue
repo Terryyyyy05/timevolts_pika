@@ -2,7 +2,7 @@
     <div class="grid">
         <main>
             <div
-                class="hero"
+                class="largeImg"
                 :style="{ backgroundImage: 'url(' + pics[pos] + ')' }"
             ></div>
         </main>
@@ -47,14 +47,18 @@
 </template>
 
 <script>
+import imgItinPrehistoric from "@/assets/image/itinPrehistoric.jpg";
+import imgItinEgypt from "@/assets/image/itinEgypt.jpg";
+import imgItinWar from "@/assets/image/itinWar.jpg";
+import imgItinColombia from "@/assets/image/itinColombia.jpeg";
 export default {
     data() {
         return {
             pics: [
-                "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/cheering-robot.jpg",
-                "https://images.unsplash.com/photo-1581481615985-ba4775734a9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
-                "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/little-robot.jpg",
-                "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/robot.jpg",
+                imgItinPrehistoric,
+                imgItinEgypt,
+                imgItinWar,
+                imgItinColombia,
             ],
             pos: 0,
             carPos: 0,
@@ -76,10 +80,10 @@ export default {
         prevSlide: function () {
             this.carPos--;
             this.rotateCarousel();
-            const hero = document.querySelector(".hero");
-            hero.classList.add("switching-prev");
-            hero.addEventListener("animationend", () => {
-                hero.classList.remove("switching-prev");
+            const largeImg = document.querySelector(".largeImg");
+            largeImg.classList.add("switching-prev");
+            largeImg.addEventListener("animationend", () => {
+                largeImg.classList.remove("switching-prev");
             });
             setTimeout(() => {
                 if (this.pos - 1 < 0) {
@@ -92,10 +96,10 @@ export default {
         nextSlide: function () {
             this.carPos++;
             this.rotateCarousel();
-            const hero = document.querySelector(".hero");
-            hero.classList.add("switching-next");
-            hero.addEventListener("animationend", () => {
-                hero.classList.remove("switching-next");
+            const largeImg = document.querySelector(".largeImg");
+            largeImg.classList.add("switching-next");
+            largeImg.addEventListener("animationend", () => {
+                largeImg.classList.remove("switching-next");
             });
             setTimeout(() => {
                 if (this.pos + 1 > 3) {
@@ -113,7 +117,7 @@ export default {
 button {
     border: none;
     cursor: pointer;
-    background: #ebfbfa;
+    background: #493a24;
     width: 100%;
     height: 100%;
 }
@@ -130,7 +134,7 @@ button {
         display: flex;
         filter: drop-shadow(0px 0px 2px #e0d040)
             drop-shadow(2px 2px 1px #e0d040) drop-shadow(-2px -2px 1px #e0d040);
-        .hero {
+        .largeImg {
             margin: auto;
             width: 75%;
             height: 75%;
@@ -315,9 +319,9 @@ button {
         .next {
             width: 90px;
             height: 150px;
-            filter: drop-shadow(0 0 1px turquoise)
-                drop-shadow(1px 1px 1px turquoise)
-                drop-shadow(-1px -1px 1px turquoise);
+            filter: drop-shadow(0 0 1px #fec570)
+                drop-shadow(1px 1px 1px #fec570)
+                drop-shadow(-1px -1px 1px #fec570);
         }
         .prev {
             align-self: flex-start;
@@ -356,20 +360,21 @@ button {
             }
         }
         .scene {
+            z-index: 1;
             width: 220px;
             height: 200px;
             align-self: center;
             position: relative;
             top: 0;
-            left: 20%;
-            perspective: 1000px;
+            left: 0;
+            perspective: 3000px;
 
             .carousel {
                 position: absolute;
                 width: 100%;
                 height: 100%;
                 top: 0;
-                left: -45px;
+                left: 0px;
                 transform: rotate(0deg) translateZ(-105px);
                 transform-style: preserve-3d;
                 transition: transform 1.5s ease-in-out;
@@ -381,10 +386,10 @@ button {
                     left: -5px;
                     background-size: cover;
                     background-position: center;
-                    border: 2px solid #d040e0;
+                    border: 2px solid #e0d040;
                     border-radius: 5px;
-                    box-shadow: 0 0 1px #db6ce7, 1px 1px 2px #db6ce7,
-                        -1px -1px 2px #db6ce7;
+                    box-shadow: 0 0 1px #ffe1b5, 1px 1px 2px #ffe1b5,
+                        -1px -1px 2px #ffe1b5;
                     &:nth-of-type(1) {
                         transform: rotate(0deg) translateZ(105px);
                     }
