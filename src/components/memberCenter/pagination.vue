@@ -3,7 +3,7 @@
         <ul class="pagination" v-for="page in 5" :key="page">
           <li>{{page}}</li>
         </ul>
-      </div>
+    </div>
 </template>
 <script>
 export default {
@@ -16,11 +16,16 @@ export default {
 
 .page{
     text-align: center;
-  }
-  .pagination{
-    width: 15px;
+    margin: 1% auto;
+    .pagination{
     display: inline-block;
     border: 1px solid map-get($color, accent);
     color: map-get($color, accent);
+    li {
+        padding: 0 10px;
+        line-height: 1.5;
+    }
+    }
   }
+ 
 </style>

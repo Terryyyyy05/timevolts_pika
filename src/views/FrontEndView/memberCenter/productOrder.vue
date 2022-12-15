@@ -11,13 +11,16 @@
     </ul>
     <product-order-info />
   </div>
+  <pagination />
 </template>
 <script>
 import productOrderInfo from "@/components/memberCenter/productOrderInfo.vue";
+import pagination from "@/components/memberCenter/pagination.vue";
 export default {
   name: "productOrder",
   components: {
     productOrderInfo,
+    pagination,
   },
 };
 </script>

@@ -3,13 +3,16 @@
     <div class="wrap">
         <product-collection-card-info />
     </div>
+    <pagination />
 </template>
 <script>
 import productCollectionCardInfo from "@/components/memberCenter/productCollectionCardInfo.vue";
+import pagination from "@/components/memberCenter/pagination.vue";
 export default {
     name: "productCollection",
     components: {
         productCollectionCardInfo,
+        pagination,
     },
 };
 </script>

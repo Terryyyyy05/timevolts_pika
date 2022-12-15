@@ -50,7 +50,7 @@ export default {
   display: flex;
   align-items: flex-start;
   margin: 50px auto;
-  outline: 1px solid red;
+//   outline: 1px solid red;
   nav {
     width: 30%;
     margin: 5% 5% 5% 0;
@@ -70,14 +70,14 @@ export default {
   }
   .sub-content {
     border: 1px solid #ffe1b5;
-    outline: 1px solid yellow;
+    // outline: 1px solid yellow;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    .content-deco {
-      border-bottom: 1px solid #ffe1b5;
-      height: 50px;
-    }
+    // .content-deco {
+    //   border-bottom: 1px solid #ffe1b5;
+    //   height: 50px;
+    // }
   }
 }
 @media screen and (min-width: 768px) {
