@@ -4,7 +4,9 @@
             <div
                 class="largeImg"
                 :style="{ backgroundImage: 'url(' + pics[pos] + ')' }"
-            ></div>
+            >
+                <p class="largeText">{{ itineraryClassic[pos] }}</p>
+            </div>
         </main>
         <article class="wheel-wr">
             <div class="prev">
@@ -59,6 +61,12 @@ export default {
                 imgItinEgypt,
                 imgItinWar,
                 imgItinColombia,
+            ],
+            itineraryClassic: [
+                "史前時代",
+                "埃及",
+                "赤壁之戰",
+                "哥倫布發現新大陸",
             ],
             pos: 0,
             carPos: 0,
@@ -305,6 +313,13 @@ button {
                     animation: trans 1.5s ease-in-out forwards;
                 }
             }
+        }
+        .largeText {
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 28px;
+            text-shadow: 4px 4px 3px #493a24;
+            padding: 10px;
         }
     }
     .wheel-wr {

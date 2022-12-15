@@ -30,16 +30,6 @@
     <section class="section">
         <div class="container">
             <div class="btnwrap">
-                <itin-crsl-btn msg="經典行程" />
-            </div>
-            <div class="clsCrslWrap">
-                <itinClsCrsl />
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="btnwrap">
                 <itin-crsl-btn msg="期間限定" />
             </div>
             <div class="clsCrslWrap">
