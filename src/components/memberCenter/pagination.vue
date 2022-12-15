@@ -15,8 +15,10 @@ export default {
 
 
 .page{
+    margin-top: 2%;
+    border-top: 2px solid map-get($color, primary);
     text-align: center;
-    margin: 1% auto;
+    padding: 2% 0;
     .pagination{
     display: inline-block;
     border: 1px solid map-get($color, accent);

@@ -25,7 +25,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "@/assets/css/app.scss";
+@import '@/assets/css/utils/variables';
 .title {
   color: #fff;
   display: flex;
@@ -33,10 +33,10 @@ export default {
   align-items: center;
   padding: 10px;
   line-height: 50px;
+  border-bottom: 2px solid map-get($color, primary);
 }
 .wrap {
   width: 100%;
-  border: 2px solid map-get($color, "primary");
   padding: 5px;
   box-sizing: border-box;
 }
@@ -44,6 +44,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px 0;
+  text-align: center;
+  border-bottom: 2px solid map-get($color , primary);
 }
 .ulWrap > li {
   color: #fff;
