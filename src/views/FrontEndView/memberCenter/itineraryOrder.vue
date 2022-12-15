@@ -13,13 +13,16 @@
     </ul>
     <itinerary-order-info />
   </div>
+  <pagination />
 </template>
 <script>
 import itineraryOrderInfo from "@/components/memberCenter/itineraryOrderInfo.vue";
+import pagination from "@/components/memberCenter/pagination.vue";
 export default {
   name: "itineraryOrder",
   components: {
     itineraryOrderInfo,
+    pagination,
   },
 };
 </script>

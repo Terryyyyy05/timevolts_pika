@@ -3,13 +3,16 @@
     <div class="wrap">
         <itinerary-collection-card-info />
     </div>
+    <pagination />
 </template>
 <script>
 import itineraryCollectionCardInfo from "@/components/memberCenter/itineraryCollectionCardInfo.vue";
+import pagination from "@/components/memberCenter/pagination.vue";
 export default {
     name: "itineraryCollection",
     components: {
         itineraryCollectionCardInfo,
+        pagination,
     },
 };
 </script>
