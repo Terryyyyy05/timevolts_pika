@@ -21,9 +21,6 @@
       }}</router-link>
     </nav>
     <div class="sub-content">
-      <!-- <div class="content-deco">
-        <div>{{ title }}</div>
-      </div> -->
       <router-view />
     </div>
   </div>
@@ -58,26 +55,22 @@ export default {
     flex-direction: column;
     justify-content: space-evenly;
     align-content: center;
-    border: 1px solid #ffe1b5;
+    border: 2px solid #ffe1b5;
     a {
       font-size: 12px;
       padding: 10% 2%;
-      border-bottom: 1px solid #ffe1b5;
+      border-bottom: 2px solid #ffe1b5;
       &:last-child {
         border-bottom: 0;
       }
     }
   }
   .sub-content {
-    border: 1px solid #ffe1b5;
-    // outline: 1px solid yellow;
+    border: 2px solid #ffe1b5;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    // .content-deco {
-    //   border-bottom: 1px solid #ffe1b5;
-    //   height: 50px;
-    // }
+    margin: auto;
   }
 }
 @media screen and (min-width: 768px) {

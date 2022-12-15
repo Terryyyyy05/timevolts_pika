@@ -129,12 +129,15 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import '@/assets/css/utils/variables';
 .wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
   padding: 5px;
+  text-align: center;
+  border-bottom: 1px dashed map-get($color, primary);
 }
 .id {
   width: 12.5%;
