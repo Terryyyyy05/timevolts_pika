@@ -52,7 +52,7 @@ export default {
    computed: {
       filteredHistories() {
          const histories = this.$store.getters["history/histories"];
-         return histories.filter((history) => {
+         const filteredDangerLevel = histories.filter((history) => {
             if (this.activeFilters.low && history.tagDanderLevel === "低") {
                return true;
             }
@@ -62,6 +62,9 @@ export default {
             if (this.activeFilters.high && history.tagDanderLevel === "高") {
                return true;
             }
+            return false;
+         });
+         const filteredFeatures = filteredDangerLevel.filter((history) => {
             if (
                this.activeFilters.religion &&
                history.tagFeature === "宗教事件"
@@ -80,13 +83,13 @@ export default {
             ) {
                return true;
             }
+            return false;
+         });
+         const filteredRegion = filteredFeatures.filter((history) => {
             if (this.activeFilters.asia && history.tagRegion === "亞洲") {
                return true;
             }
-            if (
-               this.activeFilters.europe &&
-               history.tagRegion === "歐洲"
-            ) {
+            if (this.activeFilters.europe && history.tagRegion === "歐洲") {
                return true;
             }
             if (
@@ -101,20 +104,15 @@ export default {
             ) {
                return true;
             }
-            if (
-               this.activeFilters.africa &&
-               history.tagRegion === "非洲"
-            ) {
+            if (this.activeFilters.africa && history.tagRegion === "非洲") {
                return true;
             }
-            if (
-               this.activeFilters.oceania &&
-               history.tagRegion === "大洋洲"
-            ) {
+            if (this.activeFilters.oceania && history.tagRegion === "大洋洲") {
                return true;
             }
             return false;
          });
+         return filteredRegion;
       },
       VisibleHistory() {
          return this.filteredHistories.slice(0, this.visible);

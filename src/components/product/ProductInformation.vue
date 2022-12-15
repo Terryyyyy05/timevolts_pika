@@ -1,6 +1,6 @@
 <template>
   <div class="cardList">
-    <product-card v-for="card in cardList" :key="card.title">
+    <product-card v-for="card in cardList" :key="card.title" :id="card.id">
       <div class="pic">
         <img :src="require('@/assets/image/product/product_1.png')" alt="" />
       </div>
@@ -22,6 +22,8 @@ import { cardContext } from "./js/data.js";
 import ShowMoreButton from "../../components/history/UI/ShowMoreButton.vue";
 import ProductCard from "./base/ProductCard.vue";
 
+
+
 export default {
   components: {
     ShowMoreButton,
@@ -40,6 +42,8 @@ export default {
     const distinguishTrueFalse = computed(() => {
       return perPageCardNum.value < cardContext.length ? true : false;
     });
+
+    
 
     return {
       perPageCardNum,

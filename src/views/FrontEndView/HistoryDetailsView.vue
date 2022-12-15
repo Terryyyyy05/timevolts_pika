@@ -1,5 +1,6 @@
 <template>
-   <all-header></all-header>
+   <all-header />
+   <innerpageHeader></innerpageHeader>
    <div class="container">
       <the-heading heading="歷史故事" subheading="history"></the-heading>
    </div>
@@ -61,7 +62,12 @@
          >
       </div>
    </div>
-   <all-footer></all-footer>
+   <div class="container">
+      <button class="btn-lightbox btn-last-page" @click="backToLastPage">
+         回上一頁
+      </button>
+   </div>
+   <all-footer />
 </template>
 
 <script>
@@ -137,6 +143,9 @@ export default {
          this.activeParagraph = this.paragraph.find((p) => p.id === index);
          console.log(this.activeParagraph);
       },
+      backToLastPage() {
+         this.$router.go(-1);
+      },
    },
    created() {
       this.updateParagraph();
@@ -199,10 +208,11 @@ export default {
    display: flex;
    justify-content: center;
    align-items: center;
+   height: 600px;
 
    .big-image {
       width: 100%;
-      height: 80%;
+      height: 100%;
    }
 }
 
@@ -219,12 +229,16 @@ h3 {
    display: flex;
    gap: 8px;
    margin: 24px auto 0;
-   padding: 24px 64px;
+   padding: 24px 48px;
    border-top: 2px solid map-get($color, "primary");
 }
 
 .btn-secondary {
    margin: 24px auto 0;
+}
+
+.btn-last-page {
+   border-radius: 5px;
 }
 
 @include m() {
@@ -246,6 +260,10 @@ h3 {
 
    .small-images {
       display: none;
+   }
+
+   .big-image-container {
+      height: 300px;
    }
 
    .big-image-container.big-image {

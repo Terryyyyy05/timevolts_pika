@@ -7,14 +7,27 @@
                <p class="p_xl">L O G&nbsp;&nbsp;I N</p>
             </div>
             <div class="inputs">
-               <input type="text" placeholder="信箱" />
-               <input type="text" placeholder="密碼" />
-               <p>忘記密碼</p>
+               <input
+                  type="email"
+                  placeholder="信箱"
+                  v-model.trim="email.val"
+                  @blur="clearValidity('email')"
+               />
+               <input
+                  type="text"
+                  placeholder="密碼"
+                  v-model.trim="password.val"
+                  @blur="clearValidity('password')"
+               />
             </div>
-            <button class="btn-secondary" @click="$router.go(-1)">
-               <span>登入</span>
-            </button>
-            <button class="btn-primary" @click="$emit('signUp')">
+            <p v-if="!loginIsValid" class="alert">請輸入完整資訊</p>
+            <p class="forgot-psw">忘記密碼</p>
+            <router-link :to="toMemberCenter">
+               <button class="btn-secondary" @click="login">
+                  <span>登入</span>
+               </button>
+            </router-link>
+            <button class="btn-primary" @click="$emit('signup')">
                <span>註冊會員</span>
             </button>
          </div>
@@ -24,7 +37,50 @@
 
 <script>
 export default {
-   emits: ["signUp"],
+   emits: ["signup"],
+   data() {
+      return {
+         email: {
+            val: "",
+            isValid: true,
+         },
+         password: {
+            val: "",
+            isValid: true,
+         },
+         loginIsValid: true,
+      };
+   },
+   computed: {
+      toMemberCenter() {
+         if (this.loginIsValid) {
+            return '/memberCenter'
+         }
+      },
+   },
+   methods: {
+      clearValidity(input) {
+         this[input].isValid = true;
+      },
+      validateLogin() {
+         this.loginIsValid = true;
+         if (this.email.val === "") {
+            this.email.isValid = false;
+            this.loginIsValid = false;
+         }
+         if (this.password.val === "") {
+            this.password.isValid = false;
+            this.loginIsValid = false;
+         }
+      },
+      login() {
+         this.validateLogin();
+         if (!this.loginIsValid) {
+            return;
+         }
+         // this.$router.go(-1);
+      },
+   },
 };
 </script>
 
@@ -96,13 +152,18 @@ section {
          border-bottom-right-radius: 5px;
       }
    }
-   p {
-      text-align: end;
-      width: 90%;
-      margin-top: 16px;
-      cursor: pointer;
-      color: #eee;
-   }
+}
+
+.alert {
+   color: red;
+}
+
+.forgot-psw {
+   width: fit-content;
+   cursor: pointer;
+   color: #eee;
+   align-self: flex-end;
+   margin-right: 15%;
 }
 
 .flex-column {
@@ -115,7 +176,7 @@ section {
 
 button {
    border-radius: 10px;
-   width: 40%;
+   width: 200px;
    height: 48px;
    margin-top: 24px;
    margin-bottom: -24px;

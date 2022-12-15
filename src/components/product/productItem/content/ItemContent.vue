@@ -8,12 +8,12 @@
       />
     </div>
     <div class="content">
-      <h2 id="title" ref="title">{{ cardContext[0].title }}</h2>
-      <p class="p_lg">商品用途： <br />{{ cardContext[0].purpose }}</p>
+      <h2 id="title" ref="title">{{ productInfo.title }}</h2>
+      <p class="p_lg">商品用途： <br />{{ productInfo.purpose }}</p>
       <div>
         <span class="p_md">價錢： $</span>
         <span class="p_md" id="price" ref="price">{{
-          cardContext[0].price * totalNumber
+          productInfo.price * totalNumber
         }}</span>
       </div>
 
@@ -34,16 +34,19 @@
         <span>
           <img src="@/assets/image/product/heart.svg" alt="" />
         </span>
-        <button class="btn-primary" @click="addToCart()">加入購物車</button>
+        <button class="btn-secondary" @click="addToCart()">加入購物車</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { reactive, ref, watchEffect, computed } from "vue";
 import { cardContext } from "../../js/data";
 import { useStore } from "vuex";
+
+// test
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
 export default {
   components: {},
@@ -76,12 +79,47 @@ export default {
       store.commit("addToCart", newProduct);
     };
 
+    // test
+    const router = useRouter();
+    const route = useRoute();
+
+    console.log(route.params.id);
+    // console.log(route.query);
+    // console.log(route.hash);
+    // console.log(route.path);
+
+    const aaa = reactive(route.params.id);
+
+    const productInfo = reactive(
+      cardContext.find((i) => {
+        return i.id === parseInt(route.params.id);
+      })
+    );
+
+    console.log(productInfo);
+    console.log(cardContext);
+
+    onBeforeRouteUpdate(async (to, from) => {
+      console.log("QQ");
+
+      Object.assign(
+        productInfo,
+        cardContext.find((i) => i.id === parseInt(to.params.id))
+      );
+      
+      console.log(productInfo);
+      console.log(cardContext);
+    });
+
     return {
       cardContext,
       totalNumber,
       minusNum,
       addNum,
       addToCart,
+      // test
+      aaa,
+      productInfo,
       // DOM
       title,
       price,

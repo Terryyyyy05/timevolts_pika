@@ -2,8 +2,9 @@
   <all-header />
   <!-- <div id="mouse"></div> -->
   <!-- <LeadingView v-if="one" /> -->
+  <MyVoucher />
+
   <div class="home">
-    <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
     <div class="introduce_block">
       <div class="sideTotem">
         <img src="@/assets/image/home/sideTotem.svg" alt="時萬伏特-文字圖樣" />
@@ -15,7 +16,7 @@
         </h1>
       </div>
       <div class="text bg_dark_75 p_md">
-        <p>Last login: Wed Nov 16 10:53:48</p>
+        <p>Last login: {{ nowTime.data }}</p>
         <p>Restored session:</p>
         <p>TimeVolts ~ %</p>
         <p>
@@ -23,8 +24,10 @@
           .<br />
           .<br />
           歡迎來到時萬伏特<br />
-          假文字假文字假文字假文字假文字假文字假文字假文字<br />
-          假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字
+          我們開發了全新的時光機器<br />
+          假文字假文字假文字假文字假文字假文字<br />
+          假文字假文字<br />
+          假文字假文字
         </p>
       </div>
       <div class="slogan">
@@ -74,16 +77,18 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 import HomeItinerary from "../../components/home/HomeItinerary.vue";
 import HomeHistorcal from "../../components/home/HomeHistorcal.vue";
 import HomeNews from "../../components/home/HomeNews.vue";
-import LeadingView from "../../views/FrontEndView/LeadingView.vue";
+import MyVoucher from "../../components/voucher/MyVoucher.vue";
+import GetVoucher from "../../components/voucher/GetVoucher.vue";
+import { reactive, ref } from "vue";
 
 export default {
   name: "HomeView",
   datas() {
     return {
+      c: true,
       newsData: [
         {
           id: 1,
@@ -118,13 +123,55 @@ export default {
       ],
     };
   },
+  setup() {
+    //取得時間
+    const nowTime = reactive({
+      data: "",
+    });
+    let myDate = new Date();
+    function setTime(myDate) {
+      const year = myDate.getFullYear();
+      const month =
+        myDate.getMonth() + 1 < 10
+          ? "0" + (myDate.getMonth() + 1)
+          : myDate.getMonth() + 1;
+      const date =
+        myDate.getDate() < 10 ? "0" + myDate.getDate() : myDate.getDate();
+      const h = myDate.getHours();
+      const m =
+        myDate.getMinutes() < 10
+          ? "0" + myDate.getMinutes()
+          : myDate.getMinutes();
+      const s =
+        myDate.getSeconds() < 10
+          ? "0" + myDate.getSeconds()
+          : myDate.getSeconds();
+      const day = year + "-" + month + "-" + date;
+      const time = h + ":" + m + ":" + s;
+
+      nowTime.data = day + " " + time;
+    }
+    function nowTimes() {
+      setTime(myDate);
+      setInterval(() => {
+        myDate = new Date();
+        setTime(myDate);
+      }, 1000);
+    }
+    nowTimes();
+    return {
+      nowTime,
+    };
+  },
   components: {
-    HelloWorld,
     HomeItinerary,
     HomeHistorcal,
     HomeNews,
-    LeadingView,
+    MyVoucher,
+    GetVoucher,
   },
+  props: ["text"],
+  methods: {},
 };
 </script>
 
@@ -146,50 +193,6 @@ a:visited.link {
   mix-blend-mode: difference;
   position: absolute;
 }
-
-// 酷酷的雜訊效果
-// h1::before {
-//   width: 100%;
-//   height: 100%;
-//   content: "";
-//   margin: auto;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   display: block;
-//   pointer-events: none;
-//   background: url(@/assets/image/noise.gif);
-//   mix-blend-mode: overlay;
-//   opacity: 0.5;
-//   background-repeat: repeat;
-//   position: fixed;
-//   z-index: 1000;
-// }
-// h1::after {
-//   width: 100%;
-//   height: 100%;
-//   content: "";
-//   margin: auto;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   display: block;
-//   pointer-events: none;
-//   background: radial-gradient(
-//     50% 50% at 50% 50%,
-//     rgba(255, 255, 255, 0.7) 0%,
-//     rgba(54, 54, 54, 1) 100%
-//   );
-//   // rgba(13, 13, 13, 1) 100%
-//   // mix-blend-mode: overlay;
-//   opacity: 0.4;
-//   position: fixed;
-//   z-index: 1000;
-// }
-
-// .bg_dark{}
 
 .bg_dark_75 {
   background-color: rgba(map-get($color, "dark"), 75%);

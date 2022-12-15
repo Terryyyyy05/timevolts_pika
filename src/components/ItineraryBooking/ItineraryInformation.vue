@@ -1,5 +1,4 @@
 <template>
-   <h2>{{}}</h2>
    <div class="information p_md">
       <calendar :selected-date="departDate"></calendar>
       <div>
@@ -174,6 +173,10 @@ export default {
 @include m() {
    .information {
       @include grid(1fr, 48px);
+   }
+
+   .info-list {
+      @include grid(1fr, 24px)
    }
 
    .attend-num {

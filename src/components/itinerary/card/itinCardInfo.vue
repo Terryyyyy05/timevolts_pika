@@ -3,12 +3,12 @@
     <div class="outterwrap">
       <h3>{{ info.title }}</h3>
       <div class="wrap">
-        <div class="imgblock" @mouseover="btnHover" @mouseleave="btnNoHover">
+        <div class="imgblock">
           <img :src="info.imgsrc" :alt="info.imgalt" />
         </div>
         <div class="textblock">
           <div>
-            <span class="p_md">#{{ info.tagDanderLevel }}危險</span>
+            <span class="p_md">#{{ info.tagDangerLevel }}危險</span>
             <span class="p_md">#{{ info.tagFeature }}</span>
             <span class="p_md">#{{ info.tagRegion }}</span>
           </div>
@@ -56,7 +56,7 @@ export default {
           imgsrc: require(`@/assets/image/itinPrehistoric.jpg`),
           imgalt: "經典行程-史前時代",
           title: "史前時代",
-          tagDanderLevel: "高",
+          tagDangerLevel: "高",
           tagFeature: "經典事件",
           tagRegion: null,
           tourdate: " 西元前5000年11月22日",
@@ -68,7 +68,7 @@ export default {
           imgsrc: require(`@/assets/image/itinEgypt.jpg`),
           imgalt: "經典行程-埃及",
           title: "埃及五千年",
-          tagDanderLevel: "低",
+          tagDangerLevel: "低",
           tagFeature: "經典事件",
           tagRegion: "非洲",
           tourdate: "西元???年",
@@ -80,7 +80,7 @@ export default {
           imgsrc: require(`@/assets/image/itinWar.jpg`),
           imgalt: "經典行程-赤壁之戰",
           title: "赤壁之戰",
-          tagDanderLevel: "高",
+          tagDangerLevel: "高",
           tagFeature: "經典事件",
           tagRegion: "中國",
           tourdate: "西元208年",
@@ -92,7 +92,7 @@ export default {
           imgsrc: require(`@/assets/image/itinColombia.jpeg`),
           imgalt: "經典行程-哥倫布發現新大陸",
           title: "哥倫布發現新大陸",
-          tagDanderLevel: "中",
+          tagDangerLevel: "中",
           tagFeature: "經典事件",
           tagRegion: "北美洲",
           tourdate: "西元1492年",
@@ -104,7 +104,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/lochNessMonster.jpg`),
           imgalt: "期間限定-尼斯湖水怪",
           title: "尼斯湖水怪",
-          tagDanderLevel: "低",
+          tagDangerLevel: "低",
           tagFeature: "奇聞軼事",
           tagRegion: "歐洲",
           tourdate: "??",
@@ -116,7 +116,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/kisaragiStation.jpg`),
           imgalt: "期間限定-如月車站",
           title: "不存在的車站-如月車站",
-          tagDanderLevel: "高",
+          tagDangerLevel: "高",
           tagFeature: "奇聞軼事",
           tagRegion: "亞洲",
           tourdate: "西元2004年",
@@ -128,7 +128,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/atlantis.png`),
           imgalt: "期間限定-亞特蘭提",
           title: "亞特蘭提斯",
-          tagDanderLevel: "低",
+          tagDangerLevel: "低",
           tagFeature: "奇聞軼事",
           tagRegion: null,
           tourdate: "西元前一萬兩千年",
@@ -140,7 +140,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/crusades.webp`),
           imgalt: "期間限定-十字軍東征",
           title: "十字軍東征",
-          tagDanderLevel: "高",
+          tagDangerLevel: "高",
           tagFeature: "宗教事件",
           tagRegion: "歐洲",
           tourdate: "西元1609年",
@@ -152,7 +152,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/jesusOnCross.jpg`),
           imgalt: "期間限定-耶穌被釘十字架",
           title: "耶穌被釘十字架",
-          tagDanderLevel: "中",
+          tagDangerLevel: "中",
           tagFeature: "宗教事件",
           tagRegion: "亞洲",
           tourdate: "西元30年",
@@ -164,7 +164,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/mohammad.jpg`),
           imgalt: "期間限定-默汗默德",
           title: "穆罕默德",
-          tagDanderLevel: "低",
+          tagDangerLevel: "低",
           tagFeature: "宗教事件",
           tagRegion: "亞洲",
           tourdate: "西元571年",
@@ -176,7 +176,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/maliEmpire.png`),
           imgalt: "期間限定-馬利帝國",
           title: "馬利帝國的朝聖之旅",
-          tagDanderLevel: "低",
+          tagDangerLevel: "低",
           tagFeature: "歷史事件",
           tagRegion: "非洲",
           tourdate: "西元1235年",
@@ -188,7 +188,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/culturaMaya.webp`),
           imgalt: "期間限定-馬雅文明",
           title: "馬雅文明",
-          tagDanderLevel: "低",
+          tagDangerLevel: "低",
           tagFeature: "歷史事件",
           tagRegion: "南美洲",
           tourdate: "西元250年",
@@ -200,7 +200,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/zhengHeVoyages.jpeg`),
           imgalt: "期間限定-鄭和下西洋",
           title: "鄭和下西洋",
-          tagDanderLevel: "中",
+          tagDangerLevel: "中",
           tagFeature: "歷史事件",
           tagRegion: "亞洲",
           tourdate: "西元1405年",
@@ -212,7 +212,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/goldRush.jpg`),
           imgalt: "期間限定-澳洲淘金熱",
           title: "澳洲淘金熱",
-          tagDanderLevel: "低",
+          tagDangerLevel: "低",
           tagFeature: "歷史事件",
           tagRegion: "大洋洲",
           tourdate: "西元1912年",
@@ -224,7 +224,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/titanic.jpg`),
           imgalt: "期間限定-鐵達尼號沈船事故",
           title: "鐵達尼號沈船事件",
-          tagDanderLevel: "中",
+          tagDangerLevel: "中",
           tagFeature: "歷史事件",
           tagRegion: "歐洲",
           tourdate: "西元1912年",
@@ -236,7 +236,7 @@ export default {
           imgsrc: require(`@/assets/image/itin/goldenAge.jpg`),
           imgalt: "期間限定-荷蘭的黃金年代",
           title: "荷蘭的黃金年代",
-          tagDanderLevel: "低",
+          tagDangerLevel: "低",
           tagFeature: "歷史事件",
           tagRegion: "歐洲",
           tourdate: "西元1609年",

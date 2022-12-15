@@ -48,7 +48,7 @@
     </ul>
     <div class="total-price" v-if="items[0]">
       <div class="discount">
-        <button class="btn-primary">使用折扣券</button>
+        <button class="btn-primary" @click="clickOpenModal">使用折扣券</button>
       </div>
       <div class="count-total-price">
         <div class="before-discount">
@@ -80,16 +80,35 @@
       <span>你是不是買不起?</span>
     </div>
   </div>
+  <modal
+    :modalStatus="modalStatus"
+    class="modal-location"
+    @closeModal="() => (modalStatus = false)"
+  >
+    <coupon @coupon="useCoupon" />
+  </modal>
+  <div v-show="modalStatus" class="muted-background"></div>
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
+
+// test
+import modal from "@/components/modal.vue";
+import coupon from "@/components/product/coupon/coupon.vue";
+
 export default {
   name: "CheckOutStepOne",
-
+  components: {
+    modal,
+    coupon,
+  },
   setup() {
     const store = useStore();
+
+    // test
+    const modalStatus = ref(false);
 
     // computed
     const items = computed(() => {
@@ -113,11 +132,24 @@ export default {
       store.commit("addAmount", clickTitle);
     };
 
+    const clickOpenModal = () => {
+      return (modalStatus.value = !modalStatus.value);
+    };
+
+    const useCoupon = (item) => {
+      modalStatus.value = false;
+      console.log(item);
+    };
+
     return {
       items,
       removeFromCart,
       minusNum,
       addNum,
+      // test
+      modalStatus,
+      clickOpenModal,
+      useCoupon,
     };
   },
 };
@@ -134,6 +166,41 @@ $price-width: 35%;
 
 * {
   box-sizing: border-box;
+}
+
+// 父層設定modal位置與寬高
+.modal-location {
+  aspect-ratio: 49/50;
+  width: 30%;
+  // height: fit-content;
+
+  position: fixed;
+  z-index: 103;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+@include m() {
+  .modal-location {
+    width: unset;
+    aspect-ratio: unset;
+    height: 100vh;
+  }
+}
+
+// modal打開後背景壓暗
+.muted-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(map-get($color, body_dark), 0.6);
+
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
 }
 
 .minus-plus {

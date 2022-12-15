@@ -1,10 +1,21 @@
 <template>
   <div>
-    <router-link to="/product-item">
+    <router-link :to="`/product-item/${id}`">
       <slot></slot>
     </router-link>
   </div>
 </template>
+
+<script>
+export default {
+  name: "ProductCard",
+  props: {
+    id: {
+      type: Number,
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";

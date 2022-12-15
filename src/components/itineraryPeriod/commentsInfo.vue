@@ -174,7 +174,7 @@ input {
     height: 20px;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: end;
+    justify-content: flex-end;
     align-self: center;
     padding: 0;
     margin: 0;

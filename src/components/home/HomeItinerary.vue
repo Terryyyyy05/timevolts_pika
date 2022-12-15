@@ -114,23 +114,7 @@ export default {
     };
   },
 
-  computed: {
-    // pictures(){
-    //     Array.from({ length:
-    // 		5 }, (_, item) => ({ src:`https://picsum.photos/600/400?random=${item + 1}`
-    //     }))
-    // },
-    // previous(){
-    //     // 頁面往前，循環補上
-    //     const lastSlide = pictures.value.pop();
-    //     pictures.value = [lastSlide].concat(pictures.value);
-    // },
-    // next(){
-    //     // 頁面往後，循環補上
-    //     const firstPicture = pictures.value.shift();
-    //     pictures.value = pictures.value.concat(firstPicture);
-    // },
-  },
+  computed: {},
   methods: {
     previous() {
       // 頁面往前，循環補上
@@ -187,15 +171,6 @@ export default {
   z-index: -1;
 }
 
-// .list-enter-active,
-// .list-leave-active {
-//   transition: all 0.5s ease;
-// }
-// .list-enter-from,
-// .list-leave-to {
-//   opacity: 0;
-//   transform: translateX(calc(40vw + 30px));
-// }
 .swipe-move {
   transition: all 0.3s;
 }

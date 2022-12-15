@@ -37,7 +37,7 @@
             <img src="../assets/image/chatbox.png" alt="chatbox" />
           </div>
           <div class="lower-content-two">
-            <p>我想詢問如何搭乘時光機</p>
+            <p>{{ customerText }}</p>
           </div>
         </div>
         <div class="lower-box">
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="input-submit">
-        <input type="text" placeholder="請輸入關鍵字" />
+        <input type="text" placeholder="請輸入關鍵字" v-model="customerText" />
         <button type="submit">送出</button>
       </div>
     </div>
@@ -66,7 +66,7 @@ export default {
   data() {
     return {
       openRobot: false,
-      customerText: "",
+      customerText: "我想要詢問如何搭乘時光機",
       info: [
         {
           type: "leftinfo",
@@ -263,12 +263,13 @@ export default {
       p {
         color: #fab042;
         font-size: 1.8rem;
-        margin-left: 10px;
+        margin-left: 15px;
         white-space: nowrap;
       }
     }
   }
   .chatbox-lower {
+    overflow-y: scroll;
     .lower-img {
       background-color: #464646;
       border-radius: 50%;
@@ -350,13 +351,46 @@ export default {
       width: 15%;
       font-size: 1rem;
       margin-right: 10px;
+      white-space: nowrap;
     }
   }
 }
+
+// chat bot
+
+::-webkit-scrollbar {
+  width: 1.2rem;
+}
+::-webkit-scrollbar-track {
+  background: hsl(36, 100%, 85%);
+  border-radius: 100vw;
+  margin-block: 0.5em;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(36, 100%, 55%);
+  border: 0.25em solid hsl(36, 100%, 85%);
+  border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(36, 100%, 65%);
+}
+@supports (scrollbar-color: red blue) {
+  * {
+    scrollbar-color: hsl(36, 100%, 55%) hsl(36, 100%, 85%);
+    scrollbar-width: auto;
+  }
+} // support firefox
+
+// scrollbar
+
 @media screen and (max-width: 768px) {
   .chatbox {
     .chatbox-container {
-      width: 70%;
+      width: 80%;
+      top: 8%;
+      left: 1%;
+      right: initial;
+      transform: initial;
       .chatbox-upper {
         .upper-img-title {
           width: 60px;
@@ -392,12 +426,17 @@ export default {
           font-size: 0.9rem;
         }
         button {
-          white-space: nowrap;
           width: 20%;
           font-size: 0.9rem;
         }
       }
     }
   }
+  // chat bot
+
+  ::-webkit-scrollbar {
+    width: 0.6rem;
+  }
+  // scrollbar
 }
 </style>

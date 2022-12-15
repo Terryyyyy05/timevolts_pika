@@ -1,4 +1,6 @@
 <template>
+   <all-header />
+   <innerpageHeader></innerpageHeader>
    <div class="container">
       <the-heading
          heading="行程訂票"
@@ -13,19 +15,23 @@
       <keep-alive>
          <component :is="selectedStep"></component>
       </keep-alive>
-      <div class="buttons">
-         <button class="btn-primary" style="margin: auto" @click="nextStep">
+      <div class="buttons" v-if="this.selectedStep !== 'confirm-order'">
+         <button class="btn-primary" @click="nextStep">
             {{ button }}
          </button>
-         <button
-            class="btn-secondary"
-            style="margin: auto"
-            v-if="this.selectedStep === 'confirm-order'"
+      </div>
+      <div class="buttons" v-if="this.selectedStep === 'confirm-order'">
+         <router-link to="/memberCenter">
+            <button class="btn-primary">開始製作</button>
+         </router-link>
+         <router-link to="/home"
+            ><button class="btn-secondary">
+               使用預設樣式，晚點再做
+            </button></router-link
          >
-            使用預設樣式，晚點再做
-         </button>
       </div>
    </div>
+   <all-footer />
 </template>
 
 <script>
@@ -78,12 +84,12 @@ export default {
             this.selectedStep = "checkout";
             this.currentStep = "結帳";
             this.button = "前往付款";
+            window.scrollTo(0, 0);
          } else if (this.selectedStep === "checkout") {
             this.selectedStep = "confirm-order";
             this.currentStep = "訂單成立";
-            this.button = "開始製作";
+            window.scrollTo(0, 0);
          }
-         window.scrollTo(0, 0);
       },
    },
 };
@@ -114,6 +120,6 @@ export default {
    display: flex;
    gap: 48px;
    width: fit-content;
-   margin: 24px auto 0
+   margin: 0 auto;
 }
 </style>

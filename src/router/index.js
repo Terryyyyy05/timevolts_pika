@@ -63,7 +63,7 @@ const routes = [
       component: () => import("../views/FrontEndView/ProductCheckOutView.vue"),
    },
    {
-      path: "/product-item",
+      path: "/product-item/:id",
       name: "product-item",
       component: () => import("../views/FrontEndView/ProductItemView.vue"),
    },
@@ -73,73 +73,9 @@ const routes = [
       component: () => import("../views/FrontEndView/ProductCheckOutView.vue"),
    },
    {
-      path: "/signup",
-      name: "signup",
-      component: () =>
-         import("../views/FrontEndView/Member/MemberSignupView.vue"),
-   },
-   {
-      path: "/profile",
-      name: "profile",
-      component: () =>
-         import("../views/FrontEndView/Member/MemberProfileView.vue"),
-   },
-   {
-      path: "/profile-edit",
-      name: "profile-edit",
-      component: () =>
-         import("../views/FrontEndView/Member/MemberProfileEditView.vue"),
-   },
-   {
-      path: "/itineray-order",
-      name: "itineray-order",
-      component: () =>
-         import("../views/FrontEndView/Member/MemberItineraryOrderView.vue"),
-   },
-   {
-      path: "/itinerary-order-details",
-      name: "itinerary-order-details",
-      component: () =>
-         import(
-            "../views/FrontEndView/Member/MemberItineraryOrderDetailsView.vue"
-         ),
-   },
-   {
       path: "/customizetk",
       name: "customizetk",
       component: () => import("../components/ItineraryBooking/Customizetk.vue"),
-   },
-   {
-      path: "/product-order",
-      name: "product-order",
-      component: () =>
-         import("../views/FrontEndView/Member/MemberProductOrderView.vue"),
-   },
-   {
-      path: "/product-order-details",
-      name: "product-order-details",
-      component: () =>
-         import(
-            "../views/FrontEndView/Member/MemberProductOrderDetailsView.vue"
-         ),
-   },
-   {
-      path: "/coupon",
-      name: "coupon",
-      component: () =>
-         import("../views/FrontEndView/Member/MemberCouponView.vue"),
-   },
-   {
-      path: "/itinerary-wishlist",
-      name: "itinerary-wishlist",
-      component: () =>
-         import("../views/FrontEndView/Member/MemberItineraryWishlistView.vue"),
-   },
-   {
-      path: "/product-wishlist",
-      name: "product-wishlist",
-      component: () =>
-         import("../views/FrontEndView/Member/MemberProductWishlistView.vue"),
    },
    {
       path: "/managelogin",
