@@ -18,6 +18,11 @@ const routes = [
       component: () => import("../views/FrontEndView/AboutView.vue"),
    },
    {
+    path: "/experience",
+    name: "experience",
+    component: () => import("../views/FrontEndView/ExperienceView.vue"),
+    },
+   {
       path: "/news",
       name: "news",
       component: () => import("../views/FrontEndView/NewsView.vue"),
