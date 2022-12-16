@@ -1,8 +1,8 @@
 <template>
+  <!-- <Loading /> -->
   <all-header />
   <!-- <div id="mouse"></div> -->
-  <!-- <LeadingView v-if="one" /> -->
-  <MyVoucher />
+  <!-- <MyVoucher /> -->
 
   <div class="home">
     <div class="introduce_block">
@@ -77,6 +77,7 @@
 
 <script>
 // @ is an alias to /src
+import Loading from "../../components/home/Loading";
 import HomeItinerary from "../../components/home/HomeItinerary.vue";
 import HomeHistorcal from "../../components/home/HomeHistorcal.vue";
 import HomeNews from "../../components/home/HomeNews.vue";
@@ -169,6 +170,7 @@ export default {
     HomeNews,
     MyVoucher,
     GetVoucher,
+    Loading,
   },
   props: ["text"],
   methods: {},

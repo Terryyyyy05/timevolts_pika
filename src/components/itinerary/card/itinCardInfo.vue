@@ -4,28 +4,35 @@
       <h3>{{ info.title }}</h3>
       <div class="wrap">
         <div class="imgblock">
-          <img :src="info.imgsrc" :alt="info.imgalt" />
+          <router-link
+            :to="
+              info.type == '經典事件'
+                ? '/itiItineraryClassicView'
+                : '/itineraryPeriodView'
+            "
+          >
+            <img :src="info.imgsrc" :alt="info.imgalt" />
+            <div class="bg_accent morewrap">
+              <span class="morespan">more</span>
+            </div>
+          </router-link>
         </div>
         <div class="textblock">
           <div>
-            <span class="p_md">#{{ info.tagDangerLevel }}危險</span>
-            <span class="p_md">#{{ info.tagFeature }}</span>
-            <span class="p_md">#{{ info.tagRegion }}</span>
+            <span class="p_md" v-if="info.tagDangerLevel"
+              >#{{ info.tagDangerLevel }}危險</span
+            >
+            <span class="p_md" v-if="info.tagFeature"
+              >#{{ info.tagFeature }}</span
+            >
+            <span class="p_md" v-if="info.tagRegion"
+              >#{{ info.tagRegion }}</span
+            >
           </div>
           <p class="p_md tourdate">出團日期： {{ info.tourdate }}</p>
           <p class="p_md description">{{ info.description }}</p>
         </div>
       </div>
-      <router-link
-        :to="
-          info.type == '經典事件'
-            ? '/itiItineraryClassicView'
-            : '/itineraryPeriodView'
-        "
-        class="bg_accent morewrap"
-      >
-        <span class="morespan">more</span>
-      </router-link>
     </div>
   </itin-card>
   <show-more-button
@@ -276,9 +283,9 @@ export default {
   height: 100%;
   object-fit: cover;
   align-self: center;
-  padding: 1%;
-  margin: 1%;
+  margin: 2%;
   box-sizing: border-box;
+  position: relative;
 }
 img {
   width: 100%;
@@ -298,7 +305,9 @@ h3 {
   text-align: center;
   width: 100%;
   font-size: 32px;
-  height: 70px;
+  height: 60px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #fff;
 }
 span {
   display: inline-block;
@@ -319,20 +328,36 @@ span {
   overflow-y: auto;
   padding: 5px;
   font-size: 16px;
+
+  //捲軸底色
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: map-get($color, "dark");
+  }
+  //捲軸寬度
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: black;
+  }
+  //捲軸本體顏色
+  &::-webkit-scrollbar-thumb {
+    background-color: map-get($color, "muted");
+  }
 }
 // .outterwrap {
 //   position: relative;
 // }
 .morewrap {
-  width: 60px;
+  width: 80px;
   height: 30px;
   display: flex;
-  //   position: absolute;
-  //   bottom: 0;
-  //   right: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
   margin-left: auto;
 }
 .morespan {
+  color: map-get($color, "dark");
   text-align: center;
   margin: auto;
   font-size: 20px;
