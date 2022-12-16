@@ -2,7 +2,6 @@
   <!-- <Loading /> -->
   <all-header />
   <!-- <div id="mouse"></div> -->
-  <!-- <MyVoucher /> -->
 
   <div class="home">
     <div class="introduce_block">
@@ -16,18 +15,17 @@
         </h1>
       </div>
       <div class="text bg_dark_75 p_md">
-        <p>Last login: {{ nowTime.data }}</p>
-        <p>Restored session:</p>
-        <p>TimeVolts ~ %</p>
         <p>
+          Last login: {{ nowTime.data }}<br />
+          Restored session:<br />
+          TimeVolts ~ %<br />
           .<br />
           .<br />
           .<br />
-          歡迎來到時萬伏特<br />
-          我們開發了全新的時光機器<br />
-          假文字假文字假文字假文字假文字假文字<br />
-          假文字假文字<br />
-          假文字假文字
+          .
+        </p>
+        <p class="typewriter">
+          {{ typewriter }}
         </p>
       </div>
       <div class="slogan">
@@ -77,12 +75,10 @@
 
 <script>
 // @ is an alias to /src
-import Loading from "../../components/home/Loading";
+// import Loading from "../../components/home/Loading";
 import HomeItinerary from "../../components/home/HomeItinerary.vue";
 import HomeHistorcal from "../../components/home/HomeHistorcal.vue";
 import HomeNews from "../../components/home/HomeNews.vue";
-import MyVoucher from "../../components/voucher/MyVoucher.vue";
-import GetVoucher from "../../components/voucher/GetVoucher.vue";
 import { reactive, ref } from "vue";
 
 export default {
@@ -122,6 +118,14 @@ export default {
           img: require(`@/assets/image/news/system.png`),
         },
       ],
+      typewriter: "",
+      i: 0,
+      timer: 0,
+      str: ["歡迎來到時萬伏特"],
+
+      // "我們開發了全新的時光機器",
+      // "誠摯的邀請您來場時光之旅",
+      // "探索歷史的全新可能...",
     };
   },
   setup() {
@@ -168,12 +172,20 @@ export default {
     HomeItinerary,
     HomeHistorcal,
     HomeNews,
-    MyVoucher,
-    GetVoucher,
-    Loading,
   },
   props: ["text"],
-  methods: {},
+  methods: {
+    typeing() {
+      if (this.i <= this.str.length) {
+        this.typewriter = this.str.slice(0, this.i++);
+        this.timer = setTimeout(() => {
+          this.typeing();
+        }, 80);
+      } else {
+        clerTimeout(this.timer);
+      }
+    },
+  },
 };
 </script>
 
