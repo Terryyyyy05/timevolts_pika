@@ -53,7 +53,7 @@
       </div>
       <div class="input-submit">
         <textarea placeholder="請輸入關鍵字" v-model="customerText"></textarea>
-        <button type="submit">送出</button>
+        <button type="submit" @click="scrollToBottom">送出</button>
       </div>
     </div>
   </div>
@@ -103,6 +103,10 @@ export default {
   methods: {
     showChatbox() {
       this.openRobot = !this.openRobot;
+    },
+    scrollToBottom() {
+      let chatboxContentHeight = document.querySelector(".chatbox-lower");
+      chatboxContentHeight.scrollTop = parseInt(chatboxContentHeight.scrollHeight);
     },
     // 用戶發送訊息
     sentMsg() {
@@ -358,7 +362,7 @@ export default {
 // chat bot
 
 ::-webkit-scrollbar {
-  width: 1.2rem;
+  width: 1rem;
 }
 ::-webkit-scrollbar-track {
   background: hsl(36, 100%, 85%);
