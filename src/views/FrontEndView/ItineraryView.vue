@@ -68,13 +68,8 @@ export default {
     mounted() {
         sceneInit();
         animate();
-        // changeCanvas();
     },
-    methods: {
-        // changeCanvas() {
-        //     context.fillStyle = "#131313";
-        // },
-    },
+    methods: {},
 };
 </script>
 
