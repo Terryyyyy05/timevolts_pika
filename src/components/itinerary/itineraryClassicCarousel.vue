@@ -1,12 +1,13 @@
 <template>
     <div class="grid">
         <main>
-            <div
+            <router-link
+                to="/itiItineraryClassicView"
                 class="largeImg"
                 :style="{ backgroundImage: 'url(' + pics[pos] + ')' }"
             >
                 <p class="largeText">{{ itineraryClassic[pos] }}</p>
-            </div>
+            </router-link>
         </main>
         <article class="wheel-wr">
             <div class="prev">
