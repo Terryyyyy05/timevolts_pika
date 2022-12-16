@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="input-submit">
-        <input type="text" placeholder="請輸入關鍵字" v-model="customerText" />
+        <textarea placeholder="請輸入關鍵字" v-model="customerText"></textarea>
         <button type="submit">送出</button>
       </div>
     </div>
@@ -223,8 +223,8 @@ export default {
   left: 0;
   right: 0;
   position: fixed;
-  z-index: 100;
-  background: rgba(0, 0, 0, 0.9);
+  z-index: 102;
+  background: rgba(0, 0, 0, 0.8);
 }
 .chatbox-container {
   color: #fff;
@@ -325,33 +325,32 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    input {
+    textarea {
       padding: 5px 10px;
       border-radius: 15px;
       margin: 10px;
       background-color: #545454;
-      border: initial;
       width: 60%;
       font-size: 1rem;
       color: #fff;
-    }
-    input:focus {
-      color: #fff;
-    }
-    ::placeholder {
-      color: #fff;
+      outline: none;
+      resize: none;
+      box-sizing: border-box;
+      box-shadow: 0.1rem 0.1rem 0px #ffe1b5;
+      border-color: #ccc;
     }
     button {
       color: #fff;
       background-color: #545454;
       border-radius: 15px;
       padding: 5px 10px;
-      border: initial;
       cursor: pointer;
       width: 15%;
       font-size: 1rem;
       margin-right: 10px;
       white-space: nowrap;
+      border-color: #ccc;
+      box-shadow: 0.1rem 0.1rem 0px #ffe1b5;
     }
   }
 }
@@ -386,11 +385,7 @@ export default {
 @media screen and (max-width: 768px) {
   .chatbox {
     .chatbox-container {
-      width: 80%;
-      top: 8%;
-      left: 1%;
-      right: initial;
-      transform: initial;
+      width: 90%;
       .chatbox-upper {
         .upper-img-title {
           width: 60px;
@@ -421,7 +416,7 @@ export default {
         }
       }
       .input-submit {
-        input {
+        textarea {
           width: 70%;
           font-size: 0.9rem;
         }
