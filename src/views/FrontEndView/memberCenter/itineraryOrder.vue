@@ -36,6 +36,7 @@ export default {
   padding: 10px;
   line-height: 50px;
   border-bottom: 2px solid map-get($color, primary);
+  font-family:"Cube11" ;
 }
 .wrap {
   width: 100%;

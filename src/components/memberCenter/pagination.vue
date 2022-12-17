@@ -1,9 +1,7 @@
 <template>
-    <div class="page">
-        <ul class="pagination" v-for="page in 5" :key="page">
-          <li>{{page}}</li>
-        </ul>
-    </div>
+    <div class="pagination">
+        <button v-for="page in 3" :key="page">{{page}}</button>
+      </div>
 </template>
 <script>
 export default {
@@ -14,18 +12,26 @@ export default {
 @import '@/assets/css/utils/variables';
 
 
-.page{
-    margin-top: 2%;
+.pagination{
     border-top: 2px solid map-get($color, primary);
     text-align: center;
-    padding: 2% 0;
-    .pagination{
-    display: inline-block;
+    padding-top: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    button{
     border: 1px solid map-get($color, accent);
+    margin: 0 2px;
     color: map-get($color, accent);
-    li {
-        padding: 0 10px;
-        line-height: 1.5;
+    background-color: transparent;
+    padding: 0 10px;
+    line-height: 2;
+    cursor: pointer;
+    &:hover{
+      background-color: map-get($color, accent);
+      color: #1e1e1e;
     }
     }
   }
