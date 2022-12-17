@@ -77,7 +77,7 @@ export default {
       },
       signup() {
          this.validateSignup();
-         if (!this.signupIsValid) {
+         if (!this.signupIsValid || !this.emailIsVerified) {
             return;
          }
 
