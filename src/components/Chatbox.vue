@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="input-submit">
-        <textarea placeholder="請輸入關鍵字" v-model="customerText"></textarea>
+        <textarea placeholder="請輸入關鍵字" required v-model="customerText"></textarea>
         <button type="submit" @click="scrollToBottom">送出</button>
       </div>
     </div>
@@ -106,7 +106,7 @@ export default {
     },
     scrollToBottom() {
       let chatboxContentHeight = document.querySelector(".chatbox-lower");
-      chatboxContentHeight.scrollTop = parseInt(chatboxContentHeight.scrollHeight);
+      chatboxContentHeight.scrollTop = chatboxContentHeight.scrollHeight;
     },
     // 用戶發送訊息
     sentMsg() {
@@ -334,7 +334,7 @@ export default {
       border-radius: 15px;
       margin: 10px;
       background-color: #545454;
-      width: 60%;
+      width: 100%;
       font-size: 1rem;
       color: #fff;
       outline: none;
