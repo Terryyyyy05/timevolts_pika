@@ -70,7 +70,7 @@ h3 {
     color: #fff;
     text-align: center;
     width: 100%;
-    font-size: 32px;
+    font-size: 28px;
     margin: 3px;
     padding: 3px;
     height: 50px;

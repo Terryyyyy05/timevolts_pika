@@ -2,7 +2,7 @@
     <font-awesome-icon icon="fa-solid fa-angles-up" @click="scrollToTop"  v-show="scrollshow"/>
 </template>
 <script>
-import * as $ from 'jquery';
+import $ from 'jquery';
 export default {
     data(){
         return{

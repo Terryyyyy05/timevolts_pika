@@ -17,6 +17,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import '@/assets/css/utils/variables';
 .title {
     color: #fff;
     display: flex;
@@ -25,8 +26,14 @@ export default {
     align-items: center;
     padding: 10px;
     line-height: 50px;
+    border-bottom: 2px solid map-get($color, primary);
+    font-family:"Cube11" ;
 }
 .wrap {
     display: flex;
+}
+.page {
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 </style>
