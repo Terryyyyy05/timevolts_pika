@@ -1,5 +1,24 @@
 <template>
-  <!-- <Loading /> -->
+  <div class="vl-parent">
+    <loading
+      v-model:active="isLoading"
+      :can-cancel="true"
+      :on-cancel="onCancel"
+      :is-full-page="fullPage"
+    >
+      <div class="loading-container">
+        <p>loading...</p>
+        <img
+          id="loadingSvg"
+          src="@/assets/image/home/loading.svg"
+          alt="時光穿梭"
+        />
+      </div>
+    </loading>
+    <label><input type="checkbox" v-model="fullPage" />Full page?</label>
+    <button @click.prevent="doAjax">fetch Data</button>
+  </div>
+
   <all-header />
   <!-- <div id="mouse"></div> -->
 
@@ -22,11 +41,15 @@
           .<br />
           .<br />
           .<br />
-          .
+          .<br />
+          歡迎來到時萬伏特<br />
+          我們開發了全新的時光機器<br />
+          誠摯的邀請您來場時光之旅<br />
+          <span>探索歷史的全新可能... </span>
         </p>
-        <p class="typewriter">
+        <!-- <p class="typewriter">
           {{ typewriter }}
-        </p>
+        </p> -->
       </div>
       <div class="slogan">
         <strong>現在，我們實現了時光旅行</strong>
@@ -75,7 +98,8 @@
 
 <script>
 // @ is an alias to /src
-// import Loading from "../../components/home/Loading";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/css/index.css";
 import HomeItinerary from "../../components/home/HomeItinerary.vue";
 import HomeHistorcal from "../../components/home/HomeHistorcal.vue";
 import HomeNews from "../../components/home/HomeNews.vue";
@@ -85,7 +109,9 @@ export default {
   name: "HomeView",
   datas() {
     return {
-      c: true,
+      isLoading: false,
+      fullPage: false,
+      // c: true,
       newsData: [
         {
           id: 1,
@@ -118,14 +144,6 @@ export default {
           img: require(`@/assets/image/news/system.png`),
         },
       ],
-      typewriter: "",
-      i: 0,
-      timer: 0,
-      str: ["歡迎來到時萬伏特"],
-
-      // "我們開發了全新的時光機器",
-      // "誠摯的邀請您來場時光之旅",
-      // "探索歷史的全新可能...",
     };
   },
   setup() {
@@ -172,18 +190,18 @@ export default {
     HomeItinerary,
     HomeHistorcal,
     HomeNews,
+    Loading,
   },
-  props: ["text"],
   methods: {
-    typeing() {
-      if (this.i <= this.str.length) {
-        this.typewriter = this.str.slice(0, this.i++);
-        this.timer = setTimeout(() => {
-          this.typeing();
-        }, 80);
-      } else {
-        clerTimeout(this.timer);
-      }
+    doAjax() {
+      this.isLoading = true;
+      // simulate AJAX
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 5000);
+    },
+    onCancel() {
+      console.log("User cancelled the loader.");
     },
   },
 };
@@ -192,20 +210,36 @@ export default {
 <style scoped lang="scss">
 @import "@/assets/css/utils/_variables.scss";
 
+// loading
+.loading-container {
+  > p {
+    display: inline-block;
+    width: fit-content;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    z-index: 10000;
+  }
+  #loadingSvg {
+    width: 100%;
+    height: 100vh;
+    z-index: 500;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    object-fit: fill;
+    position: fixed;
+    // z-index: 200;
+  }
+}
+
 $b1-primary: (1px solid map-get($color, "primary"));
 $b2-primary: (2px solid map-get($color, "primary"));
 $b20-primary: (20px solid map-get($color, "primary"));
 
 a:visited.link {
   color: map-get($color, "accent");
-}
-
-#mouse {
-  width: 30px;
-  height: 30px;
-  background: map-get($color, "primary");
-  mix-blend-mode: difference;
-  position: absolute;
 }
 
 .bg_dark_75 {
@@ -319,6 +353,13 @@ h2 {
     grid-row: 2/3;
     padding: 20px;
     border: $b2-primary;
+    > p > span::after {
+      content: "|";
+      animation-name: flashing;
+      animation-duration: 0.7s;
+      animation-delay: 1s;
+      animation-iteration-count: infinite;
+    }
     @media screen and (max-width: $m-breakpoint) {
       grid-column: 2/4;
     }
@@ -393,5 +434,20 @@ h2 {
     url(@/assets/image/home/bg3.jpg);
   background-position: top;
   background-size: cover;
+}
+
+@keyframes flashing {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>
