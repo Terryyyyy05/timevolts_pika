@@ -192,6 +192,7 @@ export default {
     HomeNews,
     Loading,
   },
+
   methods: {
     doAjax() {
       this.isLoading = true;
