@@ -1,21 +1,34 @@
 <template>
   <div v-for="coupon in Vouchers" :key="coupon.id" class="wrap">
-    <div class="id">{{ item.id }}</div>
+    <div class="id">{{ coupon.coupon_id }}</div>
     <div class="coupon_discount_number">
       {{ coupon.coupon_discount_number }}
     </div>
     <div class="coupon_pricing_condition">
       {{ coupon.coupon_pricing_condition }}
     </div>
-    <div class="coupon_issue_date">{{ coupon.coupon_issue_date }}</div>
-    <div class="coupon_valid_date">{{ coupon.coupon_valid_date }}</div>
+    <div class="coupon_valid_date">
+      {{ coupon.coupon_valid_date }}
+    </div>
+    <div class="coupon_exp_date" v-if="coupon.coupon_valid_date !== null">
+      {{ coupon.coupon_exp_date }}
+    </div>
+    <!-- <div class="coupon_exp_date" v-if="coupon.coupon_valid_date == 'null'">
+      無期限
+    </div> -->
     <div class="btnWrap">
-      <button v-if="coupon.my_coupon_status == 1" class="btn-lightbox btn">
+      <router-link
+        v-if="coupon.my_coupon_status == 1"
+        class="btn-lightbox btn"
+        to="/news"
+        @click="time"
+      >
         可使用
-      </button>
-      <button v-if="coupon.my_coupon_status == 0" class="btn-lightbox btn">
+      </router-link>
+      <!-- && coupon.coupon_exp_date -->
+      <a v-if="coupon.my_coupon_status == 0" class="btn-lightbox btn-none">
         不可使用
-      </button>
+      </a>
     </div>
   </div>
 </template>
@@ -25,7 +38,7 @@ export default {
   data() {
     return {
       informationVisibile: 10,
-
+      page: 10,
       MyVouchers: [
         {
           coupon_id: 1, //編號
@@ -64,8 +77,11 @@ export default {
     };
   },
   computed: {
-    orderList() {
-      return this.orderList.slice(0, this.informationVisibile);
+    pageVisibile() {
+      this.informationVisibile = Math.ceil(this.MyVouchers.length / this.page);
+    },
+    Vouchers() {
+      return this.MyVouchers.slice(0, this.page);
     },
   },
 };
@@ -90,18 +106,25 @@ export default {
 .coupon_pricing_condition {
   width: 16.666666%;
 }
-.coupon_issue_date {
+.coupon_valid_date {
   width: 16.666666%;
 }
-.coupon_valid_date {
+.coupon_exp_date {
   width: 16.666666%;
 }
 .btnWrap {
   width: 16.666666%;
 }
-.btn {
+.btn,
+.btn-none {
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 5px 0;
+}
+.btn-none {
+  color: map-get($color, light);
+  background-color: map-get($color, muted);
+  border: none;
+  pointer-events: none;
 }
 </style>

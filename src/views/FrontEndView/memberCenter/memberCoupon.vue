@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2 class="title">商品優惠券</h2>
+    <h2 class="title">商品折扣券</h2>
   </div>
   <div class="wrap">
     <ul class="ulWrap">
-      <li>優惠卷編號</li>
+      <li>折扣卷編號</li>
       <li>折抵金額</li>
       <li>門檻金額</li>
       <li>使用日期</li>

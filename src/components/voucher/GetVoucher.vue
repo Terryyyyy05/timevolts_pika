@@ -1,7 +1,7 @@
 <template>
   <div class="GetVoucherButton">
     <button class="btn-store-detail" @click="showbox()">
-      <p>立即領取<br />優惠卷 {{ unreceivedCoupon.length }}張</p>
+      <p>立即領取<br />折扣卷 {{ unreceivedCoupon.length }}張</p>
     </button>
   </div>
 
@@ -11,7 +11,7 @@
       icon="fa-solid fa-xmark"
       @click.self="showbox()"
     />
-    <h3>領取折價卷</h3>
+    <h3>領取折扣卷</h3>
     <ul class="cart-content">
       <li v-for="(item, index) in unreceivedCoupon" :key="item.id">
         <div class="cart-item">
