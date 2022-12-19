@@ -11,11 +11,7 @@
             </div>
             <p class="p_md">發生年代 --- {{ happenYear }}</p>
             <p class="p_lg">{{ description }}</p>
-            <router-link
-               @click="scrollToTop"
-               to="/history-details"
-               class="more-button"
-            >
+            <router-link :to="historyDetailsLink" class="more-button">
                <div class="bg_accent">
                   <span>more</span>
                </div>
@@ -33,6 +29,7 @@ export default {
       BaseHistoryCard,
    },
    props: [
+      "id",
       "title",
       "tagDanderLevel",
       "tagFeature",
@@ -40,6 +37,11 @@ export default {
       "happenYear",
       "description",
    ],
+   computed: {
+      historyDetailsLink() {
+         return this.$route.path + "/" + this.id;
+      },
+   },
 };
 </script>
 
