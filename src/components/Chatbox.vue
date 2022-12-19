@@ -19,41 +19,44 @@
         </div>
       </div>
       <div class="chatbox-lower">
-        <div class="lower-box">
-          <div class="lower-img">
-            <img src="../assets/image/chatbox.png" alt="chatbox" />
-          </div>
-          <div class="lower-content-one">
-            <p>
-              您好，這裡是時空管理局<br />
-              若有任何問題&#44;歡迎隨時與我聯繫<br />
-              聯絡電話&#58;0800&#45;449&#45;449<br />
-              營業時間&#58;AM 1&#58;00&#126;5&#58;00<br />
-            </p>
-          </div>
-        </div>
-        <div class="lower-box">
-          <div class="lower-img">
-            <img src="../assets/image/chatbox.png" alt="chatbox" />
-          </div>
-          <div class="lower-content-two">
-            <p>{{ customerText }}</p>
-          </div>
-        </div>
-        <div class="lower-box">
-          <div class="lower-img">
-            <img src="../assets/image/chatbox.png" alt="chatbox" />
-          </div>
-          <div class="lower-content-three">
-            <p>你想要知道什麼呢&#63;</p>
-            <p class="lower-content-rules">旅行規範</p>
-            <p class="lower-content-rules">FAQ</p>
+        <div id="content" class="content">
+          <div v-for="(item, index) in info" :key="index">
+            <div class="info_r info_default" v-if="item.type == 'leftinfo'">
+              <span class="circle circle_r lower-img"
+                ><img src="../assets/image/chatbox.png" alt="chatbox"
+              /></span>
+              <div class="con_r con_text">
+                <div class="lower-content">{{ item.content }}</div>
+                <div v-for="(item2, index) in item.question" :key="index">
+                  <div
+                    class="con_que"
+                    @click="clickRobot(item2.content, item2.id)"
+                  >
+                    <div class="czkj-question-msg">
+                      {{ item2.index }}
+                      {{ item2.content }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info_l" v-if="item.type == 'rightinfo'">
+              <div class="con_text">
+                <span class="con_l">{{ item.content }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="input-submit">
-        <textarea placeholder="請輸入關鍵字" required v-model="customerText"></textarea>
-        <button type="submit" @click="scrollToBottom">送出</button>
+        <textarea
+          placeholder="請輸入關鍵字"
+          required
+          v-model="customerText"
+          @keyup.enter="sentMsg()"
+        ></textarea>
+        <button type="submit" @click="sentMsg()">送出</button>
       </div>
     </div>
   </div>
@@ -66,7 +69,7 @@ export default {
   data() {
     return {
       openRobot: false,
-      customerText: "我想要詢問如何搭乘時光機",
+      customerText: "",
       info: [
         {
           type: "leftinfo",
@@ -76,9 +79,9 @@ export default {
         },
       ],
       robotQuestion: [
-        { id: 1, content: "時間管理局是一個什麼樣的組織", index: 1 },
-        { id: 2, content: "付款後是否可以取消訂單？", index: 2 },
-        { id: 3, content: "商品配送時間多久", index: 3 },
+        { id: 1, content: "旅行規範", index: 1 },
+        { id: 2, content: "行程FAQs", index: 2 },
+        { id: 3, content: "商品FAQs", index: 3 },
       ],
       robotAnswer: [
         {
@@ -103,10 +106,6 @@ export default {
   methods: {
     showChatbox() {
       this.openRobot = !this.openRobot;
-    },
-    scrollToBottom() {
-      let chatboxContentHeight = document.querySelector(".chatbox-lower");
-      chatboxContentHeight.scrollTop = chatboxContentHeight.scrollHeight;
     },
     // 用戶發送訊息
     sentMsg() {
@@ -144,7 +143,6 @@ export default {
       if (flag) {
         let obj = {
           type: "leftinfo",
-          time: this.getTodayTime(),
           name: "robot",
           content: answerText,
           question: [],
@@ -154,7 +152,6 @@ export default {
         answerText = "您可能想問: ";
         let obj = {
           type: "leftinfo",
-          time: this.getTodayTime(),
           name: "robot",
           content: answerText,
           question: this.robotQuestion,
@@ -175,14 +172,12 @@ export default {
       });
       let obj_l = {
         type: "leftinfo",
-        time: this.getTodayTime(),
         name: "robot",
         content: robotById[0].content,
         question: [],
       };
       let obj_r = {
         type: "rightinfo",
-        time: this.getTodayTime(),
         name: "robot",
         content: val,
         question: [],
@@ -202,7 +197,6 @@ export default {
     endMsg() {
       let happyEnding = {
         type: "leftinfo",
-        time: this.getTodayTime(),
         content: "很高興為您服務，期待下次見",
         question: [],
       };
@@ -272,57 +266,63 @@ export default {
       }
     }
   }
-  .chatbox-lower {
+  .content {
     overflow-y: scroll;
+    width: 100%;
+    height: 50vh;
     .lower-img {
-      background-color: #464646;
+      display: block;
+      background-color: #545454;
       border-radius: 50%;
       width: 55px;
       height: 55px;
       margin: 10px;
     }
-    .lower-box {
+    .info_r {
       display: flex;
+      margin: 20px 10px;
       align-items: center;
-      margin: 40px 10px 40px 0;
     }
-    .lower-box:nth-child(2) {
-      justify-content: flex-end;
-      margin-right: 0;
-      margin-left: 10px;
-      .lower-img {
-        order: 2;
-      }
-    }
-    .lower-content-one {
+    .con_r {
       background-color: #545454;
       border-radius: 10px;
+      padding: 10px;
+      width: 50%;
+      line-height: 25px;
+    }
+    .info_l {
+      text-align: right;
+      .con_l {
+        display: inline-block;
+        width: 20%;
+        min-height: 45px;
+        border-radius: 10px;
+        background-color: #545454;
+        margin-right: 10px;
+        text-align: left;
+        padding: 10px;
+        line-height: 25px;
+      }
+    }
+    .lower-content {
+      background-color: #545454;
+      border-radius: 10px;
+      width: 70%;
+      border-radius: 10px;
+      padding: 10px;
       p {
         margin: 10px;
         line-height: 25px;
       }
     }
-    .lower-content-two {
-      background-color: #545454;
-      border-radius: 10px;
-      p {
-        margin: 10px;
-      }
+    .con_que {
+      height: 30px;
+      line-height: 30px;
+      cursor: pointer;
     }
-    .lower-content-three {
-      background-color: #545454;
-      border-radius: 10px;
-      p {
-        margin: 10px;
-      }
-      .lower-content-rules {
-        color: #000;
-        background-color: #d9d9d9;
-        border-radius: 10px;
-        padding: 5px;
-        display: flex;
-        justify-content: center;
-      }
+    .czkj-question-msg {
+      float: left;
+      color: hsl(0, 0%, 80%);
     }
   }
   .input-submit {
@@ -343,6 +343,9 @@ export default {
       box-shadow: 0.1rem 0.1rem 0px #ffe1b5;
       border-color: #ccc;
     }
+    ::placeholder {
+      color: #fff;
+    }
     button {
       color: #fff;
       background-color: #545454;
@@ -362,7 +365,7 @@ export default {
 // chat bot
 
 ::-webkit-scrollbar {
-  width: 1rem;
+  width: 1.2rem;
 }
 ::-webkit-scrollbar-track {
   background: hsl(36, 100%, 85%);
@@ -375,7 +378,7 @@ export default {
   border-radius: 100vw;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(36, 100%, 65%);
+  background: hsl(36, 100%, 35%);
 }
 @supports (scrollbar-color: red blue) {
   * {
@@ -434,7 +437,7 @@ export default {
   // chat bot
 
   ::-webkit-scrollbar {
-    width: 0.6rem;
+    width: 1rem;
   }
   // scrollbar
 }
