@@ -1,29 +1,28 @@
 <template>
-  <div class="vl-parent">
+  <div class="vl-parent" id="loading-background">
     <loading
       v-model:active="isLoading"
-      :can-cancel="true"
+      :can-cancel="false"
       :on-cancel="onCancel"
-      :is-full-page="fullPage"
+      :is-full-page="false"
     >
-      <div class="loading-container">
-        <p>
+      <div class="loadingContainer">
+        <div class="loadingBackground"></div>
+        <img
+          class="loadingSvg"
+          src="@/assets/image/home/loading.svg"
+          alt="時光穿梭"
+        />
+        <p class="loadingText">
           loading
           <span>.</span>
           <span>.</span>
           <span>.</span>
         </p>
-        <img
-          id="loadingSvg"
-          src="@/assets/image/home/loading.svg"
-          alt="時光穿梭"
-        />
       </div>
     </loading>
-    <label><input type="checkbox" v-model="fullPage" />Full page?</label>
-    <button @click.prevent="doAjax">fetch Data</button>
   </div>
-
+  <button @click.prevent="doAjax" id="fetch">前導頁預覽</button>
   <all-header />
   <!-- <div id="mouse"></div> -->
 
@@ -47,9 +46,11 @@
           .<br />
           .<br />
           .<br />
+        </p>
+        <p>
           歡迎來到時萬伏特<br />
           我們開發了全新的時光機器<br />
-          誠摯的邀請您來場時光之旅<br />
+          誠摯的邀請您來場奇幻的時光之旅<br />
           <span>探索歷史的全新可能... </span>
         </p>
         <!-- <p class="typewriter">
@@ -61,7 +62,11 @@
         <img src="@/assets/image/home/bitLightning.svg" alt="閃電圖樣" />
       </div>
       <div class="pic">
-        <img src="@/assets/image/home/Time_Machine.png" alt="時光機圖樣" />
+        <img
+          class="TimeMachine"
+          src="@/assets/image/home/Time_Machine.png"
+          alt="時光機圖樣"
+        />
       </div>
     </div>
     <div class="itinerary_block">
@@ -103,8 +108,10 @@
 
 <script>
 // @ is an alias to /src
-import Loading from "vue-loading-overlay";
+
+import { gsap } from "gsap";
 import "vue-loading-overlay/dist/css/index.css";
+import Loading from "vue-loading-overlay";
 import HomeItinerary from "../../components/home/HomeItinerary.vue";
 import HomeHistorcal from "../../components/home/HomeHistorcal.vue";
 import HomeNews from "../../components/home/HomeNews.vue";
@@ -114,7 +121,7 @@ export default {
   name: "HomeView",
   datas() {
     return {
-      isLoading: false,
+      isLoading: true,
       fullPage: false,
       // c: true,
       newsData: [
@@ -202,36 +209,70 @@ export default {
     doAjax() {
       this.isLoading = true;
       // simulate AJAX
+
+      gsap.fromTo(
+        ".loadingText",
+        { opacity: 1 },
+        { duration: 1, opacity: 0, delay: 1 }
+      );
+      gsap.fromTo(
+        ".loadingSvg",
+        { opacity: 1 },
+        { duration: 2, opacity: 0, delay: 2.5 }
+      );
+      gsap.fromTo(
+        ".loadingBackground",
+        { backgroundColor: "#000" },
+        { duration: 1, backgroundColor: "#fff" },
+        "<"
+      );
+      gsap.fromTo(
+        ".loadingBackground",
+        { opacity: 1 },
+        { duration: 2, opacity: 0, delay: 4 }
+      );
+
       setTimeout(() => {
         this.isLoading = false;
-      }, 5000);
+      }, 6000);
     },
     onCancel() {
       console.log("User cancelled the loader.");
     },
   },
+  computed: {},
 };
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/css/utils/_variables.scss";
 
+$b1-primary: (1px solid map-get($color, "primary"));
+$b2-primary: (2px solid map-get($color, "primary"));
+$b20-primary: (20px solid map-get($color, "primary"));
+
 // loading
-.loading-container {
-  width: 100%;
-  height: 100%;
+
+#fetch {
+  color: map-get($color, "primary");
+  background-color: #131313;
+  border: $b1-primary;
+}
+
+.loadingContainer {
+  // width: 100%;
+  // height: 100%;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   position: fixed;
-  // font-family: "Cube11";
   z-index: 500;
   text-align: center;
 
   vertical-align: top;
 
-  > p {
+  > .loadingText {
     width: 100%;
     height: 36px;
     top: 50%;
@@ -257,16 +298,31 @@ export default {
       }
     }
   }
-  > #loadingSvg {
+  > .loadingSvg {
     object-fit: fill;
     width: 100%;
     height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    // mix-blend-mode: color-burn;
   }
 }
+.loadingBackground {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #000;
+  mix-blend-mode: darken;
 
-$b1-primary: (1px solid map-get($color, "primary"));
-$b2-primary: (2px solid map-get($color, "primary"));
-$b20-primary: (20px solid map-get($color, "primary"));
+  backdrop-filter: saturate;
+  position: fixed;
+}
 
 a:visited.link {
   color: map-get($color, "accent");
@@ -417,6 +473,14 @@ h2 {
       width: 100%;
       height: 100%;
       object-fit: scale-down;
+      position: relative;
+
+      animation-delay: 0.3s;
+      animation-name: float;
+      animation-duration: 4.4s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate-reverse;
+      animation-timing-function: ease-in-out;
     }
     @media screen and (max-width: $m-breakpoint) {
       display: none;
@@ -465,7 +529,7 @@ h2 {
   background-position: top;
   background-size: cover;
 }
-
+// 打字機閃爍
 @keyframes flashing {
   0% {
     opacity: 1;
@@ -480,23 +544,12 @@ h2 {
     opacity: 0;
   }
 }
+// loading點點閃爍
 @keyframes loadingBit1 {
   0% {
     opacity: 0;
   }
   16% {
-    opacity: 1;
-  }
-  32% {
-    opacity: 1;
-  }
-  48% {
-    opacity: 1;
-  }
-  64% {
-    opacity: 1;
-  }
-  80% {
     opacity: 1;
   }
   96% {
@@ -516,12 +569,6 @@ h2 {
   32% {
     opacity: 1;
   }
-  48% {
-    opacity: 1;
-  }
-  64% {
-    opacity: 1;
-  }
   80% {
     opacity: 1;
   }
@@ -536,9 +583,6 @@ h2 {
   0% {
     opacity: 0;
   }
-  16% {
-    opacity: 0;
-  }
   32% {
     opacity: 0;
   }
@@ -551,11 +595,22 @@ h2 {
   80% {
     opacity: 0;
   }
-  96% {
-    opacity: 0;
-  }
   100% {
     opacity: 0;
+  }
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(5%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(8%);
   }
 }
 </style>
