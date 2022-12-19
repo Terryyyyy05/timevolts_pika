@@ -78,8 +78,9 @@ export default {
           question: [],
         },
       ],
+      timer: null,
       robotQuestion: [
-        { id: 1, content: "旅行規範", index: 1 },
+        { id: 1, content: "時間管理局是一個什麼樣的組織？", index: 1 },
         { id: 2, content: "付款後是否可以取消訂單？", index: 2 },
         { id: 3, content: "商品配送時間多久？", index: 3 },
       ],
@@ -310,6 +311,7 @@ export default {
       width: 70%;
       border-radius: 10px;
       padding: 10px;
+      line-height: 1.8;
       p {
         margin: 10px;
         line-height: 25px;
@@ -408,6 +410,7 @@ export default {
         }
       }
       .chatbox-lower {
+        font-size: 0.9rem;
         .lower-img {
           width: 40px;
           height: 40px;
@@ -416,11 +419,6 @@ export default {
             width: 40px;
             height: 40px;
           }
-        }
-        .lower-content-one,
-        .lower-content-two,
-        .lower-content-three {
-          font-size: 0.9rem;
         }
       }
       .input-submit {
@@ -440,6 +438,9 @@ export default {
   ::-webkit-scrollbar {
     width: 1rem;
   }
+  ::-webkit-scrollbar-thumb:hover {
+  background: initial
+}
   // scrollbar
 }
 </style>
