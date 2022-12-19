@@ -47,7 +47,7 @@
          </div>
       </div>
       <div class="history-text">
-         <h3>十字軍東征</h3>
+         <h3>{{ selectedHistory.title }}</h3>
          <div class="tag">
             <span>#高</span>
             <span>#宗教事件</span>
@@ -79,6 +79,7 @@ export default {
       HistoryBanner,
       ActiveParagraph,
    },
+   props: ["id"],
    data() {
       return {
          paragraph: [
@@ -115,6 +116,7 @@ export default {
          ],
          count: 0,
          activeParagraph: null,
+         selectedHistory: [],
       };
    },
    methods: {
@@ -149,6 +151,9 @@ export default {
    },
    created() {
       this.updateParagraph();
+      this.selectedHistory = this.$store.getters["history/histories"].find(
+         (history) => this.id === history.id
+      );
    },
 };
 </script>
