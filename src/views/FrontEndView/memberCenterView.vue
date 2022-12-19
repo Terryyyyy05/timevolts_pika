@@ -21,9 +21,6 @@
       }}</router-link>
     </nav>
     <div class="sub-content">
-      <!-- <div class="content-deco">
-        <div>{{ title }}</div>
-      </div> -->
       <router-view />
     </div>
   </div>
@@ -37,7 +34,7 @@ export default {
         "會員資料",
         "行程訂單",
         "商品訂單",
-        "商品折價眷",
+        "商品折價券",
         "行程收藏",
         "商品收藏",
       ],
@@ -48,44 +45,42 @@ export default {
 <style lang="scss" scoped>
 .container.main-content {
   display: flex;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
   margin: 50px auto;
-  outline: 1px solid red;
+//   outline: 1px solid red;
   nav {
-    width: 30%;
-    margin: 5% 5% 5% 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-content: center;
-    border: 1px solid #ffe1b5;
+    width: 20%;
+    height: fit-content;
+    margin: 5% 3% 0 0;
+    text-align: center;
+    border: 2px solid #ffe1b5;
     a {
-      font-size: 12px;
-      padding: 10% 2%;
-      border-bottom: 1px solid #ffe1b5;
-      &:last-child {
-        border-bottom: 0;
-      }
+        width: 100%;
+        display: inline-block;
+        font-size: 12px;
+        padding: 10px 2px;
+        border-bottom: 2px solid #ffe1b5;
+        box-sizing: border-box;
+        &:last-child {
+            border-bottom: 0;
+        }
     }
   }
   .sub-content {
-    border: 1px solid #ffe1b5;
-    outline: 1px solid yellow;
+    border: 2px solid #ffe1b5;
     width: 100%;
-    height: 100%;
+    height: 80vh;
     box-sizing: border-box;
-    .content-deco {
-      border-bottom: 1px solid #ffe1b5;
-      height: 50px;
-    }
+    margin: auto;
+    position: relative;
   }
 }
 @media screen and (min-width: 768px) {
   .container.main-content {
     nav {
-      width: 20%;
+        width: 25%;
       a {
-        padding: 10% 5%;
         font-size: 20px;
       }
     }

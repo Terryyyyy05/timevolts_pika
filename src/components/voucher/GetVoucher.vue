@@ -1,7 +1,7 @@
 <template>
   <div class="GetVoucherButton">
     <button class="btn-store-detail" @click="showbox()">
-      <p>立即領取<br />優惠卷 {{ unreceivedCoupon.length }}張</p>
+      <p>立即領取<br />折扣卷 {{ unreceivedCoupon.length }}張</p>
     </button>
   </div>
 
@@ -11,7 +11,7 @@
       icon="fa-solid fa-xmark"
       @click.self="showbox()"
     />
-    <h3>領取折價卷</h3>
+    <h3>領取折扣卷</h3>
     <ul class="cart-content">
       <li v-for="(item, index) in unreceivedCoupon" :key="item.id">
         <div class="cart-item">
@@ -24,7 +24,6 @@
                 <p class="title-two">
                   &#40;滿&#36;{{ item.coupon_pricing_condition }}元 可使用&#41;
                 </p>
-                <p class="title-three"></p>
                 <p class="title-three" v-if="item.coupon_exp_date == 'null'">
                   有效期限:<br />{{ item.coupon_valid_date }} ~ 無期限
                 </p>
@@ -35,14 +34,15 @@
               </div>
             </div>
             <div class="coupon-card-right">
-              <a
+              <button
                 id="receive"
                 v-on:click="receive(index)"
                 href="#"
-                v-if="(itim = 1)"
-                >立即領取</a
+                v-if="(this.unreceivedCoupon.coupon_status = 1)"
               >
-              <a id="receive" href="#" v-else>已領取</a>
+                <p>{{ init[this.unreceivedCoupon.coupon_status] }}</p>
+              </button>
+              <!-- <a id="receive" href="#" v-else>已領取</a> -->
             </div>
           </div>
         </div>
@@ -93,6 +93,7 @@ export default {
           coupon_status: 0, // 1=上架,0=下架
         },
       ],
+      init: { 1: "立即領取", 0: "已領取" },
       unreceivedCoupon: [], //未領取的優惠卷
       showModal: false, //燈箱開關
       login: true, //是否登入
@@ -105,24 +106,27 @@ export default {
       // 開關按鈕
       this.showModal = !this.showModal;
     },
-
+    // afterReceive() {
+    //   console.log("AAA");
+    //   console.log(this);
+    //   this.target.innerText = "已領取";
+    // },
     receive(e, index) {
       // 判別是否登入
+      console.log(e);
       if (this.login == true) {
         // 判別是否可領取
         if (this.unreceivedCoupon[e].coupon_status == 1) {
           // if ((e.target = )) {
           // 領取並傳回後端
-          // e.target.innerText = "已領取";
-          alert(`恭喜您獲得優惠卷~`);
+
           console.log("BBB");
+          alert(`恭喜您獲得優惠卷~`);
           // 計算可以領取數量
           this.unreceivedCoupon[e].coupon_status = 0;
-          console.log(this.unreceivedCoupon[e]);
-          itim();
+          console.log(e);
         } else {
           // 前往登入頁面
-          // }
         }
       }
       // this.GetVouchers[index].coupon_status = 0;
@@ -377,13 +381,16 @@ export default {
   width: 20px;
   height: 10px;
 }
-.coupon-card-right a {
-  writing-mode: vertical-lr;
+.coupon-card-right button {
   border: 3px solid #434343;
+  background: none;
   border-radius: 48px;
-  padding: 5px;
+  padding: 4px;
   margin: 0 auto;
-  text-decoration: none;
+  font-size: 16px;
   color: #fff;
+  > p {
+    writing-mode: vertical-lr;
+  }
 }
 </style>

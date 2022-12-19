@@ -4,15 +4,42 @@
    <div class="container">
       <the-heading heading="票根製作" subheading="Customize Ticket"></the-heading>
       <div class="wrapper">
-         <div class="customize">
-            <div class="ticket">
-               <img src="@/assets/image/ticket.png">
+         <div class="customize-l">
+            <div class="customize">
+               <div class="ticket">
+                  <div class="ticket-container">
+                     <div class="ticket-intro">
+                        <div class="ticket-no">
+                           行程編號:
+                        </div>
+                        <div class="ticket-name">
+                           姓名:
+                        </div>
+                        <div class="ticket-date">
+                           穿越日
+                        </div>
+                     </div>
+                     <div class="ticket-drag">
+                        拖曳區塊
+                     </div>
+                  </div>
+                  <div class="ticket-input">
+                     打字區塊
+                  </div>
+         
+               </div>
+               <div class="ticket-dec">
+                  <p>TimeVolts</p>
+                  <img src="@/assets/image/logo.svg" alt="logo">
+               </div>
             </div>
             <div class="btn">
                <button class="btn-primary">完成客製</button>
                <button class="btn-secondary">放棄修改</button>
             </div>
          </div>
+
+
          <div class="pannel">
             <div class="pannel-title">
                <h5>1. 請選擇顏色</h5>
@@ -70,20 +97,75 @@ export default {
    margin: 50px auto;
 }
 
-.customize {
+.customize-l {
    width: 50%;
+   margin-right: 20px;
+   .customize{
+      border: 2px solid map-get($color, accent);
+      border-radius: 20px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: fit-content;
+      .ticket{
+         width: 80%;
+         margin: 10px;
+         border: 2px solid map-get($color, accent);
+         border-radius: 15px;
+         color: #ffffff;
+         .ticket-container{
+            display: flex;
+            
+            .ticket-intro{
+               .ticket-no{
 
-   .ticket {
-      img {
-         width: 100%;
+               }
+               .ticket-name{
+
+               }
+               .ticket-date{
+
+               }
+            }
+            .ticket-drag{
+
+            }
+         }
+         
+         .ticket-input{
+            background-color: map-get($color, accent);
+            
+         }
+   
       }
-   }
+      .ticket-dec{
+         margin: 10px;
+         border: 2px solid map-get($color, accent);
+         border-radius: 15px;
+         display: flex;
+         flex-direction: column;
 
+         img{
+            width: 40%;
+            outline: 1px solid red;
+         }
+         p{
+            color:  map-get($color, primary);
+            outline: 1px solid red;
+            transform: rotate(-90deg);
+
+         }
+      }
+
+   }
    .btn {
       display: flex;
-      justify-content: center;
+
+      outline: 1px solid red;
    }
+   
 }
+   
 
 .pannel {
    width: 50%;

@@ -13,18 +13,21 @@
     </ul>
     <itinerary-order-info />
   </div>
+  <pagination />
 </template>
 <script>
 import itineraryOrderInfo from "@/components/memberCenter/itineraryOrderInfo.vue";
+import pagination from "@/components/memberCenter/pagination.vue";
 export default {
   name: "itineraryOrder",
   components: {
     itineraryOrderInfo,
+    pagination,
   },
 };
 </script>
 <style lang="scss" scoped>
-@import "@/assets/css/app.scss";
+@import '@/assets/css/utils/variables';
 .title {
   color: #fff;
   display: flex;
@@ -32,10 +35,11 @@ export default {
   align-items: center;
   padding: 10px;
   line-height: 50px;
+  border-bottom: 2px solid map-get($color, primary);
+  font-family:"Cube11" ;
 }
 .wrap {
   width: 100%;
-  border: 2px solid map-get($color, "primary");
   padding: 5px;
   box-sizing: border-box;
 }
@@ -43,6 +47,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px 0;
+  text-align: center;
+  border-bottom: 2px solid map-get($color , primary)
 }
 .ulWrap > li {
   color: #fff;

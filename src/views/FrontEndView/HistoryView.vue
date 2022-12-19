@@ -7,6 +7,7 @@
       <history-item
          v-for="history in VisibleHistory"
          :key="history.id"
+         :id="history.id"
          :title="history.title"
          :tag-danderLevel="history.tagDanderLevel"
          :tag-feature="history.tagFeature"

@@ -18,6 +18,11 @@ const routes = [
       component: () => import("../views/FrontEndView/AboutView.vue"),
    },
    {
+    path: "/experience",
+    name: "experience",
+    component: () => import("../views/FrontEndView/ExperienceView.vue"),
+    },
+   {
       path: "/news",
       name: "news",
       component: () => import("../views/FrontEndView/NewsView.vue"),
@@ -48,8 +53,9 @@ const routes = [
       component: () => import("../views/FrontEndView/HistoryView.vue"),
    },
    {
-      path: "/history-details",
-      name: "history-details",
+      path: "/history/:id",
+      name: "historyDetails",
+      props: true,
       component: () => import("../views/FrontEndView/HistoryDetailsView.vue"),
    },
    {

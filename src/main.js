@@ -13,6 +13,7 @@ import innerpageHeader from "./components/innerpageHeader.vue";
 import allHeader from "./components/header.vue";
 import allFooter from "./components/footer.vue";
 import pageTop from "./components/pageTop.vue";
+import 'vue-loading-overlay/dist/css/index.css';
 
 // fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -27,6 +28,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faAnglesUp } from "@fortawesome/free-solid-svg-icons";
+import { LoadingPlugin } from 'vue-loading-overlay';
 
 // add icons from library
 library.add(faChevronDown);
@@ -45,6 +47,7 @@ const app = createApp(App);
 
 app.use(store);
 app.use(router);
+app.use(LoadingPlugin);
 
 app.component("the-heading", TheHeading);
 app.component("base-card", BaseCard);

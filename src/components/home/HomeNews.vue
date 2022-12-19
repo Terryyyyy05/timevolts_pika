@@ -90,12 +90,13 @@ export default {
   flex-direction: column;
   line-height: 1.4;
   h3 {
-    height: 4vw;
+    // height: 4vw;
     padding: 10px;
     display: inline-block;
     color: map-get($color, "accent_sub");
     border: 2px solid map-get($color, "primary");
     background-color: map-get($color, "dark_sub");
+    font-family: "Cube11";
   }
   .newsText {
     min-height: 17vw;
@@ -107,7 +108,7 @@ export default {
     }
   }
   .more {
-    height: 3vw;
+    // height: 3vw;
     display: flex;
     justify-content: space-between;
     border: 2px solid map-get($color, "primary");

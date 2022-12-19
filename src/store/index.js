@@ -2,10 +2,13 @@ import { createStore } from "vuex";
 import { storage } from "@/components/product/js/localStorage";
 
 import historyModule from "./history/index.js";
+import itineraryModule from "./itinerary/index.js";
+
 
 export default createStore({
    modules: {
       history: historyModule,
+      itinerary: itineraryModule,
    },
    state: {
       cart: [],

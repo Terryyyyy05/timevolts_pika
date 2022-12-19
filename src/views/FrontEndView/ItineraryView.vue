@@ -30,16 +30,6 @@
     <section class="section">
         <div class="container">
             <div class="btnwrap">
-                <itin-crsl-btn msg="經典行程" />
-            </div>
-            <div class="clsCrslWrap">
-                <itinClsCrsl />
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="btnwrap">
                 <itin-crsl-btn msg="期間限定" />
             </div>
             <div class="clsCrslWrap">
@@ -78,13 +68,8 @@ export default {
     mounted() {
         sceneInit();
         animate();
-        // changeCanvas();
     },
-    methods: {
-        // changeCanvas() {
-        //     context.fillStyle = "#131313";
-        // },
-    },
+    methods: {},
 };
 </script>
 
