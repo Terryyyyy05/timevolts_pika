@@ -521,7 +521,7 @@ export default {
       //   key: 'other',
       // },
       // ],
-    }
+    };
   },
     
   created() {
@@ -552,7 +552,7 @@ export default {
   },
   methods: {
     selectTab(selectedTab) {
-      this.currentTab = selectedTab
+      this.currentTab = selectedTab;
     },
     openBox(id) {
       // this.isOpen = true;
@@ -562,9 +562,8 @@ export default {
       // this.isOpen = false;
       this.activeId = NaN;
     },
-  }
-}
-
+  },
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";

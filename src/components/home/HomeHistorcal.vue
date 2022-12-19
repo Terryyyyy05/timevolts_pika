@@ -7,8 +7,15 @@
           <h3>{{ look.itinerary_name }}</h3>
         </div>
         <div class="historcalTeg">
-          <p>危險度:{{ look.story_risk }} {{ look.tagFeature }}</p>
-          <p>地點:{{ look.story_spot }}</p>
+          <span v-if="look.story_risk === look.story_risk"
+            >危險度:{{ look.story_risk }}
+          </span>
+          <span v-if="look.tagFeature === look.tagFeature"
+            >|{{ look.tagFeature }}</span
+          >
+          <p v-if="look.story_spot == look.story_spot">
+            地點:{{ look.story_spot }}
+          </p>
         </div>
         <div class="summary">
           <p>年代:{{ look.story_age }}</p>
@@ -322,7 +329,6 @@ $b2-primary: (2px solid map-get($color, "primary"));
 }
 
 .title {
-  width: 30vw;
   padding: 2vw;
   text-align: center;
   border: $b2-primary;
@@ -356,7 +362,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
   align-items: top;
   .summary {
     width: 30vw;
-    min-height: 30vh;
+    min-height: 20vh;
     box-sizing: border-box;
     align-self: start;
     line-height: 1.4;

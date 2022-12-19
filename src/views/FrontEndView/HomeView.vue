@@ -1,24 +1,28 @@
 <template>
-  <div class="vl-parent">
+  <div class="vl-parent" id="loading-background">
     <loading
       v-model:active="isLoading"
-      :can-cancel="true"
+      :can-cancel="false"
       :on-cancel="onCancel"
-      :is-full-page="fullPage"
+      :is-full-page="false"
     >
-      <div class="loading-container">
-        <p>loading...</p>
+      <div class="loadingContainer">
+        <div class="loadingBackground"></div>
         <img
-          id="loadingSvg"
+          class="loadingSvg"
           src="@/assets/image/home/loading.svg"
           alt="時光穿梭"
         />
+        <p class="loadingText">
+          loading
+          <span>.</span>
+          <span>.</span>
+          <span>.</span>
+        </p>
       </div>
     </loading>
-    <label><input type="checkbox" v-model="fullPage" />Full page?</label>
-    <button @click.prevent="doAjax">fetch Data</button>
   </div>
-
+  <button @click.prevent="doAjax" id="fetch">前導頁預覽</button>
   <all-header />
   <!-- <div id="mouse"></div> -->
 
@@ -42,10 +46,13 @@
           .<br />
           .<br />
           .<br />
+        </p>
+        <p>
           歡迎來到時萬伏特<br />
           我們開發了全新的時光機器<br />
-          誠摯的邀請您來場時光之旅<br />
-          <span>探索歷史的全新可能... </span>
+          假文字假文字假文字假文字假文字假文字<br />
+          假文字假文字<br />
+          假文字假文字
         </p>
         <!-- <p class="typewriter">
           {{ typewriter }}
@@ -56,7 +63,11 @@
         <img src="@/assets/image/home/bitLightning.svg" alt="閃電圖樣" />
       </div>
       <div class="pic">
-        <img src="@/assets/image/home/Time_Machine.png" alt="時光機圖樣" />
+        <img
+          class="TimeMachine"
+          src="@/assets/image/home/Time_Machine.png"
+          alt="時光機圖樣"
+        />
       </div>
     </div>
     <div class="itinerary_block">
@@ -77,7 +88,9 @@
             <span>Historcal</span>
           </h2>
           <HomeHistorcal />
-          <router-link class="link" to="/history">更多歷史故事</router-link>
+          <router-link class="historyLink" to="/history"
+            >更多歷史故事</router-link
+          >
         </div>
       </div>
 
@@ -98,8 +111,6 @@
 
 <script>
 // @ is an alias to /src
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/css/index.css";
 import HomeItinerary from "../../components/home/HomeItinerary.vue";
 import HomeHistorcal from "../../components/home/HomeHistorcal.vue";
 import HomeNews from "../../components/home/HomeNews.vue";
@@ -109,9 +120,7 @@ export default {
   name: "HomeView",
   datas() {
     return {
-      isLoading: false,
-      fullPage: false,
-      // c: true,
+      c: true,
       newsData: [
         {
           id: 1,
@@ -190,21 +199,11 @@ export default {
     HomeItinerary,
     HomeHistorcal,
     HomeNews,
-    Loading,
+    MyVoucher,
+    GetVoucher,
   },
-
-  methods: {
-    doAjax() {
-      this.isLoading = true;
-      // simulate AJAX
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 5000);
-    },
-    onCancel() {
-      console.log("User cancelled the loader.");
-    },
-  },
+  props: ["text"],
+  methods: {},
 };
 </script>
 
@@ -238,6 +237,79 @@ export default {
 $b1-primary: (1px solid map-get($color, "primary"));
 $b2-primary: (2px solid map-get($color, "primary"));
 $b20-primary: (20px solid map-get($color, "primary"));
+
+// loading
+
+#fetch {
+  color: map-get($color, "primary");
+  background-color: #131313;
+  border: $b1-primary;
+}
+
+.loadingContainer {
+  // width: 100%;
+  // height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  z-index: 500;
+  text-align: center;
+
+  vertical-align: top;
+
+  > .loadingText {
+    width: 100%;
+    height: 36px;
+    top: 50%;
+    bottom: 50%;
+    // display: block;
+    line-height: 36px;
+    font-size: 36px;
+    color: map-get($color, "primary");
+    position: fixed;
+    > span {
+      animation-delay: 0.1s;
+      animation-duration: 0.7s;
+      animation-iteration-count: infinite;
+
+      &:nth-child(1) {
+        animation-name: loadingBit1;
+      }
+      &:nth-child(2) {
+        animation-name: loadingBit2;
+      }
+      &:nth-child(3) {
+        animation-name: loadingBit3;
+      }
+    }
+  }
+  > .loadingSvg {
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    // mix-blend-mode: color-burn;
+  }
+}
+.loadingBackground {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #000;
+  mix-blend-mode: darken;
+
+  backdrop-filter: saturate;
+  position: fixed;
+}
 
 a:visited.link {
   color: map-get($color, "accent");
@@ -388,6 +460,14 @@ h2 {
       width: 100%;
       height: 100%;
       object-fit: scale-down;
+      position: relative;
+
+      animation-delay: 0.3s;
+      animation-name: float;
+      animation-duration: 4.4s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate-reverse;
+      animation-timing-function: ease-in-out;
     }
     @media screen and (max-width: $m-breakpoint) {
       display: none;
@@ -413,6 +493,18 @@ h2 {
     text-decoration: none;
   }
 }
+.historyLink {
+  display: block;
+  text-align: center;
+  width: calc(30vw + 10px);
+  margin: 10px;
+  margin-left: 10vw;
+  padding: 10px;
+  border: $b2-primary;
+  color: map-get($color, "primary");
+  background: map-get($color, "dark_sub");
+  text-decoration: none;
+}
 .itinerary_block {
   background: linear-gradient(
       180deg,
@@ -435,20 +527,5 @@ h2 {
     url(@/assets/image/home/bg3.jpg);
   background-position: top;
   background-size: cover;
-}
-
-@keyframes flashing {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 </style>
