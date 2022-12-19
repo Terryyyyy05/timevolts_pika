@@ -1,11 +1,15 @@
 <template>
   <div class="cardList">
-    <product-card v-for="card in cardList" :key="card.title" :id="card.id">
+    <product-card
+      v-for="card in cardContext2.list"
+      :key="card.pro_name"
+      :id="card.pro_id"
+    >
       <div class="pic">
         <img :src="require('@/assets/image/product/product_1.png')" alt="" />
       </div>
-      <h3>{{ card.title }}</h3>
-      <span class="p_md price">${{ card.price }}</span>
+      <h3>{{ card.pro_name }}</h3>
+      <span class="p_md price">${{ card.pro_price }}</span>
     </product-card>
   </div>
   <show-more-button
@@ -16,13 +20,11 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, reactive, onMounted } from "vue";
 import { cardContext } from "./js/data.js";
 
 import ShowMoreButton from "../../components/history/UI/ShowMoreButton.vue";
 import ProductCard from "./base/ProductCard.vue";
-
-
 
 export default {
   components: {
@@ -36,20 +38,34 @@ export default {
       return (perPageCardNum.value += 4);
     };
 
-    const cardList = computed(() => {
-      return cardContext.slice(0, perPageCardNum.value);
-    });
+    // const cardList = computed(() => {
+    //   return cardContext.slice(0, perPageCardNum.value);
+    // });
+
     const distinguishTrueFalse = computed(() => {
       return perPageCardNum.value < cardContext.length ? true : false;
     });
 
-    
+    // test
+    const cardContext2 = reactive({ list: [] });
+    const fetchAbc = () => {
+      fetch("http://localhost/timevolts_pika/public/phpfiles/getProducts.php")
+        .then((res) => res.json())
+        .then((result) => {
+          cardContext2.list = result;
+        });
+    };
+    onMounted(() => {
+      fetchAbc();
+      console.log(cardContext2);
+    });
 
     return {
       perPageCardNum,
-      cardList,
+      // cardList,
       addCardNum,
       distinguishTrueFalse,
+      cardContext2,
     };
   },
 };

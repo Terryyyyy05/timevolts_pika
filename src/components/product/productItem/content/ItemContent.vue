@@ -101,15 +101,19 @@ export default {
 
     onBeforeRouteUpdate(async (to, from) => {
       console.log("QQ");
+      console.log(productInfo);
+      console.log(cardContext);
 
+      // alert(to.params.id);
       Object.assign(
         productInfo,
         cardContext.find((i) => i.id === parseInt(to.params.id))
       );
-      
+
       console.log(productInfo);
       console.log(cardContext);
     });
+    
 
     return {
       cardContext,

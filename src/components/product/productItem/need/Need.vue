@@ -2,21 +2,23 @@
   <h2>你可能會需要...</h2>
   <div class="cardList">
     <product-card
-      v-for="card in cardContext2"
-      :key="card.title"
-      :id="card.id"
+      v-for="card in cardContext2.list"
+      :key="card.pro_name"
+      :id="card.pro_id"
       style="width: 100%"
     >
       <div class="pic">
         <img :src="require('@/assets/image/product/product_1.png')" alt="" />
       </div>
-      <h3>{{ card.title }}</h3>
-      <span class="p_md price">${{ card.price }}</span>
+      <h3>{{ card.pro_name }}</h3>
+      <span class="p_md price">${{ card.pro_price }}</span>
     </product-card>
   </div>
 </template>
 
 <script>
+import { reactive } from "@vue/reactivity";
+import { onMounted } from "vue";
 import ProductCard from "../../base/ProductCard.vue";
 import { cardContext } from "../../js/data";
 
@@ -25,10 +27,22 @@ export default {
     ProductCard,
   },
   setup() {
-    const cardContext2 = cardContext.slice(1, 4);
-
+    // const cardContext2 = cardContext.slice(0, 5);
+    const cardContext2 = reactive({ list: [] });
+    const fetchAbc = () => {
+      fetch("http://localhost/timevolts_pika/public/phpfiles/getProducts.php")
+        .then((res) => res.json())
+        .then((result) => {
+          cardContext2.list = result;
+        });
+    };
+    onMounted(() => {
+      fetchAbc();
+      console.log(cardContext2);
+    });
     return {
       cardContext2,
+      // cardContext3,
     };
   },
 };
