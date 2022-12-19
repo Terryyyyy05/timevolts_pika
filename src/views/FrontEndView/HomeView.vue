@@ -7,7 +7,12 @@
       :is-full-page="fullPage"
     >
       <div class="loading-container">
-        <p>loading...</p>
+        <p>
+          loading
+          <span>.</span>
+          <span>.</span>
+          <span>.</span>
+        </p>
         <img
           id="loadingSvg"
           src="@/assets/image/home/loading.svg"
@@ -213,25 +218,49 @@ export default {
 
 // loading
 .loading-container {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  // font-family: "Cube11";
+  z-index: 500;
+  text-align: center;
+
+  vertical-align: top;
+
   > p {
-    display: inline-block;
-    width: fit-content;
-    justify-content: center;
-    font-size: 18px;
-    color: #fff;
-    z-index: 10000;
-  }
-  #loadingSvg {
     width: 100%;
-    height: 100vh;
-    z-index: 500;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    object-fit: fill;
+    height: 36px;
+    top: 50%;
+    bottom: 50%;
+    // display: block;
+    line-height: 36px;
+    font-size: 36px;
+    color: map-get($color, "primary");
     position: fixed;
-    // z-index: 200;
+    > span {
+      animation-delay: 0.1s;
+      animation-duration: 0.7s;
+      animation-iteration-count: infinite;
+
+      &:nth-child(1) {
+        animation-name: loadingBit1;
+      }
+      &:nth-child(2) {
+        animation-name: loadingBit2;
+      }
+      &:nth-child(3) {
+        animation-name: loadingBit3;
+      }
+    }
+  }
+  > #loadingSvg {
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -445,6 +474,84 @@ h2 {
     opacity: 1;
   }
   75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes loadingBit1 {
+  0% {
+    opacity: 0;
+  }
+  16% {
+    opacity: 1;
+  }
+  32% {
+    opacity: 1;
+  }
+  48% {
+    opacity: 1;
+  }
+  64% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes loadingBit2 {
+  0% {
+    opacity: 0;
+  }
+  16% {
+    opacity: 0;
+  }
+  32% {
+    opacity: 1;
+  }
+  48% {
+    opacity: 1;
+  }
+  64% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes loadingBit3 {
+  0% {
+    opacity: 0;
+  }
+  16% {
+    opacity: 0;
+  }
+  32% {
+    opacity: 0;
+  }
+  48% {
+    opacity: 1;
+  }
+  64% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  96% {
     opacity: 0;
   }
   100% {

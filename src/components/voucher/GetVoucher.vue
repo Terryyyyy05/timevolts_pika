@@ -40,7 +40,14 @@
                 href="#"
                 v-if="(this.unreceivedCoupon.coupon_status = 1)"
               >
-                <p>{{ init[this.unreceivedCoupon.coupon_status] }}</p>
+                <p>立即領取</p>
+              </button>
+              <button
+                id="receive"
+                href="#"
+                v-if="(this.unreceivedCoupon.coupon_status = 0)"
+              >
+                <p>已領取</p>
               </button>
               <!-- <a id="receive" href="#" v-else>已領取</a> -->
             </div>
@@ -107,11 +114,10 @@ export default {
       this.showModal = !this.showModal;
     },
     // afterReceive() {
-    //   console.log("AAA");
     //   console.log(this);
     //   this.target.innerText = "已領取";
     // },
-    receive(e, index) {
+    receive(e) {
       // 判別是否登入
       console.log(e);
       if (this.login == true) {
