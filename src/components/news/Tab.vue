@@ -1,5 +1,10 @@
 <template>
   <nav class="select-btn">
+
+    <!-- <button :id="btn.id" v-for="(btn, index) of btns" :key="index" @click="selectTab('btn.click')">
+      <img src="@/assets/image/news/lightning.svg" alt="">
+      {{btn.text}}
+    </button> -->
     <button id="select-item" @click="selectTab('all')">
       <img src="@/assets/image/news/lightning.svg" alt="">全部消息
     </button>
@@ -32,7 +37,7 @@
   </select>
 
   <ul v-if ="currentTab == 'all'">
-    <li class="news" v-for="item in newsData" :key="item.id">
+    <li class="news" v-for="(item,index) of newsData" :key="index">
       <h2>{{ item.title }}</h2>
       <p class="date">{{ item.date }}</p>
       <span class="hashtag">{{ item.hashtag }}</span>
@@ -87,6 +92,13 @@
     </li>
   </ul>
 
+  <show-more-button
+    :trueOrFalse="distinguishTrueFalse"
+    @show-more="addCardNum"
+    class="mb"
+  >
+</show-more-button>
+
   <div class="l-box" :class="{ 'show-lightbox': isOpen }">
     <button class="close-l-box" @click="close">
       <font-awesome-icon icon="fa-solid fa-xmark" />
@@ -108,7 +120,12 @@
 </template>
 
 <script>
+
+import ShowMoreButton from "../../components/news/ShowMoreButton.vue";
 export default {
+  components: {
+    ShowMoreButton,
+  },
   props: {
     img: String,
     title: String,
@@ -121,6 +138,7 @@ export default {
     return {
       currentTab: 'all',
       activeId: NaN,
+      result: {},   //測試抓local端資料
       itineraryData: [
         {
           id: 1001,
@@ -293,15 +311,17 @@ export default {
           img: require(`@/assets/image/news/system.png`),
         }
       ],
+
       // isOpen: false,
-      // tabs: [{
+      // tabs: [
+      // {
       //   title: '全部消息',
-      //   data:[],
+      //   newsData:[],
       //   key: 'all',
       // },
       // {
       //   title: '行程預訂',
-      //   data: [
+      //   itineraryData: [
       //     {
       //       id: 1001,
       //       title: '穿梭於史前時代',
@@ -343,7 +363,7 @@ export default {
       // },
       // {
       //   title: '歷史事件',
-      //   data: [
+      //   historyData: [
       //     {
       //       id: 2001,
       //       title: '鐵達尼號沈船',
@@ -441,7 +461,7 @@ export default {
       //       hashtag: '#奇聞軼事 #高危險度 #遠古歷史',
       //       content: '亞特蘭提斯，一夜之間在地球上消失的亞特蘭提斯。讓我們帶您乘坐時光機前往西元前一萬兩千年，究竟這場大洪水有沒有發生，亦或是帶你一窺究竟亞特蘭提斯的存在吧!穿越年代為西元前一萬兩千年，時空背景與現今差異甚大，生存環境危險，冒險者快來挑戰吧! ',
       //       content_box: '',
-      //       img: require(`@/assets/image/news/atlantis.png`),
+      //       img: require(`@/assets/image/news/atlantis01.png`),
       //     },
 
       //   ],
@@ -449,7 +469,7 @@ export default {
       // },
       // {
       //   title: '購物商城',
-      //   data: [
+      //   shoppingData: [
       //     {
       //       id: 3001,
       //       title: '購物須知',
@@ -474,7 +494,7 @@ export default {
       // },
       // {
       //   title: '其他消息',
-      //   data: [
+      //   otherData: [
       //     {
       //       id: 4001,
       //       title: '官網維護公告',
@@ -488,7 +508,12 @@ export default {
       //   key: 'other',
       // },
       // ],
+      // tabVisible:6,
     }
+  },
+    
+  created() {
+    this.getData();  //測試抓local端資料
   },
   computed: {
     newsData() {
@@ -507,11 +532,10 @@ export default {
     isOpen() {
       return !isNaN(this.activeId);
     },
-
   },
   methods: {
-    selectTab(selectedTab) {
-      this.currentTab = selectedTab
+    selectTab(id) {
+      this.currentTab = id;
     },
     openBox(id) {
       // this.isOpen = true;
@@ -520,6 +544,18 @@ export default {
     close() {
       // this.isOpen = false;
       this.activeId = NaN;
+    },
+    //測試抓local端資料
+    getData() {
+      fetch('http://localhost/timevolts_pika/public/phpfiles/getProducts.php')
+        .then((res) => res.json())
+        .then((json) => {
+          this.result = json[0];
+          console.log(this.result);
+        })
+    },
+    saveData() {
+      console.log(this.result);
     },
   }
 }
@@ -694,12 +730,12 @@ ul {
   #select-item-choose {
     display: block;
     margin: 20px auto;
-    width: 300px;
+    width: 70%;
     height: 30px;
     background: map-get($color, dark);
     color: map-get($color, accent);
     border: 1px solid map-get($color, accent);
-    font-size: 16px;
+    font-size: 15px;
 
     &:focus {
       outline: none;
@@ -708,6 +744,7 @@ ul {
   
   .l-box {
     width: 70%;
+    height: 80vh;
     .l-box-img {
     height: auto;
     }

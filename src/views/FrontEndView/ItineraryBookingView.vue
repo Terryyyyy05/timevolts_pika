@@ -21,7 +21,7 @@
          </button>
       </div>
       <div class="buttons" v-if="this.selectedStep === 'confirm-order'">
-         <router-link to="/memberCenter">
+         <router-link to="/customizetk">
             <button class="btn-primary">開始製作</button>
          </router-link>
          <router-link to="/home"
