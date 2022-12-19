@@ -80,8 +80,8 @@ export default {
       ],
       robotQuestion: [
         { id: 1, content: "旅行規範", index: 1 },
-        { id: 2, content: "行程FAQs", index: 2 },
-        { id: 3, content: "商品FAQs", index: 3 },
+        { id: 2, content: "付款後是否可以取消訂單？", index: 2 },
+        { id: 3, content: "商品配送時間多久？", index: 3 },
       ],
       robotAnswer: [
         {
@@ -322,7 +322,8 @@ export default {
     }
     .czkj-question-msg {
       float: left;
-      color: hsl(0, 0%, 80%);
+      color: #ffe1b5;
+      font-weight: bold;
     }
   }
   .input-submit {
