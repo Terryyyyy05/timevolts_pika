@@ -87,7 +87,9 @@
             <span>Historcal</span>
           </h2>
           <HomeHistorcal />
-          <router-link class="link" to="/history">更多歷史故事</router-link>
+          <router-link class="historyLink" to="/history"
+            >更多歷史故事</router-link
+          >
         </div>
       </div>
 
@@ -505,6 +507,18 @@ h2 {
     background: map-get($color, "dark_sub");
     text-decoration: none;
   }
+}
+.historyLink {
+  display: block;
+  text-align: center;
+  width: calc(30vw + 10px);
+  margin: 10px;
+  margin-left: 10vw;
+  padding: 10px;
+  border: $b2-primary;
+  color: map-get($color, "primary");
+  background: map-get($color, "dark_sub");
+  text-decoration: none;
 }
 .itinerary_block {
   background: linear-gradient(
