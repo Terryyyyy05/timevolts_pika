@@ -54,25 +54,35 @@
         <div class="before-discount">
           小計:
           <span
-            >$
-            <span>{{
-              items.reduce((acu, cur) => {
-                return acu + parseInt(cur.price);
-              }, 0)
-            }}</span></span
+            >$ <span>{{ originTotalPrice }}</span></span
           >
         </div>
-        <div class="discount-amount">
-          折扣金額: <span>$ <span>-200</span></span>
+        <div class="discount-amount" v-if="couponStatus">
+          折扣金額:
+          <span
+            >$ <span>-{{ couponUse.price }}</span></span
+          >
         </div>
-        <div class="after-discount">
-          折扣後金額: <span>$ <span>1800</span></span>
+        <div class="after-discount" v-if="couponStatus">
+          折扣後金額:
+          <span
+            >$ <span>{{ originTotalPrice - couponUse.price }}</span></span
+          >
         </div>
         <div class="freight-amount">
-          運費: <span>$ <span>200</span></span>
+          運費:
+          <span
+            >$ <span>{{ freight }}</span></span
+          >
         </div>
         <div class="total-amount">
-          總金額: <span>$ <span>2000</span></span>
+          總金額:
+          <span
+            >$
+            <span>{{
+              originTotalPrice - couponUse.price - freight
+            }}</span></span
+          >
         </div>
       </div>
     </div>
@@ -91,7 +101,7 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
 
 // test
@@ -109,11 +119,24 @@ export default {
 
     // test
     const modalStatus = ref(false);
+    const couponStatus = ref(false);
+
+    const freight = ref(888);
+    const couponUse = reactive({
+      price: "",
+      condition: "",
+    });
 
     // computed
     const items = computed(() => {
       return store.getters.cartItems;
     });
+
+    const originTotalPrice = computed(() =>
+      store.getters.cartItems.reduce((acu, cur) => {
+        return acu + parseInt(cur.price);
+      }, 0)
+    );
 
     // methods
     const removeFromCart = (e) => {
@@ -138,6 +161,11 @@ export default {
 
     const useCoupon = (item) => {
       modalStatus.value = false;
+      couponStatus.value = true;
+      couponUse.price = item.coupon_discount_number;
+      couponUse.condition = item.coupon_pricing_condition;
+
+      console.log(couponUse);
       console.log(item);
     };
 
@@ -148,8 +176,12 @@ export default {
       addNum,
       // test
       modalStatus,
+      couponStatus,
       clickOpenModal,
       useCoupon,
+      originTotalPrice,
+      freight,
+      couponUse,
     };
   },
 };
