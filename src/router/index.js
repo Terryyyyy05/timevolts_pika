@@ -53,8 +53,9 @@ const routes = [
       component: () => import("../views/FrontEndView/HistoryView.vue"),
    },
    {
-      path: "/history-details",
-      name: "history-details",
+      path: "/history/:id",
+      name: "historyDetails",
+      props: true,
       component: () => import("../views/FrontEndView/HistoryDetailsView.vue"),
    },
    {

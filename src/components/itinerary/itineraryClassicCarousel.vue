@@ -399,7 +399,7 @@ button {
                     width: 210px;
                     height: 100%;
                     top: 0;
-                    left: -5px;
+                    left: 0;
                     background-size: cover;
                     background-position: center;
                     border: 2px solid #e0d040;
