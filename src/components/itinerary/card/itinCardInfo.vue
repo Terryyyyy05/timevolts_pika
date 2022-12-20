@@ -11,7 +11,7 @@
                     <router-link
                         :to="
                             info.type == '經典事件'
-                                ? '/itiItineraryClassicView'
+                                ? '/itineraryClassicView'
                                 : '/itineraryPeriodView'
                         "
                     >
