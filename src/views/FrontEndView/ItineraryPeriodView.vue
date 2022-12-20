@@ -28,7 +28,7 @@
                 </div>
                 <div class="infoDate">穿越年代:{{ period2.tourdate }}</div>
                 <div class="infoContent">
-                    {{ period[itinerary].content[contentOneToFive] }}
+                    {{ period2.content[contentOneToFive] }}
                 </div>
             </div>
         </div>

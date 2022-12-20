@@ -127,6 +127,7 @@ export default {
     return {
       isLoading: true,
       fullPage: false,
+      result: {}, //存資料
       // c: true,
       newsData: [
         {
@@ -208,17 +209,27 @@ export default {
     HomeNews,
     Loading,
   },
+  created() {
+    if (!sessionStorage["first"]) {
+      this.isLoading = true;
+    }
 
+    this.getData();
+  },
   methods: {
+    getData() {
+      // this.result = result;
+      fetch("http://localhost/timevolts_pika/public/phpfiles/getProducts.php")
+        .then((res) => res.json())
+        .then((json) => {
+          this.result = json[0];
+          console.log(this.result);
+        });
+    },
     doAjax() {
       this.isLoading = true;
       // simulate AJAX
 
-      gsap.to(
-        ".Black",
-        { opacity: 1 },
-        { duration: 1, opacity: 0, delay: 0.5 }
-      );
       gsap.fromTo(
         ".loadingText",
         { opacity: 1 },
@@ -240,10 +251,9 @@ export default {
         { opacity: 1 },
         { duration: 2, opacity: 0, delay: 4 }
       );
-
       setTimeout(() => {
         this.isLoading = false;
-      }, 6000);
+      }, 5500);
     },
     onCancel() {
       console.log("User cancelled the loader.");

@@ -1,7 +1,8 @@
 <?php
+
   $dbname = "tibamefe_cgd103g3";
 	$user = "root";
-	$password = "1234";
+	$password = "CGD1032017";
 	$port = '3306';
 
 	$dsn = "mysql:host=localhost;port=$port;dbname=$dbname;charset=utf8";

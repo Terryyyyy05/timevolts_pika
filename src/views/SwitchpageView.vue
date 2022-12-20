@@ -2,22 +2,25 @@
     <main>
         <div class="wrap">
              <router-link to="/home">
-                <div class="front-end">
+                <button class="front-end">
                     <h2 class="glitched">前台</h2>
-                </div>
+                </button>
              </router-link>
-            <router-link to="/managelogin">
-                <div class="back-end">
+                <button class="back-end" @click="switchHandle">
                     <h2 class="glitched">後台</h2>
-                </div>
-            </router-link>
+                </button>
         </div>
         <p>本網站為緯育TibaMe_前端設計工程師班第79期學員專題成果作品，本平台僅供學習、展示之用。若有抵觸有關著作權，或有第三人主張侵害智慧財產權等情事，均由學員負法律上責任，緯育公司概不負責。若有侵權疑慮，您可以私訊<a href="https://www.facebook.com/TibaMe/">[緯育TibaMe]</a>，後續會由專人協助處理。</p>
     </main>
 </template>     
 
 <script>
-export default {
+export default{
+  methods: {
+    switchHandle(){
+      location.href = 'https://tibamef2e.com/cgd103/g3/back/';
+    }
+  },
 }
 </script>
 <style scoped lang="scss">
@@ -34,8 +37,6 @@ main {
         bottom: 0;
         margin: auto;
         width: 100%;
-        a {
-                color: #fab042;
             
         .front-end, .back-end {
             width: 300px;
@@ -47,6 +48,9 @@ main {
             align-items: center;
             cursor: pointer;
             position: relative;
+            text-decoration: none;
+            background: none;
+            color: #fab042;
             
             &:hover {
                 text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
@@ -105,7 +109,7 @@ main {
                 color: #fab042;
             }
         }
-    }
+    
         .glitched {
             animation-name: glitched;
             animation-duration: calc(.9s * 1.4);
