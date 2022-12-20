@@ -559,7 +559,7 @@ export default {
       this.activeId = NaN;
     },
     getData(){
-            fetch('http://localhost/timevolts_pika/public/phpfiles/getProducts.php')
+            fetch('http://localhost/timevolts_pika/public/phpfile/getProducts.php')
                   .then((res) => res.json())
                   .then((json) =>{
                     this.result = json;
