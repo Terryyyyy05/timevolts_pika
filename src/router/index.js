@@ -33,12 +33,12 @@ const routes = [
       component: () => import("../views/FrontEndView/ItineraryView.vue"),
    },
    {
-      path: "/itiItineraryClassicView",
+      path: "/itiItineraryClassicView/:id",
       name: "ItineraryClassicView",
       component: () => import("../views/FrontEndView/ItineraryClassicView.vue"),
    },
    {
-      path: "/itineraryPeriodView",
+      path: "/itineraryPeriodView/:id",
       name: "itineraryPeriodView",
       component: () => import("../views/FrontEndView/ItineraryPeriodView.vue"),
    },
@@ -144,13 +144,13 @@ const routes = [
 ];
 
 const router = createRouter({
-   history: createWebHistory(process.env.BASE_URL),
-   routes,
-   scrollBehavior(to, from, savedPosition) {
-      // return 期望滚动到哪个的位置
-      // 始终滚动到顶部
-      return { top: 0 };
-   },
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    // 始终滚动到顶部
+    return { top: 0 };
+  },
 });
 
 export default router;
