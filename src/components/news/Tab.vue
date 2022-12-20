@@ -524,9 +524,9 @@ export default {
     };
   },
     
-  created() {
-    this.getData();  //測試抓local端資料
-  },
+  // created() {
+  //   this.getData();  //測試抓local端資料
+  // },
   computed: {
     newsData() {
       return [

@@ -116,20 +116,20 @@ export default {
          .ticket-container{
             display: flex;
             
-            .ticket-intro{
-               .ticket-no{
+            // .ticket-intro{
+            //    .ticket-no{
 
-               }
-               .ticket-name{
+            //    }
+            //    .ticket-name{
 
-               }
-               .ticket-date{
+            //    }
+            //    .ticket-date{
 
-               }
-            }
-            .ticket-drag{
+            //    }
+            // }
+            // .ticket-drag{
 
-            }
+            // }
          }
          
          .ticket-input{

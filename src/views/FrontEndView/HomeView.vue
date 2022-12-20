@@ -50,9 +50,8 @@
         <p>
           歡迎來到時萬伏特<br />
           我們開發了全新的時光機器<br />
-          假文字假文字假文字假文字假文字假文字<br />
-          假文字假文字<br />
-          假文字假文字
+          誠摯的邀請您來場奇幻的時光之旅<br />
+          <span>探索歷史的全新可能... </span>
         </p>
         <!-- <p class="typewriter">
           {{ typewriter }}
@@ -111,6 +110,10 @@
 
 <script>
 // @ is an alias to /src
+
+import { gsap } from "gsap";
+import "vue-loading-overlay/dist/css/index.css";
+import Loading from "vue-loading-overlay";
 import HomeItinerary from "../../components/home/HomeItinerary.vue";
 import HomeHistorcal from "../../components/home/HomeHistorcal.vue";
 import HomeNews from "../../components/home/HomeNews.vue";
@@ -120,7 +123,9 @@ export default {
   name: "HomeView",
   datas() {
     return {
-      c: true,
+      isLoading: true,
+      fullPage: false,
+      // c: true,
       newsData: [
         {
           id: 1,
@@ -199,11 +204,45 @@ export default {
     HomeItinerary,
     HomeHistorcal,
     HomeNews,
-    MyVoucher,
-    GetVoucher,
+    Loading,
   },
-  props: ["text"],
-  methods: {},
+
+  methods: {
+    doAjax() {
+      this.isLoading = true;
+      // simulate AJAX
+
+      gsap.fromTo(
+        ".loadingText",
+        { opacity: 1 },
+        { duration: 1, opacity: 0, delay: 1 }
+      );
+      gsap.fromTo(
+        ".loadingSvg",
+        { opacity: 1 },
+        { duration: 2, opacity: 0, delay: 2.5 }
+      );
+      gsap.fromTo(
+        ".loadingBackground",
+        { backgroundColor: "#000" },
+        { duration: 1, backgroundColor: "#fff" },
+        "<"
+      );
+      gsap.fromTo(
+        ".loadingBackground",
+        { opacity: 1 },
+        { duration: 2, opacity: 0, delay: 4 }
+      );
+
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 6000);
+    },
+    onCancel() {
+      console.log("User cancelled the loader.");
+    },
+  },
+  computed: {},
 };
 </script>
 
@@ -527,5 +566,89 @@ h2 {
     url(@/assets/image/home/bg3.jpg);
   background-position: top;
   background-size: cover;
+}
+// 打字機閃爍
+@keyframes flashing {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+// loading點點閃爍
+@keyframes loadingBit1 {
+  0% {
+    opacity: 0;
+  }
+  16% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes loadingBit2 {
+  0% {
+    opacity: 0;
+  }
+  16% {
+    opacity: 0;
+  }
+  32% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes loadingBit3 {
+  0% {
+    opacity: 0;
+  }
+  32% {
+    opacity: 0;
+  }
+  48% {
+    opacity: 1;
+  }
+  64% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(5%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(8%);
+  }
 }
 </style>
