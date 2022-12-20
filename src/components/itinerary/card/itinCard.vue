@@ -1,24 +1,16 @@
 <template>
     <div>
-        <!-- <router-link
-            :to="
-                info.type == `經典事件`
-                    ? `/itiItineraryClassicView/${id}`
-                    : `/itineraryPeriodView/${id}`
-            "
-        > -->
         <slot></slot>
-        <!-- </router-link> -->
     </div>
 </template>
 <script>
 export default {
     name: "itinCard",
-    props: {
-        id: {
-            type: Number,
-        },
-    },
+    // props: {
+    //     id: {
+    //         type: Number,
+    //     },
+    // },
 };
 </script>
 

@@ -18,21 +18,15 @@
                 ></aside-bar>
             </div>
             <div class="infoWrap">
-                <div class="infoTitle">{{ period[itinerary].title }}</div>
+                <div class="infoTitle">{{ period2.title }}</div>
                 <div class="tagWrap">
-                    <span class="infoDanderLevel"
-                        >#難度:{{ period[itinerary].dangerLevel }}</span
+                    <span class="infoDangerLevel"
+                        >#難度:{{ period2.tagDangerLevel }}</span
                     >
-                    <span class="infoFeature"
-                        >#{{ period[itinerary].feature }}</span
-                    >
-                    <span class="infoRegion"
-                        >#{{ period[itinerary].region }}</span
-                    >
+                    <span class="infoFeature">#{{ period2.tagFeature }}</span>
+                    <span class="infoRegion">#{{ period2.tagRegion }}</span>
                 </div>
-                <div class="infoDate">
-                    穿越年代:{{ period[itinerary].date }}
-                </div>
+                <div class="infoDate">穿越年代:{{ period2.tourdate }}</div>
                 <div class="infoContent">
                     {{ period[itinerary].content[contentOneToFive] }}
                 </div>
@@ -72,7 +66,7 @@ import commentsInfo from "@/components/itineraryPeriod/commentsInfo.vue";
 import itinPeriodCardInfo from "@/components/itineraryPeriod/itinPeriodCardInfo.vue";
 import asideBar from "@/components/itineraryPeriod/asideBar.vue";
 import { reactive } from "vue";
-import { classic } from "@/components/itinerary/js/data.js";
+import { cardContext } from "@/components/itinerary/js/data.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
 export default {
@@ -86,13 +80,14 @@ export default {
     setup() {
         const route = useRoute();
 
-        const period = reactive(
-            classic.find((i) => {
+        const period2 = reactive(
+            cardContext.find((i) => {
                 return i.id === parseInt(route.params.id);
             })
         );
+        console.log(period2);
         return {
-            period,
+            period2,
         };
     },
     data() {
