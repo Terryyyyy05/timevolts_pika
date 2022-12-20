@@ -1,4 +1,6 @@
+
 import $ from jquery;
+
 
     let postcardElement = document.querySelectorAll('.postcardElement');
     let postcardStampContainer = document.getElementById('postcardStampContainer');
