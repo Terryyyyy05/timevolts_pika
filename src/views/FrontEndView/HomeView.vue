@@ -263,6 +263,30 @@ export default {
 <style scoped lang="scss">
 @import "@/assets/css/utils/_variables.scss";
 
+// loading
+.loading-container {
+  > p {
+    display: inline-block;
+    width: fit-content;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    z-index: 10000;
+  }
+  #loadingSvg {
+    width: 100%;
+    height: 100vh;
+    z-index: 500;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    object-fit: fill;
+    position: fixed;
+    // z-index: 200;
+  }
+}
+
 $b1-primary: (1px solid map-get($color, "primary"));
 $b2-primary: (2px solid map-get($color, "primary"));
 $b20-primary: (20px solid map-get($color, "primary"));
