@@ -18,21 +18,15 @@
                 ></aside-bar>
             </div>
             <div class="infoWrap">
-                <div class="infoTitle">{{ period[itinerary].title }}</div>
+                <div class="infoTitle">{{ period2.title }}</div>
                 <div class="tagWrap">
-                    <span class="infoDanderLevel"
-                        >#難度:{{ period[itinerary].dangerLevel }}</span
+                    <span class="infoDangerLevel"
+                        >#難度:{{ period2.tagDangerLevel }}</span
                     >
-                    <span class="infoFeature"
-                        >#{{ period[itinerary].feature }}</span
-                    >
-                    <span class="infoRegion"
-                        >#{{ period[itinerary].region }}</span
-                    >
+                    <span class="infoFeature">#{{ period2.tagFeature }}</span>
+                    <span class="infoRegion">#{{ period2.tagRegion }}</span>
                 </div>
-                <div class="infoDate">
-                    穿越年代:{{ period[itinerary].date }}
-                </div>
+                <div class="infoDate">穿越年代:{{ period2.tourdate }}</div>
                 <div class="infoContent">
                     {{ period[itinerary].content[contentOneToFive] }}
                 </div>

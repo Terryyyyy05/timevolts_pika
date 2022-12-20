@@ -11,8 +11,8 @@
                     <router-link
                         :to="
                             itinerary.type == '經典事件'
-                                ? `/itineraryClassicView/${itinerary.id}`
-                                : `/itineraryPeriodView/${itinerary.id}`
+                                ? `/itineraryClassicView/c${itinerary.id}`
+                                : `/itineraryPeriodView/p${itinerary.id}`
                         "
                     >
                         <img :src="itinerary.imgsrc" :alt="itinerary.imgalt" />

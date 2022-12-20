@@ -5,7 +5,7 @@ export default {
           itineraries: [
             {
                 type: "經典事件",
-                id: 1,
+                id: "c1",
                 imgsrc: require(`@/assets/image/itinPrehistoric.jpg`),
                 imgalt: "經典行程-史前時代",
                 title: "史前時代",
@@ -15,10 +15,17 @@ export default {
                 tourdate: " 西元前5000年11月22日",
                 description:
                     "人類的歷史分成：史前時代及信使時代。「文字的出現」為畫分的依據，史前時代沒有文字，信使時代為文字開始。今天，我們將回到史前時代，建立屬於自己的莊園，面對嚴苛的大自然及猛獸努力存活下去。",
+                content: [
+                    "史前時代絕對是上個世紀最有名的一個不明生物。最早有人看到尼斯湖水怪是在1933年4月份的時候，直到今天80多年過去了，它的目擊情報從來沒有斷過。你相不相信水怪的存在呢?我們將帶您穿越回1933年，讓您親自見證!此行程穿越年份較短，時代背景與現今較無差異，適合新手體驗!",
+                    "史前時代尼斯湖駕船，帶您觀賞尼斯湖之美。尼斯湖古城冒險。尋找尼斯湖水怪",
+                    "史前時代蘇格蘭威士忌，獨特風味，是從蒸餾大麥酒和泥炭水中提煉而出。蘇格蘭的黑暗料理Haggis的魅力。",
+                    "史前時代安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則",
+                    "史前時代取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策",
+                ],
             },
             {
                 type: "經典事件",
-                id: 2,
+                id: "c2",
                 imgsrc: require(`@/assets/image/itinEgypt.jpg`),
                 imgalt: "經典行程-埃及",
                 title: "埃及五千年",
@@ -31,7 +38,7 @@ export default {
             },
             {
                 type: "經典事件",
-                id: 3,
+                id: "c3",
                 imgsrc: require(`@/assets/image/itinWar.jpg`),
                 imgalt: "經典行程-赤壁之戰",
                 title: "赤壁之戰",
@@ -44,7 +51,7 @@ export default {
             },
             {
                 type: "經典事件",
-                id: 4,
+                id: "c4",
                 imgsrc: require(`@/assets/image/itinColombia.jpeg`),
                 imgalt: "經典行程-哥倫布發現新大陸",
                 title: "哥倫布發現新大陸",
@@ -57,7 +64,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 1,
+                id: "p1",
                 imgsrc: require(`@/assets/image/itin/lochNessMonster.jpg`),
                 imgalt: "期間限定-尼斯湖水怪",
                 title: "尼斯湖水怪",
@@ -70,7 +77,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 2,
+                id: "p2",
                 imgsrc: require(`@/assets/image/itin/kisaragiStation.jpg`),
                 imgalt: "期間限定-如月車站",
                 title: "不存在的如月車站",
@@ -83,7 +90,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 3,
+                id: "p3",
                 imgsrc: require(`@/assets/image/itin/atlantis.png`),
                 imgalt: "期間限定-亞特蘭提",
                 title: "亞特蘭提斯",
@@ -93,10 +100,17 @@ export default {
                 tourdate: "西元前一萬兩千年",
                 description:
                     "這個地方是個傳說中的地方，存不存在沒人知道，。柏拉圖說，公元前9560年的時候，在直布羅陀海峽的對面有一個非常大的島，也就是現在的非洲大陸，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯。...",
+                content: [
+                    "尼斯湖水怪絕對是上個世紀最有名的一個不明生物。最早有人看到尼斯湖水怪是在1933年4月份的時候，直到今天80多年過去了，它的目擊情報從來沒有斷過。你相不相信水怪的存在呢?我們將帶您穿越回1933年，讓您親自見證!此行程穿越年份較短，時代背景與現今較無差異，適合新手體驗!",
+                    "尼斯湖駕船，帶您觀賞尼斯湖之美。尼斯湖古城冒險。尋找尼斯湖水怪",
+                    "蘇格蘭威士忌，獨特風味，是從蒸餾大麥酒和泥炭水中提煉而出。蘇格蘭的黑暗料理Haggis的魅力。",
+                    "安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則",
+                    "取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策",
+                ],
             },
             {
                 type: "期間限定",
-                id: 4,
+                id: "p4",
                 imgsrc: require(`@/assets/image/itin/crusades.webp`),
                 imgalt: "期間限定-十字軍東征",
                 title: "十字軍東征",
@@ -109,7 +123,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 5,
+                id: "p5",
                 imgsrc: require(`@/assets/image/itin/jesusOnCross.jpg`),
                 imgalt: "期間限定-耶穌被釘十字架",
                 title: "耶穌被釘十字架",
@@ -122,7 +136,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 6,
+                id: "p6",
                 imgsrc: require(`@/assets/image/itin/mohammad.jpg`),
                 imgalt: "期間限定-默汗默德",
                 title: "穆罕默德",
@@ -135,7 +149,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 7,
+                id: "p7",
                 imgsrc: require(`@/assets/image/itin/maliEmpire.png`),
                 imgalt: "期間限定-馬利帝國",
                 title: "馬利帝國",
@@ -148,7 +162,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 8,
+                id: "p8",
                 imgsrc: require(`@/assets/image/itin/culturaMaya.webp`),
                 imgalt: "期間限定-馬雅文明",
                 title: "馬雅文明",
@@ -161,7 +175,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 9,
+                id: "p9",
                 imgsrc: require(`@/assets/image/itin/zhengHeVoyages.jpeg`),
                 imgalt: "期間限定-鄭和下西洋",
                 title: "鄭和下西洋",
@@ -174,7 +188,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 10,
+                id: "p10",
                 imgsrc: require(`@/assets/image/itin/goldRush.jpg`),
                 imgalt: "期間限定-澳洲淘金熱",
                 title: "澳洲淘金熱",
@@ -187,7 +201,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 11,
+                id: "p11",
                 imgsrc: require(`@/assets/image/itin/titanic.jpg`),
                 imgalt: "期間限定-鐵達尼號沈船事故",
                 title: "鐵達尼號沈船事件",
@@ -200,7 +214,7 @@ export default {
             },
             {
                 type: "期間限定",
-                id: 12,
+                id: "p12",
                 imgsrc: require(`@/assets/image/itin/goldenAge.jpg`),
                 imgalt: "期間限定-荷蘭的黃金年代",
                 title: "荷蘭的黃金年代",

@@ -33,12 +33,12 @@ const routes = [
       component: () => import("../views/FrontEndView/ItineraryView.vue"),
    },
    {
-      path: "/itineraryClassicView/:id",
+      path: "/itineraryClassicView/c:id",
       name: "ItineraryClassicView",
       component: () => import("../views/FrontEndView/ItineraryClassicView.vue"),
    },
    {
-      path: "/itineraryPeriodView/:id",
+      path: "/itineraryPeriodView/p:id",
       name: "itineraryPeriodView",
       component: () => import("../views/FrontEndView/ItineraryPeriodView.vue"),
    },
