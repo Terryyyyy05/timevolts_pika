@@ -26,9 +26,9 @@
       <p class="date">{{ item.date }}</p>
       <span class="hashtag">{{ item.hashtag }}</span>
       <p class="content">{{ item.content }}</p>
-      <button type="button" class="more" @click="">
+      <!-- <button type="button" class="more" @click=""> -->
         看更多...
-      </button>
+      <!-- </button> -->
     </li>
   </ul>
   <!-- <ul v-if ="currentTab == 'all'">
