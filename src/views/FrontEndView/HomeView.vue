@@ -1,4 +1,5 @@
 <template>
+  <!-- <div class="Black"></div> -->
   <div class="vl-parent" id="loading-background">
     <loading
       v-model:active="isLoading"
@@ -213,6 +214,11 @@ export default {
       this.isLoading = true;
       // simulate AJAX
 
+      gsap.to(
+        ".Black",
+        { opacity: 1 },
+        { duration: 1, opacity: 0, delay: 0.5 }
+      );
       gsap.fromTo(
         ".loadingText",
         { opacity: 1 },
@@ -244,6 +250,13 @@ export default {
     },
   },
   computed: {},
+  beforeMount() {},
+  mounted() {
+    if (!sessionStorage["first"]) {
+      this.doAjax();
+      sessionStorage["first"] = true;
+    }
+  },
 };
 </script>
 
@@ -255,6 +268,18 @@ $b2-primary: (2px solid map-get($color, "primary"));
 $b20-primary: (20px solid map-get($color, "primary"));
 
 // loading
+.Black {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #000;
+  mix-blend-mode: darken;
+  position: fixed;
+  // z-index: 1000;
+}
 
 #fetch {
   color: map-get($color, "primary");
@@ -322,8 +347,6 @@ $b20-primary: (20px solid map-get($color, "primary"));
   left: 0;
   background-color: #000;
   mix-blend-mode: darken;
-
-  backdrop-filter: saturate;
   position: fixed;
 }
 
