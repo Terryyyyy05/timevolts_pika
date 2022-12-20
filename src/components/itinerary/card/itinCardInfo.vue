@@ -1,21 +1,21 @@
 <template>
     <itin-card
-        v-for="info in visibleInformation"
-        :key="info.title"
-        :id="info.id"
+        v-for="itinerary in visibleInformation"
+        :key="itinerary.title"
+        :id="itinerary.id"
     >
         <div class="outterwrap">
-            <h3>{{ info.title }}</h3>
+            <h3>{{ itinerary.title }}</h3>
             <div class="wrap">
                 <div class="imgblock">
                     <router-link
                         :to="
-                            info.type == '經典事件'
-                                ? '/itineraryClassicView'
-                                : '/itineraryPeriodView'
+                            itinerary.type == '經典事件'
+                                ? `/itineraryClassicView/${itinerary.id}`
+                                : `/itineraryPeriodView/${itinerary.id}`
                         "
                     >
-                        <img :src="info.imgsrc" :alt="info.imgalt" />
+                        <img :src="itinerary.imgsrc" :alt="itinerary.imgalt" />
                         <div class="bg_accent morewrap">
                             <span class="morespan">more</span>
                         </div>
@@ -23,18 +23,20 @@
                 </div>
                 <div class="textblock">
                     <div>
-                        <span class="p_md" v-if="info.tagDangerLevel"
-                            >#{{ info.tagDangerLevel }}危險</span
+                        <span class="p_md" v-if="itinerary.tagDangerLevel"
+                            >#{{ itinerary.tagDangerLevel }}危險</span
                         >
-                        <span class="p_md" v-if="info.tagFeature"
-                            >#{{ info.tagFeature }}</span
+                        <span class="p_md" v-if="itinerary.tagFeature"
+                            >#{{ itinerary.tagFeature }}</span
                         >
-                        <span class="p_md" v-if="info.tagRegion"
-                            >#{{ info.tagRegion }}</span
+                        <span class="p_md" v-if="itinerary.tagRegion"
+                            >#{{ itinerary.tagRegion }}</span
                         >
                     </div>
-                    <p class="p_md tourdate">出團日期： {{ info.tourdate }}</p>
-                    <p class="p_md description">{{ info.description }}</p>
+                    <p class="p_md tourdate">
+                        出團日期： {{ itinerary.tourdate }}
+                    </p>
+                    <p class="p_md description">{{ itinerary.description }}</p>
                 </div>
             </div>
         </div>

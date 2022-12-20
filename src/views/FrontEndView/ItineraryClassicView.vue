@@ -72,7 +72,7 @@ import commentsInfo from "@/components/itineraryPeriod/commentsInfo.vue";
 import itinPeriodCardInfo from "@/components/itineraryPeriod/itinPeriodCardInfo.vue";
 import asideBar from "@/components/itineraryPeriod/asideBar.vue";
 import { reactive } from "vue";
-import { classic } from "@/components/itinerary/js/data.js";
+import { cardContext } from "@/components/itinerary/js/data.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
 export default {
@@ -86,13 +86,14 @@ export default {
     setup() {
         const route = useRoute();
 
-        const period = reactive(
-            classic.find((i) => {
+        const period2 = reactive(
+            cardContext.find((i) => {
                 return i.id === parseInt(route.params.id);
             })
         );
+        console.log(period2);
         return {
-            period,
+            period2,
         };
     },
     data() {

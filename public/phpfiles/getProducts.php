@@ -1,4 +1,4 @@
-<?php 
+<?php
 header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
 require_once("./connectBooks.php");
@@ -9,7 +9,7 @@ echo json_encode($prodRows);
 ?>
 
 
-<?php 
+<?php
 /*======另一個可能的範例
 
 require_once("../connectBooks.php");

@@ -65,11 +65,28 @@ export default {
         itinCardInfo,
         itineraryClassicCarousel,
     },
+    data() {
+        return {
+            result: {},
+        };
+    },
     mounted() {
         sceneInit();
         animate();
     },
-    methods: {},
+    created() {
+        this.getData();
+    },
+    methods: {
+        getData() {
+            fetch("http://localhost/timevolts/public/phpfiles/getProducts.php")
+                .then((res) => res.json())
+                .then((json) => {
+                    this.result = json;
+                    console.log(this.result);
+                });
+        },
+    },
 };
 </script>
 
