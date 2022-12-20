@@ -36,11 +36,11 @@
   </select>
 
   <ul v-if="currentTab == 'all'">
-    <li class="news" v-for="item in newsData" :key="item.id">
-      <h2>{{ item.title }}</h2>
-      <p class="date">{{ item.date }}</p>
+    <li class="news" v-for="item in result" :key="item.id">
+      <h2>{{item.news_title }}</h2>
+      <p class="date">{{ item.news_add_date }}</p>
       <span class="hashtag">{{ item.hashtag }}</span>
-      <p class="content">{{ item.content }}</p>
+      <p class="content">{{ item.news_content }}</p>
       <button type="button" class="more" @click="openBox(item.id)">
         看更多...
       </button>
@@ -48,10 +48,10 @@
   </ul>
   <ul v-if="currentTab == 'itinerary'">
     <li class="news" v-for="item in itineraryData" :key="item.id">
-      <h2>{{ item.title }}</h2>
-      <p class="date">{{ item.date }}</p>
+      <h2>{{ item.news_title }}</h2>
+      <p class="date">{{ item.news_add_date }}</p>
       <span class="hashtag">{{ item.hashtag }}</span>
-      <p class="content">{{ item.content }}</p>
+      <p class="content">{{ item.news_content }}</p>
       <button type="button" class="more" @click="openBox(item.id)">
         看更多...
       </button>
@@ -91,12 +91,12 @@
     </li>
   </ul>
 
-  <show-more-button
+  <!-- <show-more-button
     :trueOrFalse="distinguishTrueFalse"
     @show-more="addCardNum"
     class="mb"
   >
-</show-more-button>
+</show-more-button> -->
 
   <div class="l-box" :class="{ 'show-lightbox': isOpen }">
     <button class="close-l-box" @click="close">
@@ -524,17 +524,13 @@ export default {
     };
   },
     
-  // created() {
-  //   this.getData();  //測試抓local端資料
-  // },
+  created() {
+    this.getData();  //測試抓local端資料
+  },
   computed: {
     newsData() {
       return [
-        ...this.itineraryData,
-        ...this.historyData,
-        ...this.shoppingData,
-        ...this.otherData,
-      ].sort((a, b) => {
+        ...this.itineraryData,...this.historyData,...this.shoppingData,...this.otherData,].sort((a, b) => {
         return new Date(a.date).valueOf() - new Date(b.date).valueOf();
       });
     },
@@ -562,8 +558,17 @@ export default {
       // this.isOpen = false;
       this.activeId = NaN;
     },
+    getData(){
+            fetch('http://localhost/timevolts_pika/public/phpfiles/getProducts.php')
+                  .then((res) => res.json())
+                  .then((json) =>{
+                    this.result = json;
+                    console.log(result);
+                  })
+        },
   },
 };
+
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";

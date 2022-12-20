@@ -94,51 +94,75 @@ export default {
 
 .wrapper {
    display: flex;
-   margin: 50px auto;
+   margin: 80px auto;
 }
 
 .customize-l {
    width: 50%;
-   margin-right: 20px;
+   margin-right: 70px;
    .customize{
-      border: 2px solid map-get($color, accent);
       border-radius: 20px;
       display: flex;
       justify-content: space-between;
       width: 100%;
       height: fit-content;
+      background-color: map-get($color, dark);
       .ticket{
          width: 80%;
+         height: 200px;
          margin: 10px;
          border: 2px solid map-get($color, accent);
+         
          border-radius: 15px;
          color: #ffffff;
+         position: relative;
+         &::after{
+            content: '';
+            height: 200px;
+            border-left: 2px dotted map-get($color, accent);
+            position: absolute;
+            right: -13px;
+            top: 0;
+         }
+        
          .ticket-container{
             display: flex;
+            height: 80%;
             
-            // .ticket-intro{
-            //    .ticket-no{
+            .ticket-intro{
+               width: 40%;
+               padding: 10px;
+               .ticket-no{
 
-            //    }
-            //    .ticket-name{
+                  margin: 10px 0;
+               }
+               .ticket-name{
+                  margin: 10px 0;
+               }
+               .ticket-date{
 
-            //    }
-            //    .ticket-date{
+                  margin: 10px 0;
+               }
+            }
+            .ticket-drag{
+               width: 60%;
+               padding: 10px;
 
-            //    }
-            // }
-            // .ticket-drag{
-
-            // }
+            }
          }
          
          .ticket-input{
+            height: 20%;
+            width: 100%;
+            margin: auto;
             background-color: map-get($color, accent);
+            border-radius: 0 0 12px 12px;
             
          }
    
       }
       .ticket-dec{
+         width: 15%;
          margin: 10px;
          border: 2px solid map-get($color, accent);
          border-radius: 15px;
@@ -146,13 +170,20 @@ export default {
          flex-direction: column;
 
          img{
-            width: 40%;
-            outline: 1px solid red;
+            width: 70%;
+            transform: rotate(-90deg);
+            position: relative;
+            top: 110px;
+            left: 15px;
          }
          p{
+            font-size: 25px;
+            font-weight: bold;
             color:  map-get($color, primary);
-            outline: 1px solid red;
             transform: rotate(-90deg);
+            position: relative;
+            top: 60px;
+            left: 10px;
 
          }
       }
@@ -160,8 +191,6 @@ export default {
    }
    .btn {
       display: flex;
-
-      outline: 1px solid red;
    }
    
 }
@@ -169,7 +198,6 @@ export default {
 
 .pannel {
    width: 50%;
-   margin-top: 50px;
 
    .pannel-title {
       h5 {
