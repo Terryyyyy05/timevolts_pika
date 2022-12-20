@@ -73,6 +73,10 @@
     </main>
 </template>
 <script>
+// const result = {
+
+// }
+
 export default {
     data(){
         return{
@@ -90,7 +94,12 @@ export default {
             oldpassword:'',
             newpassword2:'',
             newpassword3:'',
+            result:{},
         }
+
+    },
+    created(){
+        this.getData()
     },
     methods:{
         handleSubmit(){
@@ -113,7 +122,16 @@ export default {
                 }
             }
 
-        }
+        },
+        getData(){
+            // this.result = result;
+            fetch('http://localhost/timevolts_pika/public/phpfiles/getProducts.php')
+            .then((res) => res.json())
+            .then((json)=>{
+                this.result = json[0];
+                console.log(this.result);
+            })
+        },
     }
 };
 </script>
