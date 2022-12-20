@@ -84,6 +84,11 @@ const routes = [
       component: () => import("../views/FrontEndView/MemberLightBoxView.vue"),
    },
    {
+      path: "/customizetk",
+      name: "customizetk",
+      component: () => import("../components/ItineraryBooking/Customizetk.vue"),
+   },
+   {
       path: "/memberCenter",
       name: "memberCenter",
       component: () => import("../views/FrontEndView/memberCenterView.vue"),
@@ -134,11 +139,7 @@ const routes = [
             name: "customizeCanvas",
             component: () => import("../components/ItineraryBooking/customizeCanvas.vue"),
          },
-         {
-            path: "/customizetk",
-            name: "customizetk",
-            component: () => import("../components/ItineraryBooking/Customizetk.vue"),
-         },
+         
       ],
    },
 ];
