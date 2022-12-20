@@ -73,9 +73,7 @@
     </main>
 </template>
 <script>
-// const result = {
 
-// }
 
 export default {
     data(){

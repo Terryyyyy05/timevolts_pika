@@ -1,6 +1,6 @@
 <template>
     <div class="pagination">
-        <button v-for="page in 3" :key="page">{{page}}</button>
+        <button v-for="page in 1" :key="page">{{page}}</button>
       </div>
 </template>
 <script>
@@ -13,14 +13,14 @@ export default {
 
 
 .pagination{
-    border-top: 2px solid map-get($color, primary);
+    // border-top: 2px solid map-get($color, primary);
     text-align: center;
-    padding-top: 10px;
+    padding-top: 15px;
     position: absolute;
-    bottom: 0;
+    bottom: -100;
     left: 0;
     right: 0;
-    margin: 10px auto;
+    margin: 0 auto;
     button{
     border: 1px solid map-get($color, accent);
     margin: 0 2px;
