@@ -2,7 +2,8 @@
 node_modules
 /dist
 css_test
-
+#php
+phpfiles
 # local env files
 .env.local
 .env.*.local
