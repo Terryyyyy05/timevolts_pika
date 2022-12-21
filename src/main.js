@@ -9,6 +9,9 @@ import "@/assets/css/app.scss";
 // Import Components
 import TheHeading from "./components/all_layout/TheHeading.vue";
 import BaseCard from "./components/all_UI/BaseCard.vue";
+import BaseDialog from "./components/all_UI/BaseDialog.vue";
+import BaseSpinner from "./components/all_UI/BaseSpinner.vue";
+import BaseButton from "./components/all_UI/BaseButton.vue";
 import innerpageHeader from "./components/innerpageHeader.vue";
 import allHeader from "./components/header.vue";
 import allFooter from "./components/footer.vue";
@@ -51,6 +54,9 @@ app.use(router);
 
 app.component("the-heading", TheHeading);
 app.component("base-card", BaseCard);
+app.component("base-dialog", BaseDialog);
+app.component("base-spinner", BaseSpinner);
+app.component("base-button", BaseButton);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("innerpageHeader", innerpageHeader);
 app.component("all-header", allHeader);

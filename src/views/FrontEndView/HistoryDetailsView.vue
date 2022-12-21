@@ -49,9 +49,9 @@
       <div class="history-text">
          <h3>{{ selectedHistory.title }}</h3>
          <div class="tag">
-            <span>#高</span>
-            <span>#宗教事件</span>
-            <span>#歐洲</span>
+            <span>#{{ selectedHistory.tagDanderLevel }}</span>
+            <span>#{{ selectedHistory.tagFeature }}</span>
+            <span>#{{ selectedHistory.tagRegion }}</span>
          </div>
          <active-paragraph
             :heading="activeParagraph && activeParagraph.title"
@@ -150,6 +150,7 @@ export default {
       },
    },
    created() {
+      this.$store.dispatch("history/getHistories");
       this.updateParagraph();
       this.selectedHistory = this.$store.getters["history/histories"].find(
          (history) => this.id === history.id

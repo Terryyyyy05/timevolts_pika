@@ -2,14 +2,16 @@
    <base-history-card class="hirtory-card">
       <h3>{{ title }}</h3>
       <div class="history-content">
-         <img :src="require('@/assets/image/history/test.png')" />
+         <img
+            :src="require(`../../../public/history/banner/banner_${id}.jpg`)"
+         />
          <div class="history-text">
             <div>
                <span class="p_md">#{{ tagDanderLevel }}</span>
                <span class="p_md">#{{ tagFeature }}</span>
                <span class="p_md">#{{ tagRegion }}</span>
             </div>
-            <p class="p_md">發生年代 --- {{ happenYear }}</p>
+            <p class="p_md">發生年代 --- 西元{{ happenYear }}年</p>
             <p class="p_lg">{{ description }}</p>
             <router-link :to="historyDetailsLink" class="more-button">
                <div class="bg_accent">
@@ -63,6 +65,11 @@ h3 {
    color: #fff;
 }
 
+img {
+   width: 100%;
+   height: 400px;
+}
+
 .history-text {
    padding: 12px 24px 0;
    display: flex;
@@ -101,6 +108,7 @@ a {
 
    img {
       width: 100%;
+      height: 200px;
    }
 }
 </style>
