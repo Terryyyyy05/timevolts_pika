@@ -22,7 +22,7 @@
       </div>
     </loading>
   </div>
-  <button @click.prevent="doAjax" id="fetch">前導頁預覽</button>
+  <!-- <button @click.prevent="doAjax" id="fetch">前導頁預覽</button> -->
   <all-header />
   <!-- <div id="mouse"></div> -->
 
@@ -128,6 +128,7 @@ export default {
       fullPage: false,
       result: {}, //存資料
       nowTime: [{ data: "" }],
+      c: true,
     };
   },
   setup() {
@@ -181,21 +182,8 @@ export default {
     if (!sessionStorage["first"]) {
       this.isLoading = true;
     }
-
-    this.getData();
   },
   methods: {
-    //導入資料
-    getData() {
-      // this.result = result;
-      fetch("http://localhost/timevolts_pika/public/phpfiles/getProducts.php")
-        .then((res) => res.json())
-        .then((json) => {
-          this.result = json[0];
-          console.log(this.result);
-        });
-    },
-
     //前導頁
     doAjax() {
       this.isLoading = true;
@@ -225,7 +213,7 @@ export default {
       );
       setTimeout(() => {
         this.isLoading = false;
-      }, 5500);
+      }, 6500);
     },
     onCancel() {
       console.log("User cancelled the loader.");
@@ -238,6 +226,9 @@ export default {
       this.doAjax();
       sessionStorage["first"] = true;
     }
+    // return {
+    //  c = true;
+    // };
   },
 };
 </script>

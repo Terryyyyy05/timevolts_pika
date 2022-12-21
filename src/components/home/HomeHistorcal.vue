@@ -7,15 +7,11 @@
           <h3>{{ look.itinerary_name }}</h3>
         </div>
         <div class="historcalTeg">
-          <span v-if="look.story_risk === look.story_risk"
+          <span v-if="look.story_risk != null"
             >危險度:{{ look.story_risk }}
           </span>
-          <span v-if="look.tagFeature === look.tagFeature"
-            >|{{ look.tagFeature }}</span
-          >
-          <p v-if="look.story_spot == look.story_spot">
-            地點:{{ look.story_spot }}
-          </p>
+          <span v-if="look.tagFeature != null"> | {{ look.tagFeature }}</span>
+          <p v-if="look.story_spot != null">地點:{{ look.story_spot }}</p>
         </div>
         <div class="summary">
           <p>年代:{{ look.story_age }}</p>
@@ -60,6 +56,7 @@ export default {
     return {
       paginations: 5,
       currentPage: 1,
+      HistoriesData: [],
       itinerarys: [
         {
           id: 1,
@@ -119,24 +116,16 @@ export default {
     };
   },
 
-  computed: {
-    // pictures(){
-    //     Array.from({ length:
-    // 		5 }, (_, item) => ({ src:`https://picsum.photos/600/400?random=${item + 1}`
-    //     }))
-    // },
-    // previous(){
-    //     // 頁面往前，循環補上
-    //     const lastSlide = pictures.value.pop();
-    //     pictures.value = [lastSlide].concat(pictures.value);
-    // },
-    // next(){
-    //     // 頁面往後，循環補上
-    //     const firstPicture = pictures.value.shift();
-    //     pictures.value = pictures.value.concat(firstPicture);
-    // },
-  },
+  computed: {},
   methods: {
+    getHistoriesData() {
+      fetch("http://localhost/timevolts_pika/public/phpfile/getHistories.php")
+        .then((res) => res.json())
+        .then((jsonData) => {
+          this.HistoriesData = jsonData;
+          console.log(this.HistoriesData);
+        });
+    },
     previous() {
       // 頁面往前，循環補上
       //   this.activeIndex--;
@@ -172,6 +161,7 @@ export default {
     },
   },
   created() {
+    this.getHistoriesData();
     this.look = this.itinerarys[this.activeIndex];
   },
 };

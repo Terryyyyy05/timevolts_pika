@@ -1,37 +1,45 @@
 <template>
-   <section>
-      <div class="box-container">
-         <div class="flex-column">
-            <div class="upper"></div>
-            <div class="text-container">
-               <p class="p_xl">S I G N&nbsp;&nbsp;U P</p>
+   <div>
+      <base-dialog :show="!!error" title="發生錯誤" @close="handleError">
+         <p>{{ error }}</p>
+      </base-dialog>
+      <base-dialog :show="isLoading" :title="載入中" fixed>
+         <base-spinner></base-spinner>
+      </base-dialog>
+      <section>
+         <div class="box-container">
+            <div class="flex-column">
+               <div class="upper"></div>
+               <div class="text-container">
+                  <p class="p_xl">S I G N&nbsp;&nbsp;U P</p>
+               </div>
+               <div class="inputs">
+                  <input
+                     for="email"
+                     type="email"
+                     placeholder="信箱"
+                     v-model.trim="email.val"
+                  />
+                  <input
+                     type="text"
+                     placeholder="密碼"
+                     v-model.trim="password.val"
+                  />
+                  <input
+                     type="text"
+                     placeholder="確認密碼"
+                     v-model.trim="comfirmPsw.val"
+                  />
+               </div>
+               <p v-if="!signupIsValid" class="alert">請輸入完整資訊</p>
+               <p v-if="!emailIsVerified" class="alert">請輸入正確信箱格式</p>
+               <button class="btn-secondary" @click="signup">
+                  <span>確認註冊</span>
+               </button>
             </div>
-            <div class="inputs">
-               <input
-                  for="email"
-                  type="email"
-                  placeholder="信箱"
-                  v-model.trim="email.val"
-               />
-               <input
-                  type="text"
-                  placeholder="密碼"
-                  v-model.trim="password.val"
-               />
-               <input
-                  type="text"
-                  placeholder="確認密碼"
-                  v-model.trim="comfirmPsw.val"
-               />
-            </div>
-            <p v-if="!signupIsValid" class="alert">請輸入完整資訊</p>
-            <p v-if="!emailIsVerified" class="alert">請輸入正確信箱格式</p>
-            <button class="btn-secondary" @click="signup">
-               <span>確認註冊</span>
-            </button>
          </div>
-      </div>
-   </section>
+      </section>
+   </div>
 </template>
 
 <script>
@@ -53,6 +61,8 @@ export default {
          },
          signupIsValid: true,
          emailIsVerified: true,
+         isLoading: false,
+         error: null,
       };
    },
    methods: {
@@ -75,13 +85,27 @@ export default {
             this.emailIsVerified = false;
          }
       },
-      signup() {
+      async signup() {
          this.validateSignup();
          if (!this.signupIsValid || !this.emailIsVerified) {
             return;
          }
+         this.isLoading = true;
 
-         this.$emit("confirm-signup");
+         try {
+            await this.$store.dispatch("signup", {
+               email: this.email.val,
+               password: this.password.val,
+            });
+            this.$emit("confirm-signup");
+         } catch (err) {
+            this.error = err.message || "發生錯誤";
+         }
+
+         this.isLoading = false;
+      },
+      handleError() {
+         this.error = null;
       },
    },
 };

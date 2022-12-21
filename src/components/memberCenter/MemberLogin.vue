@@ -1,38 +1,44 @@
 <template>
-   <section>
-      <div class="box-container">
-         <div class="flex-column">
-            <div class="upper"></div>
-            <div class="text-container">
-               <p class="p_xl">L O G&nbsp;&nbsp;I N</p>
-            </div>
-            <div class="inputs">
-               <input
-                  type="email"
-                  placeholder="信箱"
-                  v-model.trim="email.val"
-                  @blur="clearValidity('email')"
-               />
-               <input
-                  type="text"
-                  placeholder="密碼"
-                  v-model.trim="password.val"
-                  @blur="clearValidity('password')"
-               />
-            </div>
-            <p v-if="!loginIsValid" class="alert">請輸入完整資訊</p>
-            <p class="forgot-psw">忘記密碼</p>
-            <router-link :to="toMemberCenter">
+   <div>
+      <base-dialog :show="!!error" title="發生錯誤" @close="handleError">
+         <p>{{ error }}</p>
+      </base-dialog>
+      <base-dialog :show="isLoading" :title="載入中" fixed>
+         <base-spinner></base-spinner>
+      </base-dialog>
+      <section>
+         <div class="box-container">
+            <div class="flex-column">
+               <div class="upper"></div>
+               <div class="text-container">
+                  <p class="p_xl">L O G&nbsp;&nbsp;I N</p>
+               </div>
+               <div class="inputs">
+                  <input
+                     type="email"
+                     placeholder="信箱"
+                     v-model.trim="email.val"
+                     @blur="clearValidity('email')"
+                  />
+                  <input
+                     type="text"
+                     placeholder="密碼"
+                     v-model.trim="password.val"
+                     @blur="clearValidity('password')"
+                  />
+               </div>
+               <p v-if="!loginIsValid" class="alert">請輸入完整資訊</p>
+               <p class="forgot-psw">忘記密碼</p>
                <button class="btn-secondary" @click="login">
                   <span>登入</span>
                </button>
-            </router-link>
-            <button class="btn-primary" @click="$emit('signup')">
-               <span>註冊會員</span>
-            </button>
+               <button class="btn-primary" @click="$emit('signup')">
+                  <span>註冊會員</span>
+               </button>
+            </div>
          </div>
-      </div>
-   </section>
+      </section>
+   </div>
 </template>
 
 <script>
@@ -49,12 +55,14 @@ export default {
             isValid: true,
          },
          loginIsValid: true,
+         isLoading: false,
+         error: null,
       };
    },
    computed: {
       toMemberCenter() {
          if (this.loginIsValid) {
-            return '/memberCenter'
+            return "/memberCenter";
          }
       },
    },
@@ -73,12 +81,27 @@ export default {
             this.loginIsValid = false;
          }
       },
-      login() {
+      async login() {
          this.validateLogin();
          if (!this.loginIsValid) {
             return;
          }
-         // this.$router.go(-1);
+         this.isLoading = true;
+
+         try {
+            await this.$store.dispatch("login", {
+               email: this.email.val,
+               password: this.password.val,
+            });
+            this.$router.push({ path: 'memberCenter'});
+         } catch (err) {
+            this.error = err.message || "發生錯誤";
+         }
+
+         this.isLoading = false;
+      },
+      handleError() {
+         this.error = null;
       },
    },
 };

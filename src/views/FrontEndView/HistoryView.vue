@@ -53,6 +53,7 @@ export default {
    computed: {
       filteredHistories() {
          const histories = this.$store.getters["history/histories"];
+         console.log(histories);
          const filteredDangerLevel = histories.filter((history) => {
             if (this.activeFilters.low && history.tagDanderLevel === "低") {
                return true;
@@ -125,6 +126,9 @@ export default {
             ? true
             : false;
       },
+   },
+   created() {
+      this.$store.dispatch("history/getHistories");
    },
    methods: {
       setFilters(updatedFilters) {
