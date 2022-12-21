@@ -3,7 +3,7 @@
   <div class="vl-parent" id="loading-background">
     <loading
       v-model:active="isLoading"
-      :can-cancel="false"
+      :can-cancel="true"
       :is-full-page="false"
     >
       <div class="loadingContainer">
@@ -22,7 +22,7 @@
       </div>
     </loading>
   </div>
-  <!-- <button @click.prevent="doAjax" id="fetch">前導頁預覽</button> -->
+  <button @click.prevent="doAjax" id="fetch">前導頁預覽</button>
   <all-header />
   <!-- <div id="mouse"></div> -->
 
@@ -125,7 +125,7 @@ export default {
   datas() {
     return {
       isLoading: true,
-      fullPage: false,
+      fullPage: true,
       result: {}, //存資料
       nowTime: [{ data: "" }],
       c: true,
@@ -181,6 +181,9 @@ export default {
   created() {
     if (!sessionStorage["first"]) {
       this.isLoading = true;
+      // setTimeout(() => {
+      //   this.isLoading = false;
+      // }, 2000);
     }
   },
   methods: {
@@ -211,6 +214,8 @@ export default {
         { opacity: 1 },
         { duration: 2, opacity: 0, delay: 4 }
       );
+      gsap.to(".loadingContainer", { x: 100000, duration: 0.1 }, ">");
+
       setTimeout(() => {
         this.isLoading = false;
       }, 6500);
@@ -226,9 +231,6 @@ export default {
       this.doAjax();
       sessionStorage["first"] = true;
     }
-    // return {
-    //  c = true;
-    // };
   },
 };
 </script>
