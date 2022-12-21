@@ -1,14 +1,14 @@
 <template>
     <h2 class="title">會員資料</h2>
     <main>
-        <form class="memberinfo" action="" @submit.prevent="handleSubmit">
+        <form class="memberinfo" action="" @submit.prevent="handleSubmit" method="post" enctype="multipart/form-data">
             <div v-for="item in formInput" :key="item.title">
                 <label for="item.title">{{item.title}}</label>
-                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id">
+                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id" v-model="item.test">
             </div>
             <div v-for="item in passwordInput" :key="item.title" :name="item.name" id="item.id" v-show="!inputDisabled">
                 <label for="item.tite">{{ item.title }}</label>
-                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id">
+                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id" >
             </div>
         </form>
         <div class="photo-area">
@@ -18,9 +18,9 @@
                 </label>
                 <input :disabled="inputDisabled" type="file" accept="image/gif, image/jpeg, image/png" name="uploadPic" id="uploadPic" >
             </form>
-            <p class="memLevel">普通會員</p>
+            <p class="memLevel">{{memLevel }}</p>
             <div class="btn-area">
-                <button class="btn-lightbox" v-show="!inputDisabled" @click="changeInfo()">取消修改</button>
+                <button class="btn-lightbox" v-show="!inputDisabled" @click="changeInfo()">取消</button>
                 <button class="btn-lightbox" @click="changeInfo()">{{ inputDisabled? "編輯": "完成" }} </button>
             </div>
         </div>
@@ -43,35 +43,36 @@ export default {
                 {
                     title:"生日",
                     type: "date",
-                    name:"birthday",
+                    name:"mem_bday",
                     id:"birthday",
                 }
                 ,
                 {
                     title:"電話",
                     type: "tel",
-                    name:"phone",
+                    name:"mem_phone",
                     id:"phone",
                 }
                 ,
                 {
                     title:"地址",
                     type: "address",
-                    name:"address",
+                    name:"mem_address",
                     id:"address",
                 }
                 ,
                 {
                     title:"E-mail",
                     type: "email",
-                    name:"email",
+                    name:"mem_email",
                     id:"email",
                 },
                 {
                     title:"密碼",
                     type: "password",
-                    name:"password",
+                    name:"mem_psw",
                     id:"password",
+
                 }
             ],
             passwordInput:[
@@ -88,19 +89,37 @@ export default {
                     id:"password2",
                 }
             ],
-            result:{},
+            memLevel:"普通會員",
+            result:[],
         }
     },
     created(){
-        this.getData()
-        console.log(this.formInput);
+        this.getData();
     },
     methods:{
-        handleSubmit(){
-            console.log(this.username, this.birthday, this.phone, this.address, this.email, this.password);
+        saveData(){
+            fetch('http://localhost/timevolts_pika/public/phpfile/updateMemberInfo.php', {
+                method:'POST', 
+                body: new URLSearchParams(JSON.parse(JSON.stringify({test:123}))),
+                // body: JSON.stringify({test:123}),
+            })
+            .then((res) => res.json())
+            .then((result) => {
+                this.formInput[0].test = json[0].mem_name
+                this.formInput[1].test = json[0].mem_bday
+                this.formInput[2].test = json[0].mem_phone
+                this.formInput[3].test = json[0].mem_address
+                this.formInput[4].test = json[0].mem_email
+                this.formInput[5].test = json[0].mem_psw
+                console.log(this.formInput[0]);
+            })
         },
         changeInfo(){
             this.inputDisabled = !this.inputDisabled;
+            this.saveData();
+            // if(!this.inputDisabled){
+            //     this.saveData();
+            // }
             //密碼驗證
             // if(this.password==this.oldpassword){
             //     if(this.newpassword2==this.newpassword3){
@@ -112,10 +131,31 @@ export default {
             fetch('http://localhost/timevolts_pika/public/phpfile/getMemberInfo.php')
             .then((res) => res.json())
             .then((json)=>{
-                this.result = json[0];
-                console.log(this.result);
+                this.formInput[0].test = json[0].mem_name
+                this.formInput[1].test = json[0].mem_bday
+                this.formInput[2].test = json[0].mem_phone
+                this.formInput[3].test = json[0].mem_address
+                this.formInput[4].test = json[0].mem_email
+                this.formInput[5].test = json[0].mem_psw
+                console.log(this.formInput[0]);
             })
         },
+        // saveData(){
+        //     fetch('http://localhost/timevolts_pika/public/phpfile/updateMemberInfo.php', {
+        //         method:'POST', 
+        //         body: JSON.stringify({test:123}),
+        //     })
+        //     .then((res) => res.json())
+        //     .then((result) => {
+        //         this.formInput[0].test = json[0].mem_name
+        //         this.formInput[1].test = json[0].mem_bday
+        //         this.formInput[2].test = json[0].mem_phone
+        //         this.formInput[3].test = json[0].mem_address
+        //         this.formInput[4].test = json[0].mem_email
+        //         this.formInput[5].test = json[0].mem_psw
+        //         console.log(this.formInput[0]);
+        //     })
+        // }
     }
 };
 </script>
