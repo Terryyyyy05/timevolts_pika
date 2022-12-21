@@ -4,8 +4,7 @@ node_modules
 css_test
 
 #
-phpfile
-php_file
+php_connect_books
 
 # local env files
 .env.local
