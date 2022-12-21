@@ -79,12 +79,13 @@ export default {
         },
       ],
       timer: null,
-      robotQuestion: [
+      /* robotQuestion: [
         { id: 1, content: "時間管理局是一個什麼樣的組織？", index: 1 },
         { id: 2, content: "付款後是否可以取消訂單？", index: 2 },
         { id: 3, content: "商品配送時間多久？", index: 3 },
-      ],
-      robotAnswer: [
+      ], */
+      robotQuestion: [],
+      /* robotAnswer: [
         {
           id: 1,
           content:
@@ -101,7 +102,8 @@ export default {
           content: "我們合作的時光宅急便，配送時間為工作天一到三天。",
           index: 3,
         },
-      ],
+      ], */
+      robotAnswer: [],
     };
   },
   methods: {
@@ -210,6 +212,34 @@ export default {
     showTimer() {
       this.timer = setTimeout(this.endMsg, 1000 * 20);
     },
+  },
+  created() {
+    fetch(`http://localhost/timevolts_pika/public/phpfile/getQuestion.php`)
+      .then((res) => res.json())
+      .then((json) => {
+        (this.robotQuestion = json.map((item) => {
+          return {
+            id: item.qa_id,
+            content: item.qa_title,
+            index: item.qa_id,
+          };
+        })),
+          (this.robotAnswer = json.map((item) => {
+            return {
+              id: item.qa_id,
+              content: item.qa_answer,
+              index: item.qa_id,
+            };
+          }));
+      });
+
+    // { id: 1, content: "時間管理局是一個什麼樣的組織？", index: 1 }
+    /* {
+          id: 1,
+          content:
+            "時間管理局是一個為了維持時間線正常運行的組織，其主要成員都是研究時空穿越的頂尖科學家。",
+          index: 1,
+        }, */
   },
 };
 </script>
