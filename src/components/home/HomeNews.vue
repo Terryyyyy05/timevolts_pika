@@ -1,24 +1,22 @@
 <template>
   <div class="news">
-    <div class="box" v-for="item in newsData" :key="item.id">
-      <h3>{{ item.title }}</h3>
+    <div class="box" v-for="item in NewsData" :key="item.news_id">
+      <h3>{{ item.news_title }}</h3>
       <div class="p_md newsText">
-        <p>{{ item.content }}</p>
+        <p>{{ item.news_content }}</p>
       </div>
       <div class="more">
-        <p>{{ item.date }}</p>
+        <p>{{ item.news_add_date.substr(0, 10) }}</p>
         <router-link class="link" to="/news">了解更多</router-link>
       </div>
-      <div class="img">
+      <!-- <div class="img">
         <img v-bind:src="imgsrc" alt="圖騰" />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-// import { Carousel, Slide } from 'vue-carousel';
-
 export default {
   // components: {
   //     Carousel,
@@ -26,6 +24,8 @@ export default {
   // },
   data() {
     return {
+      NewsData: [],
+
       newsData: [
         {
           id: 1,
@@ -61,9 +61,19 @@ export default {
       imgsrc: require("@/assets/image/home/icon/icon_1.svg"),
     };
   },
-  computed: {},
-  methods: {},
-  created() {},
+  created() {
+    this.getHomeNewData();
+  },
+  methods: {
+    getHomeNewData() {
+      fetch("http://localhost/timevolts_pika/public/phpfiles/getHomeNew.php")
+        .then((res) => res.json())
+        .then((jsonData) => {
+          this.NewsData = jsonData;
+          console.log(this.NewsData);
+        });
+    },
+  },
 };
 </script>
 

@@ -4,7 +4,6 @@
     <loading
       v-model:active="isLoading"
       :can-cancel="false"
-      :on-cancel="onCancel"
       :is-full-page="false"
     >
       <div class="loadingContainer">
@@ -40,7 +39,7 @@
       </div>
       <div class="text bg_dark_75 p_md">
         <p>
-          Last login: {{ nowTime.data }}<br />
+          <!-- Last login: {{ nowTime.data }}<br /> -->
           Restored session:<br />
           TimeVolts ~ %<br />
           .<br />
@@ -128,80 +127,48 @@ export default {
       isLoading: true,
       fullPage: false,
       result: {}, //存資料
-      // c: true,
-      newsData: [
-        {
-          id: 1,
-          title: "購物須知",
-          date: "2022-11-11",
-          hashtag: "#最新公告",
-          content:
-            "【購物流程】1.點選您需要的商品規格及數量，加入購物車。2.購物車內確認購買項目後，點選前往結帳（請注意：購物車內商品尚未結帳前，如商品已無庫存，進入結帳時系統會取消商品數量，請注意核對結帳數量及項目）。",
-          content_box: "",
-          img: require(`@/assets/image/news/shopping.jpg`),
-        },
-        {
-          id: 2,
-          title: "新商品出爐囉!!",
-          date: "2022-12-11",
-          hashtag: "#新品上架",
-          content:
-            "超過上百種語言翻譯，打破溝通障礙，運用本公司獨家秘方【翻譯蒟蒻】，精準翻出生活化的當地語言，就像學會當地語言一樣與人流暢對話。",
-          content_box: "",
-          img: require(`@/assets/image/news/jelly.jpeg`),
-        },
-        {
-          id: 3,
-          title: "官網維護公告",
-          date: "2022-11-09",
-          hashtag: "#公告 #維修中",
-          content:
-            "親愛的用戶您好，為提高您的網站使用品質，本公司將預計2022-09-15進行系統維護作業，期間會造成部分網頁無法使用，造成您的不便，敬請見諒!",
-          content_box: "",
-          img: require(`@/assets/image/news/system.png`),
-        },
-      ],
+      nowTime: [{ data: "" }],
     };
   },
   setup() {
     //取得時間
-    const nowTime = reactive({
+    let nowTime = reactive({
       data: "",
     });
-    let myDate = new Date();
-    function setTime(myDate) {
-      const year = myDate.getFullYear();
-      const month =
-        myDate.getMonth() + 1 < 10
-          ? "0" + (myDate.getMonth() + 1)
-          : myDate.getMonth() + 1;
-      const date =
-        myDate.getDate() < 10 ? "0" + myDate.getDate() : myDate.getDate();
-      const h = myDate.getHours();
-      const m =
-        myDate.getMinutes() < 10
-          ? "0" + myDate.getMinutes()
-          : myDate.getMinutes();
-      const s =
-        myDate.getSeconds() < 10
-          ? "0" + myDate.getSeconds()
-          : myDate.getSeconds();
-      const day = year + "-" + month + "-" + date;
-      const time = h + ":" + m + ":" + s;
+    let timeDate = new Date();
+    function setTime(timeDate) {
+      let year = timeDate.getFullYear();
+      let month =
+        timeDate.getMonth() + 1 < 10
+          ? "0" + (timeDate.getMonth() + 1)
+          : timeDate.getMonth() + 1;
+      let date =
+        timeDate.getDate() < 10 ? "0" + timeDate.getDate() : timeDate.getDate();
+      let h = timeDate.getHours();
+      let m =
+        timeDate.getMinutes() < 10
+          ? "0" + timeDate.getMinutes()
+          : timeDate.getMinutes();
+      let s =
+        timeDate.getSeconds() < 10
+          ? "0" + timeDate.getSeconds()
+          : timeDate.getSeconds();
+      let day = year + "-" + month + "-" + date;
+      let time = h + ":" + m + ":" + s;
 
       nowTime.data = day + " " + time;
     }
     function nowTimes() {
-      setTime(myDate);
+      setTime(timeDate);
       setInterval(() => {
-        myDate = new Date();
-        setTime(myDate);
+        timeDate = new Date();
+        setTime(timeDate);
       }, 1000);
     }
     nowTimes();
-    return {
-      nowTime,
-    };
+    // return {
+    //   nowTime,
+    // };
   },
   components: {
     HomeItinerary,
@@ -209,6 +176,7 @@ export default {
     HomeNews,
     Loading,
   },
+
   created() {
     if (!sessionStorage["first"]) {
       this.isLoading = true;
@@ -217,6 +185,7 @@ export default {
     this.getData();
   },
   methods: {
+    //導入資料
     getData() {
       // this.result = result;
       fetch("http://localhost/timevolts_pika/public/phpfiles/getProducts.php")
@@ -226,10 +195,13 @@ export default {
           console.log(this.result);
         });
     },
+
+    //前導頁
     doAjax() {
       this.isLoading = true;
       // simulate AJAX
 
+      //動畫
       gsap.fromTo(
         ".loadingText",
         { opacity: 1 },
