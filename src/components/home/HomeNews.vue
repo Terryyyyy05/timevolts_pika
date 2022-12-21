@@ -25,8 +25,6 @@ export default {
   data() {
     return {
       NewsData: [],
-
-      newsData: [],
       imgsrc: require("@/assets/image/home/icon/icon_1.svg"),
     };
   },
