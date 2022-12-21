@@ -5,6 +5,7 @@ css_test
 
 #
 phpfile
+php_file
 
 # local env files
 .env.local
