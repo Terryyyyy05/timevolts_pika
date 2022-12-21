@@ -8,7 +8,7 @@
     <section class="section">
         <div class="container carouselWrap">
             <div>
-                <carousel></carousel>
+                <carousel :test="imgText"></carousel>
                 <aside-bar
                     @tab0="changeParagraph0"
                     @tab1="changeParagraph1"
@@ -85,41 +85,59 @@ export default {
             })
         );
         console.log(period2);
+        console.log(period2.imgsrc);
+        // /img/lochNessMonster.jpg
+
+        console.log(period2.imgsrc.split("/"));
+        // ['', 'img', 'titanic.jpg']
+
+        console.log(period2.imgsrc.split("/")[2]);
+        // titanic.jpg
+
+        console.log(period2.imgsrc.split("/")[2].split("."));
+        // ['titanic','jpg']
+
+        console.log(period2.imgsrc.split("/")[2].split(".")[0]);
+        // titanic
+
+        const imgText = period2.imgsrc.split("/")[2].split(".")[0];
+
         return {
             period2,
+            imgText,
         };
     },
     data() {
         return {
             itinerary: 0,
             contentOneToFive: 0,
-            period: [
-                {
-                    itinerary: 1,
-                    title: "尼斯湖水怪",
-                    dangerLevel: "低",
-                    feature: "奇聞軼事",
-                    region: "歐洲",
-                    date: "??",
-                    content: [
-                        "尼斯湖水怪絕對是上個世紀最有名的一個不明生物。最早有人看到尼斯湖水怪是在1933年4月份的時候，直到今天80多年過去了，它的目擊情報從來沒有斷過。你相不相信水怪的存在呢?我們將帶您穿越回1933年，讓您親自見證!此行程穿越年份較短，時代背景與現今較無差異，適合新手體驗!",
-                        "尼斯湖駕船，帶您觀賞尼斯湖之美。尼斯湖古城冒險。尋找尼斯湖水怪",
-                        "蘇格蘭威士忌，獨特風味，是從蒸餾大麥酒和泥炭水中提煉而出。蘇格蘭的黑暗料理Haggis的魅力。",
-                        "安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則",
-                        "取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策",
-                    ],
-                },
-                {
-                    itinerary: 2,
-                    title: "不存在的車站-如月車站",
-                    dangerLevel: "高",
-                    feature: "奇聞軼事",
-                    region: "亞洲",
-                    date: "西元2004年",
-                    content:
-                        "一名日本網友以葉純（はすみ）的名義進行文字直播，兼尋求協助。她表示自己在新濱松站登上西鹿島線後，列車駛了一段長時間都沒有到站，不久後她停止發文，音訊全無...",
-                },
-            ],
+            // period: [
+            //     {
+            //         itinerary: 1,
+            //         title: "尼斯湖水怪",
+            //         dangerLevel: "低",
+            //         feature: "奇聞軼事",
+            //         region: "歐洲",
+            //         date: "??",
+            //         content: [
+            //             "尼斯湖水怪絕對是上個世紀最有名的一個不明生物。最早有人看到尼斯湖水怪是在1933年4月份的時候，直到今天80多年過去了，它的目擊情報從來沒有斷過。你相不相信水怪的存在呢?我們將帶您穿越回1933年，讓您親自見證!此行程穿越年份較短，時代背景與現今較無差異，適合新手體驗!",
+            //             "尼斯湖駕船，帶您觀賞尼斯湖之美。尼斯湖古城冒險。尋找尼斯湖水怪",
+            //             "蘇格蘭威士忌，獨特風味，是從蒸餾大麥酒和泥炭水中提煉而出。蘇格蘭的黑暗料理Haggis的魅力。",
+            //             "安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則",
+            //             "取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策",
+            //         ],
+            //     },
+            //     {
+            //         itinerary: 2,
+            //         title: "不存在的車站-如月車站",
+            //         dangerLevel: "高",
+            //         feature: "奇聞軼事",
+            //         region: "亞洲",
+            //         date: "西元2004年",
+            //         content:
+            //             "一名日本網友以葉純（はすみ）的名義進行文字直播，兼尋求協助。她表示自己在新濱松站登上西鹿島線後，列車駛了一段長時間都沒有到站，不久後她停止發文，音訊全無...",
+            //     },
+            // ],
         };
     },
     mounted() {},

@@ -8,7 +8,7 @@
     <section class="section">
         <div class="container carouselWrap">
             <div>
-                <carousel></carousel>
+                <carousel :test="imgText"></carousel>
                 <aside-bar
                     @tab0="changeParagraph0"
                     @tab1="changeParagraph1"
@@ -86,8 +86,11 @@ export default {
             })
         );
         console.log(period2);
+        const imgText = period2.imgsrc.split("/")[2].split(".")[0];
+
         return {
             period2,
+            imgText,
         };
     },
     data() {
