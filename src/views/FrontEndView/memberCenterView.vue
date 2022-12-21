@@ -70,7 +70,7 @@ export default {
   .sub-content {
     border: 2px solid #ffe1b5;
     width: 100%;
-    // height: 80vh;
+    height: 70vh;
     box-sizing: border-box;
     margin: auto;
     position: relative;

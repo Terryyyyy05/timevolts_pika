@@ -17,7 +17,7 @@ export default {
     text-align: center;
     padding-top: 15px;
     position: absolute;
-    bottom: -100;
+    bottom: -50px;
     left: 0;
     right: 0;
     margin: 0 auto;
