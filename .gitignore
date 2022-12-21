@@ -5,12 +5,15 @@ css_test
 
 #
 php_connect_books
+<<<<<<< HEAD
 
 #
 php_connect_books
 
 #
 php_connect_books
+=======
+>>>>>>> dev_boaz
 
 # local env files
 .env.local
