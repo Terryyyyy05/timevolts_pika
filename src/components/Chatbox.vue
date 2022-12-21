@@ -439,8 +439,8 @@ export default {
     width: 1rem;
   }
   ::-webkit-scrollbar-thumb:hover {
-  background: initial
-}
+    background: initial;
+  }
   // scrollbar
 }
 </style>
