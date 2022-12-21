@@ -58,6 +58,7 @@
 export default {
   data() {
     return {
+      CouponData: [{}],
       GetVouchers: [
         {
           coupon_id: 1, //編號
@@ -101,10 +102,23 @@ export default {
   },
 
   computed: {},
+  created() {
+    this.getVoucher();
+  },
   methods: {
+    getVoucher() {
+      fetch("http://localhost/timevolts_pika/public/phpfile/getCoupon.php")
+        .then((res) => res.json())
+        .then((jsonData) => {
+          this.CouponData = jsonData;
+          console.log(this.CouponData);
+        });
+    },
     showbox() {
       // 開關按鈕
       this.showModal = !this.showModal;
+
+      console.log(this.CouponData);
     },
     // afterReceive() {
     //   console.log("AAA");
@@ -136,7 +150,7 @@ export default {
   },
 
   mounted() {
-    this.unreceivedCoupon = this.GetVouchers.filter(
+    this.unreceivedCoupon = this.CouponData.filter(
       (coupon) => coupon.coupon_status === 1
     );
   },

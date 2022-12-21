@@ -1,63 +1,14 @@
 <template>
-  
     <h2 class="title">會員資料</h2>
     <main>
         <form class="memberinfo" action="" @submit.prevent="handleSubmit">
-            <div>
-                <label for="username">
-                姓名:
-                </label>
-                <p>{{username}}</p>
-                <input type="text" name="username" id="username" :placeholder="username" v-model="username" @change="newusername=username">
+            <div v-for="item in formInput" :key="item.title">
+                <label for="item.title">{{item.title}}</label>
+                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id">
             </div>
-            <div>
-                <label for="birthdate">
-                生日:
-                </label>
-                <p>{{birthday}}</p>
-                <input type="date" name="birthday" id="birthday"  :placeholder="birthday"  v-model="birthday" @change="newbirthday=birthday">
-            </div>
-            <div>
-                <label for="phone">
-                電話:
-                </label>
-                <p>{{phone}}</p>
-                <input type="tel" name="phone" id="phone"  :placeholder="phone"  v-model="phone" @change="newphone=phone">
-            </div>
-            <div>
-                <label for="address">
-                    地址:
-                </label>
-              <p>{{address}}</p>
-                <input type="address" name="address" id="address" :placeholder="address"  v-model="address" @change="newaddress=address">
-            </div>
-            <div>
-                <label for="email">
-                    Email:
-                </label>
-                <p>{{email}}</p>
-                <input type="email" name="email" id="email" :placeholder="email"  v-model="email" @change="newemail=email">
-            </div>
-            <div>
-                <label for="password">
-                    舊密碼:
-                </label>
-                <p>{{password}}</p>
-                <input type="text" name="password" id="password" :placeholder="password"  v-model="password" @change="newpassword2=password">
-            </div>
-            <div>
-                <label for="password">
-                    新密碼:
-                </label>
-                <!-- <p>{{password}}</p> -->
-                <input type="text" name="password" id="password" v-model="newpassword2">
-            </div>
-            <div>
-                <label for="password">
-                    新密碼確認:
-                </label>
-                <!-- <p>{{password}}</p> -->
-                <input type="text" name="password" id="password" v-model="newpassword3">
+            <div v-for="item in passwordInput" :key="item.title" :name="item.name" id="item.id" v-show="!inputDisabled">
+                <label for="item.tite">{{ item.title }}</label>
+                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id">
             </div>
         </form>
         <div class="photo-area">
@@ -65,65 +16,100 @@
                 <label for="uploadPic">
                     <div id="myimg"></div>
                 </label>
-                <input type="file" name="uploadPic" id="uploadPic" >
+                <input :disabled="inputDisabled" type="file" accept="image/gif, image/jpeg, image/png" name="uploadPic" id="uploadPic" >
             </form>
             <p class="memLevel">普通會員</p>
-            <button class="btn-lightbox" @click="changeINFO()">編輯</button>
+            <div class="btn-area">
+                <button class="btn-lightbox" v-show="!inputDisabled" @click="changeInfo()">取消修改</button>
+                <button class="btn-lightbox" @click="changeInfo()">{{ inputDisabled? "編輯": "完成" }} </button>
+            </div>
         </div>
     </main>
 </template>
 <script>
 
-
 export default {
     data(){
         return{
-            username:'許鈺玲',
-            newusername:'',
-            birthday:'11/22',
-            newbirthday:'',
-            phone:'24235436436',
-            newphone:'',
-            address:'DSADSADSAD',
-            newaddress:'',
-            email:'TJHGHKJGK',
-            newemail:'',
-            password:'12121',
-            oldpassword:'',
-            newpassword2:'',
-            newpassword3:'',
+            inputDisabled: true,
+            formInput:[
+                {
+                    title:"姓名",
+                    type: "text",
+                    name:"mem_name",
+                    id:"username",
+                }
+                ,
+                {
+                    title:"生日",
+                    type: "date",
+                    name:"birthday",
+                    id:"birthday",
+                }
+                ,
+                {
+                    title:"電話",
+                    type: "tel",
+                    name:"phone",
+                    id:"phone",
+                }
+                ,
+                {
+                    title:"地址",
+                    type: "address",
+                    name:"address",
+                    id:"address",
+                }
+                ,
+                {
+                    title:"E-mail",
+                    type: "email",
+                    name:"email",
+                    id:"email",
+                },
+                {
+                    title:"密碼",
+                    type: "password",
+                    name:"password",
+                    id:"password",
+                }
+            ],
+            passwordInput:[
+                {
+                    title:"新密碼",
+                    type: "password",
+                    name:"password",
+                    id:"password1",
+                },
+                {
+                    title:"再次輸入新密碼",
+                    type: "password",
+                    name:"password",
+                    id:"password2",
+                }
+            ],
             result:{},
         }
-
     },
     created(){
         this.getData()
+        console.log(this.formInput);
     },
     methods:{
         handleSubmit(){
             console.log(this.username, this.birthday, this.phone, this.address, this.email, this.password);
         },
-        changeINFO(){
-            
-            // this.newusername=this.username
-
-            // this.birthday=this.newbirthday
-            // this.phone=this.newphone
-            // this.address=this.newaddress
-            // this.email=this.newemail
-
-
+        changeInfo(){
+            this.inputDisabled = !this.inputDisabled;
             //密碼驗證
-            if(this.password==this.oldpassword){
-                if(this.newpassword2==this.newpassword3){
-                    this.password=this.newpassword2
-                }
-            }
-
+            // if(this.password==this.oldpassword){
+            //     if(this.newpassword2==this.newpassword3){
+            //         this.password=this.newpassword2
+            //     }
+            // }
         },
         getData(){
-            // this.result = result;
-            fetch('http://localhost/timevolts_pika/public/phpfiles/getProducts.php')
+            fetch('http://localhost/timevolts_pika/public/phpfile/getMemberInfo.php')
             .then((res) => res.json())
             .then((json)=>{
                 this.result = json[0];
@@ -152,15 +138,17 @@ export default {
         box-sizing: border-box;
         padding: 10px;
         margin: auto;
+        height: 430px;
         .memberinfo {
             padding: 5px;
             width: 50%;
             display: flex;
             flex-direction: column;
+            justify-content: space-around;
             box-sizing: border-box;
             div {
                 color: #fff;
-                font-size: 24px;
+                font-size: 20px;
                 display: flex;
                 align-items: center;
                 margin: 15px 0;
@@ -196,6 +184,12 @@ export default {
                 padding: 15px 0;
                 color: #fff;
                 font-size: 24px;
+            }
+            .btn-area{
+                display: flex;
+                button{
+                    margin: 0 5px;
+                }
             }
         }
         #myimg {
