@@ -1,7 +1,7 @@
 <template>
   <div class="GetVoucherButton">
     <button class="btn-store-detail" @click="showbox()">
-      <p>立即領取<br />折扣卷 {{ unreceivedCoupon.length }}張</p>
+      <p>立即領取<br />折扣卷 {{ CouponData.length }}張</p>
     </button>
   </div>
 
@@ -13,7 +13,7 @@
     />
     <h3>領取折扣卷</h3>
     <ul class="cart-content">
-      <li v-for="(item, index) in unreceivedCoupon" :key="item.id">
+      <li v-for="(item, index) in CouponData" :key="item.id">
         <div class="cart-item">
           <div class="coupon-card">
             <div class="coupon-card-left">
@@ -24,12 +24,12 @@
                 <p class="title-two">
                   &#40;滿&#36;{{ item.coupon_pricing_condition }}元 可使用&#41;
                 </p>
-                <p class="title-three" v-if="item.coupon_exp_date == 'null'">
-                  有效期限:<br />{{ item.coupon_valid_date }} ~ 無期限
-                </p>
-                <p class="title-three" v-else>
+                <p class="title-three" v-if="item.coupon_exp_date != null">
                   有效期限:<br />{{ item.coupon_valid_date }} ~
                   {{ item.coupon_exp_date }}
+                </p>
+                <p class="title-three" v-else>
+                  有效期限:<br />{{ item.coupon_valid_date }} ~ 無期限
                 </p>
               </div>
             </div>
@@ -38,9 +38,9 @@
                 id="receive"
                 v-on:click="receive(index)"
                 href="#"
-                v-if="(this.unreceivedCoupon.coupon_status = 1)"
+                v-if="(this.CouponData.coupon_status = 1)"
               >
-                <p>{{ init[this.unreceivedCoupon.coupon_status] }}</p>
+                <p>{{ init[this.CouponData.coupon_status] }}</p>
               </button>
               <!-- <a id="receive" href="#" v-else>已領取</a> -->
             </div>
@@ -80,7 +80,7 @@ export default {
           coupon_quantity: 2000, //發行數量
           coupon_given_numbers: 0, //已發數量
           coupon_pricing_condition: 100, //消費門檻
-          coupon_status: 1, // 1=上架,0=下架
+          coupon_status: 0, // 1=上架,0=下架
         },
         {
           coupon_id: 3, //編號
@@ -130,14 +130,14 @@ export default {
       console.log(e);
       if (this.login == true) {
         // 判別是否可領取
-        if (this.unreceivedCoupon[e].coupon_status == 1) {
+        if (this.CouponData[e].coupon_status == 1) {
           // if ((e.target = )) {
           // 領取並傳回後端
 
           console.log("BBB");
           alert(`恭喜您獲得優惠卷~`);
           // 計算可以領取數量
-          this.unreceivedCoupon[e].coupon_status = 0;
+          this.CouponData[e].coupon_status = 0;
           console.log(e);
         } else {
           // 前往登入頁面
@@ -150,9 +150,9 @@ export default {
   },
 
   mounted() {
-    this.unreceivedCoupon = this.CouponData.filter(
-      (coupon) => coupon.coupon_status === 1
-    );
+    // this.unreceivedCoupon = this.CouponData.filter(
+    //   (coupon) => coupon.coupon_status === 1
+    // );
   },
 };
 </script>
