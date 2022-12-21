@@ -1,7 +1,7 @@
 <?php 
 header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
-require_once("./connectBooks.php");
+require_once("./php_connect_books/connectBooks.php");
 $sql = "select * from product";
 $products = $pdo->query($sql);
 $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
