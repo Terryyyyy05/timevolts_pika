@@ -32,7 +32,7 @@
                     穿越年代:{{ p2.list.itinerary_number_of_years }}
                 </div>
                 <div class="infoContent">
-                    {{ period2.content[contentOneToFive] }}
+                    {{ strList[contentOneToFive] }}
                 </div>
             </div>
         </div>
@@ -89,8 +89,11 @@ export default {
                 return i.id === parseInt(route.params.id);
             })
         );
+        const imgText = period2.imgsrc.split("/")[2].split(".")[0];
+
         const p2 = reactive({ list: "" });
         const cardContext2 = reactive([]);
+        const strList = reactive(Array.from({ length: 5 }, () => ""));
         const getData = () => {
             fetch(
                 "http://localhost/timevolts/public/phpfile/getItineraries.php"
@@ -105,10 +108,23 @@ export default {
                     // console.log(route.params.id);
                     // console.log(`${cardContext2.value[0].story_id}`);
                     // console.log(cardContext2.value);
-                    console.log(p2);
+                    console.log(p2.list.itinerary_memo);
+                    strList[0] = p2.list.itinerary_memo;
+                    strList[1] = p2.list.itinerary_content;
+                    strList[2] = p2.list.itinerary_delicacy;
+                    strList[3] = "安全守則";
+                    strList[4] = "取消政策";
                 });
         };
 
+        // const strList = computed(() => [
+        //     p2.list['str1'],
+        //   p2.list['str2'],
+        //   p2.list['str3'],
+        //     "",
+        //     "",
+        // ]
+        // )
         onMounted(() => {
             getData();
             // console.log(cardContext2.value);
@@ -138,13 +154,12 @@ export default {
         // console.log(period2.imgsrc.split("/")[2].split(".")[0]);
         // // titanic
 
-        const imgText = period2.imgsrc.split("/")[2].split(".")[0];
-
         return {
             period2,
             imgText,
             cardContext2,
             p2,
+            strList,
         };
     },
 

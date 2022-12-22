@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <div class="wrap">
         <h3 class="title">訂單明細</h3>
         <div class="imgBlock"></div>
@@ -6,33 +6,41 @@
             <h3 class="infoBlockTitle">訂單編號:{{ itineray_order_id }}</h3>
             <div class="infoOutterWrap">
                 <div class="infoWrap">
-                    <label class="label" for=""
-                        >姓名:<input type="text"
-                    /></label>
-                    <label class="label" for=""
-                        >電話:<input type="text"
-                    /></label>
-                    <label class="label" for=""
-                        >e-mail:<input type="text"
-                    /></label>
-                    <label class="label" for=""
-                        >行程單價:<input type="text"
-                    /></label>
-                    <label class="label" for=""
-                        >參加人數:<input type="text"
-                    /></label>
+                    <div>
+                        <label class="label">姓名:</label>
+                        <input class="input" type="text" />
+                    </div>
+                    <div>
+                        <label class="label">電話:</label>
+                        <input class="input" type="text" />
+                    </div>
+                    <div>
+                        <label class="label">e-mail:</label>
+                        <input class="input" type="text" />
+                    </div>
+                    <div>
+                        <label class="label">行程單價:</label>
+                        <input class="input" type="text" />
+                    </div>
+                    <div>
+                        <label class="label">參加人數:</label>
+                        <input class="input" type="text" />
+                    </div>
                 </div>
                 <div class="priceWrap">
-                    <label class="label" for=""
-                        >原始費用:<input type="text"
-                    /></label>
-                    <label class="label" for=""
-                        >會員價格:<input type="text"
-                    /></label>
+                    <div>
+                        <label class="label">原始費用:</label>
+                        <input class="input" type="text" />
+                    </div>
+                    <div>
+                        <label class="label">會員價格:</label>
+                        <input class="input" type="text" />
+                    </div>
                     <span></span>
-                    <label class="label" for=""
-                        >實付金額:<input type="text"
-                    /></label>
+                    <div>
+                        <label class="label">實付金額:</label>
+                        <input class="input" type="text" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,7 +56,7 @@ export default {
 @import "@/assets/css/utils/variables";
 
 .wrap {
-    width: 500px;
+    width: 700px;
     border: 2px solid map-get($color, "primary");
     background-color: map-get($color, "dark_sub");
     display: flex;
@@ -68,8 +76,28 @@ export default {
 .infoOutterWrap {
     display: flex;
 }
+.infoWrap {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.infoWrap > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 50px;
+}
+.label {
+    align-self: center;
+    // line-height: 2;
+    
+}
+.input {
+    width: 70%;
+    height: 20px;
+    align-self: center;
+}
 .infoBlock,
-.infoWrap,
 .priceWrap {
     display: flex;
     flex-direction: column;
@@ -79,9 +107,12 @@ export default {
     font-size: 20px;
 }
 .label {
-    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    height: 30px;
 }
 .label > input {
-    width: 35%;
+    margin-left: 0;
 }
 </style>

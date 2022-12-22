@@ -18,17 +18,21 @@
                 ></aside-bar>
             </div>
             <div class="infoWrap">
-                <div class="infoTitle">{{ period2.title }}</div>
+                <div class="infoTitle">{{ p2.list.story_name }}</div>
                 <div class="tagWrap">
                     <span class="infoDangerLevel"
-                        >#難度:{{ period2.tagDangerLevel }}</span
+                        >#難度:{{ p2.list.story_risk }}</span
                     >
-                    <span class="infoFeature">#{{ period2.tagFeature }}</span>
-                    <span class="infoRegion">#{{ period2.tagRegion }}</span>
+                    <span class="infoFeature"
+                        >#{{ p2.list.story_specialty }}</span
+                    >
+                    <span class="infoRegion">#{{ p2.list.story_spot }}</span>
                 </div>
-                <div class="infoDate">穿越年代:{{ period2.tourdate }}</div>
+                <div class="infoDate">
+                    穿越年代:{{ p2.list.itinerary_number_of_years }}
+                </div>
                 <div class="infoContent">
-                    {{ period2.content[contentOneToFive] }}
+                    {{ strList[contentOneToFive] }}
                 </div>
             </div>
         </div>
@@ -65,7 +69,7 @@ import carousel from "@/components/itineraryPeriod/carousel.vue";
 import commentsInfo from "@/components/itineraryPeriod/commentsInfo.vue";
 import itinPeriodCardInfo from "@/components/itineraryPeriod/itinPeriodCardInfo.vue";
 import asideBar from "@/components/itineraryPeriod/asideBar.vue";
-import { reactive } from "vue";
+import { onMounted, reactive } from "vue";
 import { cardContext } from "@/components/itinerary/js/data.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
@@ -85,51 +89,47 @@ export default {
                 return i.id === parseInt(route.params.id);
             })
         );
-        console.log(period2);
         const imgText = period2.imgsrc.split("/")[2].split(".")[0];
 
+        const p2 = reactive({ list: "" });
+        const cardContext2 = reactive([]);
+        const strList = reactive(Array.from({ length: 5 }, () => ""));
+
+        const getData = () => {
+            fetch(
+                "http://localhost/timevolts/public/phpfile/getItineraries.php"
+            )
+                .then((res) => res.json())
+                .then((result) => {
+                    cardContext2.value = result;
+                    p2.list = cardContext2.value.find((item) => {
+                        return `${item.story_id}` === route.params.id;
+                    });
+                    strList[0] = p2.list.itinerary_memo;
+                    strList[1] = p2.list.itinerary_content;
+                    strList[2] = p2.list.itinerary_delicacy;
+                    strList[3] = "安全守則";
+                    strList[4] = "取消政策";
+                });
+        };
+        onMounted(() => {
+            getData();
+        });
         return {
             period2,
             imgText,
+            cardContext2,
+            p2,
+            strList,
         };
     },
     data() {
         return {
             itinerary: 0,
             contentOneToFive: 0,
-            result: [],
-            // period: [
-            //     {
-            //         itinerary: 1,
-            //         title: "尼斯湖水怪",
-            //         dangerLevel: "低",
-            //         feature: "奇聞軼事",
-            //         region: "歐洲",
-            //         date: "??",
-            //         content: [
-            //             "尼斯湖水怪絕對是上個世紀最有名的一個不明生物。最早有人看到尼斯湖水怪是在1933年4月份的時候，直到今天80多年過去了，它的目擊情報從來沒有斷過。你相不相信水怪的存在呢?我們將帶您穿越回1933年，讓您親自見證!此行程穿越年份較短，時代背景與現今較無差異，適合新手體驗!",
-            //             "尼斯湖駕船，帶您觀賞尼斯湖之美。尼斯湖古城冒險。尋找尼斯湖水怪",
-            //             "蘇格蘭威士忌，獨特風味，是從蒸餾大麥酒和泥炭水中提煉而出。蘇格蘭的黑暗料理Haggis的魅力。",
-            //             "安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則安全守則",
-            //             "取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策取消政策",
-            //         ],
-            //     },
-            //     {
-            //         itinerary: 2,
-            //         title: "不存在的車站-如月車站",
-            //         dangerLevel: "高",
-            //         feature: "奇聞軼事",
-            //         region: "亞洲",
-            //         date: "西元2004年",
-            //         content:
-            //             "一名日本網友以葉純（はすみ）的名義進行文字直播，兼尋求協助。她表示自己在新濱松站登上西鹿島線後，列車駛了一段長時間都沒有到站，不久後她停止發文，音訊全無...",
-            //     },
-            // ],
         };
     },
-    created() {
-        this.getData();
-    },
+
     mounted() {},
     methods: {
         // changeParagraph()
@@ -148,16 +148,16 @@ export default {
         changeParagraph4() {
             this.contentOneToFive = 4;
         },
-        getData() {
-            fetch(
-                "http://localhost/timevolts/public/phpfile/getItineraries.php"
-            )
-                .then((res) => res.json())
-                .then((json) => {
-                    this.result = json;
-                    console.log(this.result);
-                });
-        },
+        // getData() {
+        //     fetch(
+        //         "http://localhost/timevolts/public/phpfile/getItineraries.php"
+        //     )
+        //         .then((res) => res.json())
+        //         .then((json) => {
+        //             this.result = json;
+        //             console.log(this.result);
+        //         });
+        // },
     },
 };
 </script>
