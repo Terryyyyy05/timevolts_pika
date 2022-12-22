@@ -22,7 +22,7 @@
       </div>
     </loading>
   </div>
-  <button @click.prevent="doAjax" id="fetch">前導頁預覽</button>
+  <!-- <button @click.prevent="doAjax" id="fetch">前導頁預覽</button> -->
   <all-header />
   <!-- <div id="mouse"></div> -->
 
