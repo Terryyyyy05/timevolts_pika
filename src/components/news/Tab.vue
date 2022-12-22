@@ -39,7 +39,7 @@
         <li class="news" v-for="item in newsAll" :key="item.news_id">
             <h2>{{ item.news_title }}</h2>
             <p class="date">{{ item.news_add_date }}</p>
-            <span class="hashtag">{{ item.hashtag }}</span>
+            <span class="hashtag">{{ item.news_hashtag }}</span>
             <p class="content">{{ item.news_content }}</p>
             <button type="button" class="more" @click="openBox(item.news_id)">
                 看更多...
