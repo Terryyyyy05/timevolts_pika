@@ -39,7 +39,7 @@
       </div>
       <div class="text bg_dark_75 p_md">
         <p>
-          <!-- Last login: {{ nowTime.data }}<br /> -->
+          Last login: {{ nowTime.data }}<br />
           Restored session:<br />
           TimeVolts ~ %<br />
           .<br />
@@ -167,9 +167,9 @@ export default {
       }, 1000);
     }
     nowTimes();
-    // return {
-    //   nowTime,
-    // };
+    return {
+      nowTime,
+    };
   },
   components: {
     HomeItinerary,

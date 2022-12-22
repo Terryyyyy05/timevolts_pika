@@ -35,14 +35,21 @@
             </div>
             <div class="coupon-card-right">
               <button
-                id="receive"
+                class="getbtn"
+                value="快來領取折價卷"
                 v-on:click="receive(index)"
-                href="#"
-                v-if="(this.CouponData.coupon_status = 1)"
+                v-if="this.CouponData[index].getNew == null"
               >
-                <p>{{ init[this.CouponData.coupon_status] }}</p>
+                {{ "立即領取" }}
               </button>
-              <!-- <a id="receive" href="#" v-else>已領取</a> -->
+              <button
+                class="getbtn-1"
+                disabled="disabled"
+                value="已領取，快去消費吧"
+                v-if="this.CouponData[index].getNew != null"
+              >
+                {{ "已領取" }}
+              </button>
             </div>
           </div>
         </div>
@@ -59,42 +66,7 @@ export default {
   data() {
     return {
       CouponData: [{}],
-      GetVouchers: [
-        {
-          coupon_id: 1, //編號
-          coupon_discount_number: 200, //折扣金額
-          coupon_issue_date: "2022-12-20", //發送日期
-          coupon_valid_date: "2022-12-25", //生效日期
-          coupon_exp_date: "2023-01-15", //到期日期
-          coupon_quantity: 1000, //發行數量
-          coupon_given_numbers: 0, //已發數量
-          coupon_pricing_condition: 1000, //消費門檻
-          coupon_status: 1, // 1=上架,0=下架
-        },
-        {
-          coupon_id: 2, //編號
-          coupon_discount_number: 5, //折扣金額
-          coupon_issue_date: "2022-12-18", //發送日期
-          coupon_valid_date: "2022-12-18", //生效日期
-          coupon_exp_date: "null", //到期日期
-          coupon_quantity: 2000, //發行數量
-          coupon_given_numbers: 0, //已發數量
-          coupon_pricing_condition: 100, //消費門檻
-          coupon_status: 0, // 1=上架,0=下架
-        },
-        {
-          coupon_id: 3, //編號
-          coupon_discount_number: 5000, //折扣金額
-          coupon_issue_date: "2022-12-18", //發送日期
-          coupon_valid_date: "2022-12-18", //生效日期
-          coupon_exp_date: "null", //到期日期
-          coupon_quantity: 2000, //發行數量
-          coupon_given_numbers: 0, //已發數量
-          coupon_pricing_condition: 80000, //消費門檻
-          coupon_status: 0, // 1=上架,0=下架
-        },
-      ],
-      init: { 1: "立即領取", 0: "已領取" },
+      // init: { 1: "立即領取", 0: "已領取" },
       unreceivedCoupon: [], //未領取的優惠卷
       showModal: false, //燈箱開關
       login: true, //是否登入
@@ -135,10 +107,11 @@ export default {
           // 領取並傳回後端
 
           console.log("BBB");
+          this.CouponData[e].getNew = 1;
+
+          console.log(CouponData[e]);
           alert(`恭喜您獲得優惠卷~`);
           // 計算可以領取數量
-          this.CouponData[e].coupon_status = 0;
-          console.log(e);
         } else {
           // 前往登入頁面
         }
@@ -395,16 +368,20 @@ export default {
   width: 20px;
   height: 10px;
 }
-.coupon-card-right button {
-  border: 3px solid #434343;
+.getbtn,
+.getbtn-1 {
+  border: 3px solid map-get($color, primary_sub);
+
   background: none;
   border-radius: 48px;
-  padding: 4px;
-  margin: 0 auto;
-  font-size: 16px;
-  color: #fff;
-  > p {
-    writing-mode: vertical-lr;
-  }
+  padding: 10px 5px;
+  margin: 8px;
+  font-size: 18px;
+  color: map-get($color, primary);
+  writing-mode: sideways-lr;
+}
+.getbtn-1 {
+  color: #ccc;
+  border: 3px solid #434343;
 }
 </style>
