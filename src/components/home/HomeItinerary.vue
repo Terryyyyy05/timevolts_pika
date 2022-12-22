@@ -71,7 +71,7 @@ export default {
         },
         {
           id: 2,
-          story_cover: require("@/assets/image/itin/culturaMaya.webp"),
+          story_cover: require("@/assets/image/itin/culturaMaya00.jpg"),
           itinerary_name: "馬雅文明",
           story_age: "西元前2000年",
           itinerary_memo:
@@ -95,7 +95,7 @@ export default {
         },
         {
           id: 4,
-          story_cover: require("@/assets/image/itin/titanic.jpg"),
+          story_cover: require("@/assets/image/itin/crusades00.jpg"),
           itinerary_name: "十字軍東征",
           story_age: "西元1096年",
           itinerary_memo:

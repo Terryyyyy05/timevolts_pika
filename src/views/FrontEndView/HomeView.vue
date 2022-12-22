@@ -131,6 +131,12 @@ export default {
       c: true,
     };
   },
+  components: {
+    HomeItinerary,
+    HomeHistorcal,
+    HomeNews,
+    Loading,
+  },
   setup() {
     //取得時間
     let nowTime = reactive({
@@ -170,12 +176,6 @@ export default {
     return {
       nowTime,
     };
-  },
-  components: {
-    HomeItinerary,
-    HomeHistorcal,
-    HomeNews,
-    Loading,
   },
 
   created() {
