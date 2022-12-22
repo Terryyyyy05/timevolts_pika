@@ -4,7 +4,7 @@ header("Content-Type:application/json;charset=utf-8");
 
 $json = file_get_contents("php://input");
 $datas = json_decode($json, true); //轉為關聯性陣列
-var_dump($datas);exit();
+// var_dump($datas);exit();
 
 try {
    require_once("../phpfile/php_connect_books/connectBooks.php");
