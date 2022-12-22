@@ -11,7 +11,9 @@
             >危險度:{{ look.story_risk }}
           </span>
           <span v-if="look.tagFeature != null"> | {{ look.tagFeature }}</span>
-          <p v-if="look.story_spot != null">地點:{{ look.story_spot }}</p>
+          <span v-if="look.story_spot != null">
+            | 地點:{{ look.story_spot }}</span
+          >
         </div>
         <div class="summary">
           <p>年代:{{ look.story_age }}</p>
@@ -60,7 +62,7 @@ export default {
       itinerarys: [
         {
           id: 1,
-          story_cover: require("@/assets/image/itin/titanic.jpg"),
+          story_cover: require("@/assets/image/itin/titanic00.jpg"),
           itinerary_name: "鐵達尼號沈船事件",
           story_age: "西元1912年",
           itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
@@ -70,13 +72,14 @@ export default {
         },
         {
           id: 2,
-          story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "馬雅文化",
+          story_cover: require("@/assets/image/itin/prehistoric00.jpg"),
+          itinerary_name: "史前時代",
           story_age: "未知",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "低",
-          story_spot: "南美洲",
-          tagFeature: null,
+          itinerary_memo:
+            "安全的房屋可以遮風避雨，沒有便利商店買食物買水，隨時面臨猛獸的攻擊?讓我們回到最原始的石器時代，尋找身旁最天然的資源，建立屬於自己的小小家園，體驗我們祖先的生活吧！",
+          story_risk: "高",
+          story_spot: "歐洲",
+          tagFeature: "奇聞軼事",
         },
         {
           id: 3,
@@ -126,22 +129,8 @@ export default {
           console.log(this.HistoriesData);
         });
     },
-    previous() {
-      // 頁面往前，循環補上
-      //   this.activeIndex--;
-      //   const temp = this.itinerarys[this.itinerarys.length - 1];
-      //   this.itinerarys.pop();
-      //   this.itinerarys.unshift(temp);
-      //   const looktemp = this.itinerarys[this.activeIndex];
-      //   this.look = looktemp;
-      //   this.activeIndex = index;
-      // const lastSlide = pictures.value.pop();
-      // pictures.value = [lastSlide].concat(pictures.value);
-    },
-
     nextPage() {
       // 頁面往後，循環補上
-      //   this.activeIndex++;
 
       const temp = this.itinerarys[0];
       this.itinerarys.shift();

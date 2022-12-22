@@ -3,7 +3,7 @@
   <div class="vl-parent" id="loading-background">
     <loading
       v-model:active="isLoading"
-      :can-cancel="false"
+      :can-cancel="true"
       :is-full-page="false"
     >
       <div class="loadingContainer">
@@ -39,7 +39,7 @@
       </div>
       <div class="text bg_dark_75 p_md">
         <p>
-          <!-- Last login: {{ nowTime.data }}<br /> -->
+          Last login: {{ nowTime.data }}<br />
           Restored session:<br />
           TimeVolts ~ %<br />
           .<br />
@@ -125,11 +125,17 @@ export default {
   datas() {
     return {
       isLoading: true,
-      fullPage: false,
+      fullPage: true,
       result: {}, //存資料
       nowTime: [{ data: "" }],
       c: true,
     };
+  },
+  components: {
+    HomeItinerary,
+    HomeHistorcal,
+    HomeNews,
+    Loading,
   },
   setup() {
     //取得時間
@@ -167,20 +173,17 @@ export default {
       }, 1000);
     }
     nowTimes();
-    // return {
-    //   nowTime,
-    // };
-  },
-  components: {
-    HomeItinerary,
-    HomeHistorcal,
-    HomeNews,
-    Loading,
+    return {
+      nowTime,
+    };
   },
 
   created() {
     if (!sessionStorage["first"]) {
       this.isLoading = true;
+      // setTimeout(() => {
+      //   this.isLoading = false;
+      // }, 2000);
     }
   },
   methods: {
@@ -211,6 +214,8 @@ export default {
         { opacity: 1 },
         { duration: 2, opacity: 0, delay: 4 }
       );
+      gsap.to(".loadingContainer", { x: 100000, duration: 0.1 }, ">");
+
       setTimeout(() => {
         this.isLoading = false;
       }, 6500);
@@ -226,9 +231,6 @@ export default {
       this.doAjax();
       sessionStorage["first"] = true;
     }
-    // return {
-    //  c = true;
-    // };
   },
 };
 </script>
