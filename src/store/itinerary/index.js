@@ -229,7 +229,7 @@ export default {
        };
     },
     getters: {
-       histories(state) {
+        itineraries(state) {
           return state.itineraries;
        },
     },

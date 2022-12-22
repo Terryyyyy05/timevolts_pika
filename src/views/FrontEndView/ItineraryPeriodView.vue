@@ -18,15 +18,19 @@
                 ></aside-bar>
             </div>
             <div class="infoWrap">
-                <div class="infoTitle">{{ result.story_name }}</div>
+                <div class="infoTitle">{{ p2.list.story_name }}</div>
                 <div class="tagWrap">
                     <span class="infoDangerLevel"
-                        >#難度:{{ period2.tagDangerLevel }}</span
+                        >#難度:{{ p2.list.story_risk }}</span
                     >
-                    <span class="infoFeature">#{{ period2.tagFeature }}</span>
-                    <span class="infoRegion">#{{ period2.tagRegion }}</span>
+                    <span class="infoFeature"
+                        >#{{ p2.list.story_specialty }}</span
+                    >
+                    <span class="infoRegion">#{{ p2.list.story_spot }}</span>
                 </div>
-                <div class="infoDate">穿越年代:{{ period2.tourdate }}</div>
+                <div class="infoDate">
+                    穿越年代:{{ p2.list.itinerary_number_of_years }}
+                </div>
                 <div class="infoContent">
                     {{ period2.content[contentOneToFive] }}
                 </div>
@@ -64,7 +68,7 @@ import carousel from "@/components/itineraryPeriod/carousel.vue";
 import commentsInfo from "@/components/itineraryPeriod/commentsInfo.vue";
 import itinPeriodCardInfo from "@/components/itineraryPeriod/itinPeriodCardInfo.vue";
 import asideBar from "@/components/itineraryPeriod/asideBar.vue";
-import { reactive } from "vue";
+import { onMounted, reactive } from "vue";
 import { cardContext } from "@/components/itinerary/js/data.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
@@ -76,6 +80,7 @@ export default {
         itinPeriodCardInfo,
         asideBar,
     },
+
     setup() {
         const route = useRoute();
 
@@ -84,42 +89,76 @@ export default {
                 return i.id === parseInt(route.params.id);
             })
         );
-        console.log(period2);
-        console.log(period2.imgsrc);
-        // /img/lochNessMonster.jpg
+        const p2 = reactive({ list: "" });
+        const cardContext2 = reactive([]);
+        const getData = () => {
+            fetch(
+                "http://localhost/timevolts/public/phpfile/getItineraries.php"
+            )
+                .then((res) => res.json())
+                .then((result) => {
+                    cardContext2.value = result;
+                    // console.log(cardContext2.value[0]);
+                    p2.list = cardContext2.value.find((item) => {
+                        return `${item.story_id}` === route.params.id;
+                    });
+                    // console.log(route.params.id);
+                    // console.log(`${cardContext2.value[0].story_id}`);
+                    // console.log(cardContext2.value);
+                    console.log(p2);
+                });
+        };
 
-        console.log(period2.imgsrc.split("/"));
-        // ['', 'img', 'titanic.jpg']
+        onMounted(() => {
+            getData();
+            // console.log(cardContext2.value);
+            // const p2 = reactive(
+            //     cardContext2.find((item) => {
+            //         return `p${item.story_id}` === route.params.id;
+            //     })
+            // );
+            // console.log(p2);
+        });
 
-        console.log(period2.imgsrc.split("/")[2]);
-        // titanic.jpg
+        // console.log(result.value);
 
-        console.log(period2.imgsrc.split("/")[2].split("."));
-        // ['titanic','jpg']
+        // console.log(period2);
+        // console.log(period2.imgsrc);
+        // // /img/lochNessMonster.jpg
 
-        console.log(period2.imgsrc.split("/")[2].split(".")[0]);
-        // titanic
+        // console.log(period2.imgsrc.split("/"));
+        // // ['', 'img', 'titanic.jpg']
+
+        // console.log(period2.imgsrc.split("/")[2]);
+        // // titanic.jpg
+
+        // console.log(period2.imgsrc.split("/")[2].split("."));
+        // // ['titanic','jpg']
+
+        // console.log(period2.imgsrc.split("/")[2].split(".")[0]);
+        // // titanic
 
         const imgText = period2.imgsrc.split("/")[2].split(".")[0];
 
         return {
             period2,
             imgText,
+            cardContext2,
+            p2,
         };
     },
+
     data() {
         return {
             itinerary: 0,
             contentOneToFive: 0,
-            result: [],
+            // result: [],
         };
     },
-    created() {
-        this.getData();
-    },
+
     mounted() {},
     methods: {
-        // changeParagraph()
+        // changeParagraph();
         changeParagraph0() {
             this.contentOneToFive = 0;
         },
@@ -135,16 +174,16 @@ export default {
         changeParagraph4() {
             this.contentOneToFive = 4;
         },
-        getData() {
-            fetch(
-                "http://localhost/timevolts/public/phpfile/getItineraries.php"
-            )
-                .then((res) => res.json())
-                .then((json) => {
-                    this.result = json;
-                    console.log(this.result);
-                });
-        },
+        // getData() {
+        //     fetch(
+        //         "http://localhost/timevolts/public/phpfile/getItineraries.php"
+        //     )
+        //         .then((res) => res.json())
+        //         .then((json) => {
+        //             this.result = json;
+        //             console.log(this.result);
+        //         });
+        // },
     },
 };
 </script>
