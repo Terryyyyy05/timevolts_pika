@@ -30,7 +30,7 @@ export default {
 
          if (!responce.ok) {
             const error = new Error(
-               responceData.message || "發生錯誤，請稍後再試"
+               responceData.message || "帳號或密碼出現錯誤"
             );
             throw error;
          }
@@ -42,7 +42,7 @@ export default {
          });
       },
       async signup(context, payload) {
-         const responce = await fetch(
+         const response = await fetch(
             "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAUSZzvY_JJH6cu7Gc99iQdkAScLAh2PZY",
             {
                method: "POST",
@@ -54,20 +54,34 @@ export default {
             }
          );
 
-         const responceData = await responce.json();
-         console.log(responceData);
+         fetch("http://localhost/timevolts_pika/public/phpfile/signup.php", {
+            method: "POST",
+            body: JSON.stringify({
+               email: payload.email,
+               password: payload.password,
+            }),
+            // headers: {
+            //    "Content-Type": "application/json",
+            // },
+         }).then((response) => {
+            return response.json();
+         });
 
-         if (!responce.ok) {
+         const responseData = await response.json();
+         console.log(responseData);
+
+         if (!response.ok) {
             const error = new Error(
-               responceData.message || "發生錯誤，請稍後再試"
+               responseData.message || "發生錯誤，請稍後再試"
             );
+            console.log(error);
             throw error;
          }
 
          context.commit("setUser", {
-            token: responceData.idToken,
-            userId: responceData.localId,
-            tokenExpiration: responceData.expiresIn,
+            token: responseData.idToken,
+            userId: responseData.localId,
+            tokenExpiration: responseData.expiresIn,
          });
       },
    },
