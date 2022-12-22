@@ -42,8 +42,20 @@
             </div>
             <div class="pannel-title">
                <h5>2. 選擇想要放的圖片</h5>
+               <button id="appendStampBtn">新增圖片格</button>
             </div>
-            <div class="pic-area"></div>
+            <div class="pic-area">
+               <div class="picElement"><img src="@/assets/image/ticket/dinosaur.svg"></div>
+               <div class="picElement"><img src="@/assets/image/ticket/dog.svg"></div>
+               <div class="picElement"><img src="@/assets/image/ticket/face.svg"></div>
+               <div class="picElement"><img src="@/assets/image/ticket/lighting.svg"></div>
+               <div class="picElement"><img src="@/assets/image/ticket/panda.svg"></div>
+               <div class="picElement"><img src="@/assets/image/ticket/pig.svg"></div>
+               <div class="picElement"><img src="@/assets/image/ticket/snake.svg"></div>
+               <div class="picElement"><img src="@/assets/image/ticket/snowflake.svg"></div>
+               <div class="picElement"><img src="@/assets/image/ticket/star.svg"></div>
+
+            </div>
             <div class="pannel-title">
                <h5>3. 輸入想要打的文字</h5>
             </div>
@@ -52,7 +64,7 @@
       </div>
          <div class="btn">
             <button class="btn-primary">完成客製</button>
-            <button class="btn-secondary">重新製作</button>
+            <button class="btn-secondary" id="clearStampBtn">重新製作</button>
          </div>
       </div>
    </div>
@@ -60,7 +72,7 @@
 </template>
 
 <script type="module">
-
+import {} from '@/components/ItineraryBooking/Customizetk.js';
 export default {
    name: "Customizetk",
    components: {
@@ -148,6 +160,7 @@ export default {
             .ticket-drag{
                width: 60%;
                padding: 10px;
+               outline: 1px solid red;
 
             }
          }
@@ -207,8 +220,17 @@ export default {
    width: 45%;
 
    .pannel-title {
+      display: flex;
       h5 {
          color: map-get($color, accent);
+      }
+      #appendStampBtn{
+         background-color: map-get($color, accent);
+         margin-left: 100px;
+         border: none;
+         color: map-get($color, dark);
+         cursor: pointer;
+         padding: 5px;
       }
    }
 
@@ -231,10 +253,42 @@ export default {
 
    .pic-area {
       width: 80%;
-      height: 100px;
+      height: 200px;
       margin: 20px 10px;
       border: 2px solid map-get($color, accent);
+      display: flex;
+      overflow-y: scroll;
+      flex-wrap: wrap;
+      .picElement{
+         margin: 10px;
+         padding: 5px 8px;
+         height: 70px;
+         width: 70px;
+         display: flex;
+         box-sizing: border-box;
+         border: 1px dotted map-get($color, accent);
+         img{
+            height: 70%;
+            margin: auto;
+         }
+      }
    }
+   //捲軸寬度
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+//捲軸底色
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px grey;
+    border-radius: 10px;
+}
+
+//捲軸本體顏色
+::-webkit-scrollbar-thumb {
+    background: map-get($color, accent);
+    border-radius: 10px;
+}
 
    #textarea {
       width: 80%;
