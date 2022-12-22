@@ -24,7 +24,7 @@
          <router-link to="/customizetk">
             <button class="btn-primary">開始製作</button>
          </router-link>
-         <router-link to="/home"
+         <router-link to="/customizeCanvas"
             ><button class="btn-secondary">
                使用預設樣式，晚點再做
             </button></router-link
