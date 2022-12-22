@@ -62,7 +62,7 @@ export default {
       itinerarys: [
         {
           id: 1,
-          story_cover: require("@/assets/image/itin/atlantis00.jpg"),
+          story_cover: require("@/assets/image/itin/titanic00.jpg"),
           itinerary_name: "鐵達尼號沈船事件",
           story_age: "西元1912年",
           itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",

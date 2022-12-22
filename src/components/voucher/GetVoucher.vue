@@ -149,9 +149,9 @@ export default {
   right: 125px;
   position: fixed;
   z-index: 101;
-  color: map-get($color, primary_sub);
+  color: map-get($color, accent);
   background-color: map-get($color, dark_sub);
-  border: 2px solid map-get($color, primary_sub);
+  border: 2px solid map-get($color, accent);
   @media screen and (max-width: $m-breakpoint) {
     top: 70px;
     right: 70px;

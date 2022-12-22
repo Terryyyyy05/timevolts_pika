@@ -134,13 +134,12 @@ const routes = [
                   "../views/FrontEndView/memberCenter/productCollection.vue"
                ),
          },
-         {
-            path: "/customizeCanvas",
-            name: "customizeCanvas",
-            component: () => import("../components/ItineraryBooking/customizeCanvas.vue"),
-         },
-         
       ],
+   },
+   {
+      path: "/customizeCanvas",
+      name: "customizeCanvas",
+      component: () => import("../components/ItineraryBooking/customizeCanvas.vue"),
    },
 ];
 

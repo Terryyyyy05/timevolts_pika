@@ -97,6 +97,7 @@ export default {
                email: this.email.val,
                password: this.password.val,
             });
+
             this.$emit("confirm-signup");
          } catch (err) {
             this.error = err.message || "發生錯誤";

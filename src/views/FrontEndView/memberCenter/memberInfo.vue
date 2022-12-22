@@ -1,7 +1,7 @@
 <template>
     <h2 class="title">會員資料</h2>
     <main>
-        <form class="memberinfo" action="" @submit.prevent="handleSubmit" method="post" enctype="multipart/form-data">
+        <form class="memberinfo" action="" smethod="post" enctype="multipart/form-data">
             <div v-for="item in formInput" :key="item.title">
                 <label for="item.title">{{item.title}}</label>
                 <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id" v-model="item.test">
@@ -98,28 +98,26 @@ export default {
     },
     methods:{
         saveData(){
+            const payload={
+                mem_name:this.formInput[0].test,
+                mem_bday:this.formInput[1].test,
+                mem_phone:this.formInput[2].test,
+                mem_address:this.formInput[3].test,
+                mem_email:this.formInput[4].test,
+                mem_psw:this.formInput[5].test
+            }
+            console.log("=============",payload);
             fetch('http://localhost/timevolts_pika/public/phpfile/updateMemberInfo.php', {
                 method:'POST', 
-                body: new URLSearchParams(JSON.parse(JSON.stringify({test:123}))),
-                // body: JSON.stringify({test:123}),
-            })
-            .then((res) => res.json())
-            .then((result) => {
-                this.formInput[0].test = json[0].mem_name
-                this.formInput[1].test = json[0].mem_bday
-                this.formInput[2].test = json[0].mem_phone
-                this.formInput[3].test = json[0].mem_address
-                this.formInput[4].test = json[0].mem_email
-                this.formInput[5].test = json[0].mem_psw
-                console.log(this.formInput[0]);
+                body: new URLSearchParams(payload),
             })
         },
         changeInfo(){
             this.inputDisabled = !this.inputDisabled;
-            this.saveData();
-            // if(!this.inputDisabled){
-            //     this.saveData();
-            // }
+            if(this.inputDisabled == true){
+               this.saveData(); 
+            }
+            
             //密碼驗證
             // if(this.password==this.oldpassword){
             //     if(this.newpassword2==this.newpassword3){
@@ -131,13 +129,14 @@ export default {
             fetch('http://localhost/timevolts_pika/public/phpfile/getMemberInfo.php')
             .then((res) => res.json())
             .then((json)=>{
-                this.formInput[0].test = json[0].mem_name
-                this.formInput[1].test = json[0].mem_bday
-                this.formInput[2].test = json[0].mem_phone
-                this.formInput[3].test = json[0].mem_address
-                this.formInput[4].test = json[0].mem_email
-                this.formInput[5].test = json[0].mem_psw
+                this.formInput[0].test = json[1].mem_name
+                this.formInput[1].test = json[1].mem_bday
+                this.formInput[2].test = json[1].mem_phone
+                this.formInput[3].test = json[1].mem_address
+                this.formInput[4].test = json[1].mem_email
+                this.formInput[5].test = json[1].mem_psw
                 console.log(this.formInput[0]);
+                
             })
         },
         // saveData(){

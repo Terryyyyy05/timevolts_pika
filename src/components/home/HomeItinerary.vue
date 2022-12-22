@@ -36,7 +36,8 @@
     <div class="itineraryTeg">
       <p>危險度:{{ look.story_risk }}</p>
       <p>地點:{{ look.story_spot }}</p>
-      <p>{{ look.tagFeature }}</p>
+      <p>類型:{{ look.story_specialty }}</p>
+      <p>{{ look.story_classification }}</p>
     </div>
     <button class="next" @click="nextPage">&gt;</button>
     <button class="previous" @click="previous">&lt;</button>
@@ -61,50 +62,60 @@ export default {
           story_cover: require("@/assets/image/itin/titanic.jpg"),
           itinerary_name: "鐵達尼號沈船事件",
           story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
+          itinerary_memo:
+            "鐵達尼號沉沒事故是個著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。當瞭望員看到冰山時，該船的行駛速度正接近最高速。因此無法快速轉向...",
           story_risk: "中",
-          story_spot: "北美洲",
-          tagFeature: null,
+          story_classification: "期間限定",
+          story_spot: "歐洲",
+          story_specialty: "歷史事件",
         },
         {
           id: 2,
-          story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "馬雅文化",
-          story_age: "未知",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
+          story_cover: require("@/assets/image/itin/culturaMaya00.jpg"),
+          itinerary_name: "馬雅文明",
+          story_age: "西元前2000年",
+          itinerary_memo:
+            "關於「馬雅」文明的傳說，很多人都聽說過。提到馬雅人，大部分人會把他們與美洲叢林聯繫到一起。浮現在腦海中的也是一群印地安人，他們身著鮮豔羽毛服飾，趁著月光進行著神祕的儀式，他們有著神祕的巨石遺跡及特別的美食和宗教祭祀活動。就讓我們一同去一探神祕的馬雅文明吧!",
           story_risk: "低",
+          story_classification: "期間限定",
           story_spot: "南美洲",
-          tagFeature: null,
+          story_specialty: "歷史事件",
         },
         {
           id: 3,
           story_cover: require("@/assets/image/itin/atlantis.png"),
           itinerary_name: "亞特蘭提斯",
-          story_age: "西元前12000年",
-          itinerary_memo: `這個地方是個傳說中的地方，存不存在沒人知道。柏拉圖說，公元前9560年的時候，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯。...`,
+          story_age: "西元前9650年",
+          itinerary_memo: `這個地方是個傳說中的地方，存不存在沒人知道，。柏拉圖說，公元前9560年的時候，在直布羅陀海峽的對面有一個非常大的島，也就是現在的非洲大陸，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯...`,
+
           story_risk: "低",
-          story_spot: null,
-          tagFeature: "奇聞軼事",
+          story_classification: "期間限定",
+          story_spot: "歐洲",
+          story_specialty: "奇聞軼事",
         },
         {
           id: 4,
-          story_cover: require("@/assets/image/itin/titanic.jpg"),
-          itinerary_name: "鐵達尼號沈船事件2",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
+          story_cover: require("@/assets/image/itin/crusades00.jpg"),
+          itinerary_name: "十字軍東征",
+          story_age: "西元1096年",
+          itinerary_memo:
+            "耶穌被釘十字架，耶穌被逮捕後以十字架處死的事件，一般認為發生在公元1世紀的猶太行省，最可能在公元30到33年之間。雖然歷史學家對這個事件的準確細節並沒有達成共識，學者多數認為這是一個歷史事件。",
           story_risk: "中",
+          story_classification: "期間限定",
           story_spot: "北美洲",
-          tagFeature: null,
+          story_specialty: "宗教事件",
         },
         {
           id: 5,
-          story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "馬雅文化2",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "南美洲",
-          tagFeature: null,
+          story_cover: require("@/assets/image/itinEgypt.jpg"),
+          itinerary_name: "埃及黃金時代",
+          story_age: "西元1234年",
+          itinerary_memo:
+            "這位新國王將其父親遺留的壯觀事業進一步發揚光大，完成了埃及史上最宏大且最受美譽的著名地標：吉薩大金字塔。當初的命名是「阿赫特─胡夫」，意即「胡夫的地平線」。",
+          story_risk: "低",
+          story_classification: "經典行程",
+          story_spot: "非洲",
+          story_specialty: "歷史事件",
         },
       ],
       look: {},
@@ -268,7 +279,7 @@ export default {
   .itineraryTitle {
     width: 15vw;
     // height: 100%;
-    padding: 15px;
+    padding: 15px 5px 15px 15px;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
     border-radius: 20px 0 0 20px;
@@ -279,7 +290,7 @@ export default {
     }
   }
   .itineraryText {
-    width: 32vw;
+    width: 34vw;
     // padding: 0 15px 0px;
     box-sizing: border-box;
     display: flex;
@@ -293,14 +304,14 @@ export default {
       min-height: 30vh;
     }
     .summary {
-      padding: 20px;
+      padding: 20px 12px;
       box-sizing: border-box;
       align-self: start;
       line-height: 1.4;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       :nth-child(1) {
-        font-size: 24px;
+        font-size: 20px;
       }
     }
   }
@@ -336,19 +347,19 @@ export default {
     }
   }
   .itineraryTeg {
-    width: 15vw;
+    width: 13vw;
     // height: 100%;
     padding: 20px;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
     border-radius: 0 20px 20px 0;
     align-items: center;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 33px;
     @media screen and (max-width: $m-breakpoint) {
       width: 100%;
       border-radius: 0px 0px 20px 20px;
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 }
