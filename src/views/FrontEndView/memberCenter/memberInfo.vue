@@ -138,6 +138,7 @@ export default {
                 this.formInput[4].test = json[0].mem_email
                 this.formInput[5].test = json[0].mem_psw
                 console.log(this.formInput[0]);
+                
             })
         },
         // saveData(){
