@@ -4,7 +4,8 @@
    <div class="container">
       <the-heading heading="歷史故事" subheading="history"></the-heading>
    </div>
-   <history-banner> </history-banner>
+   <history-banner :banner="selectedHistory.cover" :id="id">
+   </history-banner>
    <div class="container grid">
       <font-awesome-icon
          class="switch-p-icon"
@@ -47,7 +48,7 @@
          </div>
       </div>
       <div class="history-text">
-         <h3>{{ selectedHistory.title }}</h3>
+         <h3>{{ selectedHistory.name }}</h3>
          <div class="tag">
             <span>#{{ selectedHistory.tagDanderLevel }}</span>
             <span>#{{ selectedHistory.tagFeature }}</span>
@@ -117,6 +118,7 @@ export default {
          count: 0,
          activeParagraph: null,
          selectedHistory: [],
+         selectedDetails: [],
       };
    },
    methods: {
@@ -148,13 +150,60 @@ export default {
       backToLastPage() {
          this.$router.go(-1);
       },
+      async getHistoryDetails() {
+         const response = await fetch(
+            "http://localhost/timevolts_pika/public/phpfile/getHistoryDetails.php"
+         );
+
+         const responseData = await response.json();
+         console.log(responseData);
+
+         const histories = [];
+
+         for (const key in responseData) {
+            const history = {
+               id: String(responseData[key].story_id),
+               name: responseData[key].story_name,
+               tagDanderLevel: responseData[key].story_risk,
+               tagFeature: responseData[key].story_specialty,
+               tagRegion: responseData[key].story_spot,
+               cover: responseData[key].story_cover,
+            };
+            histories.push(history);
+         }
+
+         this.selectedHistory = histories.find(
+            (history) => history.id === this.id
+         );
+         console.log(this.selectedHistory.cover);
+
+         const details = [];
+
+         for (const key in responseData) {
+            const detail = {
+               id: String(responseData[key].story_id),
+               articalId: String(responseData[key].story_article_id),
+               title: responseData[key].story_title,
+               image: responseData[key].story_img,
+               content: responseData[key].story_content,
+            };
+            details.push(detail);
+         }
+
+         this.selectedDetails = details.filter(
+            (detail) => detail.id === this.id
+         );
+
+         console.log(this.selectedDetails);
+      },
    },
    created() {
-      this.$store.dispatch("history/getHistories");
+      // this.$store.dispatch("history/getHistories");
+      this.getHistoryDetails();
       this.updateParagraph();
-      this.selectedHistory = this.$store.getters["history/histories"].find(
-         (history) => this.id === history.id
-      );
+      // this.selectedHistory = this.$store.getters["history/histories"].find(
+      //    (history) => this.id === history.id
+      // );
    },
 };
 </script>
@@ -205,7 +254,7 @@ export default {
 }
 
 .small-image {
-   width: 150px;
+   width: 125px;
    height: 100px;
    cursor: pointer;
 }
@@ -234,8 +283,8 @@ h3 {
 .tag {
    display: flex;
    gap: 8px;
-   margin: 24px auto 0;
-   padding: 24px 48px;
+   margin: 24px auto;
+   padding: 24px;
    border-top: 2px solid map-get($color, "primary");
 }
 
