@@ -20,6 +20,7 @@
   <div class="content">
     <div class="itineraryTitle">
       <h3>{{ look.itinerary_name }}</h3>
+      <p>{{ look.story_classification }}</p>
     </div>
     <div class="itineraryText">
       <div class="summary">
@@ -29,7 +30,13 @@
     </div>
     <div class="more">
       <img v-bind:src="imgsrc" alt="圖騰" />
-      <router-link class="link" to="/itiItineraryClassicView"
+      <router-link
+        class="link"
+        :to="
+          look.story_classification == '經典行程'
+            ? `/itineraryClassicView/c${look.id}`
+            : `/itineraryPeriodView/p${look.id}`
+        "
         >了解更多</router-link
       >
     </div>
@@ -37,7 +44,6 @@
       <p>危險度:{{ look.story_risk }}</p>
       <p>地點:{{ look.story_spot }}</p>
       <p>類型:{{ look.story_specialty }}</p>
-      <p>{{ look.story_classification }}</p>
     </div>
     <button class="next" @click="nextPage">&gt;</button>
     <button class="previous" @click="previous">&lt;</button>
@@ -178,6 +184,9 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
 
+h3 {
+  font-family: "Cube11";
+}
 .img-index {
   z-index: -1;
 }
@@ -264,7 +273,6 @@ export default {
   height: fit-content;
   margin: 0 auto;
   border-radius: 20px;
-  // border: 2px solid map-get($color, "primary");
   background: map-get($color, "dark_sub");
   box-sizing: border-box;
   display: flex;
@@ -277,34 +285,42 @@ export default {
     width: 70vw;
   }
   .itineraryTitle {
+    display: flex;
     width: 15vw;
-    // height: 100%;
     padding: 15px 5px 15px 15px;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
+    border-right: none;
     border-radius: 20px 0 0 20px;
-    align-items: top;
+    flex-direction: column;
+    justify-content: space-between;
     @media screen and (max-width: $m-breakpoint) {
+      flex-direction: row;
       width: 100%;
+      padding: 15px;
+      border: 2px solid map-get($color, "primary");
+      border-bottom: none;
       border-radius: 20px 20px 0 0px;
+      order: -1;
     }
   }
   .itineraryText {
     width: 34vw;
-    // padding: 0 15px 0px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-
     border: 2px solid map-get($color, "primary");
     align-items: center;
     text-overflow: ellipsis;
+    border-right: none;
     @media screen and (max-width: $m-breakpoint) {
       width: 100%;
       min-height: 30vh;
+      border: 2px solid map-get($color, "primary");
+      border-bottom: none;
     }
     .summary {
-      padding: 20px 12px;
+      padding: 15px 12px;
       box-sizing: border-box;
       align-self: start;
       line-height: 1.4;
@@ -312,6 +328,9 @@ export default {
       -webkit-box-orient: vertical;
       :nth-child(1) {
         font-size: 20px;
+        @media screen and (max-width: $m-breakpoint) {
+          font-size: 18px;
+        }
       }
     }
   }
@@ -323,33 +342,39 @@ export default {
     justify-content: space-between;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
+    border-right: none;
     @media screen and (max-width: $m-breakpoint) {
       width: 100%;
-      flex-direction: row;
+      border: none;
     }
     img {
       margin: 2rem 1rem;
+      @media screen and (max-width: $m-breakpoint) {
+        display: none;
+      }
     }
     .link {
-      width: calc(8vw - 4px);
+      width: 100%;
       text-align: center;
       padding: 0.7rem 0rem;
       box-sizing: border-box;
       color: map-get($color, "dark");
       background-color: map-get($color, "accent");
       border: none;
-      border-top: 4px solid map-get($color, "primary");
+      border-top: 2px solid map-get($color, "primary");
       @media screen and (max-width: $m-breakpoint) {
-        max-width: 100%;
+        width: 100%;
         border-top: none;
-        border-left: 2px solid map-get($color, "primary");
+        border-radius: 0px 0px 20px 20px;
+        border: 2px solid map-get($color, "primary");
+        // border-left: 2px solid map-get($color, "primary");
       }
     }
   }
   .itineraryTeg {
     width: 13vw;
     // height: 100%;
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
     border-radius: 0 20px 20px 0;
@@ -357,9 +382,13 @@ export default {
     font-size: 20px;
     line-height: 33px;
     @media screen and (max-width: $m-breakpoint) {
+      display: flex;
+      justify-content: space-between;
       width: 100%;
-      border-radius: 0px 0px 20px 20px;
-      font-size: 12px;
+      border-bottom: none;
+      border-radius: 0;
+      font-size: 18px;
+      order: -1;
     }
   }
 }

@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="Black"></div> -->
   <div class="vl-parent" id="loading-background">
     <loading
       v-model:active="isLoading"
@@ -54,9 +53,6 @@
           誠摯的邀請您來場奇幻的時光之旅<br />
           <span>探索歷史的全新可能... </span>
         </p>
-        <!-- <p class="typewriter">
-          {{ typewriter }}
-        </p> -->
       </div>
       <div class="slogan">
         <strong>現在，我們實現了時光旅行</strong>
@@ -122,9 +118,9 @@ import { reactive, ref } from "vue";
 
 export default {
   name: "HomeView",
-  datas() {
+  data() {
     return {
-      isLoading: true,
+      isLoading: false,
       fullPage: true,
       result: {}, //存資料
       nowTime: [{ data: "" }],
@@ -180,7 +176,7 @@ export default {
 
   created() {
     if (!sessionStorage["first"]) {
-      this.isLoading = true;
+      // this.isLoading = true;
       // setTimeout(() => {
       //   this.isLoading = false;
       // }, 2000);
@@ -214,7 +210,7 @@ export default {
         { opacity: 1 },
         { duration: 2, opacity: 0, delay: 4 }
       );
-      gsap.to(".loadingContainer", { x: 100000, duration: 0.1 }, ">");
+      // gsap.to(".loadingContainer", { x: 100000, duration: 0.1 }, ">");
 
       setTimeout(() => {
         this.isLoading = false;
@@ -267,18 +263,6 @@ $b2-primary: (2px solid map-get($color, "primary"));
 $b20-primary: (20px solid map-get($color, "primary"));
 
 // loading
-.Black {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: #000;
-  mix-blend-mode: darken;
-  position: fixed;
-  // z-index: 1000;
-}
 
 #fetch {
   color: map-get($color, "primary");
@@ -553,6 +537,7 @@ h2 {
     ),
     url(@/assets/image/home/bg2_1440.jpg);
   background-position: center;
+  background-size: cover;
 }
 .historcal-news {
   background: linear-gradient(
