@@ -2,9 +2,7 @@
    <base-history-card class="hirtory-card">
       <h3>{{ title }}</h3>
       <div class="history-content">
-         <img
-            :src="require(`../../../public/history/banner/banner_${id}.jpg`)"
-         />
+         <img :src="`/image/history/banner/${image}`" />
          <div class="history-text">
             <div>
                <span class="p_md">#{{ tagDanderLevel }}</span>
@@ -38,6 +36,7 @@ export default {
       "tagRegion",
       "happenYear",
       "description",
+      "image",
    ],
    computed: {
       historyDetailsLink() {

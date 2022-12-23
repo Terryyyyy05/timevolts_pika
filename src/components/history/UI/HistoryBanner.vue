@@ -1,16 +1,21 @@
 <template>
    <section class="banner">
-      <div class="banner-containter">
+      <div
+         class="banner-containter"
+         :style="{
+            backgroundImage: `url(/image/history/big_banner/${banner})`,
+         }"
+      >
          <div id="scene">
-            <div class="layer" data-depth="0.05">
+            <div class="layer" data-depth="0.1" v-if="hasParallax">
                <img
-                  :src="require('@/assets/image/history/egypt_03.png')"
+                  :src="require(`@/assets/image/history/parallax_${id}01.png`)"
                   alt=""
                />
             </div>
-            <div class="layer" data-depth="0.1">
+            <div class="layer" data-depth="0.2" v-if="hasParallax">
                <img
-                  :src="require('@/assets/image/history/egypt_02.png')"
+                  :src="require(`@/assets/image/history/parallax_${id}02.png`)"
                   alt=""
                />
             </div>
@@ -23,8 +28,14 @@
 import Parallax from "parallax-js";
 
 export default {
+   props: ["banner", "id"],
    mounted() {
       this.intscence();
+   },
+   computed: {
+      hasParallax() {
+         return this.id >= 1 && this.id <= 4 ? true : false;
+      },
    },
    methods: {
       intscence() {
@@ -55,7 +66,7 @@ export default {
    position: absolute;
    width: 100%;
    height: 100vh;
-   background-image: url("@/assets/image/history/egypt_04.png");
+   // background-image: url(`../../../../public/image/history/banner/${banner}`);
    background-size: cover;
    overflow: hidden;
 }

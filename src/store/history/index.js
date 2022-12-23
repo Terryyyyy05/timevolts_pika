@@ -178,6 +178,7 @@ export default {
          );
 
          const responseData = await response.json();
+         console.log(responseData);
 
          const histories = [];
 
@@ -190,6 +191,7 @@ export default {
                tagRegion: responseData[key].story_spot,
                happenYear: responseData[key].story_age,
                description: responseData[key].story_intro,
+               image: responseData[key].story_cover,
             };
             histories.push(history);
          }
