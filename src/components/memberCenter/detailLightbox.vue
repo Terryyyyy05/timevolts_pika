@@ -3,7 +3,9 @@
         <h3 class="title">訂單明細</h3>
         <div class="imgBlock"></div>
         <div class="infoBlock">
-            <h3 class="infoBlockTitle">訂單編號:{{ itineray_order_id }}</h3>
+            <div>
+                <h3 class="infoBlockTitle">訂單編號:{{ itineray_order_id }}</h3>
+            </div>
             <div class="infoOutterWrap">
                 <div class="infoWrap">
                     <div>
@@ -33,10 +35,12 @@
                         <input class="input" type="text" />
                     </div>
                     <div>
-                        <label class="label">會員價格:</label>
+                        <label class="label">會員優惠:</label>
                         <input class="input" type="text" />
                     </div>
-                    <span></span>
+                    <div>
+                        <span class="hrSpan"></span>
+                    </div>
                     <div>
                         <label class="label">實付金額:</label>
                         <input class="input" type="text" />
@@ -76,35 +80,47 @@ export default {
 .infoOutterWrap {
     display: flex;
 }
-.infoWrap {
+.infoWrap,
+.priceWrap {
     display: flex;
     flex-direction: column;
     width: 50%;
 }
-.infoWrap > div {
+.infoWrap > div,
+.priceWrap > div {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 10px;
     height: 50px;
 }
 .label {
-    align-self: center;
-    // line-height: 2;
-    
+    align-items: center;
+    height: 30px;
 }
 .input {
     width: 70%;
     height: 20px;
+    align-items: center;
+}
+.hrSpan {
+    border-bottom: 3px solid map-get($color, primary);
+    width: 100%;
+    height: 5px;
+    color: #fff;
     align-self: center;
 }
-.infoBlock,
-.priceWrap {
+.infoBlock {
     display: flex;
     flex-direction: column;
+    border-top: 3px solid map-get($color, primary);
 }
 .infoBlockTitle {
     color: #fff;
-    font-size: 20px;
+    font-size: 28px;
+    padding: 5px;
+    border: 3px solid map-get($color, primary);
+    display: inline-block;
 }
 .label {
     display: flex;
