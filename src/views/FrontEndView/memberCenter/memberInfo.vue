@@ -1,18 +1,32 @@
 <template>
     <h2 class="title">會員資料</h2>
     <main>
-        <form class="memberinfo" action="" smethod="post" enctype="multipart/form-data">
+        <form class="memberinfo" action="" method="post" enctype="multipart/form-data">
             <div v-for="item in formInput" :key="item.title">
                 <label for="item.title">{{item.title}}</label>
-                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id" v-model="item.test">
+                <input 
+                required 
+                :disabled="inputDisabled" 
+                :type="item.type" 
+                :name="item.name" 
+                :id="item.id" 
+                v-model="item.value"
+                >
             </div>
+            <!-- 更新密碼 -->
             <div v-for="item in passwordInput" :key="item.title" :name="item.name" id="item.id" v-show="!inputDisabled">
                 <label for="item.tite">{{ item.title }}</label>
-                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id" >
+                <input 
+                required 
+                :disabled="inputDisabled" 
+                :type="item.type" 
+                :name="item.name" 
+                :id="item.id" 
+                v-model="item.value">
             </div>
         </form>
         <div class="photo-area">
-            <form action="" @submit.prevent="handleSubmit">
+            <form action="" method="post" enctype="multipart/form-data">
                 <label for="uploadPic">
                     <div id="myimg"></div>
                 </label>
@@ -38,44 +52,40 @@ export default {
                     type: "text",
                     name:"mem_name",
                     id:"username",
-                }
-                ,
+                },
                 {
                     title:"生日",
                     type: "date",
                     name:"mem_bday",
                     id:"birthday",
-                }
-                ,
+                },
                 {
                     title:"電話",
                     type: "tel",
                     name:"mem_phone",
                     id:"phone",
-                }
-                ,
+                },
                 {
                     title:"地址",
                     type: "address",
                     name:"mem_address",
                     id:"address",
-                }
-                ,
+                },
                 {
                     title:"E-mail",
                     type: "email",
                     name:"mem_email",
                     id:"email",
-                },
+                }
+            ],
+            passwordInput:[
                 {
-                    title:"密碼",
+                    title:"舊密碼",
                     type: "password",
                     name:"mem_psw",
                     id:"password",
 
-                }
-            ],
-            passwordInput:[
+                },
                 {
                     title:"新密碼",
                     type: "password",
@@ -97,48 +107,53 @@ export default {
         this.getData();
     },
     methods:{
+        getData(){
+            fetch('http://localhost/timevolts_pika/public/phpfile/getMemberInfo.php')
+            .then((res) => res.json())
+            .then((json)=>{
+                this.formInput[0].value = json[1].mem_name
+                this.formInput[1].value = json[1].mem_bday
+                this.formInput[2].value = json[1].mem_phone
+                this.formInput[3].value = json[1].mem_address
+                this.formInput[4].value = json[1].mem_email
+                // this.passwordInput[0].value = json[1].mem_psw
+            })
+        },
         saveData(){
             const payload={
-                mem_name:this.formInput[0].test,
-                mem_bday:this.formInput[1].test,
-                mem_phone:this.formInput[2].test,
-                mem_address:this.formInput[3].test,
-                mem_email:this.formInput[4].test,
-                mem_psw:this.formInput[5].test
+                mem_name:this.formInput[0].value,
+                mem_bday:this.formInput[1].value,
+                mem_phone:this.formInput[2].value,
+                mem_address:this.formInput[3].value,
+                mem_email:this.formInput[4].value,
+                mem_psw:this.passwordInput[2].value
             }
-            console.log("=============",payload);
             fetch('http://localhost/timevolts_pika/public/phpfile/updateMemberInfo.php', {
                 method:'POST', 
                 body: new URLSearchParams(payload),
             })
         },
+        // 舊密碼要跟資料庫的原始密碼一樣，新密碼跟再次更新密碼要做驗證
         changeInfo(){
-            this.inputDisabled = !this.inputDisabled;
-            if(this.inputDisabled == true){
-               this.saveData(); 
-            }
+           this.inputDisabled = !this.inputDisabled;
+                
+            //如果click之後 資料庫的欄位也會同時清空
             
-            //密碼驗證
-            // if(this.password==this.oldpassword){
-            //     if(this.newpassword2==this.newpassword3){
-            //         this.password=this.newpassword2
+            if(this.inputDisabled == true){
+                // 這裡寫密碼判斷
+                // if(this.formInput[5].value===this.passwordInput[0].value){
+            //      this.inputDisabled = !this.inputDisabled;
+            //     if(this.passwordInput[0].value===this.passwordInput[1].value){
+            //         this.formInput[5].value=this.passwordInput[0].value
+            //         this.inputDisabled = !this.inputDisabled;
             //     }
             // }
+               this.saveData(); 
+            } 
+
+            
         },
-        getData(){
-            fetch('http://localhost/timevolts_pika/public/phpfile/getMemberInfo.php')
-            .then((res) => res.json())
-            .then((json)=>{
-                this.formInput[0].test = json[1].mem_name
-                this.formInput[1].test = json[1].mem_bday
-                this.formInput[2].test = json[1].mem_phone
-                this.formInput[3].test = json[1].mem_address
-                this.formInput[4].test = json[1].mem_email
-                this.formInput[5].test = json[1].mem_psw
-                console.log(this.formInput[0]);
-                
-            })
-        },
+        
         // saveData(){
         //     fetch('http://localhost/timevolts_pika/public/phpfile/updateMemberInfo.php', {
         //         method:'POST', 
@@ -146,12 +161,12 @@ export default {
         //     })
         //     .then((res) => res.json())
         //     .then((result) => {
-        //         this.formInput[0].test = json[0].mem_name
-        //         this.formInput[1].test = json[0].mem_bday
-        //         this.formInput[2].test = json[0].mem_phone
-        //         this.formInput[3].test = json[0].mem_address
-        //         this.formInput[4].test = json[0].mem_email
-        //         this.formInput[5].test = json[0].mem_psw
+        //         this.formInput[0].value = json[0].mem_name
+        //         this.formInput[1].value = json[0].mem_bday
+        //         this.formInput[2].value = json[0].mem_phone
+        //         this.formInput[3].value = json[0].mem_address
+        //         this.formInput[4].value = json[0].mem_email
+        //         this.formInput[5].value = json[0].mem_psw
         //         console.log(this.formInput[0]);
         //     })
         // }
