@@ -63,30 +63,31 @@ export default {
          //       }),
          //    }
          // );
+         try {
+            const response = await fetch(
+               "http://localhost/timevolts_pika/public/phpfile/signup.php",
+               {
+                  method: "POST",
+                  body: JSON.stringify({
+                     action: "signup",
+                     name: payload.name,
+                     email: payload.email,
+                     password: payload.password,
+                  }),
+               }
+            );
 
-         fetch("http://localhost/timevolts_pika/public/phpfile/signup.php", {
-            method: "POST",
-            body: JSON.stringify({
-               email: payload.email,
-               password: payload.password,
-            }),
-            // headers: {
-            //    "Content-Type": "application/json",
-            // },
-         }).then((response) => {
-            return response.json();
-         });
+            const responseData = await response.json();
+            // console.log(responseData);
 
-         // const responseData = await response.json();
-         // console.log(responseData);
-
-         // if (!response.ok) {
-         //    const error = new Error(
-         //       responseData.message || "發生錯誤，請稍後再試"
-         //    );
-         //    console.log(error);
-         //    throw error;
-         // }
+            if (!response.ok) {
+               const error = new Error(error.message || "發生錯誤");
+               console.log(error);
+               throw error;
+            }
+         } catch (error) {
+            console.log(error);
+         }
 
          // context.commit("setUser", {
          //    token: responseData.idToken,
@@ -96,10 +97,10 @@ export default {
       },
    },
    mutations: {
-      setUser(state, payload) {
-         state.token = payload.token;
-         state.userId = payload.userId;
-         state.tokenExpiration = payload.tokenExpiration;
-      },
+      // setUser(state, payload) {
+      //    state.token = payload.token;
+      //    state.userId = payload.userId;
+      //    state.tokenExpiration = payload.tokenExpiration;
+      // },
    },
 };
