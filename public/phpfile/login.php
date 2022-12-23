@@ -8,7 +8,7 @@ $datas = json_decode($json, true); //轉為關聯性陣列
 try {
    require_once("./php_connect_books/connectBooks.php");
 
-   $sql = "SELECT * from member WHERE mem_account = :email and mem_psw = :password"; //''
+   $sql = "SELECT * from member WHERE mem_email = :email and mem_psw = :password"; //''
 
    $member = $pdo->prepare($sql); //先編譯好
    $member->bindValue(":email", $datas['email']); //代入資料
@@ -21,9 +21,9 @@ try {
       $memRow = $member->fetch(PDO::FETCH_ASSOC);
       //登入成功,將登入者的資料寫入session
       session_start();
-      $_SESSION["mem_account"] = $memRow["mem_account"];
+      $_SESSION["mem_email"] = $memRow["mem_email"];
       $_SESSION["mem_psw"] = $memRow["mem_psw"];
-      echo $_SESSION['mem_account'];
+      echo $_SESSION['mem_email'];
    }
 } catch (PDOException $e) {
    $errMsg .= "錯誤 : " . $e->getMessage() . "<br>";

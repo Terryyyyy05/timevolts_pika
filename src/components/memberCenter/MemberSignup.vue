@@ -1,5 +1,12 @@
 <template>
    <div>
+      <base-dialog
+         :show="errorDialog"
+         title="發生錯誤"
+         @close="closeErrorDialog"
+      >
+         <p>請嘗試其他的帳號或密碼</p>
+      </base-dialog>
       <base-dialog :show="!!error" title="發生錯誤" @close="handleError">
          <p>{{ error }}</p>
       </base-dialog>
@@ -15,26 +22,43 @@
                </div>
                <div class="inputs">
                   <input
+                     type="text"
+                     placeholder="姓名"
+                     v-model.trim="name.val"
+                  />
+                  <input
                      for="email"
                      type="email"
                      placeholder="信箱"
                      v-model.trim="email.val"
+                     @blur="checkEmail"
                   />
+                  <p class="green-alert" v-if="checkEmailMsg.msg">
+                     {{ checkEmailMsg.msg }}
+                  </p>
+                  <p class="red-alert" v-if="checkEmailMsg.errMsg">
+                     {{ checkEmailMsg.errMsg }}
+                  </p>
                   <input
-                     type="text"
+                     type="password"
                      placeholder="密碼"
                      v-model.trim="password.val"
                   />
                   <input
-                     type="text"
+                     type="password"
                      placeholder="確認密碼"
                      v-model.trim="comfirmPsw.val"
                   />
                </div>
-               <p v-if="!signupIsValid" class="alert">請輸入完整資訊</p>
-               <p v-if="!emailIsVerified" class="alert">請輸入正確信箱格式</p>
+               <p v-if="!signupIsValid" class="red-alert">請輸入完整資訊</p>
+               <p v-if="!emailIsVerified" class="red-alert">
+                  請輸入正確信箱格式
+               </p>
                <button class="btn-secondary" @click="signup">
                   <span>確認註冊</span>
+               </button>
+               <button class="btn-primary" @click="$emit('backToLogin')">
+                  <span>返回登入</span>
                </button>
             </div>
          </div>
@@ -44,9 +68,13 @@
 
 <script>
 export default {
-   emits: ["confirm-signup"],
+   emits: ["backToLogin"],
    data() {
       return {
+         name: {
+            val: "",
+            isValid: true,
+         },
          email: {
             val: "",
             isValid: true,
@@ -63,12 +91,21 @@ export default {
          emailIsVerified: true,
          isLoading: false,
          error: null,
+         checkEmailMsg: {
+            msg: "",
+            errMsg: "",
+         },
+         errorDialog: false,
       };
    },
    methods: {
       validateSignup() {
          this.signupIsValid = true;
          this.emailIsVerified = true;
+         if (this.name.val === "") {
+            this.name.isValid = false;
+            this.signupIsValid = false;
+         }
          if (this.email.val === "") {
             this.email.isValid = false;
             this.signupIsValid = false;
@@ -87,20 +124,27 @@ export default {
       },
       async signup() {
          this.validateSignup();
+         this.checkEmail();
          if (!this.signupIsValid || !this.emailIsVerified) {
+            return;
+         }
+         if (this.checkEmailMsg.errMsg) {
+            this.clearCheckEmail();
+            this.showErrorDialog();
             return;
          }
          this.isLoading = true;
 
          try {
             await this.$store.dispatch("signup", {
+               name: this.name.val,
                email: this.email.val,
                password: this.password.val,
             });
 
-            this.$emit("confirm-signup");
+            this.$emit("back-to-login");
          } catch (err) {
-            this.error = err.message || "發生錯誤";
+            this.error = err;
          }
 
          this.isLoading = false;
@@ -108,12 +152,55 @@ export default {
       handleError() {
          this.error = null;
       },
+      showErrorDialog() {
+         this.errorDialog = true;
+      },
+      closeErrorDialog() {
+         this.errorDialog = false;
+      },
+      async checkEmail() {
+         try {
+            const response = await fetch(
+               "http://localhost/timevolts_pika/public/phpfile/signup.php",
+               {
+                  method: "POST",
+                  body: JSON.stringify({
+                     action: "checkEmail",
+                     email: this.email.val,
+                  }),
+               }
+            );
+
+            const responseData = await response.json();
+            console.log(responseData);
+
+            if (responseData.msg) {
+               this.checkEmailMsg.msg = responseData.msg;
+               // this.checkEmailMsg.errMsg = "";
+            } else if (responseData.errMsg) {
+               this.checkEmailMsg.errMsg = responseData.errMsg;
+               // this.checkEmailMsg.msg = "";
+            }
+
+            if (!response.ok) {
+               const error = new Error(error.message || "發生錯誤，請稍後再試");
+               console.log(error);
+            }
+         } catch (error) {
+            console.log(error);
+         }
+      },
+      clearCheckEmail() {
+         this.checkEmailMsg.msg = "";
+         this.checkEmailMsg.errMsg = "";
+      },
    },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@import "@/assets/css/utils/mixin";
 
 * {
    padding: 0;
@@ -163,24 +250,14 @@ section {
       border: 2px solid #e6dfc7;
       padding: 12px 16px;
       background-color: transparent;
-      width: 80%;
+      width: 360px;
       color: #fff;
       font-size: 16px;
       outline: none;
+      border-radius: 5px;
+      margin: 12px 0;
       &::placeholder {
          opacity: 80%;
-      }
-      &:nth-child(1) {
-         border-top-left-radius: 5px;
-         border-top-right-radius: 5px;
-      }
-      &:nth-child(2) {
-         border-top: 0;
-      }
-      &:nth-child(3) {
-         border-top: 0;
-         border-bottom-left-radius: 5px;
-         border-bottom-right-radius: 5px;
       }
    }
 }
@@ -193,7 +270,11 @@ section {
    gap: 24px;
 }
 
-.alert {
+.green-alert {
+   color: green;
+}
+
+.red-alert {
    color: red;
 }
 
@@ -201,5 +282,23 @@ button {
    border-radius: 10px;
    width: 40%;
    height: 48px;
+   margin-top: 24px;
+   margin-bottom: -24px;
+}
+
+@include m() {
+   .box-container {
+      width: 360px;
+   }
+
+   .upper {
+      width: 360px;
+   }
+
+   .inputs {
+      input {
+         width: 240px;
+      }
+   }
 }
 </style>
