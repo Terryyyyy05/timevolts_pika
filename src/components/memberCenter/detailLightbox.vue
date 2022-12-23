@@ -48,12 +48,30 @@
                 </div>
             </div>
         </div>
-        <div class="participantBlock"></div>
+        <div class="participantBlock">
+            <div>
+                <h3 class="infoBlockTitle">參加者資訊</h3>
+            </div>
+            <div class="wrap">
+                <ul class="ulWrap">
+                    <li>姓名</li>
+                    <li>e-mail</li>
+                    <li>生日</li>
+                    <li>手機</li>
+                    <li>地址</li>
+                </ul>
+                <participants-info />
+            </div>
+        </div>
     </div>
 </template>
 <script>
+import participantsInfo from "@/components/memberCenter/participantsInfo.vue";
 export default {
     name: "detailLightbox",
+    components: {
+        participantsInfo,
+    },
 };
 </script>
 <style lang="scss" scoped>
@@ -85,7 +103,9 @@ export default {
     display: flex;
     flex-direction: column;
     width: 50%;
+    margin: 30px 5px 30px 5px;
 }
+
 .infoWrap > div,
 .priceWrap > div {
     display: flex;
@@ -93,6 +113,7 @@ export default {
     align-items: center;
     padding: 0 10px;
     height: 50px;
+    margin: 5px 0 5px 0;
 }
 .label {
     align-items: center;
@@ -110,7 +131,8 @@ export default {
     color: #fff;
     align-self: center;
 }
-.infoBlock {
+.infoBlock,
+.participantBlock {
     display: flex;
     flex-direction: column;
     border-top: 3px solid map-get($color, primary);
@@ -118,9 +140,10 @@ export default {
 .infoBlockTitle {
     color: #fff;
     font-size: 28px;
-    padding: 5px;
+    padding: 10px;
     border: 3px solid map-get($color, primary);
     display: inline-block;
+    vertical-align: top;
 }
 .label {
     display: flex;
@@ -130,5 +153,23 @@ export default {
 }
 .label > input {
     margin-left: 0;
+}
+.wrap {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.ulWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 2px solid map-get($color, primary);
+}
+.ulWrap > li {
+    color: #fff;
+    font-size: 20px;
+    width: 20%;
 }
 </style>
