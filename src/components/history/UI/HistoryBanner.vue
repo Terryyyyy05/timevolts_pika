@@ -3,7 +3,8 @@
       <div
          class="banner-containter"
          :style="{
-            backgroundImage: `url(/image/history/big_banner/${banner})`,
+            backgroundImage: `url(
+               /image/history/big_banner/${banner})`,
          }"
       >
          <div id="scene">
