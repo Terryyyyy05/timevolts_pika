@@ -7,7 +7,7 @@
     />
     <h3>選擇折價卷</h3>
     <ul class="cart-content">
-      <li v-for="item in MyVouchers" :key="item.id">
+      <li v-for="item in CouponData" :key="item.id">
         <div class="cart-item">
           <div class="coupon-card">
             <div class="coupon-card-left">
@@ -45,6 +45,7 @@
 export default {
   data() {
     return {
+      CouponData: [],
       MyVouchers: [
         {
           coupon_id: 1, //編號
@@ -87,6 +88,15 @@ export default {
   },
   computed: {},
   methods: {
+    getVoucher() {
+      fetch("http://localhost/timevolts_pika/public/phpfile/getGetCoupon.php")
+        .then((res) => res.json())
+        .then((jsonData) => {
+          this.CouponData = jsonData;
+          console.log(this.CouponData);
+        });
+    },
+
     showbox() {
       // 開關按鈕
       this.showModal = !this.showModal;

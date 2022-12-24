@@ -62,6 +62,7 @@ export default {
     return {
       paginations: 5,
       currentPage: 1,
+      itineraryData: [],
       itinerarys: [
         {
           id: 1,
@@ -133,6 +134,17 @@ export default {
 
   computed: {},
   methods: {
+    getHomeNewData() {
+      fetch(
+        "http://localhost/timevolts_pika/public/phpfile/getHomeItinerary.php"
+      )
+        .then((res) => res.json())
+        .then((jsonData) => {
+          this.itineraryData = jsonData;
+          console.log(this.itineraryData);
+        });
+    },
+
     previous() {
       // 頁面往前，循環補上
       //   this.activeIndex--;

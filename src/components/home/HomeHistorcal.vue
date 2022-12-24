@@ -126,7 +126,9 @@ export default {
         .then((res) => res.json())
         .then((jsonData) => {
           this.HistoriesData = jsonData;
-          console.log(this.HistoriesData);
+          // console.log(this.HistoriesData);
+          // console.log(this.itinerarys);
+          // console.log(this.look);
         });
     },
     nextPage() {
@@ -169,10 +171,10 @@ $b2-primary: (2px solid map-get($color, "primary"));
 // 輪播圖
 
 .slide-container {
-  //   width: calc(100vw - 17.6px);
+  // width: calc(100vw - 17.6px);
   //   top: -30px;
   left: 30px;
-  padding: 30px;
+  padding: 20px;
   display: flex;
   justify-items: center;
   overflow: hidden;
@@ -184,8 +186,8 @@ $b2-primary: (2px solid map-get($color, "primary"));
   }
 }
 .next {
-  top: calc(15vw + 20px + 23px);
-  left: calc(30vw + 27px);
+  top: calc(15vw + 23px);
+  left: calc(27px);
   width: 45px;
   height: 45px;
   padding: 3px;
@@ -201,14 +203,13 @@ $b2-primary: (2px solid map-get($color, "primary"));
   width: 50vw;
   align-items: center;
   position: relative;
-  margin: 20px auto;
+  // margin: 20px auto;
   //   display: flex;
   .img-index {
     z-index: 5;
   }
   .slide {
     //left控制滑走的移動速度
-    top: -5vw;
     left: 30vw;
     transition: 0.7s;
     position: absolute;
@@ -216,8 +217,8 @@ $b2-primary: (2px solid map-get($color, "primary"));
     box-shadow: 5px solid map-get($color, "body");
     opacity: 0;
     img {
-      width: 40vw;
-      height: 40vw;
+      width: 30vw;
+      height: 30vw;
       box-sizing: border-box;
       border: 2px solid map-get($color, "primary");
       transition: 0.7s;

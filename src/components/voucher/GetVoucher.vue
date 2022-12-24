@@ -1,7 +1,7 @@
 <template>
   <div class="GetVoucherButton">
     <button class="btn-store-detail" @click="showbox()">
-      <p>立即領取<br />折扣卷 {{ CouponData.length }}張</p>
+      <p>立即領取<br />折扣卷 {{ ReceiveQuantity() }}張</p>
     </button>
   </div>
 
@@ -19,7 +19,7 @@
             <div class="coupon-card-left">
               <div class="title">
                 <p class="title-one">
-                  &#36;{{ item.coupon_discount_number }}元<br />現金券
+                  &#36;{{ item.coupon_discount_number }}元 <span>現金券</span>
                 </p>
                 <p class="title-two">
                   &#40;滿&#36;{{ item.coupon_pricing_condition }}元 可使用&#41;
@@ -38,7 +38,7 @@
                 class="getbtn"
                 value="快來領取折價卷"
                 v-on:click="receive(index)"
-                v-if="this.CouponData[index].getNew == null"
+                v-if="received(index)"
               >
                 {{ "立即領取" }}
               </button>
@@ -46,7 +46,7 @@
                 class="getbtn-1"
                 disabled="disabled"
                 value="已領取，快去消費吧"
-                v-if="this.CouponData[index].getNew != null"
+                v-else
               >
                 {{ "已領取" }}
               </button>
@@ -66,6 +66,18 @@ export default {
   data() {
     return {
       CouponData: [{}],
+      get_coupon_id: {
+        val: 0,
+        isValid: true,
+      },
+      get_mem_id: {
+        val: 0,
+        isValid: true,
+      },
+      get_my_coupon_status: {
+        val: 1,
+        isValid: true,
+      },
       // init: { 1: "立即領取", 0: "已領取" },
       unreceivedCoupon: [], //未領取的優惠卷
       showModal: false, //燈箱開關
@@ -79,43 +91,51 @@ export default {
   },
   methods: {
     getVoucher() {
-      fetch("http://localhost/timevolts_pika/public/phpfile/getCoupon.php")
+      fetch("http://localhost/timevolts_pika/public/phpfile/getGetCoupon.php")
         .then((res) => res.json())
         .then((jsonData) => {
           this.CouponData = jsonData;
           console.log(this.CouponData);
         });
     },
+    ReceiveQuantity() {
+      return this.CouponData.reduce((acc, cur) => {
+        // acc = this.CouponData.login;
+        if (cur.mem_id === null) {
+          return acc + 1;
+        } else {
+          return acc;
+        }
+      }, 0);
+    },
+
+    // ReceiveQuantity() {
+    //   this.CouponData;
+    //   console.log(this.CouponData);
+    //   CouponData.length;
+    // },
     showbox() {
       // 開關按鈕
       this.showModal = !this.showModal;
-
-      console.log(this.CouponData);
     },
-    // afterReceive() {
-    //   console.log("AAA");
-    //   console.log(this);
-    //   this.target.innerText = "已領取";
-    // },
-    receive(e, index) {
-      // 判別是否登入
-      console.log(e);
-      if (this.login == true) {
-        // 判別是否可領取
-        if (this.CouponData[e].coupon_status == 1) {
-          // if ((e.target = )) {
-          // 領取並傳回後端
-
-          console.log("BBB");
-          this.CouponData[e].getNew = 1;
-
-          console.log(CouponData[e]);
-          alert(`恭喜您獲得優惠卷~`);
-          // 計算可以領取數量
-        } else {
-          // 前往登入頁面
-        }
+    received(a) {
+      // 判斷是否領取過
+      let isNull = this.CouponData[a].mem_id + "";
+      if (isNull === "null") {
+        return (a = true);
       }
+    },
+    receive(index) {
+      // if ((e.target = )) {
+      // 領取並傳回後端
+      // 先寫死1 之後要抓會員ID
+      this.CouponData[index].mem_id = 1;
+
+      alert(`恭喜您獲得優惠卷~`);
+      // 計算可以領取數量
+
+      // 前往登入頁面
+
       // this.GetVouchers[index].coupon_status = 0;
 
       // e.target.innerText = "已領取";
@@ -167,7 +187,7 @@ export default {
 
 // 燈箱卡片
 .GetVoucher {
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/5;
   width: 25%;
   background-color: map-get($color, dark_sub);
   border: 10px solid map-get($color, primary_sub);
