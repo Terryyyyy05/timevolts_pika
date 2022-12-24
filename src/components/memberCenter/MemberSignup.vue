@@ -33,10 +33,16 @@
                      v-model.trim="email.val"
                      @blur="checkEmail"
                   />
-                  <p class="green-alert" v-if="checkEmailMsg.msg">
+                  <p
+                     class="green-alert"
+                     v-if="checkEmailMsg.msg && !checkEmailMsg.errMsg"
+                  >
                      {{ checkEmailMsg.msg }}
                   </p>
-                  <p class="red-alert" v-if="checkEmailMsg.errMsg">
+                  <p
+                     class="red-alert"
+                     v-if="checkEmailMsg.errMsg && !checkEmailMsg.msg"
+                  >
                      {{ checkEmailMsg.errMsg }}
                   </p>
                   <input
@@ -126,13 +132,14 @@ export default {
          this.validateSignup();
          this.checkEmail();
          if (!this.signupIsValid || !this.emailIsVerified) {
+            this.clearCheckEmail();
             return;
-         }
-         if (this.checkEmailMsg.errMsg) {
+         } else if (this.checkEmailMsg.errMsg) {
             this.clearCheckEmail();
             this.showErrorDialog();
             return;
          }
+
          this.isLoading = true;
 
          try {

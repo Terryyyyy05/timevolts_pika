@@ -2,8 +2,8 @@ export default {
    state() {
       return {
          userId: null,
-         token: null,
-         tokenExpiration: null,
+         // token: null,
+         // tokenExpiration: null,
       };
    },
    getters: {
@@ -12,6 +12,16 @@ export default {
       },
    },
    actions: {
+      async getUserId(context, payload) {
+         try {
+            const response = await fetch(
+               "http://localhost/timevolts_pika/public/phpfile/login.php"
+            );
+
+            const responseData = await response.json();
+            console.log(responseData);
+         } catch {}
+      },
       async login(context, payload) {
          // const response = await fetch(
          //    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAUSZzvY_JJH6cu7Gc99iQdkAScLAh2PZY",
@@ -25,18 +35,19 @@ export default {
          //    }
          // );
 
-         fetch("http://localhost/timevolts_pika/public/phpfile/login.php", {
-            method: "POST",
-            body: JSON.stringify({
-               email: payload.email,
-               password: payload.password,
-            }),
-         }).then((response) => {
-            return response.json();
-         });
+         const response = await fetch(
+            "http://localhost/timevolts_pika/public/phpfile/login.php",
+            {
+               method: "POST",
+               body: JSON.stringify({
+                  email: payload.email,
+                  password: payload.password,
+               }),
+            }
+         );
 
-         // const responseData = await response.json();
-         // console.log(responseData);
+         const responseData = await response.json();
+         console.log(responseData);
 
          // if (!response.ok) {
          //    const error = new Error(
