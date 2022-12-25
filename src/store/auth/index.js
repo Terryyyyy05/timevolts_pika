@@ -1,7 +1,7 @@
 export default {
    state() {
       return {
-         userId: 1,
+         userId: null,
          // token: null,
          // tokenExpiration: null,
       };
