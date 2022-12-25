@@ -4,15 +4,15 @@
       <TransitionGroup id="list" class="transition-container" name="list">
         <div
           class="slide"
-          v-for="(item, index) in itinerarys"
-          :key="item.id"
+          v-for="(item, index) in itineraryData"
+          :key="item.itinerary_id"
           @click="clickslide(index)"
           :class="{
             'is-active': activeIndex == index,
             'img-index': activeIndex != index,
           }"
         >
-          <img v-bind:src="item.story_cover" />
+          <img v-bind:src="'/image/history/banner/' + item.story_cover" />
         </div>
       </TransitionGroup>
     </div>
@@ -24,7 +24,10 @@
     </div>
     <div class="itineraryText">
       <div class="summary">
-        <p>年代:{{ look.story_age }}</p>
+        <p v-if="look.story_age < 0">
+          年代:西元前{{ look.story_age.slice(1) }}年
+        </p>
+        <p v-if="look.story_age >= 0">年代:西元{{ look.story_age }}年</p>
         <p>{{ look.itinerary_memo }}</p>
       </div>
     </div>
@@ -34,8 +37,8 @@
         class="link"
         :to="
           look.story_classification == '經典行程'
-            ? `/itineraryClassicView/c${look.id}`
-            : `/itineraryPeriodView/p${look.id}`
+            ? `/itineraryClassicView/c${look.itinerary_id}`
+            : `/itineraryPeriodView/p${look.itinerary_id}`
         "
         >了解更多</router-link
       >
@@ -55,76 +58,13 @@
 
 export default {
   // components: {
-  //     Carousel,
-  //     Slide
+  //   Carousel,
+  //   Slide,
   // },
   data() {
     return {
-      paginations: 5,
       currentPage: 1,
       itineraryData: [],
-      itinerarys: [
-        {
-          id: 1,
-          story_cover: require("@/assets/image/itin/titanic.jpg"),
-          itinerary_name: "鐵達尼號沈船事件",
-          story_age: "西元1912年",
-          itinerary_memo:
-            "鐵達尼號沉沒事故是個著名船難，事發時是鐵達尼號從英國南安普敦港至美國紐約港首航的第5天，而該船當時是世界最大的郵輪。當瞭望員看到冰山時，該船的行駛速度正接近最高速。因此無法快速轉向...",
-          story_risk: "中",
-          story_classification: "期間限定",
-          story_spot: "歐洲",
-          story_specialty: "歷史事件",
-        },
-        {
-          id: 2,
-          story_cover: require("@/assets/image/itin/culturaMaya00.jpg"),
-          itinerary_name: "馬雅文明",
-          story_age: "西元前2000年",
-          itinerary_memo:
-            "關於「馬雅」文明的傳說，很多人都聽說過。提到馬雅人，大部分人會把他們與美洲叢林聯繫到一起。浮現在腦海中的也是一群印地安人，他們身著鮮豔羽毛服飾，趁著月光進行著神祕的儀式，他們有著神祕的巨石遺跡及特別的美食和宗教祭祀活動。就讓我們一同去一探神祕的馬雅文明吧!",
-          story_risk: "低",
-          story_classification: "期間限定",
-          story_spot: "南美洲",
-          story_specialty: "歷史事件",
-        },
-        {
-          id: 3,
-          story_cover: require("@/assets/image/itin/atlantis.png"),
-          itinerary_name: "亞特蘭提斯",
-          story_age: "西元前9650年",
-          itinerary_memo: `這個地方是個傳說中的地方，存不存在沒人知道，。柏拉圖說，公元前9560年的時候，在直布羅陀海峽的對面有一個非常大的島，也就是現在的非洲大陸，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯...`,
-
-          story_risk: "低",
-          story_classification: "期間限定",
-          story_spot: "歐洲",
-          story_specialty: "奇聞軼事",
-        },
-        {
-          id: 4,
-          story_cover: require("@/assets/image/itin/crusades00.jpg"),
-          itinerary_name: "十字軍東征",
-          story_age: "西元1096年",
-          itinerary_memo:
-            "耶穌被釘十字架，耶穌被逮捕後以十字架處死的事件，一般認為發生在公元1世紀的猶太行省，最可能在公元30到33年之間。雖然歷史學家對這個事件的準確細節並沒有達成共識，學者多數認為這是一個歷史事件。",
-          story_risk: "中",
-          story_classification: "期間限定",
-          story_spot: "北美洲",
-          story_specialty: "宗教事件",
-        },
-        {
-          id: 5,
-          story_cover: require("@/assets/image/itinEgypt.jpg"),
-          itinerary_name: "埃及黃金時代",
-          story_age: "西元1234年",
-          itinerary_memo:
-            "這位新國王將其父親遺留的壯觀事業進一步發揚光大，完成了埃及史上最宏大且最受美譽的著名地標：吉薩大金字塔。當初的命名是「阿赫特─胡夫」，意即「胡夫的地平線」。",
-          story_risk: "低",
-          story_classification: "經典行程",
-          story_spot: "非洲",
-          story_specialty: "歷史事件",
-        },
-      ],
       look: {},
       imgsrc: require("@/assets/image/home/icon/icon_1.svg"),
       filterExtension: false,
@@ -134,45 +74,38 @@ export default {
 
   computed: {},
   methods: {
-    getHomeNewData() {
+    getItineraryData() {
       fetch(
         "http://localhost/timevolts_pika/public/phpfile/getHomeItinerary.php"
       )
         .then((res) => res.json())
         .then((jsonData) => {
           this.itineraryData = jsonData;
-          console.log(this.itineraryData);
+          this.look = this.itineraryData[this.activeIndex];
+          console.log("itin", this.itineraryData);
         });
     },
 
     previous() {
       // 頁面往前，循環補上
-      //   this.activeIndex--;
 
-      const temp = this.itinerarys[this.itinerarys.length - 1];
-      this.itinerarys.pop();
-      this.itinerarys.unshift(temp);
+      const temp = this.itineraryData[this.itineraryData.length - 1];
+      this.itineraryData.pop();
+      this.itineraryData.unshift(temp);
 
-      const looktemp = this.itinerarys[this.activeIndex];
+      const looktemp = this.itineraryData[this.activeIndex];
       this.look = looktemp;
-      //   this.activeIndex = index;
-      // const lastSlide = pictures.value.pop();
-      // pictures.value = [lastSlide].concat(pictures.value);
     },
 
     nextPage() {
       // 頁面往後，循環補上
-      //   this.activeIndex++;
 
-      const temp = this.itinerarys[0];
-      this.itinerarys.shift();
-      this.itinerarys.push(temp);
+      const temp = this.itineraryData[0];
+      this.itineraryData.shift();
+      this.itineraryData.push(temp);
 
-      const looktemp = this.itinerarys[this.activeIndex];
+      const looktemp = this.itineraryData[this.activeIndex];
       this.look = looktemp;
-
-      // const firstPicture = pictures.value.shift();
-      // pictures.value = pictures.value.concat(firstPicture);
     },
     selectPage(val) {
       this.currentPage = val;
@@ -183,12 +116,10 @@ export default {
       } else if (index == 0) {
         this.previous();
       }
-      //   this.look = item;
-      //   this.activeIndex = index;
     },
   },
   created() {
-    this.look = this.itinerarys[this.activeIndex];
+    this.getItineraryData();
   },
 };
 </script>
@@ -333,9 +264,10 @@ h3 {
     }
     .summary {
       padding: 15px 12px;
+      margin-bottom: 10px;
       box-sizing: border-box;
       align-self: start;
-      line-height: 1.4;
+      line-height: 1.7;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       :nth-child(1) {

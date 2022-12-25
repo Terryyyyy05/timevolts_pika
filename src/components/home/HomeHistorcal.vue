@@ -63,7 +63,6 @@ export default {
   // },
   data() {
     return {
-      paginations: 5,
       currentPage: 1,
       HistoriesData: [],
       look: {},
@@ -161,7 +160,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
   }
   .slide {
     //left控制滑走的移動速度
-    left: 30vw;
+    left: -30vw;
     transition: 0.7s;
     position: absolute;
     z-index: 21;
@@ -182,7 +181,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
     left: 17vw;
     z-index: 16;
     opacity: 0;
-    // transition: 0s;
+    transition: 0s;
     img {
       width: 14vw;
       height: 14vw;
@@ -193,7 +192,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
     top: 6vw;
     left: 16vw;
     z-index: 17;
-    opacity: 0;
+    opacity: 1;
     img {
       width: 18vw;
       height: 18vw;
@@ -300,6 +299,12 @@ $b2-primary: (2px solid map-get($color, "primary"));
     :nth-child(1) {
       font-size: 24px;
     }
+    @media screen and (max-width: $m-breakpoint) {
+      font-size: 12px;
+      :nth-child(1) {
+        font-size: 14px;
+      }
+    }
   }
 
   .historcalTeg {
@@ -308,6 +313,9 @@ $b2-primary: (2px solid map-get($color, "primary"));
     margin-top: 20px;
     font-size: 24px;
     line-height: 33px;
+    @media screen and (max-width: $m-breakpoint) {
+      font-size: 16px;
+    }
   }
   .more {
     display: flex;
@@ -315,6 +323,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
     justify-content: space-between;
     box-sizing: border-box;
     .link {
+      margin-top: 10px;
       text-align: center;
       padding: 0.7rem;
       box-sizing: border-box;

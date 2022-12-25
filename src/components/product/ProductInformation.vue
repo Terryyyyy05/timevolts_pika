@@ -49,7 +49,7 @@ export default {
     // test
     const cardContext2 = reactive({ list: [] });
     const fetchAbc = () => {
-      fetch("http://localhost/timevolts_pika/public/phpfiles/getProducts.php")
+      fetch("http://localhost/timevolts_pika/public/phpfile/getProducts.php")
         .then((res) => res.json())
         .then((result) => {
           cardContext2.list = result;
