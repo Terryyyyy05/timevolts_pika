@@ -1,5 +1,5 @@
 <template>
-    <modal
+    <modal-lightbox
         ><div class="wrap">
             <h3 class="title">訂單明細</h3>
             <div class="imgBlock"></div>
@@ -66,16 +66,16 @@
                     <participants-info />
                 </div>
             </div></div
-    ></modal>
+    ></modal-lightbox>
 </template>
 <script>
-import modal from "@/components/modal.vue";
+import modalLightbox from "@/components/memberCenter/modalLightbox.vue";
 import participantsInfo from "@/components/memberCenter/participantsInfo.vue";
 export default {
     name: "detailLightbox",
     components: {
         participantsInfo,
-        modal,
+        modalLightbox,
     },
 };
 </script>
