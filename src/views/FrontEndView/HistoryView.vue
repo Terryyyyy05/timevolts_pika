@@ -129,6 +129,7 @@ export default {
       },
    },
    created() {
+      this.$store.dispatch("getUserId");
       this.$store.dispatch("history/getHistories");
    },
    methods: {

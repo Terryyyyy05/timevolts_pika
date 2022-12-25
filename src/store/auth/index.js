@@ -1,7 +1,7 @@
 export default {
    state() {
       return {
-         userId: null,
+         userId: 1,
          // token: null,
          // tokenExpiration: null,
       };
@@ -12,10 +12,10 @@ export default {
       },
    },
    actions: {
-      async getUserId(context, payload) {
+      async getUserId() {
          try {
             const response = await fetch(
-               "http://localhost/timevolts_pika/public/phpfile/login.php"
+               "http://localhost/timevolts_pika/public/phpfile/ifLogin.php"
             );
 
             const responseData = await response.json();
