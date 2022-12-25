@@ -64,6 +64,8 @@ export default {
    },
    data() {
       return {
+         // userId: null,
+         // hasLoggedIn: true,
          latestDate: "2023-01-01",
          departDate: "2022-12-04",
          returnDate: "2022-12-08",

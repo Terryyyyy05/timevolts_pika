@@ -37,7 +37,7 @@ a {
    text-decoration: none;
    padding: 0.75rem 1.5rem;
    font: inherit;
-   background-color: map-get($color, "primary");
+   background-color: #333;
    border: 1px solid map-get($color, "primary");
    color: white;
    cursor: pointer;

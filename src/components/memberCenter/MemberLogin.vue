@@ -59,16 +59,6 @@ export default {
          error: null,
       };
    },
-   created() {
-      this.$store.dispatch("getUserId");
-   },
-   computed: {
-      toMemberCenter() {
-         if (this.loginIsValid) {
-            return "/memberCenter";
-         }
-      },
-   },
    methods: {
       clearValidity(input) {
          this[input].isValid = true;
@@ -96,7 +86,7 @@ export default {
                email: this.email.val,
                password: this.password.val,
             });
-            this.$router.push({ path: "memberCenter" });
+            this.$router.push({ path: "/memberCenter" });
          } catch (err) {
             this.error = err.message || "發生錯誤";
          }
