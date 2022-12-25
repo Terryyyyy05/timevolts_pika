@@ -161,7 +161,7 @@ export default {
       // },
       bookItinerary() {
          this.userId = this.$store.getters["userId"];
-         console.log(this.userId);
+         // console.log(this.userId);
          if (!this.userId) {
             // 找不到會員
             this.hasLoggedIn = false;
