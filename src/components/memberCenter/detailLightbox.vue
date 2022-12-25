@@ -1,76 +1,81 @@
 <template>
-    <div class="wrap">
-        <h3 class="title">訂單明細</h3>
-        <div class="imgBlock"></div>
-        <div class="infoBlock">
-            <div>
-                <h3 class="infoBlockTitle">訂單編號:{{ itineray_order_id }}</h3>
-            </div>
-            <div class="infoOutterWrap">
-                <div class="infoWrap">
-                    <div>
-                        <label class="label">姓名:</label>
-                        <input class="input" type="text" />
+    <modal-lightbox
+        ><div class="wrap">
+            <h3 class="title">訂單明細</h3>
+            <div class="imgBlock"></div>
+            <div class="infoBlock">
+                <div>
+                    <h3 class="infoBlockTitle">
+                        訂單編號:{{ itineray_order_id }}
+                    </h3>
+                </div>
+                <div class="infoOutterWrap">
+                    <div class="infoWrap">
+                        <div>
+                            <label class="label">姓名:</label>
+                            <input class="input" type="text" />
+                        </div>
+                        <div>
+                            <label class="label">電話:</label>
+                            <input class="input" type="text" />
+                        </div>
+                        <div>
+                            <label class="label">e-mail:</label>
+                            <input class="input" type="text" />
+                        </div>
+                        <div>
+                            <label class="label">行程單價:</label>
+                            <input class="input" type="text" />
+                        </div>
+                        <div>
+                            <label class="label">參加人數:</label>
+                            <input class="input" type="text" />
+                        </div>
                     </div>
-                    <div>
-                        <label class="label">電話:</label>
-                        <input class="input" type="text" />
-                    </div>
-                    <div>
-                        <label class="label">e-mail:</label>
-                        <input class="input" type="text" />
-                    </div>
-                    <div>
-                        <label class="label">行程單價:</label>
-                        <input class="input" type="text" />
-                    </div>
-                    <div>
-                        <label class="label">參加人數:</label>
-                        <input class="input" type="text" />
+                    <div class="priceWrap">
+                        <div>
+                            <label class="label">原始費用:</label>
+                            <input class="input" type="text" />
+                        </div>
+                        <div>
+                            <label class="label">會員優惠:</label>
+                            <input class="input" type="text" />
+                        </div>
+                        <div>
+                            <span class="hrSpan"></span>
+                        </div>
+                        <div>
+                            <label class="label">實付金額:</label>
+                            <input class="input" type="text" />
+                        </div>
                     </div>
                 </div>
-                <div class="priceWrap">
-                    <div>
-                        <label class="label">原始費用:</label>
-                        <input class="input" type="text" />
-                    </div>
-                    <div>
-                        <label class="label">會員優惠:</label>
-                        <input class="input" type="text" />
-                    </div>
-                    <div>
-                        <span class="hrSpan"></span>
-                    </div>
-                    <div>
-                        <label class="label">實付金額:</label>
-                        <input class="input" type="text" />
-                    </div>
+            </div>
+            <div class="participantBlock">
+                <div>
+                    <h3 class="infoBlockTitle">參加者資訊</h3>
                 </div>
-            </div>
-        </div>
-        <div class="participantBlock">
-            <div>
-                <h3 class="infoBlockTitle">參加者資訊</h3>
-            </div>
-            <div class="wrap">
-                <ul class="ulWrap">
-                    <li>姓名</li>
-                    <li>e-mail</li>
-                    <li>生日</li>
-                    <li>手機</li>
-                    <li>地址</li>
-                </ul>
-                <participants-info />
-            </div>
-        </div>
-    </div>
+                <div class="wrap">
+                    <ul class="ulWrap">
+                        <li>姓名</li>
+                        <li>e-mail</li>
+                        <li>生日</li>
+                        <li>手機</li>
+                        <li>地址</li>
+                    </ul>
+                    <participants-info />
+                </div>
+            </div></div
+    ></modal-lightbox>
 </template>
 <script>
+import modalLightbox from "@/components/memberCenter/modalLightbox.vue";
 import participantsInfo from "@/components/memberCenter/participantsInfo.vue";
 export default {
     name: "detailLightbox",
     components: {
         participantsInfo,
+        modalLightbox,
     },
 };
 </script>

@@ -15,6 +15,7 @@
 <script>
 export default {
     name: "itineraryOrderInfo",
+    
     data() {
         return {
             informationVisibile: 10,
