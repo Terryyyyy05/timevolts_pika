@@ -4,23 +4,30 @@
       <div class="title">EGYPT</div>
       <div class="historcalText">
         <div>
-          <h3>{{ look.itinerary_name }}</h3>
+          <h3>{{ look.story_name }}</h3>
         </div>
         <div class="historcalTeg">
           <span v-if="look.story_risk != null"
             >危險度:{{ look.story_risk }}
           </span>
-          <span v-if="look.tagFeature != null"> | {{ look.tagFeature }}</span>
+          <span v-if="look.story_specialty != null">
+            | {{ look.story_specialty }}</span
+          >
           <span v-if="look.story_spot != null">
             | 地點:{{ look.story_spot }}</span
           >
         </div>
         <div class="summary">
-          <p>年代:{{ look.story_age }}</p>
-          <p>{{ look.itinerary_memo }}</p>
+          <p v-if="look.story_age < 0">
+            年代:西元前{{ look.story_age.slice(1) }}年
+          </p>
+          <p v-if="look.story_age >= 0">年代:西元{{ look.story_age }}年</p>
+          <p>{{ look.story_intro }}</p>
         </div>
         <div class="more">
-          <router-link class="link" to="/history-details">了解更多</router-link>
+          <router-link class="link" v-bind:to="'/history/' + look.story_id"
+            >了解更多</router-link
+          >
         </div>
       </div>
     </div>
@@ -29,15 +36,15 @@
         <TransitionGroup id="list" class="transition-container" name="list">
           <div
             class="slide"
-            v-for="(item, index) in itinerarys"
-            :key="item.id"
+            v-for="(item, index) in HistoriesData"
+            :key="item.story_id"
             @click="clickslide(index)"
             :class="{
               'is-active': activeIndex == index,
               'img-index': activeIndex != index,
             }"
           >
-            <img v-bind:src="item.story_cover" />
+            <img v-bind:src="'/image/history/banner/' + item.story_cover" />
           </div>
         </TransitionGroup>
       </div>
@@ -59,63 +66,10 @@ export default {
       paginations: 5,
       currentPage: 1,
       HistoriesData: [],
-      itinerarys: [
-        {
-          id: 1,
-          story_cover: require("@/assets/image/itin/titanic00.jpg"),
-          itinerary_name: "鐵達尼號沈船事件",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "北美洲",
-          tagFeature: null,
-        },
-        {
-          id: 2,
-          story_cover: require("@/assets/image/itin/prehistoric00.jpg"),
-          itinerary_name: "史前時代",
-          story_age: "未知",
-          itinerary_memo:
-            "安全的房屋可以遮風避雨，沒有便利商店買食物買水，隨時面臨猛獸的攻擊?讓我們回到最原始的石器時代，尋找身旁最天然的資源，建立屬於自己的小小家園，體驗我們祖先的生活吧！",
-          story_risk: "高",
-          story_spot: "歐洲",
-          tagFeature: "奇聞軼事",
-        },
-        {
-          id: 3,
-          story_cover: require("@/assets/image/itin/atlantis.png"),
-          itinerary_name: "亞特蘭提斯",
-          story_age: "西元前12000年",
-          itinerary_memo: `這個地方是個傳說中的地方，存不存在沒人知道。柏拉圖說，公元前9560年的時候，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯。...`,
-          story_risk: "低",
-          story_spot: null,
-          tagFeature: "奇聞軼事",
-        },
-        {
-          id: 4,
-          story_cover: require("@/assets/image/itin/titanic.jpg"),
-          itinerary_name: "鐵達尼號沈船事件",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "北美洲",
-          tagFeature: null,
-        },
-        {
-          id: 5,
-          story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "馬雅文化",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "南美洲",
-          tagFeature: null,
-        },
-      ],
       look: {},
       imgsrc: require("@/assets/image/home/icon/icon_1.svg"),
       filterExtension: false,
-      activeIndex: 1,
+      activeIndex: 0,
     };
   },
 
@@ -126,19 +80,17 @@ export default {
         .then((res) => res.json())
         .then((jsonData) => {
           this.HistoriesData = jsonData;
-          // console.log(this.HistoriesData);
-          // console.log(this.itinerarys);
-          // console.log(this.look);
+          this.look = this.HistoriesData[this.activeIndex];
         });
     },
     nextPage() {
       // 頁面往後，循環補上
 
-      const temp = this.itinerarys[0];
-      this.itinerarys.shift();
-      this.itinerarys.push(temp);
+      const temp = this.HistoriesData[0];
+      this.HistoriesData.shift();
+      this.HistoriesData.push(temp);
 
-      const looktemp = this.itinerarys[this.activeIndex];
+      const looktemp = this.HistoriesData[this.activeIndex];
       this.look = looktemp;
 
       // const firstPicture = pictures.value.shift();
@@ -153,7 +105,6 @@ export default {
   },
   created() {
     this.getHistoriesData();
-    this.look = this.itinerarys[this.activeIndex];
   },
 };
 </script>

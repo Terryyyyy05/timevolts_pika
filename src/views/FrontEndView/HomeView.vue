@@ -38,7 +38,7 @@
       </div>
       <div class="text bg_dark_75 p_md">
         <p>
-          Last login: {{ nowTime.data }}<br />
+          <!-- Last login: {{ nowTime.data }}<br /> -->
           Restored session:<br />
           TimeVolts ~ %<br />
           .<br />
