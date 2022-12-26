@@ -31,7 +31,7 @@ export default {
     // const cardContext2 = cardContext.slice(0, 5);
     const cardContext2 = reactive({ list: [] });
     const fetchAbc = () => {
-      fetch(`${BASE_URL}/getProducts.php`)
+      fetch(`/api_server/getProducts.php`)
         .then((res) => res.json())
         .then((result) => {
           cardContext2.list = result;

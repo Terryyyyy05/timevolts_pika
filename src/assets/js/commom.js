@@ -1,1 +1,1 @@
-export const BASE_URL = "http://localhost/timevolts_pika/public/phpfile";
+export const BASE_URL = "http://localhost/timevolts_pika/phpfile";
