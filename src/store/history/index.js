@@ -173,9 +173,7 @@ export default {
    },
    actions: {
       async getHistories(context) {
-         const response = await fetch(
-            "http://localhost/timevolts_pika/public/phpfile/getHistories.php"
-         );
+         const response = await fetch("/api_server/getHistories.php");
 
          const responseData = await response.json();
          console.log(responseData);
