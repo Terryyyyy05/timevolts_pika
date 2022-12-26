@@ -81,15 +81,15 @@ export default {
     position: relative;
 }
 .modal-container {
-    width: fit-content;
-    position: absolute;
+    width: 70%;
+    position: fixed;
     left: 0;
     right: 0;
-    top: 0;
+    top: 80px;
     bottom: 0;
     margin: 0 auto;
     overflow: auto;
-    height: 70vh;
-    z-index: 1;
+    height: 80vh;
+    z-index: 100000;
 }
 </style>
