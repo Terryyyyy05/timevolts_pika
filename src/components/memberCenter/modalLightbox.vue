@@ -1,6 +1,6 @@
 <template>
-    <div class="modal-container" v-show="modalStatus">
-        <div class="close-mark" @click="closeModal">
+    <div class="modal-container" v-if="modalStatus">
+        <div class="close-mark" @click="$emit('closeModal')">
             <font-awesome-icon icon="fa-solid fa-xmark" />
         </div>
         <slot></slot>
@@ -9,11 +9,11 @@
 
 <script>
 export default {
-    name: "modal",
+    name: "modalLightbox",
     props: {
         modalStatus: {
             type: Boolean,
-            default: false,
+            default: true,
         },
     },
     emits: ["closeModal"],
@@ -27,7 +27,8 @@ export default {
 
         return {
             // methods
-            closeModal,
+            closeModal: "",
+            modalStatus: true,
         };
     },
 };
@@ -54,7 +55,11 @@ export default {
 
 .modal-container {
     background-color: map-get($color, dark_sub);
-    border: 10px solid map-get($color, primary_sub);
+    // border: 10px solid map-get($color, accent);
     padding: 10px;
+}
+.fa-xmark {
+    font-size: 100px;
+    color: red;
 }
 </style>

@@ -8,14 +8,17 @@
         <div class="price">{{ order.price }}</div>
         <div class="status">{{ order.status }}</div>
         <div class="btnWrap">
-            <button class="btn-lightbox btn">查看訂單</button>
+            <button class="btn-lightbox btn" @click="changeDisplay">
+                查看訂單
+            </button>
         </div>
     </div>
 </template>
 <script>
 export default {
     name: "itineraryOrderInfo",
-    
+    emits: ["clickOpenModal"],
+
     data() {
         return {
             informationVisibile: 10,
@@ -125,6 +128,11 @@ export default {
     computed: {
         orderList() {
             return this.orderList.slice(0, this.informationVisibile);
+        },
+    },
+    methods: {
+        changeDisplay() {
+            this.$emit("clickOpenModal");
         },
     },
 };

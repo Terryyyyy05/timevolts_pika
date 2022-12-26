@@ -98,7 +98,7 @@ export default {
 
       const getData = () => {
          fetch(
-            "http://localhost/timevolts_pika/public/phpfile/getItineraries.php"
+            "/api_server/getItineraries.php"
          )
             .then((res) => res.json())
             .then((result) => {
