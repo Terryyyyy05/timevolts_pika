@@ -20,7 +20,7 @@
                         </div>
                      </div>
                      <div id="picContainer">
-                        <div class="ticket_drag">
+                        <div class="ticket_drag" v-bind:style="ticket_drag">
                            新增圖片
                         </div>
                      </div>
@@ -65,7 +65,8 @@
          </div>
       </div>
          <div class="btn">
-            <button class="btn-primary">完成客製</button>
+            <router-link to="/membercenter">
+            <button class="btn-primary">完成客製</button></router-link>
             <button class="btn-secondary" id="clearBtn">重新製作</button>
          </div>
       </div>
@@ -88,6 +89,17 @@ export default {
          colors:['#521957','#4F4F4F','#07350E','#501010','#000000','#1B1D54'],
          curColor:'#1e1e1e',
          message:'',
+         // ticket_drag:{
+         //    border: '2px dotted #fab042',
+         //    position: 'absolute',
+         //    width: '40px',
+         //    minHeight: '40px',
+         //    padding: '10px',
+         //    top: '10px',
+         //    right: '10px',
+         //    fontSize: '15px',
+         //    textAlign: 'center',
+         // }
       }
    },
    mounted() {
@@ -112,7 +124,7 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/assets/css/utils/variables';
 
 .container {
@@ -174,7 +186,7 @@ export default {
             #picContainer{
                width: 60%;
                padding: 10px;
-               outline: 1px solid red;
+               border-left: 2px dotted map-get($color, accent);
                
 
             }
@@ -223,17 +235,16 @@ export default {
       .ticket_drag { 
          border: 2px dotted map-get($color, accent);
          position: absolute;
-         width: 30px;
-         min-height: 30px;
+         width: 40px;
+         min-height: 40px;
          padding: 10px;
          top: 10px;
          right: 10px;
-         font-size: 10px;
+         font-size: 15px;
          text-align: center;
          img {
-               vertical-align: top;
                width: 100%;
-               object-fit: cover;
+               margin: auto;
             }  
       }
 .btn {

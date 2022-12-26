@@ -3,15 +3,17 @@ import "jquery-ui-dist/jquery-ui";
 
 
  export const drag = () => {
-     
+    
     let picElement = document.querySelectorAll('.picElement');
     let picContainer = document.getElementById('picContainer');
     let appendBtn = document.getElementById('appendBtn');
     let clearBtn = document.getElementById('clearBtn');
     let ticket_drag = document.querySelectorAll('.ticket_drag');
     let i;
+    
      
      function doFirst(){
+        
         //拖曳開始事件註冊
         for(i=0;i<picElement.length;i++){
             picElement[i].addEventListener('dragstart',startDrag);

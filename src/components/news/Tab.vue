@@ -383,7 +383,7 @@ export default {
         },
         getData() {
             fetch(
-                "http://localhost/timevolts_pika/public/phpfile/getNews.php"
+                "/api_server/getNews.php"
             )
                 .then((res) => res.json())
                 .then((json) => {
