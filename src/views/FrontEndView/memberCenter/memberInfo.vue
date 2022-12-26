@@ -11,18 +11,29 @@
                 :name="item.name" 
                 :id="item.id" 
                 v-model="item.value"
+                v-if="item.id!=='email' && item.id!=='birthday'"
                 >
-            </div>
-            <!-- 更新密碼 -->
-            <div v-for="item in passwordInput" :key="item.title" :name="item.name" id="item.id" v-show="!inputDisabled">
-                <label for="item.tite">{{ item.title }}</label>
                 <input 
-                required 
-                :disabled="inputDisabled" 
+                disabled 
                 :type="item.type" 
                 :name="item.name" 
                 :id="item.id" 
-                v-model="item.value">
+                v-model="item.value"
+                v-if="item.id==='email' || item.id==='birthday'"
+                >
+            </div>
+            <!-- 更新密碼 -->
+            <div v-show="!inputDisabled">
+                <label for="password">舊密碼</label>
+                <input type="text" id="password">
+            </div>
+            <div v-show="!inputDisabled">
+                <label for="password1">新密碼</label>
+                <input type="password" id="password1" v-model="password1">
+            </div>
+            <div v-show="!inputDisabled">
+                <label for="password2">再次密碼</label>
+                <input type="password" id="password2" v-model="password2">
             </div>
         </form>
         <div class="photo-area">
@@ -32,7 +43,7 @@
                 </label>
                 <input :disabled="inputDisabled" type="file" accept="image/gif, image/jpeg, image/png" name="uploadPic" id="uploadPic" >
             </form>
-            <p class="memLevel">{{memLevel }}</p>
+            <p class="memLevel">{{memLevel}}</p>
             <div class="btn-area">
                 <button class="btn-lightbox" v-show="!inputDisabled" @click="changeInfo()">取消</button>
                 <button class="btn-lightbox" @click="changeInfo()">{{ inputDisabled? "編輯": "完成" }} </button>
@@ -78,28 +89,9 @@ export default {
                     id:"email",
                 }
             ],
-            passwordInput:[
-                {
-                    title:"舊密碼",
-                    type: "password",
-                    name:"mem_psw",
-                    id:"password",
-
-                },
-                {
-                    title:"新密碼",
-                    type: "password",
-                    name:"password",
-                    id:"password1",
-                },
-                {
-                    title:"再次輸入新密碼",
-                    type: "password",
-                    name:"password",
-                    id:"password2",
-                }
-            ],
-            memLevel:"普通會員",
+            password1:'',
+            password2:'',
+            memLevel:'',
             result:[],
         }
     },
@@ -108,7 +100,7 @@ export default {
     },
     methods:{
         getData(){
-            fetch('http://localhost/timevolts_pika/public/phpfile/getMemberInfo.php')
+            fetch('/api_server/getMemberInfo.php')
             .then((res) => res.json())
             .then((json)=>{
                 this.formInput[0].value = json[1].mem_name
@@ -116,7 +108,7 @@ export default {
                 this.formInput[2].value = json[1].mem_phone
                 this.formInput[3].value = json[1].mem_address
                 this.formInput[4].value = json[1].mem_email
-                // this.passwordInput[0].value = json[1].mem_psw
+                this.memLevel=json[1].mem_level
             })
         },
         saveData(){
@@ -126,50 +118,23 @@ export default {
                 mem_phone:this.formInput[2].value,
                 mem_address:this.formInput[3].value,
                 mem_email:this.formInput[4].value,
-                mem_psw:this.passwordInput[2].value
+                mem_psw:this.password1
             }
-            fetch('http://localhost/timevolts_pika/public/phpfile/updateMemberInfo.php', {
+            fetch('/api_server/updateMemberInfo.php', {
                 method:'POST', 
                 body: new URLSearchParams(payload),
             })
         },
-        // 舊密碼要跟資料庫的原始密碼一樣，新密碼跟再次更新密碼要做驗證
+        // 舊密碼要跟資料庫的原始密碼一樣，新密碼跟再次更新密碼要做驗證，全部打完送ajax去驗證如果正確再傳回資料庫跟渲染畫面
+        changePsw(){
+
+        },
         changeInfo(){
            this.inputDisabled = !this.inputDisabled;
-                
-            //如果click之後 資料庫的欄位也會同時清空
-            
             if(this.inputDisabled == true){
-                // 這裡寫密碼判斷
-                // if(this.formInput[5].value===this.passwordInput[0].value){
-            //      this.inputDisabled = !this.inputDisabled;
-            //     if(this.passwordInput[0].value===this.passwordInput[1].value){
-            //         this.formInput[5].value=this.passwordInput[0].value
-            //         this.inputDisabled = !this.inputDisabled;
-            //     }
-            // }
                this.saveData(); 
-            } 
-
-            
+            }
         },
-        
-        // saveData(){
-        //     fetch('http://localhost/timevolts_pika/public/phpfile/updateMemberInfo.php', {
-        //         method:'POST', 
-        //         body: JSON.stringify({test:123}),
-        //     })
-        //     .then((res) => res.json())
-        //     .then((result) => {
-        //         this.formInput[0].value = json[0].mem_name
-        //         this.formInput[1].value = json[0].mem_bday
-        //         this.formInput[2].value = json[0].mem_phone
-        //         this.formInput[3].value = json[0].mem_address
-        //         this.formInput[4].value = json[0].mem_email
-        //         this.formInput[5].value = json[0].mem_psw
-        //         console.log(this.formInput[0]);
-        //     })
-        // }
     }
 };
 </script>
