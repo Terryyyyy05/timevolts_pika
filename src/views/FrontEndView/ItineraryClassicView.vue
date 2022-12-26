@@ -1,70 +1,68 @@
 <template>
-    <all-header />
-    <innerpageHeader></innerpageHeader>
-    <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="askForLogin">
-        <p>請先登入!</p>
-    </base-dialog>
-    <div class="container">
-        <the-heading heading="經典行程" subheading="Classic"></the-heading>
-    </div>
+   <all-header />
+   <innerpageHeader></innerpageHeader>
+   <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="askForLogin">
+      <p>請先登入!</p>
+   </base-dialog>
+   <div class="container">
+      <the-heading heading="經典行程" subheading="Classic"></the-heading>
+   </div>
 
-    <section class="section">
-        <div class="container carouselWrap">
-            <div>
-                <carousel :test="imgText"></carousel>
-                <aside-bar
-                    @tab0="changeParagraph0"
-                    @tab1="changeParagraph1"
-                    @tab2="changeParagraph2"
-                    @tab3="changeParagraph3"
-                    @tab4="changeParagraph4"
-                ></aside-bar>
+   <section class="section">
+      <div class="container carouselWrap">
+         <div>
+            <carousel :test="imgText"></carousel>
+            <aside-bar
+               @tab0="changeParagraph0"
+               @tab1="changeParagraph1"
+               @tab2="changeParagraph2"
+               @tab3="changeParagraph3"
+               @tab4="changeParagraph4"
+            ></aside-bar>
+         </div>
+         <div class="infoWrap">
+            <div class="infoTitle">{{ p2.list.story_name }}</div>
+            <div class="tagWrap">
+               <span class="infoDangerLevel"
+                  >#難度:{{ p2.list.story_risk }}</span
+               >
+               <span class="infoFeature">#{{ p2.list.story_specialty }}</span>
+               <span class="infoRegion">#{{ p2.list.story_spot }}</span>
             </div>
-            <div class="infoWrap">
-                <div class="infoTitle">{{ p2.list.story_name }}</div>
-                <div class="tagWrap">
-                    <span class="infoDangerLevel"
-                        >#難度:{{ p2.list.story_risk }}</span
-                    >
-                    <span class="infoFeature"
-                        >#{{ p2.list.story_specialty }}</span
-                    >
-                    <span class="infoRegion">#{{ p2.list.story_spot }}</span>
-                </div>
-                <div class="infoDate">
-                    穿越年代:{{ p2.list.itinerary_number_of_years }}
-                </div>
-                <div class="infoContent">
-                    {{ strList[contentOneToFive] }}
-                </div>
+            <div class="infoDate">
+               穿越年代:{{ p2.list.itinerary_number_of_years }}
             </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="signup">
-                <p class="signupText">參加活動話可以繪製個人專屬旅行計畫圖</p>
-                <button class="btn-secondary button" @click="bookItinerary">
-                    我要參加活動
-                </button>
+            <div class="infoContent">
+               {{ strList[contentOneToFive] }}
             </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="commentwrap">
-                <comments-info></comments-info>
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="watchmorewrap">
-                <itin-period-card-info></itin-period-card-info>
-            </div>
-        </div>
-    </section>
-    <all-footer />
+         </div>
+      </div>
+   </section>
+   <section class="section">
+      <div class="container">
+         <div class="signup">
+            <p class="signupText">參加活動話可以繪製個人專屬旅行計畫圖</p>
+            <button class="btn-secondary button" @click="bookItinerary">
+               我要參加活動
+            </button>
+         </div>
+      </div>
+   </section>
+   <section class="section">
+      <div class="container">
+         <div class="commentwrap">
+            <comments-info></comments-info>
+         </div>
+      </div>
+   </section>
+   <section class="section">
+      <div class="container">
+         <div class="watchmorewrap">
+            <itin-period-card-info></itin-period-card-info>
+         </div>
+      </div>
+   </section>
+   <all-footer />
 </template>
 
 <script>
@@ -77,107 +75,108 @@ import { cardContext } from "@/components/itinerary/js/data.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
 export default {
-    name: "itiniraryPeriodView",
-    components: {
-        carousel,
-        commentsInfo,
-        itinPeriodCardInfo,
-        asideBar,
-    },
-    setup() {
-        const route = useRoute();
+   name: "itiniraryPeriodView",
+   components: {
+      carousel,
+      commentsInfo,
+      itinPeriodCardInfo,
+      asideBar,
+   },
+   setup() {
+      const route = useRoute();
 
-        const period2 = reactive(
-            cardContext.find((i) => {
-                return i.id === parseInt(route.params.id);
-            })
-        );
-        const imgText = period2.imgsrc.split("/")[2].split(".")[0];
+      const period2 = reactive(
+         cardContext.find((i) => {
+            return i.id === parseInt(route.params.id);
+         })
+      );
+      const imgText = period2.imgsrc.split("/")[2].split(".")[0];
 
-        const p2 = reactive({ list: "" });
-        const cardContext2 = reactive([]);
-        const strList = reactive(Array.from({ length: 5 }, () => ""));
+      const p2 = reactive({ list: "" });
+      const cardContext2 = reactive([]);
+      const strList = reactive(Array.from({ length: 5 }, () => ""));
 
-        const getData = () => {
-            fetch(
-                "http://localhost/timevolts_pika/public/phpfile/getItineraries.php"
-            )
-                .then((res) => res.json())
-                .then((result) => {
-                    cardContext2.value = result;
-                    p2.list = cardContext2.value.find((item) => {
-                        return `${item.story_id}` === route.params.id;
-                    });
-                    strList[0] = p2.list.itinerary_memo;
-                    strList[1] = p2.list.itinerary_content;
-                    strList[2] = p2.list.itinerary_delicacy;
-                    strList[3] = "安全守則";
-                    strList[4] = "取消政策";
-                });
-        };
-        onMounted(() => {
-            getData();
-        });
-        return {
-            period2,
-            imgText,
-            cardContext2,
-            p2,
-            strList,
-        };
-    },
-    data() {
-        return {
-            itinerary: 0,
-            contentOneToFive: 0,
-            userId: null,
-            hasLoggedIn: true,
-        };
-    },
+      const getData = () => {
+         fetch(
+            "http://localhost/timevolts_pika/public/phpfile/getItineraries.php"
+         )
+            .then((res) => res.json())
+            .then((result) => {
+               cardContext2.value = result;
+               p2.list = cardContext2.value.find((item) => {
+                  return `${item.story_id}` === route.params.id;
+               });
+               strList[0] = p2.list.itinerary_memo;
+               strList[1] = p2.list.itinerary_content;
+               strList[2] = p2.list.itinerary_delicacy;
+               strList[3] = "安全守則";
+               strList[4] = "取消政策";
+            });
+      };
+      onMounted(() => {
+         getData();
+      });
+      return {
+         period2,
+         imgText,
+         cardContext2,
+         p2,
+         strList,
+      };
+   },
+   data() {
+      return {
+         itinerary: 0,
+         contentOneToFive: 0,
+         userId: null,
+         hasLoggedIn: true,
+      };
+   },
 
-    mounted() {},
-    methods: {
-        // changeParagraph()
-        changeParagraph0() {
-            this.contentOneToFive = 0;
-        },
-        changeParagraph1() {
-            this.contentOneToFive = 1;
-        },
-        changeParagraph2() {
-            this.contentOneToFive = 2;
-        },
-        changeParagraph3() {
-            this.contentOneToFive = 3;
-        },
-        changeParagraph4() {
-            this.contentOneToFive = 4;
-        },
-        // getData() {
-        //     fetch(
-        //         "http://localhost/timevolts/public/phpfile/getItineraries.php"
-        //     )
-        //         .then((res) => res.json())
-        //         .then((json) => {
-        //             this.result = json;
-        //             console.log(this.result);
-        //         });
-        // },
-        bookItinerary() {
-            this.userId = this.$store.getters["userId"];
-            // console.log(this.userId);
-            if (!this.userId) {
-                // 找不到會員
-                this.hasLoggedIn = false;
-            } else {
-                // 會員有登入
-                this.$router.push({ path: "/itinerary-booking" });
-            }
-        },
-        askForLogin() {
-            this.$router.push({ path: "/memberLightBox" });
-        },
-    },
+   mounted() {},
+   methods: {
+      // changeParagraph()
+      changeParagraph0() {
+         this.contentOneToFive = 0;
+      },
+      changeParagraph1() {
+         this.contentOneToFive = 1;
+      },
+      changeParagraph2() {
+         this.contentOneToFive = 2;
+      },
+      changeParagraph3() {
+         this.contentOneToFive = 3;
+      },
+      changeParagraph4() {
+         this.contentOneToFive = 4;
+      },
+      // getData() {
+      //     fetch(
+      //         "http://localhost/timevolts/public/phpfile/getItineraries.php"
+      //     )
+      //         .then((res) => res.json())
+      //         .then((json) => {
+      //             this.result = json;
+      //             console.log(this.result);
+      //         });
+      // },
+      bookItinerary() {
+         this.userId = this.$store.getters["userId"];
+         // console.log(this.userId);
+         if (!this.userId) {
+            // 找不到會員
+            this.hasLoggedIn = false;
+            console.log(this.p2.list.story_name);
+         } else {
+            // 會員有登入
+            this.$router.push({ path: "/itinerary-booking" });
+         }
+      },
+      askForLogin() {
+         this.$router.push({ path: "/memberLightBox" });
+      },
+   },
 };
 </script>
 
@@ -185,110 +184,110 @@ export default {
 @import "@/assets/css/app.scss";
 
 .section {
-    width: 100%;
-    margin: 100px 0;
+   width: 100%;
+   margin: 100px 0;
 }
 
 .container {
-    width: map-get($container, each(d_container));
+   width: map-get($container, each(d_container));
 }
 .carouselWrap {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   align-items: center;
 }
 .commentwrap {
-    margin: 0 auto;
+   margin: 0 auto;
 }
 .signup {
-    display: flex;
-    flex-direction: column;
+   display: flex;
+   flex-direction: column;
 }
 .signupText {
-    color: map-get($color, accent_sub);
-    text-align: center;
-    font-size: 32px;
+   color: map-get($color, accent_sub);
+   text-align: center;
+   font-size: 32px;
 }
 .button {
-    margin: 20px auto;
+   margin: 20px auto;
 }
 .watchmorewrap {
-    height: 580px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    overflow: hidden;
+   height: 580px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   overflow: hidden;
 }
 .infoWrap {
-    width: fit-content;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #fff;
-    background-color: map-get($color, "dark_sub");
+   width: fit-content;
+   height: fit-content;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   color: #fff;
+   background-color: map-get($color, "dark_sub");
 }
 .infoTitle {
-    width: 500px;
-    height: 30px;
-    margin: 0 0 5px 0;
-    padding: 20px 10px;
-    font-size: 32px;
-    text-align: center;
-    border: 2px solid map-get($color, "primary");
-    background-color: map-get($color, "dark_sub");
+   width: 500px;
+   height: 30px;
+   margin: 0 0 5px 0;
+   padding: 20px 10px;
+   font-size: 32px;
+   text-align: center;
+   border: 2px solid map-get($color, "primary");
+   background-color: map-get($color, "dark_sub");
 }
 .tagWrap {
-    width: 500px;
-    height: 30px;
-    margin: 5px 0;
-    padding: 20px 10px;
-    font-size: 24px;
-    display: flex;
-    justify-content: space-between;
-    border: 2px solid map-get($color, "primary");
-    background-color: map-get($color, "dark_sub");
+   width: 500px;
+   height: 30px;
+   margin: 5px 0;
+   padding: 20px 10px;
+   font-size: 24px;
+   display: flex;
+   justify-content: space-between;
+   border: 2px solid map-get($color, "primary");
+   background-color: map-get($color, "dark_sub");
 }
 .infoDate {
-    width: 500px;
-    height: 30px;
-    margin: 5px 0;
-    padding: 20px 10px;
-    font-size: 24px;
-    border: 2px solid map-get($color, "primary");
-    background-color: map-get($color, "dark_sub");
+   width: 500px;
+   height: 30px;
+   margin: 5px 0;
+   padding: 20px 10px;
+   font-size: 24px;
+   border: 2px solid map-get($color, "primary");
+   background-color: map-get($color, "dark_sub");
 }
 .infoContent {
-    width: 500px;
-    height: 300px;
-    overflow-y: auto;
-    margin: 5px 0 0 0;
-    padding: 20px 10px;
-    font-size: 24px;
-    line-height: 1.6;
-    border: 2px solid map-get($color, "primary");
-    background-color: map-get($color, "dark_sub");
+   width: 500px;
+   height: 300px;
+   overflow-y: auto;
+   margin: 5px 0 0 0;
+   padding: 20px 10px;
+   font-size: 24px;
+   line-height: 1.6;
+   border: 2px solid map-get($color, "primary");
+   background-color: map-get($color, "dark_sub");
 }
 @include m() {
-    .infoWrap {
-        width: fit-content;
-        background-color: map-get($color, "dark_sub");
-    }
-    .infoTitle,
-    .tagWrap,
-    .infoDate {
-        width: 100%;
-        font-size: 18px;
-        height: 20px;
-        padding: 10px;
-    }
+   .infoWrap {
+      width: fit-content;
+      background-color: map-get($color, "dark_sub");
+   }
+   .infoTitle,
+   .tagWrap,
+   .infoDate {
+      width: 100%;
+      font-size: 18px;
+      height: 20px;
+      padding: 10px;
+   }
 
-    .infoContent {
-        width: 100%;
-        font-size: 18px;
-        overflow-y: auto;
-        height: 180px;
-    }
+   .infoContent {
+      width: 100%;
+      font-size: 18px;
+      overflow-y: auto;
+      height: 180px;
+   }
 }
 </style>

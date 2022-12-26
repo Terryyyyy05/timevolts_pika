@@ -14,9 +14,7 @@ export default {
    actions: {
       async getUserId() {
          try {
-            const response = await fetch(
-               "http://localhost/timevolts_pika/public/phpfile/ifLogin.php"
-            );
+            const response = await fetch("/api_server/ifLogin.php");
 
             const responseData = await response.json();
             console.log(responseData);
@@ -35,16 +33,13 @@ export default {
          //    }
          // );
 
-         const response = await fetch(
-            "http://localhost/timevolts_pika/public/phpfile/login.php",
-            {
-               method: "POST",
-               body: JSON.stringify({
-                  email: payload.email,
-                  password: payload.password,
-               }),
-            }
-         );
+         const response = await fetch("/api_server/login.php", {
+            method: "POST",
+            body: JSON.stringify({
+               email: payload.email,
+               password: payload.password,
+            }),
+         });
 
          const responseData = await response.json();
          console.log(responseData);
