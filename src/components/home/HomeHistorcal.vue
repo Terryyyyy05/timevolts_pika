@@ -116,6 +116,9 @@ $b2-primary: (2px solid map-get($color, "primary"));
 // 整體容器
 .historcal-slide {
   display: flex;
+  p {
+    line-height: 1.7;
+  }
 }
 
 // 輪播圖
@@ -295,7 +298,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
     min-height: 20vh;
     box-sizing: border-box;
     align-self: start;
-    line-height: 1.4;
+    line-height: 1.7;
     :nth-child(1) {
       font-size: 24px;
     }
@@ -312,7 +315,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
     align-items: center;
     margin-top: 20px;
     font-size: 24px;
-    line-height: 33px;
+    line-height: 1.7;
     @media screen and (max-width: $m-breakpoint) {
       font-size: 16px;
     }

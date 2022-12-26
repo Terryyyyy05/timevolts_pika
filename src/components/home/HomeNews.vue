@@ -62,10 +62,11 @@ export default {
 }
 .box {
   width: 100%;
-  height: fit-content;
+  max-height: 100%;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
-  line-height: 1.4;
+  line-height: 1.7;
   h3 {
     // height: 4vw;
     padding: 10px;
@@ -76,10 +77,12 @@ export default {
     font-family: "Cube11";
   }
   .newsText {
-    min-height: 17vw;
-
+    min-height: 20vw;
+    place-self: stretch;
+    line-height: 1.7;
     border: 2px solid map-get($color, "primary");
     background-color: map-get($color, "dark_sub");
+    flex-grow: 1;
     p {
       padding: 10px;
     }

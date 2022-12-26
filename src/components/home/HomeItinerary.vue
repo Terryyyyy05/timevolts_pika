@@ -80,7 +80,7 @@ export default {
         .then((jsonData) => {
           this.itineraryData = jsonData;
           this.look = this.itineraryData[this.activeIndex];
-          console.log("itin", this.itineraryData);
+          // console.log("itin", this.itineraryData);
         });
     },
 
@@ -322,7 +322,7 @@ h3 {
     border-radius: 0 20px 20px 0;
     align-items: center;
     font-size: 20px;
-    line-height: 33px;
+    line-height: 1.7;
     @media screen and (max-width: $m-breakpoint) {
       display: flex;
       justify-content: space-between;

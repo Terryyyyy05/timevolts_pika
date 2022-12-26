@@ -233,7 +233,9 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/css/utils/_variables.scss";
-
+p {
+  line-height: 1.7;
+}
 // loading
 .loading-container {
   > p {
@@ -289,7 +291,7 @@ $b20-primary: (20px solid map-get($color, "primary"));
     top: 50%;
     bottom: 50%;
     // display: block;
-    line-height: 36px;
+    // line-height: 36px;
     font-size: 36px;
     color: map-get($color, "primary");
     position: fixed;
@@ -383,19 +385,17 @@ h2 {
   align-items: center;
   display: grid;
   grid-template-columns: 2fr 4.5fr 4.5fr 1fr;
-  grid-template-rows: 1.5fr 3fr 0.5fr;
+  grid-template-rows: 1.5fr 2.5fr 0.5fr;
   gap: 20px;
 
   @media screen and (max-width: $m-breakpoint) {
     height: auto;
     grid-template-columns: 2fr 4.5fr 4.5fr;
-    grid-template-rows: 1fr 4fr 0.5fr;
+    grid-template-rows: 1fr 2fr 0.5fr;
   }
   .sideTotem {
     grid-column: 1;
     grid-row: 1/3;
-    // background-image:url(@/assets/image/home/sideTotem.svg) ;
-    object-fit: scale-down;
     border: none;
     img {
       height: 100%;
@@ -446,8 +446,10 @@ h2 {
   .text {
     grid-column: 2/3;
     grid-row: 2/3;
+    flex-grow: 1;
     padding: 20px;
     border: $b2-primary;
+
     > p > span::after {
       content: "|";
       animation-name: flashing;

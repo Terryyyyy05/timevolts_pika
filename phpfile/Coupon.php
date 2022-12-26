@@ -7,13 +7,14 @@ $datas = json_decode($json, true); //轉為關聯性陣列
 // var_dump($datas);exit();
 
 try {
-    require_once("../phpfile/php_connect_books/connectBooks.php");
+    require_once("./php_connect_books/connectBooks.php");
     // if ($pdo === false) {
     //     throw new Exception("Unable to connect to the database");
     // }
     $sql = "INSERT INTO my_coupon (mem_id, coupon_id, my_coupon_status) 
-           VALUES ('1',:coupon_id, :my_coupon_status)";
+           VALUES (:mem_id,:coupon_id, :my_coupon_status)";
     $member = $pdo->prepare($sql);
+    $member->bindValue(":mem_id", $datas["mem_id"]);
     $member->bindValue(":coupon_id", $datas["coupon_id"]);
     $member->bindValue(":my_coupon_status", $datas["my_coupon_status"]);
     $member->execute();
