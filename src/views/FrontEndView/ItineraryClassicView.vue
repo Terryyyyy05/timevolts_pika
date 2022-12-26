@@ -97,9 +97,7 @@ export default {
       const strList = reactive(Array.from({ length: 5 }, () => ""));
 
       const getData = () => {
-         fetch(
-            "/api_server/getItineraries.php"
-         )
+         fetch("/api_server/getItineraries.php")
             .then((res) => res.json())
             .then((result) => {
                cardContext2.value = result;
@@ -161,16 +159,20 @@ export default {
       //             console.log(this.result);
       //         });
       // },
-      bookItinerary() {
-         this.$store.dispatch("getUserId");
+      async bookItinerary() {
+         await this.$store.dispatch("getUserId");
          this.userId = this.$store.getters["userId"];
          console.log(this.userId);
          if (!this.userId) {
             // 找不到會員
             this.hasLoggedIn = false;
-            console.log(this.p2.list.story_name);
+            // console.log(this.p2.list.story_name);
          } else {
             // 會員有登入
+            await this.$store.dispatch(
+               "itinerary/bookItinerary",
+               this.p2.list.story_name
+            );
             this.$router.push({ path: "/itinerary-booking" });
          }
       },
