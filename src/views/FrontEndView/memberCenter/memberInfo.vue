@@ -112,7 +112,6 @@ export default {
                     body: JSON.stringify({
                         userId: this.userId,
                 }),
-                    
                 })
                 .then((res) => res.json())
                 .then((json)=>{

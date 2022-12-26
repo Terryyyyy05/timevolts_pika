@@ -9,7 +9,7 @@
       style="cursor: pointer"
       @click="clickMemberIcon"
     >
-      <span class="mem_name">Hi, {{ mem_name }}</span>
+      <span class="mem_name" v-if="userId">Hi, {{ mem_name }}</span>
       <div><img src="../../public/Group604.png" alt="" /></div>
       <div @click="toggleCart" style="cursor: pointer">
         <img src="../../public/Group605.png" alt="" />
@@ -93,21 +93,36 @@ export default {
       cartStatus: false,
       show: false,
       openRobot: false,
-       mem_name: "",
+      mem_name: "",
       userId: null,
       hasLoggedIn: true,
     };
   },
   created() {
     this.getData();
+    this.sayHi();
   },
   methods: {
-    getData() {
-      fetch("/api_server/getMemberInfo.php")
+    async getData() {
+      await this.$store.dispatch("getUserId");
+      this.userId = this.$store.getters["userId"];
+
+      if (this.userId) {
+      fetch('/api_server/getMemberInfo.php', {
+            method: "POST",
+            body: JSON.stringify({
+              userId: this.userId,
+              
+            })
+          })
         .then((res) => res.json())
         .then((json) => {
           this.mem_name = json[0].mem_name;
-        });
+        })
+      }
+                
+              
+        
     },
     changeColor(e) {
       e.target.style.transition = "all .3s";
@@ -157,6 +172,12 @@ export default {
         // 會員有登入
         this.$router.push({ path: "/memberCenter" });
       }
+    },
+    async sayHi() {
+      await this.$store.dispatch("getUserId");
+      this.userId = this.$store.getters["userId"];
+      // console.log(this.userId);
+  
     },
     askForLogin() {
       if (this.$route.path !== "/memberLightBox") {
