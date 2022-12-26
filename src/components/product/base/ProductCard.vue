@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="`/product-item/${id}`">
+    <router-link :to="`/product/${id}`">
       <slot></slot>
     </router-link>
   </div>

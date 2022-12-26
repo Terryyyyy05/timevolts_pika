@@ -22,9 +22,12 @@
 <script>
 import { ref, computed, reactive, onMounted } from "vue";
 import { cardContext } from "./js/data.js";
+import { BASE_URL } from "@/assets/js/commom";
+
 
 import ShowMoreButton from "../../components/history/UI/ShowMoreButton.vue";
 import ProductCard from "./base/ProductCard.vue";
+
 
 export default {
   components: {
@@ -49,7 +52,7 @@ export default {
     // test
     const cardContext2 = reactive({ list: [] });
     const fetchAbc = () => {
-      fetch("http://localhost/timevolts_pika/public/phpfile/getProducts.php")
+      fetch(`/api_server/getProducts.php`)
         .then((res) => res.json())
         .then((result) => {
           cardContext2.list = result;
