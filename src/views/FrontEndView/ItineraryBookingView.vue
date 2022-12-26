@@ -4,6 +4,13 @@
    <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="askForLogin">
       <p>請先登入!</p>
    </base-dialog>
+   <base-dialog
+      :show="!hasItineraryName"
+      title="警告"
+      @close="this.$router.go(-1)"
+   >
+      <p>由於您重整了頁面，請重新來過</p>
+   </base-dialog>
    <div class="container">
       <the-heading
          heading="行程訂票"
@@ -16,7 +23,17 @@
       ></progress-bar>
       <div class="main-text">{{ currentStep }}</div>
       <keep-alive>
-         <component :is="selectedStep"></component>
+         <component
+            :is="selectedStep"
+            :latestDate="info[0].itinerary_start_date"
+            :departDate="info[0].itinerary_start_date"
+            :returnDate="info[0].itinerary_end_date"
+            :classification="info[0].story_classification"
+            :dangerLev="info[0].story_risk"
+            :region="info[0].story_rigion"
+            :singlePrice="info[0].itinerary_price"
+            :memLev="info[0].mem_level"
+         ></component>
       </keep-alive>
       <div class="buttons" v-if="this.selectedStep !== 'confirm-order'">
          <button class="btn-primary" @click="nextStep">
@@ -57,6 +74,9 @@ export default {
          button: "確認訂票",
          userId: null,
          hasLoggedIn: true,
+         hasItineraryName: true,
+         itineraryName: "",
+         info: [],
       };
    },
    computed: {
@@ -82,17 +102,12 @@ export default {
             return "width: 100%";
          }
       },
+      hello() {
+         return this.info;
+      },
    },
    created() {
-      this.userId = this.$store.getters["userId"];
-      // console.log(this.userId);
-      if (!this.userId) {
-         // 找不到會員
-         this.hasLoggedIn = false;
-      } else {
-         // 會員有登入
-         this.$router.push({ path: "/itinerary-booking" });
-      }
+      this.checkLogin();
    },
    methods: {
       nextStep() {
@@ -107,34 +122,38 @@ export default {
             window.scrollTo(0, 0);
          }
       },
+      async checkLogin() {
+         await this.$store.dispatch("getUserId");
+         this.userId = this.$store.getters["userId"];
+         this.itineraryName = this.$store.getters["itinerary/itineraryName"];
+         // console.log(this.userId);
+         // console.log(this.itineraryName);
+         if (!this.userId) {
+            // 找不到會員
+            this.hasLoggedIn = false;
+         } else if (!this.itineraryName) {
+            this.hasItineraryName = false;
+         } else if (this.userId && this.itineraryName) {
+            this.getItineraryInfo();
+         }
+      },
       askForLogin() {
          this.$router.push({ path: "/memberLightBox" });
       },
       async getItineraryInfo() {
-         const response = await fetch(
-            "http://localhost/timevolts_pika/public/phpfile/getHistories.php"
-         );
+         const response = await fetch("/api_server/getItineraryInfo.php", {
+            method: "POST",
+            body: JSON.stringify({
+               userId: this.userId,
+               itineraryName: this.itineraryName,
+            }),
+         });
 
          const responseData = await response.json();
-         console.log(responseData);
+         // console.log(responseData);
 
-         const histories = [];
-
-         for (const key in responseData) {
-            const history = {
-               id: String(responseData[key].story_id),
-               title: responseData[key].story_name,
-               tagDanderLevel: responseData[key].story_risk,
-               tagFeature: responseData[key].story_specialty,
-               tagRegion: responseData[key].story_spot,
-               happenYear: responseData[key].story_age,
-               description: responseData[key].story_intro,
-               image: responseData[key].story_cover,
-            };
-            histories.push(history);
-         }
-
-         context.commit("getHistories", histories);
+         this.info = responseData;
+         console.log(this.info);
       },
    },
 };
