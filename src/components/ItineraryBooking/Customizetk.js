@@ -1,95 +1,84 @@
-// import $ from jquery;
+import $ from "jquery";
+import "jquery-ui-dist/jquery-ui";
 
 
-//     let postcardElement = document.querySelectorAll('.postcardElement');
-//     let postcardStampContainer = document.getElementById('postcardStampContainer');
-//     let appendStampBtn = document.getElementById('appendStampBtn');
-//     let clearStampBtn = document.getElementById('clearStampBtn');
-//     let postcardTag = document.querySelectorAll('.postcardTag');
-//     let postcardElements = document.querySelectorAll('.postcardElements');
-//     let postcardStampBox = document.querySelectorAll('.postcardStampBox');
+ export const drag = () => {
+     
+    let picElement = document.querySelectorAll('.picElement');
+    let picContainer = document.getElementById('picContainer');
+    let appendBtn = document.getElementById('appendBtn');
+    let clearBtn = document.getElementById('clearBtn');
+    let ticket_drag = document.querySelectorAll('.ticket_drag');
+    let i;
+     
+     function doFirst(){
+        //拖曳開始事件註冊
+        for(i=0;i<picElement.length;i++){
+            picElement[i].addEventListener('dragstart',startDrag);
+        }
 
 
-//     function doFirst(){
-//         //拖曳開始事件註冊
-//         for(i=0;i<postcardElement.length;i++){
-//             postcardElement[i].addEventListener('dragstart',startDrag);
-//         }
+        for(i=0;i<ticket_drag.length;i++){
+            ticket_drag[i].addEventListener('dragenter',function(e){e.preventDefault()});
+            ticket_drag[i].addEventListener('dragover',function(e){e.preventDefault()});
+            ticket_drag[i].addEventListener('drop',dropped);
+        }
+        appendBtn.addEventListener('click',appendPic);
+        clearBtn.addEventListener('click',clearPic)
+
+    };
 
 
-//         for(i=0;i<postcardStampBox.length;i++){
-//             postcardStampBox[i].addEventListener('dragenter',function(e){e.preventDefault()});
-//             postcardStampBox[i].addEventListener('dragover',function(e){e.preventDefault()});
-//             postcardStampBox[i].addEventListener('drop',dropped);
-//         }
-//         appendStampBtn.addEventListener('click',appendStamp);
-//         clearStampBtn.addEventListener('click',clearStamp)
+    // 拖曳開始
+     function startDrag(e){
+        let data = `<img src='${e.target.src}'>`;
+        e.dataTransfer.setData('image/svg',data);
+    };
 
-//         // 右側切換
-//         for(let i = 0;i<postcardTag.length;i++){
-//             postcardTag[i].index = i;
-//             postcardTag[i].onclick = function(){
-//                 for(a=0;a<postcardElements.length;a++){
-//                     postcardElements[a].style.display = 'none';
-//                 }
-//                 postcardElements[i].style.display = "flex";
-//             }
-//         };
-
-//     };
-//     // 拖曳開始
-//     function startDrag(e){
-//         let data = `<img src='${e.target.src}'>`;
-//         e.dataTransfer.setData('image/png',data);
-//     };
-
-//     // 拖曳結束
-//     function dropped(e){
-//         e.preventDefault();
-//         console.log(e.dataTransfer.getData('image/png'));
-//         e.target.innerHTML = e.dataTransfer.getData('image/png');
-//         e.target.style.border='none';
-//     };
+    // 拖曳結束
+     function dropped(e){
+        e.preventDefault();
+        // console.log(e.dataTransfer.getData('image/svg'));
+        e.target.innerHTML = e.dataTransfer.getData('image/svg');
+        e.target.style.border='none';
+    };
     
-//     //新增貼圖格
-//     function appendStamp(){
-//         let StampBox = document.createElement('div');
-//         StampBox.className = 'postcardStampBox';
-//         postcardStampContainer.appendChild(StampBox);
+    //新增貼圖格
+     function appendPic(){
+        let box = document.createElement('div');
+        box.className = 'ticket_drag';
+        picContainer.appendChild(box);
 
-//         // 因新增物件重抓一次
-//         let postcardStampBox = document.querySelectorAll('.postcardStampBox');
-//         for(i=0;i<postcardStampBox.length;i++){
-//             postcardStampBox[i].addEventListener('dragenter',function(e){e.preventDefault()});
-//             postcardStampBox[i].addEventListener('dragover',function(e){e.preventDefault()});
-//             postcardStampBox[i].addEventListener('drop',dropped);
-//         }
-//         $('.postcardStampBox').draggable({
-//             cursor: "crosshair",
-//             containment: 'parent',
-//         });
-//     }
+        // 因新增物件重抓一次
+        let ticket_drag = document.querySelectorAll('.ticket_drag');
+        for(i=0;i<ticket_drag.length;i++){
+            ticket_drag[i].addEventListener('dragenter',function(e){e.preventDefault()});
+            ticket_drag[i].addEventListener('dragover',function(e){e.preventDefault()});
+            ticket_drag[i].addEventListener('drop',dropped);
+        }
+        $('.ticket_drag').draggable({
+            cursor: "crosshair",
+            containment: 'parent',
+        });
+    }
 
 
-//     // 刪除全部貼圖
-//     function clearStamp(){
-//         let childs = postcardStampContainer.childNodes;
-//         for(i=childs.length - 1;i>=0;i--){
-//             postcardStampContainer.removeChild(childs[i]);
-//         }
-//         let postcardText = document.querySelector('.postcardText');
-//         postcardText.innerHTML= '';
-//     }
-
-//     // 貼圖格可拖曳
-//     $(document).ready(function(){
-//         $('.postcardStampBox').draggable({
-//             cursor: "crosshair",
-//             containment: 'parent',
-//         });
-//         $('.postcardText').draggable({
-//             cursor: "crosshair",
-//             containment: 'parent',
-//         });
-//     });
-//     window.addEventListener("load",doFirst);
+    // 刪除全部貼圖
+     function clearPic(){
+        let childs = picContainer.childNodes;
+        for(i=childs.length - 1;i>=0;i--){
+            picContainer.removeChild(childs[i]);
+        }
+        let ticket_input = document.querySelector('.ticket_input');
+        ticket_input.innerHTML= '';
+    }
+ 
+    // 貼圖格可拖曳
+    
+        $('.ticket_drag').draggable({
+            cursor: "crosshair",
+            containment: 'parent',
+        });
+    
+    window.addEventListener("load",doFirst);
+ }

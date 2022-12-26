@@ -19,11 +19,13 @@
                            穿越日
                         </div>
                      </div>
-                     <div class="ticket-drag">
-                        拖曳區塊
+                     <div id="picContainer">
+                        <div class="ticket_drag">
+                           新增圖片
+                        </div>
                      </div>
                   </div>
-                  <div class="ticket-input">
+                  <div class="ticket_input">
                      {{ message }}
                   </div>
                </div>
@@ -42,9 +44,9 @@
             </div>
             <div class="pannel-title">
                <h5>2. 選擇想要放的圖片</h5>
-               <button id="appendStampBtn">新增圖片格</button>
+               <button id="appendBtn">新增圖片格</button>
             </div>
-            <div class="pic-area">
+            <div class="picArea">
                <div class="picElement"><img src="@/assets/image/ticket/dinosaur.svg"></div>
                <div class="picElement"><img src="@/assets/image/ticket/dog.svg"></div>
                <div class="picElement"><img src="@/assets/image/ticket/face.svg"></div>
@@ -64,7 +66,7 @@
       </div>
          <div class="btn">
             <button class="btn-primary">完成客製</button>
-            <button class="btn-secondary" id="clearStampBtn">重新製作</button>
+            <button class="btn-secondary" id="clearBtn">重新製作</button>
          </div>
       </div>
    </div>
@@ -72,7 +74,10 @@
 </template>
 
 <script type="module">
-import {} from '@/components/ItineraryBooking/Customizetk.js';
+import { drag } from "@/components/ItineraryBooking/Customizetk.js";
+
+// import * as htmlToImage from 'html-to-image';
+// import { toBlob } from 'html-to-image';
 export default {
    name: "Customizetk",
    components: {
@@ -86,13 +91,22 @@ export default {
       }
    },
    mounted() {
-
+      drag();
+        
    },
    methods: {
       changeColor(color){
          this.curColor=color
       }
    },
+//    htmlToImage.toBlob(document.getElementById('my-node'))
+//   .then(function (blob) {
+//     if (window.saveAs) {
+//       window.saveAs(blob, 'my-node.png');
+//     } else {
+//      FileSaver.saveAs(blob, 'my-node.png');
+//    }
+//   });
 };
 
 
@@ -157,15 +171,16 @@ export default {
                   margin: 10px 0;
                }
             }
-            .ticket-drag{
+            #picContainer{
                width: 60%;
                padding: 10px;
                outline: 1px solid red;
+               
 
             }
          }
          
-         .ticket-input{
+         .ticket_input{
             height: 20%;
             margin: auto;
             padding-left: 5px;
@@ -205,7 +220,22 @@ export default {
       }
 
    }
-   
+      .ticket_drag { 
+         border: 2px dotted map-get($color, accent);
+         position: absolute;
+         width: 30px;
+         min-height: 30px;
+         padding: 10px;
+         top: 10px;
+         right: 10px;
+         font-size: 10px;
+         text-align: center;
+         img {
+               vertical-align: top;
+               width: 100%;
+               object-fit: cover;
+            }  
+      }
 .btn {
    display: flex;
    margin: 0 0 60px 0;
@@ -224,7 +254,7 @@ export default {
       h5 {
          color: map-get($color, accent);
       }
-      #appendStampBtn{
+      #appendBtn{
          background-color: map-get($color, accent);
          margin-left: 100px;
          border: none;
@@ -251,7 +281,7 @@ export default {
 
    }
 
-   .pic-area {
+   .picArea {
       width: 80%;
       height: 200px;
       margin: 20px 10px;
