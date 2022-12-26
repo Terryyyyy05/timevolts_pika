@@ -4,44 +4,45 @@
    </base-dialog>
    <cart :cartStatus="cartStatus" @xmark="() => (cartStatus = false)" />
    <header>
-      <div class="icon-container" style="cursor: pointer" @click="setLogin">
+      <div class="icon-container"      <span class="mem_name">Hi, {{ mem_name }}</span>
+ style="cursor: pointer" @click="setLogin">
          <div><img src="../../public/Group604.png" alt="" /></div>
          <div @click="toggleCart" style="cursor: pointer">
             <img src="../../public/Group605.png" alt="" />
          </div>
       </div>
 
-      <div class="nav">
-         <div @click="shownav" class="hbicon">
-            <img src="../../public/Group603.png" alt="寶貝球" />
-         </div>
-         <div class="vertical-nav" v-if="show">
-            <div
-               v-for="(item, index) in pageName"
-               :key="index"
-               class="link-container"
-            >
-               <div class="bar"></div>
-               <router-link
-                  @mouseover="changeColor"
-                  @mouseleave="changeBack"
-                  :to="item.router"
-                  :data-item="index"
-               >
-                  <p class="glitched">{{ item.ch }}</p>
-               </router-link>
-            </div>
-            <div @click="showChatbox" class="chatbox-icon">
-               <img src="../../public/Group243.png" alt="時空管理局" />
-            </div>
-            <GetVoucher />
-         </div>
+    <div class="nav">
+      <div @click="shownav" class="hbicon">
+        <img src="../../public/Group603.png" alt="寶貝球" />
       </div>
-   </header>
-   <div v-if="openRobot">
-      <Chatbox @closeThisBox="closeTheBox" />
-   </div>
-   <member-login v-if="loginboxIsActive"></member-login>
+      <div class="vertical-nav" v-if="show">
+        <div
+          v-for="(item, index) in pageName"
+          :key="index"
+          class="link-container"
+        >
+          <div class="bar"></div>
+          <router-link
+            @mouseover="changeColor"
+            @mouseleave="changeBack"
+            :to="item.router"
+            :data-item="index"
+          >
+            <p class="glitched">{{ item.ch }}</p>
+          </router-link>
+        </div>
+        <div @click="showChatbox" class="chatbox-icon">
+          <img src="../../public/chatbot-icon.gif" alt="時空管理局" />
+        </div>
+        <GetVoucher />
+      </div>
+    </div>
+  </header>
+  <div v-if="openRobot">
+    <Chatbox @closeThisBox="closeTheBox" />
+  </div>
+  <member-login v-if="loginboxIsActive"></member-login>
 </template>
 <script>
 // import $ from "jquery";
@@ -88,11 +89,22 @@ export default {
          cartStatus: false,
          show: false,
          openRobot: false,
+        mem_name:'',
          userId: null,
          hasLoggedIn: true,
       };
    },
+  created(){
+    this.getData();
+  },
    methods: {
+    getData(){
+            fetch('/api_server/getMemberInfo.php')
+            .then((res) => res.json())
+            .then((json)=>{
+                this.mem_name = json[1].mem_name
+            })
+        },
       changeColor(e) {
          e.target.style.transition = "all .3s";
          e.target.style.backgroundColor = "#ffe1b5";
@@ -147,87 +159,87 @@ export default {
 
 <style scoped lang="scss">
 header {
-   display: flex;
-   position: fixed;
-   top: 2%;
-   right: 2%;
-   z-index: 101;
-   pointer-events: none;
-   .icon-container {
-      display: flex;
-      height: fit-content;
-      margin-top: calc((55px - 15px) / 2);
-      pointer-events: none;
-      div {
-         width: 15px;
-         height: 15px;
-         margin-right: 10px;
-         pointer-events: auto;
-         img {
-            width: 100%;
-            height: 100%;
-         }
-      }
-   }
-   div.nav {
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .hbicon {
-         pointer-events: auto;
-         cursor: pointer;
-         height: 55px;
-         width: 55px;
-         animation: rotate 1.5s infinite;
-         img {
-            width: 100%;
-            height: 100%;
-            pointer-events: auto;
-         }
-      }
-      .vertical-nav {
-         pointer-events: auto;
-         .link-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            a {
-               font-size: 12px;
-               font-weight: bold;
-               height: 54px;
-               width: 54px;
-               text-decoration: none;
-               color: #ffe1b5;
-               backdrop-filter: blur(5px);
-               border: 2px solid #ffe1b5;
-               border-radius: 50%;
-               display: flex;
-               justify-content: center;
-               align-items: center;
-            }
-            div.bar {
-               height: 3px;
-               width: 1.5px;
-               background-color: #ffe1b5;
-               position: relative;
-               margin: 0 20px;
-               color: #ffe1b5;
-            }
-         }
-      }
-   }
-   .chatbox-icon {
-      position: relative;
-      left: 7px;
+  display: flex;
+  position: fixed;
+  top: 2%;
+  right: 2%;
+  z-index: 101;
+  pointer-events: none;
+  .icon-container {
+    display: flex;
+    height: fit-content;
+    margin-top: calc((55px - 15px) / 2);
+    pointer-events: none;
+    div {
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+      pointer-events: auto;
       img {
-         width: 45px;
-         height: 45px;
-         cursor: pointer;
+        width: 100%;
+        height: 100%;
       }
-   }
+    }
+  }
+  div.nav {
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .hbicon {
+      pointer-events: auto;
+      cursor: pointer;
+      height: 55px;
+      width: 55px;
+      animation: rotate 1.5s infinite;
+      img {
+        width: 100%;
+        height: 100%;
+        pointer-events: auto;
+      }
+    }
+    .vertical-nav {
+      pointer-events: auto;
+      .link-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        a {
+          font-size: 12px;
+          font-weight: bold;
+          height: 54px;
+          width: 54px;
+          text-decoration: none;
+          color: #ffe1b5;
+          backdrop-filter: blur(5px);
+          border: 2px solid #ffe1b5;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        div.bar {
+          height: 3px;
+          width: 1.5px;
+          background-color: #ffe1b5;
+          position: relative;
+          margin: 0 20px;
+          color: #ffe1b5;
+        }
+      }
+    }
+  }
+  .chatbox-icon {
+    position: relative;
+    left: 7px;
+    img {
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+    }
+  }
 
    @keyframes rotate {
       0% {
