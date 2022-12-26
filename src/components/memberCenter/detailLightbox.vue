@@ -1,7 +1,5 @@
 <template>
     <div class="wrap">
-        
-
         <h3 class="title">訂單明細</h3>
         <div class="imgBlock"></div>
         <div class="infoBlock">
@@ -58,9 +56,7 @@
                 <ul class="ulWrap">
                     <li>姓名</li>
                     <li>e-mail</li>
-                    <li>生日</li>
                     <li>手機</li>
-                    <li>地址</li>
                 </ul>
                 <participants-info />
             </div>
@@ -74,6 +70,8 @@ export default {
     components: {
         participantsInfo,
     },
+    data() {},
+    
 };
 </script>
 <style lang="scss" scoped>
@@ -172,6 +170,6 @@ export default {
 .ulWrap > li {
     color: #fff;
     font-size: 20px;
-    width: 20%;
+    width: 33%;
 }
 </style>

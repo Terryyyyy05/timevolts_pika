@@ -1,14 +1,14 @@
 <template>
     <div
         v-for="participants in participantsInfo"
-        :key="participants.name"
+        :key="participants.participant_name"
         class="wrap"
     >
-        <div class="name">{{ participants.name }}</div>
+        <div class="name">
+            {{ participants.name }}
+        </div>
         <div class="email">{{ participants.email }}</div>
-        <div class="birthday">{{ participants.birthday }}</div>
-        <div class="mobilephone">{{ participants.mobilephone }}</div>
-        <div class="address">{{ participants.address }}</div>
+        <div class="mobilephone">{{ participants.phone }}</div>
     </div>
 </template>
 <script>
@@ -16,23 +16,43 @@ export default {
     name: "participantsInfo",
     data() {
         return {
-            participantsInfo: [
-                {
-                    name: "aaa",
-                    email: "aaa@gmail.com,",
-                    birthday: "1999/01/01",
-                    mobilephone: "0912345678",
-                    address: "桃園市中壢區復興路48號",
-                },
-                {
-                    name: "bbb",
-                    email: "bbb@gmail.com,",
-                    birthday: "1999/02/02",
-                    mobilephone: "0912345678",
-                    address: "桃園市中壢區復興路48號",
-                },
-            ],
+            // participantsInfo: [
+            //     {
+            //         participant_name: "",
+            //         participant_email: "",
+            //         participant_phone: "",
+            //     },
+            // ],
+            participantsInfo: [],
         };
+    },
+    created() {
+        this.getData();
+    },
+
+    methods: {
+        getData() {
+            fetch("/api_server/getMemberParticipatesInfo.php")
+                .then((res) => res.json())
+                .then((data) => {
+                    // this.result = data;
+                    // console.log(this.result);
+                    // console.log(this.result[0].participant_name);
+                    // this.participant_name = data[0].participant_name;
+                    // this.participant_email = data[0].participant_email;
+                    // this.participant_phone = data[0].participant_phone;
+                    const qqs = [];
+                    for (const key in data) {
+                        const qq = {
+                            name: data[key].participant_name,
+                            email: data[key].participant_email,
+                            phone: data[key].participant_phone,
+                        };
+                        qqs.push(qq);
+                    }
+                    this.participantsInfo = qqs;
+                });
+        },
     },
 };
 </script>
@@ -49,18 +69,13 @@ export default {
     border-bottom: 1px dashed map-get($color, primary);
 }
 .name {
-    width: 20%;
+    width: 33%;
 }
 .email {
-    width: 20%;
+    width: 33%;
 }
-.birthday {
-    width: 20%;
-}
+
 .mobilephone {
-    width: 20%;
-}
-.address {
-    width: 20%;
+    width: 33%;
 }
 </style>

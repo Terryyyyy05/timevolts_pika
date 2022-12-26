@@ -54,6 +54,7 @@ export default {
 }
 
 .modal-container {
+    position: relative;
     background-color: map-get($color, dark_sub);
     // border: 10px solid map-get($color, accent);
     padding: 10px;
