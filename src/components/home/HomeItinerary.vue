@@ -4,15 +4,15 @@
       <TransitionGroup id="list" class="transition-container" name="list">
         <div
           class="slide"
-          v-for="(item, index) in itinerarys"
-          :key="item.id"
+          v-for="(item, index) in itineraryData"
+          :key="item.itinerary_id"
           @click="clickslide(index)"
           :class="{
             'is-active': activeIndex == index,
             'img-index': activeIndex != index,
           }"
         >
-          <img v-bind:src="item.story_cover" />
+          <img v-bind:src="'/image/history/banner/' + item.story_cover" />
         </div>
       </TransitionGroup>
     </div>
@@ -20,23 +20,33 @@
   <div class="content">
     <div class="itineraryTitle">
       <h3>{{ look.itinerary_name }}</h3>
+      <p>{{ look.story_classification }}</p>
     </div>
     <div class="itineraryText">
       <div class="summary">
-        <p>年代:{{ look.story_age }}</p>
+        <p v-if="look.story_age < 0">
+          年代:西元前{{ look.story_age.slice(1) }}年
+        </p>
+        <p v-if="look.story_age >= 0">年代:西元{{ look.story_age }}年</p>
         <p>{{ look.itinerary_memo }}</p>
       </div>
     </div>
     <div class="more">
       <img v-bind:src="imgsrc" alt="圖騰" />
-      <router-link class="link" to="/itiItineraryClassicView"
+      <router-link
+        class="link"
+        :to="
+          look.story_classification == '經典行程'
+            ? `/itineraryClassicView/c${look.itinerary_id}`
+            : `/itineraryPeriodView/p${look.itinerary_id}`
+        "
         >了解更多</router-link
       >
     </div>
     <div class="itineraryTeg">
       <p>危險度:{{ look.story_risk }}</p>
       <p>地點:{{ look.story_spot }}</p>
-      <p>{{ look.tagFeature }}</p>
+      <p>類型:{{ look.story_specialty }}</p>
     </div>
     <button class="next" @click="nextPage">&gt;</button>
     <button class="previous" @click="previous">&lt;</button>
@@ -48,65 +58,13 @@
 
 export default {
   // components: {
-  //     Carousel,
-  //     Slide
+  //   Carousel,
+  //   Slide,
   // },
   data() {
     return {
-      paginations: 5,
       currentPage: 1,
-      itinerarys: [
-        {
-          id: 1,
-          story_cover: require("@/assets/image/itin/titanic.jpg"),
-          itinerary_name: "鐵達尼號沈船事件",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "北美洲",
-          tagFeature: null,
-        },
-        {
-          id: 2,
-          story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "馬雅文化",
-          story_age: "未知",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "低",
-          story_spot: "南美洲",
-          tagFeature: null,
-        },
-        {
-          id: 3,
-          story_cover: require("@/assets/image/itin/atlantis.png"),
-          itinerary_name: "亞特蘭提斯",
-          story_age: "西元前12000年",
-          itinerary_memo: `這個地方是個傳說中的地方，存不存在沒人知道。柏拉圖說，公元前9560年的時候，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯。...`,
-          story_risk: "低",
-          story_spot: null,
-          tagFeature: "奇聞軼事",
-        },
-        {
-          id: 4,
-          story_cover: require("@/assets/image/itin/titanic.jpg"),
-          itinerary_name: "鐵達尼號沈船事件2",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "北美洲",
-          tagFeature: null,
-        },
-        {
-          id: 5,
-          story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "馬雅文化2",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "南美洲",
-          tagFeature: null,
-        },
-      ],
+      itineraryData: [],
       look: {},
       imgsrc: require("@/assets/image/home/icon/icon_1.svg"),
       filterExtension: false,
@@ -116,34 +74,36 @@ export default {
 
   computed: {},
   methods: {
+    getItineraryData() {
+      fetch("/api_server/getHomeItinerary.php")
+        .then((res) => res.json())
+        .then((jsonData) => {
+          this.itineraryData = jsonData;
+          this.look = this.itineraryData[this.activeIndex];
+          console.log("itin", this.itineraryData);
+        });
+    },
+
     previous() {
       // 頁面往前，循環補上
-      //   this.activeIndex--;
 
-      const temp = this.itinerarys[this.itinerarys.length - 1];
-      this.itinerarys.pop();
-      this.itinerarys.unshift(temp);
+      const temp = this.itineraryData[this.itineraryData.length - 1];
+      this.itineraryData.pop();
+      this.itineraryData.unshift(temp);
 
-      const looktemp = this.itinerarys[this.activeIndex];
+      const looktemp = this.itineraryData[this.activeIndex];
       this.look = looktemp;
-      //   this.activeIndex = index;
-      // const lastSlide = pictures.value.pop();
-      // pictures.value = [lastSlide].concat(pictures.value);
     },
 
     nextPage() {
       // 頁面往後，循環補上
-      //   this.activeIndex++;
 
-      const temp = this.itinerarys[0];
-      this.itinerarys.shift();
-      this.itinerarys.push(temp);
+      const temp = this.itineraryData[0];
+      this.itineraryData.shift();
+      this.itineraryData.push(temp);
 
-      const looktemp = this.itinerarys[this.activeIndex];
+      const looktemp = this.itineraryData[this.activeIndex];
       this.look = looktemp;
-
-      // const firstPicture = pictures.value.shift();
-      // pictures.value = pictures.value.concat(firstPicture);
     },
     selectPage(val) {
       this.currentPage = val;
@@ -154,12 +114,10 @@ export default {
       } else if (index == 0) {
         this.previous();
       }
-      //   this.look = item;
-      //   this.activeIndex = index;
     },
   },
   created() {
-    this.look = this.itinerarys[this.activeIndex];
+    this.getItineraryData();
   },
 };
 </script>
@@ -167,6 +125,9 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
 
+h3 {
+  font-family: "Cube11";
+}
 .img-index {
   z-index: -1;
 }
@@ -253,7 +214,6 @@ export default {
   height: fit-content;
   margin: 0 auto;
   border-radius: 20px;
-  // border: 2px solid map-get($color, "primary");
   background: map-get($color, "dark_sub");
   box-sizing: border-box;
   display: flex;
@@ -266,41 +226,53 @@ export default {
     width: 70vw;
   }
   .itineraryTitle {
+    display: flex;
     width: 15vw;
-    // height: 100%;
-    padding: 15px;
+    padding: 15px 5px 15px 15px;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
+    border-right: none;
     border-radius: 20px 0 0 20px;
-    align-items: top;
+    flex-direction: column;
+    justify-content: space-between;
     @media screen and (max-width: $m-breakpoint) {
+      flex-direction: row;
       width: 100%;
+      padding: 15px;
+      border: 2px solid map-get($color, "primary");
+      border-bottom: none;
       border-radius: 20px 20px 0 0px;
+      order: -1;
     }
   }
   .itineraryText {
-    width: 32vw;
-    // padding: 0 15px 0px;
+    width: 34vw;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-
     border: 2px solid map-get($color, "primary");
     align-items: center;
     text-overflow: ellipsis;
+    border-right: none;
     @media screen and (max-width: $m-breakpoint) {
       width: 100%;
       min-height: 30vh;
+      border: 2px solid map-get($color, "primary");
+      border-bottom: none;
     }
     .summary {
-      padding: 20px;
+      padding: 15px 12px;
+      margin-bottom: 10px;
       box-sizing: border-box;
       align-self: start;
-      line-height: 1.4;
+      line-height: 1.7;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       :nth-child(1) {
-        font-size: 24px;
+        font-size: 20px;
+        @media screen and (max-width: $m-breakpoint) {
+          font-size: 18px;
+        }
       }
     }
   }
@@ -312,43 +284,53 @@ export default {
     justify-content: space-between;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
+    border-right: none;
     @media screen and (max-width: $m-breakpoint) {
       width: 100%;
-      flex-direction: row;
+      border: none;
     }
     img {
       margin: 2rem 1rem;
+      @media screen and (max-width: $m-breakpoint) {
+        display: none;
+      }
     }
     .link {
-      width: calc(8vw - 4px);
+      width: 100%;
       text-align: center;
       padding: 0.7rem 0rem;
       box-sizing: border-box;
       color: map-get($color, "dark");
       background-color: map-get($color, "accent");
       border: none;
-      border-top: 4px solid map-get($color, "primary");
+      border-top: 2px solid map-get($color, "primary");
       @media screen and (max-width: $m-breakpoint) {
-        max-width: 100%;
+        width: 100%;
         border-top: none;
-        border-left: 2px solid map-get($color, "primary");
+        border-radius: 0px 0px 20px 20px;
+        border: 2px solid map-get($color, "primary");
+        // border-left: 2px solid map-get($color, "primary");
       }
     }
   }
   .itineraryTeg {
-    width: 15vw;
+    width: 13vw;
     // height: 100%;
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
     border: 2px solid map-get($color, "primary");
     border-radius: 0 20px 20px 0;
     align-items: center;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 33px;
     @media screen and (max-width: $m-breakpoint) {
+      display: flex;
+      justify-content: space-between;
       width: 100%;
-      border-radius: 0px 0px 20px 20px;
-      font-size: 14px;
+      border-bottom: none;
+      border-radius: 0;
+      font-size: 18px;
+      order: -1;
     }
   }
 }

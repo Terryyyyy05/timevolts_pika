@@ -1,7 +1,10 @@
 <template>
   <div class="GetVoucherButton">
     <button class="btn-store-detail" @click="showbox()">
-      <p>立即領取<br />折扣卷 {{ CouponData.length }}張</p>
+      <p v-if="!this.userId">
+        立即登入領取<br />折扣卷 {{ CouponData.length }}張
+      </p>
+      <p v-else>立即領取<br />折扣卷 {{ ReceiveQuantity() }}張</p>
     </button>
   </div>
 
@@ -19,7 +22,7 @@
             <div class="coupon-card-left">
               <div class="title">
                 <p class="title-one">
-                  &#36;{{ item.coupon_discount_number }}元<br />現金券
+                  &#36;{{ item.coupon_discount_number }}元 <span>現金券</span>
                 </p>
                 <p class="title-two">
                   &#40;滿&#36;{{ item.coupon_pricing_condition }}元 可使用&#41;
@@ -35,14 +38,21 @@
             </div>
             <div class="coupon-card-right">
               <button
-                id="receive"
+                class="getbtn"
+                value="快來領取折價卷"
                 v-on:click="receive(index)"
-                href="#"
-                v-if="(this.CouponData.coupon_status = 1)"
+                v-if="received(index)"
               >
-                <p>{{ init[this.CouponData.coupon_status] }}</p>
+                {{ "立即領取" }}
               </button>
-              <!-- <a id="receive" href="#" v-else>已領取</a> -->
+              <button
+                class="getbtn-1"
+                disabled="disabled"
+                value="已領取，快去消費吧"
+                v-else
+              >
+                {{ "已領取" }}
+              </button>
             </div>
           </div>
         </div>
@@ -59,45 +69,24 @@ export default {
   data() {
     return {
       CouponData: [{}],
-      GetVouchers: [
-        {
-          coupon_id: 1, //編號
-          coupon_discount_number: 200, //折扣金額
-          coupon_issue_date: "2022-12-20", //發送日期
-          coupon_valid_date: "2022-12-25", //生效日期
-          coupon_exp_date: "2023-01-15", //到期日期
-          coupon_quantity: 1000, //發行數量
-          coupon_given_numbers: 0, //已發數量
-          coupon_pricing_condition: 1000, //消費門檻
-          coupon_status: 1, // 1=上架,0=下架
-        },
-        {
-          coupon_id: 2, //編號
-          coupon_discount_number: 5, //折扣金額
-          coupon_issue_date: "2022-12-18", //發送日期
-          coupon_valid_date: "2022-12-18", //生效日期
-          coupon_exp_date: "null", //到期日期
-          coupon_quantity: 2000, //發行數量
-          coupon_given_numbers: 0, //已發數量
-          coupon_pricing_condition: 100, //消費門檻
-          coupon_status: 0, // 1=上架,0=下架
-        },
-        {
-          coupon_id: 3, //編號
-          coupon_discount_number: 5000, //折扣金額
-          coupon_issue_date: "2022-12-18", //發送日期
-          coupon_valid_date: "2022-12-18", //生效日期
-          coupon_exp_date: "null", //到期日期
-          coupon_quantity: 2000, //發行數量
-          coupon_given_numbers: 0, //已發數量
-          coupon_pricing_condition: 80000, //消費門檻
-          coupon_status: 0, // 1=上架,0=下架
-        },
-      ],
-      init: { 1: "立即領取", 0: "已領取" },
+      get_coupon_id: {
+        val: 0,
+        isValid: true,
+      },
+      get_mem_id: {
+        val: 0,
+        isValid: true,
+      },
+      get_my_coupon_status: {
+        val: 1,
+        isValid: true,
+      },
+      // init: { 1: "立即領取", 0: "已領取" },
       unreceivedCoupon: [], //未領取的優惠卷
       showModal: false, //燈箱開關
       login: true, //是否登入
+      userId: null,
+      hasLoggedIn: true,
     };
   },
 
@@ -107,42 +96,56 @@ export default {
   },
   methods: {
     getVoucher() {
-      fetch("http://localhost/timevolts_pika/public/phpfile/getCoupon.php")
+      fetch("/api_server/getGetCoupon.php")
         .then((res) => res.json())
         .then((jsonData) => {
           this.CouponData = jsonData;
           console.log(this.CouponData);
         });
     },
+    ReceiveQuantity() {
+      // 檢查可領取數量
+      return this.CouponData.reduce((acc, cur) => {
+        // acc = this.CouponData.login;
+        if (cur.mem_id === null) {
+          return acc + 1;
+        } else {
+          return acc;
+        }
+      }, 0);
+    },
     showbox() {
       // 開關按鈕
-      this.showModal = !this.showModal;
 
-      console.log(this.CouponData);
-    },
-    // afterReceive() {
-    //   console.log("AAA");
-    //   console.log(this);
-    //   this.target.innerText = "已領取";
-    // },
-    receive(e, index) {
-      // 判別是否登入
-      console.log(e);
-      if (this.login == true) {
-        // 判別是否可領取
-        if (this.CouponData[e].coupon_status == 1) {
-          // if ((e.target = )) {
-          // 領取並傳回後端
-
-          console.log("BBB");
-          alert(`恭喜您獲得優惠卷~`);
-          // 計算可以領取數量
-          this.CouponData[e].coupon_status = 0;
-          console.log(e);
-        } else {
-          // 前往登入頁面
-        }
+      檢查登入;
+      this.userId = this.$store.getters["userId"];
+      if (!this.userId) {
+        // 會員未登入
+        this.hasLoggedIn = false;
+        this.$router.push({ path: "/memberLightBox" });
+      } else {
+        // 會員有登入
+        this.showModal = !this.showModal;
       }
+    },
+    received(a) {
+      // 判斷是否領取過
+      let isNull = this.CouponData[a].mem_id + "";
+      if (isNull === "null") {
+        return (a = true);
+      }
+    },
+    receive(index) {
+      // if ((e.target = )) {
+      // 領取並傳回後端
+      // 先寫死1 之後要抓會員ID
+      this.CouponData[index].mem_id = 1;
+
+      alert(`恭喜您獲得優惠卷~`);
+      // 計算可以領取數量
+
+      // 前往登入頁面
+
       // this.GetVouchers[index].coupon_status = 0;
 
       // e.target.innerText = "已領取";
@@ -176,9 +179,9 @@ export default {
   right: 125px;
   position: fixed;
   z-index: 101;
-  color: map-get($color, primary_sub);
+  color: map-get($color, accent);
   background-color: map-get($color, dark_sub);
-  border: 2px solid map-get($color, primary_sub);
+  border: 2px solid map-get($color, accent);
   @media screen and (max-width: $m-breakpoint) {
     top: 70px;
     right: 70px;
@@ -194,7 +197,7 @@ export default {
 
 // 燈箱卡片
 .GetVoucher {
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/5;
   width: 25%;
   background-color: map-get($color, dark_sub);
   border: 10px solid map-get($color, primary_sub);
@@ -395,16 +398,20 @@ export default {
   width: 20px;
   height: 10px;
 }
-.coupon-card-right button {
-  border: 3px solid #434343;
+.getbtn,
+.getbtn-1 {
+  border: 3px solid map-get($color, primary_sub);
+
   background: none;
   border-radius: 48px;
-  padding: 4px;
-  margin: 0 auto;
-  font-size: 16px;
-  color: #fff;
-  > p {
-    writing-mode: vertical-lr;
-  }
+  padding: 10px 5px;
+  margin: 8px;
+  font-size: 18px;
+  color: map-get($color, primary);
+  writing-mode: sideways-lr;
+}
+.getbtn-1 {
+  color: #ccc;
+  border: 3px solid #434343;
 }
 </style>

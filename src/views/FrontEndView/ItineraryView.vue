@@ -67,7 +67,7 @@ export default {
     },
     data() {
         return {
-            result: {},
+            // result: {},
         };
     },
     mounted() {
@@ -75,17 +75,17 @@ export default {
         animate();
     },
     created() {
-        this.getData();
+        // this.getData();
     },
     methods: {
-        getData() {
-            fetch("http://localhost/timevolts/public/phpfiles/getProducts.php")
-                .then((res) => res.json())
-                .then((json) => {
-                    this.result = json;
-                    console.log(this.result);
-                });
-        },
+        // getData() {
+        //     fetch("http://localhost/timevolts/public/phpfiles/getProducts.php")
+        //         .then((res) => res.json())
+        //         .then((json) => {
+        //             this.result = json;
+        //             console.log(this.result);
+        //         });
+        // },
     },
 };
 </script>

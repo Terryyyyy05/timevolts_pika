@@ -22,87 +22,32 @@
   </select> -->
   <ul>
     <li class="news" v-for="(item,index) of newsData" :key="index">
-      <h2>{{ item.title }}</h2>
-      <p class="date">{{ item.date }}</p>
-      <span class="hashtag">{{ item.hashtag }}</span>
-      <p class="content">{{ item.content }}</p>
-      <!-- <button type="button" class="more" @click=""> -->
-        看更多...
-      <!-- </button> -->
-    </li>
-  </ul>
-  <!-- <ul v-if ="currentTab == 'all'">
-    <li class="news" v-for="(item,index) of newsData" :key="index">
-      <h2>{{ item.title }}</h2>
-      <p class="date">{{ item.date }}</p>
-      <span class="hashtag">{{ item.hashtag }}</span>
-      <p class="content">{{ item.content }}</p>
-      <button type="button" class="more" @click="openBox(item.id)">
+      <h2>{{ item.news_title }}</h2>
+      <p class="date">{{ item.news_add_date }}</p>
+      <span class="hashtag">{{ item.news_hashtag }}</span>
+      <p class="content">{{ item.news_content }}</p>
+      <button type="button" class="more" @click="openBox(item.news_id)">
         看更多...
       </button>
     </li>
   </ul>
-  <ul v-if="currentTab == 'itinerary'">
-    <li class="news" v-for="item in tabs.itineraryData" :key="item.id">
-      <h2>{{ item.title }}</h2>
-      <p class="date">{{ item.date }}</p>
-      <span class="hashtag">{{ item.hashtag }}</span>
-      <p class="content">{{ item.content }}</p>
-      <button type="button" class="more" @click="openBox(item.id)">
-        看更多...
-      </button>
-    </li>
-  </ul>
-  <ul v-if="currentTab == 'history'">
-    <li class="news" v-for="item in tabs.historyDataSort" :key="item.id">
-      <h2>{{ item.title }}</h2>
-      <p class="date">{{ item.date }}</p>
-      <span class="hashtag">{{ item.hashtag }}</span>
-      <p class="content">{{ item.content }}</p>
-      <button type="button" class="more" @click="openBox(item.id)">
-        看更多...
-      </button>
-    </li>
-  </ul>
-  <ul v-if="currentTab == 'shopping'">
-    <li class="news" v-for="item in tabs.shoppingData" :key="item.id">
-      <h2>{{ item.title }}</h2>
-      <p class="date">{{ item.date }}</p>
-      <span class="hashtag">{{ item.hashtag }}</span>
-      <p class="content">{{ item.content }}</p>
-      <button type="button" class="more" @click="openBox(item.id)">
-        看更多..
-      </button>
-    </li>
-  </ul>
-  <ul v-if="currentTab == 'other'">
-    <li class="news" v-for="item in tabs.otherData" :key="item.id">
-      <h2>{{ item.title }}</h2>
-      <p class="date">{{ item.date }}</p>
-      <span class="hashtag">{{ item.hashtag }}</span>
-      <p class="content">{{ item.content }}</p>
-      <button type="button" class="more" @click="openBox(item.id)">
-        看更多...
-      </button>
-    </li>
-  </ul> -->
 
-  <!-- <div class="l-box" :class="{ 'show-lightbox': isOpen }">
+  <div class="l-box" :class="{ 'show-lightbox': isOpen }">
     <button class="close-l-box" @click="close">
       <font-awesome-icon icon="fa-solid fa-xmark" />
     </button>
     <div class="l-box-img">
-      <img :src="popupData.img" /> 
+      <img :src="`${popupData.news_img}`"/>
     </div>
     <div class="l-box-content">
-      <h2>{{ popupData.title }}</h2>
-      <p class="date">{{ popupData.date }}</p>
+      <h2>{{ popupData.news_title }}</h2>
+      <p class="date">{{ popupData.news_add_date }}</p>
       <div class="l-box-content-item">
-        <span class="hashtag">{{ popupData.hashtag }}</span>
-        <p class="content">{{ popupData.content }}</p>
+        <span class="hashtag">{{ popupData.news_hashtag }}</span>
+        <p class="content">{{ popupData.news_content }}</p>
       </div>
     </div>
-  </div> -->
+  </div>
 
 
 </template>
@@ -129,77 +74,73 @@ export default {
         {text:'其他消息',id:'05'},
         
       ],
-      newsData:[
-        [
-          {title:'十字軍東征',date:'AC202',hashtag:'#西洋史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
-          {title:'鄭和下西洋',date:'AC1002',hashtag:'#中國史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
-          {title:'文藝復興',date:'AC802',hashtag:'#藝術史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
-        ],
-        [
-          {title:'鄭和下西洋',date:'AC202',hashtag:'#西洋史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
-          {title:'鄭和下西洋',date:'AC1002',hashtag:'#中國史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
-          {title:'文藝復興',date:'AC802',hashtag:'#藝術史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
-        ],
-        [
-          {title:'文藝復興',date:'AC202',hashtag:'#西洋史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
-          {title:'鄭和下西洋',date:'AC1002',hashtag:'#中國史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
-          {title:'文藝復興',date:'AC802',hashtag:'#藝術史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
-        ],
+      // newsData:[
+      //   [
+      //     {title:'十字軍東征',date:'AC202',hashtag:'#西洋史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
+      //     {title:'鄭和下西洋',date:'AC1002',hashtag:'#中國史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
+      //     {title:'文藝復興',date:'AC802',hashtag:'#藝術史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
+      //   ],
+      //   [
+      //     {title:'鄭和下西洋',date:'AC202',hashtag:'#西洋史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
+      //     {title:'鄭和下西洋',date:'AC1002',hashtag:'#中國史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
+      //     {title:'文藝復興',date:'AC802',hashtag:'#藝術史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
+      //   ],
+      //   [
+      //     {title:'文藝復興',date:'AC202',hashtag:'#西洋史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
+      //     {title:'鄭和下西洋',date:'AC1002',hashtag:'#中國史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
+      //     {title:'文藝復興',date:'AC802',hashtag:'#藝術史',content:'十字軍東征十字軍東征十字軍東征十字軍東征十字軍東征',},
+      //   ],
       
-      ],
+      // ],
+      newsList:[],
       currentBtn:'',
+      activeId: NaN,
     }
   },
     
-  // created() {
-  //   this.getData();  //測試抓local端資料
-  // },
+  created() {
+    this.getData();  //測試抓local端資料
+  },
   computed: {
     newsData() {
       const index =this.btns.indexOf(this.currentBtn);
       if(index> -1){
-        return this.newsData[index];
+        return this.newsList[index];
       }
-      return this.newsData[0]
-     }
+      return this.newsList;
+     },
+    popupData() {
+      return this.newsList.find((v) => v.news_id === this.activeId) ?? {};
     },
-  //   // historyDataSort() {
-  //   //   return [...this.tabs.historyData].sort((a, b) => {
-  //   //     return new Date(a.date).valueOf() - new Date(b.date).valueOf()
-  //   //   })
-  //   // },
-  //   popupData() {
-  //     return this.newsData.find(v => v.id === this.activeId) ?? {};
-  //   },
-  //   isOpen() {
-  //     return !isNaN(this.activeId);
-  //   },
-  // },
-  // methods: {
-  //   selectTab(id) {
-  //     this.currentTab = id
-  //   },
-  //   openBox(id) {
-  //     // this.isOpen = true;
-  //     this.activeId = id;
-  //   },
-  //   close() {
-  //     // this.isOpen = false;
-  //     this.activeId = NaN;
-  //   },
-  //   //測試抓local端資料
-  //   getData() {
-  //     fetch('http://localhost/timevolts_pika/public/phpfiles/getProducts.php')
-  //       .then((res) => res.json())
-  //       .then((json) => {
-  //         this.result = json[0];
-  //         console.log(this.result);
-  //       })
-  //   },
-  //   saveData() {
-  //     console.log(this.result);
-  //   },
-  // }
+    isOpen() {
+      return !isNaN(this.activeId);
+    },
+  },
+  methods: {
+    selectTab(id) {
+      this.currentTab = id
+    },
+    openBox(id) {
+      // this.isOpen = true;
+      this.activeId = id;
+    },
+    close() {
+      // this.isOpen = false;
+      this.activeId = NaN;
+    },
+    //測試抓local端資料
+    getData() {
+      fetch('http://localhost/timevolts_pika/public/phpfile/getNews.php')
+        .then((res) => res.json())
+        .then((json) => {
+          this.newsList = json;
+          console.log(this.newsList);
+        })
+    },
+    saveData() {
+      console.log(this.newsList);
+    },
+  }
 }
 
 </script>

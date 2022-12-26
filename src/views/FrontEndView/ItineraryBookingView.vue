@@ -1,6 +1,9 @@
 <template>
    <all-header />
    <innerpageHeader></innerpageHeader>
+   <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="askForLogin">
+      <p>請先登入!</p>
+   </base-dialog>
    <div class="container">
       <the-heading
          heading="行程訂票"
@@ -24,7 +27,7 @@
          <router-link to="/customizetk">
             <button class="btn-primary">開始製作</button>
          </router-link>
-         <router-link to="/home"
+         <router-link to="/customizeCanvas"
             ><button class="btn-secondary">
                使用預設樣式，晚點再做
             </button></router-link
@@ -52,6 +55,8 @@ export default {
          selectedStep: "itinerary-information",
          currentStep: "行程資訊",
          button: "確認訂票",
+         userId: null,
+         hasLoggedIn: true,
       };
    },
    computed: {
@@ -78,6 +83,17 @@ export default {
          }
       },
    },
+   created() {
+      this.userId = this.$store.getters["userId"];
+      // console.log(this.userId);
+      if (!this.userId) {
+         // 找不到會員
+         this.hasLoggedIn = false;
+      } else {
+         // 會員有登入
+         this.$router.push({ path: "/itinerary-booking" });
+      }
+   },
    methods: {
       nextStep() {
          if (this.selectedStep === "itinerary-information") {
@@ -90,6 +106,35 @@ export default {
             this.currentStep = "訂單成立";
             window.scrollTo(0, 0);
          }
+      },
+      askForLogin() {
+         this.$router.push({ path: "/memberLightBox" });
+      },
+      async getItineraryInfo() {
+         const response = await fetch(
+            "http://localhost/timevolts_pika/public/phpfile/getHistories.php"
+         );
+
+         const responseData = await response.json();
+         console.log(responseData);
+
+         const histories = [];
+
+         for (const key in responseData) {
+            const history = {
+               id: String(responseData[key].story_id),
+               title: responseData[key].story_name,
+               tagDanderLevel: responseData[key].story_risk,
+               tagFeature: responseData[key].story_specialty,
+               tagRegion: responseData[key].story_spot,
+               happenYear: responseData[key].story_age,
+               description: responseData[key].story_intro,
+               image: responseData[key].story_cover,
+            };
+            histories.push(history);
+         }
+
+         context.commit("getHistories", histories);
       },
    },
 };

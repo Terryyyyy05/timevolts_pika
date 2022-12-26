@@ -2,13 +2,12 @@
    <all-header />
    <innerpageHeader></innerpageHeader>
    <div class="container">
-      <keep-alive>
-         <component
-            :is="selectedComponent"
-            @signup="signup"
-            @confirm-signup="confirmSignup"
-         ></component>
-      </keep-alive>
+      <component
+         :is="selectedComponent"
+         @signup="signup"
+         @confirm-signup="confirmSignup"
+         @back-to-login="backToLogin"
+      ></component>
    </div>
    <all-footer />
 </template>
@@ -31,7 +30,7 @@ export default {
       signup() {
          this.selectedComponent = "member-signup";
       },
-      confirmSignup() {
+      backToLogin() {
          this.selectedComponent = "member-login";
       },
    },

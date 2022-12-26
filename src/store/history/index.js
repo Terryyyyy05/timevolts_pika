@@ -173,11 +173,10 @@ export default {
    },
    actions: {
       async getHistories(context) {
-         const response = await fetch(
-            "http://localhost/timevolts_pika/public/phpfile/getHistories.php"
-         );
+         const response = await fetch("/api_server/getHistories.php");
 
          const responseData = await response.json();
+         console.log(responseData);
 
          const histories = [];
 
@@ -190,6 +189,7 @@ export default {
                tagRegion: responseData[key].story_spot,
                happenYear: responseData[key].story_age,
                description: responseData[key].story_intro,
+               image: responseData[key].story_cover,
             };
             histories.push(history);
          }

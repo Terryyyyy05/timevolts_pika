@@ -22,7 +22,7 @@ export const cardContext = reactive([
     },
     {
         type: "經典事件",
-        id: 2,
+        id: 4,
         imgsrc: require(`@/assets/image/itin/egypt.jpg`),
         imgalt: "經典行程-埃及",
         title: "埃及五千年",
@@ -42,7 +42,7 @@ export const cardContext = reactive([
     },
     {
         type: "經典事件",
-        id: 3,
+        id: 2,
         imgsrc: require(`@/assets/image/itin/war.jpg`),
         imgalt: "經典行程-赤壁之戰",
         title: "赤壁之戰",
@@ -62,7 +62,7 @@ export const cardContext = reactive([
     },
     {
         type: "經典事件",
-        id: 4,
+        id: 3,
         imgsrc: require(`@/assets/image/itin/columbia.jpg`),
         imgalt: "經典行程-哥倫布發現新大陸",
         title: "哥倫布發現新大陸",

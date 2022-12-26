@@ -4,21 +4,30 @@
       <div class="title">EGYPT</div>
       <div class="historcalText">
         <div>
-          <h3>{{ look.itinerary_name }}</h3>
+          <h3>{{ look.story_name }}</h3>
         </div>
         <div class="historcalTeg">
           <span v-if="look.story_risk != null"
             >危險度:{{ look.story_risk }}
           </span>
-          <span v-if="look.tagFeature != null"> | {{ look.tagFeature }}</span>
-          <p v-if="look.story_spot != null">地點:{{ look.story_spot }}</p>
+          <span v-if="look.story_specialty != null">
+            | {{ look.story_specialty }}</span
+          >
+          <span v-if="look.story_spot != null">
+            | 地點:{{ look.story_spot }}</span
+          >
         </div>
         <div class="summary">
-          <p>年代:{{ look.story_age }}</p>
-          <p>{{ look.itinerary_memo }}</p>
+          <p v-if="look.story_age < 0">
+            年代:西元前{{ look.story_age.slice(1) }}年
+          </p>
+          <p v-if="look.story_age >= 0">年代:西元{{ look.story_age }}年</p>
+          <p>{{ look.story_intro }}</p>
         </div>
         <div class="more">
-          <router-link class="link" to="/history-details">了解更多</router-link>
+          <router-link class="link" v-bind:to="'/history/' + look.story_id"
+            >了解更多</router-link
+          >
         </div>
       </div>
     </div>
@@ -27,15 +36,15 @@
         <TransitionGroup id="list" class="transition-container" name="list">
           <div
             class="slide"
-            v-for="(item, index) in itinerarys"
-            :key="item.id"
+            v-for="(item, index) in HistoriesData"
+            :key="item.story_id"
             @click="clickslide(index)"
             :class="{
               'is-active': activeIndex == index,
               'img-index': activeIndex != index,
             }"
           >
-            <img v-bind:src="item.story_cover" />
+            <img v-bind:src="'/image/history/banner/' + item.story_cover" />
           </div>
         </TransitionGroup>
       </div>
@@ -54,100 +63,33 @@ export default {
   // },
   data() {
     return {
-      paginations: 5,
       currentPage: 1,
       HistoriesData: [],
-      itinerarys: [
-        {
-          id: 1,
-          story_cover: require("@/assets/image/itin/titanic.jpg"),
-          itinerary_name: "鐵達尼號沈船事件",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "北美洲",
-          tagFeature: null,
-        },
-        {
-          id: 2,
-          story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "馬雅文化",
-          story_age: "未知",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "低",
-          story_spot: "南美洲",
-          tagFeature: null,
-        },
-        {
-          id: 3,
-          story_cover: require("@/assets/image/itin/atlantis.png"),
-          itinerary_name: "亞特蘭提斯",
-          story_age: "西元前12000年",
-          itinerary_memo: `這個地方是個傳說中的地方，存不存在沒人知道。柏拉圖說，公元前9560年的時候，他聲稱這個非洲大陸旁邊還有一個非常大的島，這個島也就是亞特蘭提斯。...`,
-          story_risk: "低",
-          story_spot: null,
-          tagFeature: "奇聞軼事",
-        },
-        {
-          id: 4,
-          story_cover: require("@/assets/image/itin/titanic.jpg"),
-          itinerary_name: "鐵達尼號沈船事件",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "北美洲",
-          tagFeature: null,
-        },
-        {
-          id: 5,
-          story_cover: require("@/assets/image/itin/culturaMaya.webp"),
-          itinerary_name: "馬雅文化",
-          story_age: "西元1912年",
-          itinerary_memo: "回到過去的英國，體驗號稱「永不沉沒」的夢幻之船",
-          story_risk: "中",
-          story_spot: "南美洲",
-          tagFeature: null,
-        },
-      ],
       look: {},
       imgsrc: require("@/assets/image/home/icon/icon_1.svg"),
       filterExtension: false,
-      activeIndex: 1,
+      activeIndex: 0,
     };
   },
 
   computed: {},
   methods: {
     getHistoriesData() {
-      fetch("http://localhost/timevolts_pika/public/phpfile/getHistories.php")
+      fetch("/api_server/getHistories.php")
         .then((res) => res.json())
         .then((jsonData) => {
           this.HistoriesData = jsonData;
-          console.log(this.HistoriesData);
+          this.look = this.HistoriesData[this.activeIndex];
         });
     },
-    previous() {
-      // 頁面往前，循環補上
-      //   this.activeIndex--;
-      //   const temp = this.itinerarys[this.itinerarys.length - 1];
-      //   this.itinerarys.pop();
-      //   this.itinerarys.unshift(temp);
-      //   const looktemp = this.itinerarys[this.activeIndex];
-      //   this.look = looktemp;
-      //   this.activeIndex = index;
-      // const lastSlide = pictures.value.pop();
-      // pictures.value = [lastSlide].concat(pictures.value);
-    },
-
     nextPage() {
       // 頁面往後，循環補上
-      //   this.activeIndex++;
 
-      const temp = this.itinerarys[0];
-      this.itinerarys.shift();
-      this.itinerarys.push(temp);
+      const temp = this.HistoriesData[0];
+      this.HistoriesData.shift();
+      this.HistoriesData.push(temp);
 
-      const looktemp = this.itinerarys[this.activeIndex];
+      const looktemp = this.HistoriesData[this.activeIndex];
       this.look = looktemp;
 
       // const firstPicture = pictures.value.shift();
@@ -162,7 +104,6 @@ export default {
   },
   created() {
     this.getHistoriesData();
-    this.look = this.itinerarys[this.activeIndex];
   },
 };
 </script>
@@ -180,10 +121,10 @@ $b2-primary: (2px solid map-get($color, "primary"));
 // 輪播圖
 
 .slide-container {
-  //   width: calc(100vw - 17.6px);
+  // width: calc(100vw - 17.6px);
   //   top: -30px;
   left: 30px;
-  padding: 30px;
+  padding: 20px;
   display: flex;
   justify-items: center;
   overflow: hidden;
@@ -195,8 +136,8 @@ $b2-primary: (2px solid map-get($color, "primary"));
   }
 }
 .next {
-  top: calc(15vw + 20px + 23px);
-  left: calc(30vw + 27px);
+  top: calc(15vw + 23px);
+  left: calc(27px);
   width: 45px;
   height: 45px;
   padding: 3px;
@@ -212,23 +153,22 @@ $b2-primary: (2px solid map-get($color, "primary"));
   width: 50vw;
   align-items: center;
   position: relative;
-  margin: 20px auto;
+  // margin: 20px auto;
   //   display: flex;
   .img-index {
     z-index: 5;
   }
   .slide {
     //left控制滑走的移動速度
-    top: -5vw;
-    left: 30vw;
+    left: -30vw;
     transition: 0.7s;
     position: absolute;
     z-index: 21;
     box-shadow: 5px solid map-get($color, "body");
     opacity: 0;
     img {
-      width: 40vw;
-      height: 40vw;
+      width: 30vw;
+      height: 30vw;
       box-sizing: border-box;
       border: 2px solid map-get($color, "primary");
       transition: 0.7s;
@@ -241,7 +181,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
     left: 17vw;
     z-index: 16;
     opacity: 0;
-    // transition: 0s;
+    transition: 0s;
     img {
       width: 14vw;
       height: 14vw;
@@ -252,7 +192,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
     top: 6vw;
     left: 16vw;
     z-index: 17;
-    opacity: 0;
+    opacity: 1;
     img {
       width: 18vw;
       height: 18vw;
@@ -359,6 +299,12 @@ $b2-primary: (2px solid map-get($color, "primary"));
     :nth-child(1) {
       font-size: 24px;
     }
+    @media screen and (max-width: $m-breakpoint) {
+      font-size: 12px;
+      :nth-child(1) {
+        font-size: 14px;
+      }
+    }
   }
 
   .historcalTeg {
@@ -367,6 +313,9 @@ $b2-primary: (2px solid map-get($color, "primary"));
     margin-top: 20px;
     font-size: 24px;
     line-height: 33px;
+    @media screen and (max-width: $m-breakpoint) {
+      font-size: 16px;
+    }
   }
   .more {
     display: flex;
@@ -374,6 +323,7 @@ $b2-primary: (2px solid map-get($color, "primary"));
     justify-content: space-between;
     box-sizing: border-box;
     .link {
+      margin-top: 10px;
       text-align: center;
       padding: 0.7rem;
       box-sizing: border-box;

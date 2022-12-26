@@ -18,8 +18,9 @@ function carouselMove (){
         btnRight.onclick = function(){
             curIndex++;
             ul.style.right = 400*curIndex + "px";
-            if(curIndex == 4){
+            if(curIndex == 3){
                 btnRight.disabled = true;
+                
             }
         }
 
