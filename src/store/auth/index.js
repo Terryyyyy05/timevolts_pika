@@ -20,6 +20,8 @@ export default {
             // console.log(responseData);
             if (responseData.mem_id) {
                context.commit("getUserId", responseData.mem_id);
+            } else {
+               context.commit("getUserId", null);
             }
          } catch (error) {
             console.log(error);
@@ -47,7 +49,12 @@ export default {
          });
 
          const responseData = await response.json();
-         console.log(responseData);
+         // console.log(responseData);
+         if (responseData.errMsg) { // 登入失敗
+            context.commit("getloginMessage", responseData.errMsg);
+         } else {
+            context.commit("getloginMessage", responseData.msg);
+         }
 
          // if (!response.ok) {
          //    const error = new Error(

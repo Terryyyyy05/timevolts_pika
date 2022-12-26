@@ -4,7 +4,11 @@
    </base-dialog>
    <cart :cartStatus="cartStatus" @xmark="() => (cartStatus = false)" />
    <header>
-      <div class="icon-container" style="cursor: pointer" @click="setLogin">
+      <div
+         class="icon-container"
+         style="cursor: pointer"
+         @click="clickMemberIcon"
+      >
          <div><img src="../../public/Group604.png" alt="" /></div>
          <div @click="toggleCart" style="cursor: pointer">
             <img src="../../public/Group605.png" alt="" />
@@ -126,10 +130,10 @@ export default {
       closeTheBox() {
          this.openRobot = false;
       },
-      async setLogin() {
+      async clickMemberIcon() {
          await this.$store.dispatch("getUserId");
          this.userId = this.$store.getters["userId"];
-         console.log(this.userId);
+         // console.log(this.userId);
          if (!this.userId) {
             // 找不到會員
             this.hasLoggedIn = false;
@@ -139,7 +143,11 @@ export default {
          }
       },
       askForLogin() {
-         this.$router.push({ path: "/memberLightBox" });
+         if (this.$route.path !== "/memberLightBox") {
+            this.$router.push({ path: "/memberLightBox" });
+         } else {
+            this.hasLoggedIn = true;
+         }
       },
    },
 };
