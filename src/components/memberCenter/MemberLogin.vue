@@ -1,5 +1,8 @@
 <template>
    <div>
+      <base-dialog :show="!!loginError" title="登入失敗" @close="askForLogin">
+         <p>{{ loginError }}</p>
+      </base-dialog>
       <base-dialog :show="!!error" title="發生錯誤" @close="handleError">
          <p>{{ error }}</p>
       </base-dialog>
@@ -57,6 +60,7 @@ export default {
          loginIsValid: true,
          isLoading: false,
          error: null,
+         loginError: null,
       };
    },
    methods: {
@@ -86,7 +90,11 @@ export default {
                email: this.email.val,
                password: this.password.val,
             });
-            this.$router.push({ path: "/memberCenter" });
+            this.loginError = this.$store.getters["loginError"];
+            if (!this.loginError) {
+               this.$router.push({ path: "/memberCenter" });
+            }
+            console.log(this.loginError);
          } catch (err) {
             this.error = err.message || "發生錯誤";
          }
@@ -95,6 +103,9 @@ export default {
       },
       handleError() {
          this.error = null;
+      },
+      askForLogin() {
+         this.loginError = null;
       },
    },
 };
