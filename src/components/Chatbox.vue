@@ -214,7 +214,7 @@ export default {
     },
   },
   created() {
-    fetch(`http://localhost/timevolts_pika/public/phpfile/getQuestion.php`)
+    fetch(`/api_server/getQuestion.php`)
       .then((res) => res.json())
       .then((json) => {
         (this.robotQuestion = json.map((item) => {
