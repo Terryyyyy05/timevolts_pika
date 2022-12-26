@@ -93,7 +93,7 @@ export default {
          cartStatus: false,
          show: false,
          openRobot: false,
-        mem_name:'',
+         mem_name:'',
          userId: null,
          hasLoggedIn: true,
       };
@@ -106,7 +106,7 @@ export default {
             fetch('/api_server/getMemberInfo.php')
             .then((res) => res.json())
             .then((json)=>{
-                this.mem_name = json[1].mem_name
+                this.mem_name = json[0].mem_name
             })
         },
       changeColor(e) {
@@ -178,6 +178,15 @@ header {
     height: fit-content;
     margin-top: calc((55px - 15px) / 2);
     pointer-events: none;
+    .mem_name {
+      color: #ffe1b5;
+      vertical-align: baseline;
+      margin: 0 auto;
+      margin-right: 2px;
+      padding: 5px 2px;
+      text-align: center;
+      line-height: 1.3;
+    }
     div {
       width: 15px;
       height: 15px;

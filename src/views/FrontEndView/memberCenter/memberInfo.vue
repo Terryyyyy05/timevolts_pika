@@ -25,15 +25,15 @@
             <!-- 更新密碼 -->
             <div v-show="!inputDisabled">
                 <label for="password">舊密碼</label>
-                <input type="text" id="password">
+                <input type="text" id="password" ref="mem_psw" v-model="oldPassword">
             </div>
             <div v-show="!inputDisabled">
                 <label for="password1">新密碼</label>
-                <input type="password" id="password1" v-model="password1">
+                <input type="password" id="password1" ref="mem_password1" v-model="newPassword">
             </div>
             <div v-show="!inputDisabled">
                 <label for="password2">再次密碼</label>
-                <input type="password" id="password2" v-model="password2">
+                <input type="password" id="password2" ref="mem_password2" v-model="ConfirmNewPassword">
             </div>
         </form>
         <div class="photo-area">
@@ -89,27 +89,46 @@ export default {
                     id:"email",
                 }
             ],
-            password1:'',
-            password2:'',
             memLevel:'',
             result:[],
+            userId:null,
+            oldPassword:'',
+            newPassword:'',
+            ConfirmNewPassword:'',
         }
     },
     created(){
         this.getData();
     },
     methods:{
-        getData(){
-            fetch('/api_server/getMemberInfo.php')
-            .then((res) => res.json())
-            .then((json)=>{
-                this.formInput[0].value = json[1].mem_name
-                this.formInput[1].value = json[1].mem_bday
-                this.formInput[2].value = json[1].mem_phone
-                this.formInput[3].value = json[1].mem_address
-                this.formInput[4].value = json[1].mem_email
-                this.memLevel=json[1].mem_level
-            })
+        async getData(){
+            await this.$store.dispatch("getUserId");
+            this.userId = this.$store.getters["userId"];
+            // alert(this.userId);
+
+            if (this.userId) {
+                fetch('/api_server/getMemberInfo.php', {
+                    method: "POST",
+                    body: JSON.stringify({
+                        userId: this.userId,
+                }),
+                    
+                })
+                .then((res) => res.json())
+                .then((json)=>{
+                    console.log(json);
+
+                    this.result = json;
+    
+                    this.formInput[0].value = json[0].mem_name
+                    this.formInput[1].value = json[0].mem_bday
+                    this.formInput[2].value = json[0].mem_phone
+                    this.formInput[3].value = json[0].mem_address
+                    this.formInput[4].value = json[0].mem_email
+                    this.memLevel=json[0].mem_level
+                })
+            }
+        
         },
         saveData(){
             const payload={
