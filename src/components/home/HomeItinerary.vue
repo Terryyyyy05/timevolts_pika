@@ -75,9 +75,7 @@ export default {
   computed: {},
   methods: {
     getItineraryData() {
-      fetch(
-        "http://localhost/timevolts_pika/public/phpfile/getHomeItinerary.php"
-      )
+      fetch("/api_server/getHomeItinerary.php")
         .then((res) => res.json())
         .then((jsonData) => {
           this.itineraryData = jsonData;

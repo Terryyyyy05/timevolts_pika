@@ -1,7 +1,10 @@
 <template>
   <div class="GetVoucherButton">
     <button class="btn-store-detail" @click="showbox()">
-      <p>立即領取<br />折扣卷 {{ ReceiveQuantity() }}張</p>
+      <p v-if="!this.userId">
+        立即登入領取<br />折扣卷 {{ CouponData.length }}張
+      </p>
+      <p v-else>立即領取<br />折扣卷 {{ ReceiveQuantity() }}張</p>
     </button>
   </div>
 
@@ -82,6 +85,8 @@ export default {
       unreceivedCoupon: [], //未領取的優惠卷
       showModal: false, //燈箱開關
       login: true, //是否登入
+      userId: null,
+      hasLoggedIn: true,
     };
   },
 
@@ -91,7 +96,7 @@ export default {
   },
   methods: {
     getVoucher() {
-      fetch("http://localhost/timevolts_pika/public/phpfile/getGetCoupon.php")
+      fetch("/api_server/getGetCoupon.php")
         .then((res) => res.json())
         .then((jsonData) => {
           this.CouponData = jsonData;
@@ -99,6 +104,7 @@ export default {
         });
     },
     ReceiveQuantity() {
+      // 檢查可領取數量
       return this.CouponData.reduce((acc, cur) => {
         // acc = this.CouponData.login;
         if (cur.mem_id === null) {
@@ -108,15 +114,19 @@ export default {
         }
       }, 0);
     },
-
-    // ReceiveQuantity() {
-    //   this.CouponData;
-    //   console.log(this.CouponData);
-    //   CouponData.length;
-    // },
     showbox() {
       // 開關按鈕
-      this.showModal = !this.showModal;
+
+      檢查登入;
+      this.userId = this.$store.getters["userId"];
+      if (!this.userId) {
+        // 會員未登入
+        this.hasLoggedIn = false;
+        this.$router.push({ path: "/memberLightBox" });
+      } else {
+        // 會員有登入
+        this.showModal = !this.showModal;
+      }
     },
     received(a) {
       // 判斷是否領取過
