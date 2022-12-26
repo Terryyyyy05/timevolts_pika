@@ -6,10 +6,10 @@
    <header>
       <div
          class="icon-container"
-              <span class="mem_name">Hi, {{ mem_name }}</span>
- style="cursor: pointer"
-         @click="clickMemberIcon"
-      >
+            style="cursor: pointer"
+            @click="clickMemberIcon"
+          >
+          <span class="mem_name">Hi, {{ mem_name }}</span>
          <div><img src="../../public/Group604.png" alt="" /></div>
          <div @click="toggleCart" style="cursor: pointer">
             <img src="../../public/Group605.png" alt="" />
