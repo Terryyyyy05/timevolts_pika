@@ -21,6 +21,7 @@ import { reactive } from "@vue/reactivity";
 import { onMounted } from "vue";
 import ProductCard from "../../base/ProductCard.vue";
 import { cardContext } from "../../js/data";
+import { BASE_URL } from "@/assets/js/commom";
 
 export default {
   components: {
@@ -30,7 +31,7 @@ export default {
     // const cardContext2 = cardContext.slice(0, 5);
     const cardContext2 = reactive({ list: [] });
     const fetchAbc = () => {
-      fetch("http://localhost/timevolts_pika/public/phpfiles/getProducts.php")
+      fetch(`/api_server/getProducts.php`)
         .then((res) => res.json())
         .then((result) => {
           cardContext2.list = result;

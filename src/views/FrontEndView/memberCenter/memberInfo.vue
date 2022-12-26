@@ -1,24 +1,49 @@
 <template>
     <h2 class="title">會員資料</h2>
     <main>
-        <form class="memberinfo" action="" smethod="post" enctype="multipart/form-data">
+        <form class="memberinfo" action="" method="post" enctype="multipart/form-data">
             <div v-for="item in formInput" :key="item.title">
                 <label for="item.title">{{item.title}}</label>
-                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id" v-model="item.test">
+                <input 
+                required 
+                :disabled="inputDisabled" 
+                :type="item.type" 
+                :name="item.name" 
+                :id="item.id" 
+                v-model="item.value"
+                v-if="item.id!=='email' && item.id!=='birthday'"
+                >
+                <input 
+                disabled 
+                :type="item.type" 
+                :name="item.name" 
+                :id="item.id" 
+                v-model="item.value"
+                v-if="item.id==='email' || item.id==='birthday'"
+                >
             </div>
-            <div v-for="item in passwordInput" :key="item.title" :name="item.name" id="item.id" v-show="!inputDisabled">
-                <label for="item.tite">{{ item.title }}</label>
-                <input required :disabled="inputDisabled" :type="item.type" :name="item.name" :id="item.id" >
+            <!-- 更新密碼 -->
+            <div v-show="!inputDisabled">
+                <label for="password">舊密碼</label>
+                <input type="text" id="password" ref="mem_psw" v-model="oldPassword">
+            </div>
+            <div v-show="!inputDisabled">
+                <label for="password1">新密碼</label>
+                <input type="password" id="password1" ref="mem_password1" v-model="newPassword">
+            </div>
+            <div v-show="!inputDisabled">
+                <label for="password2">再次密碼</label>
+                <input type="password" id="password2" ref="mem_password2" v-model="ConfirmNewPassword">
             </div>
         </form>
         <div class="photo-area">
-            <form action="" @submit.prevent="handleSubmit">
+            <form action="" method="post" enctype="multipart/form-data">
                 <label for="uploadPic">
                     <div id="myimg"></div>
                 </label>
                 <input :disabled="inputDisabled" type="file" accept="image/gif, image/jpeg, image/png" name="uploadPic" id="uploadPic" >
             </form>
-            <p class="memLevel">{{memLevel }}</p>
+            <p class="memLevel">{{memLevel}}</p>
             <div class="btn-area">
                 <button class="btn-lightbox" v-show="!inputDisabled" @click="changeInfo()">取消</button>
                 <button class="btn-lightbox" @click="changeInfo()">{{ inputDisabled? "編輯": "完成" }} </button>
@@ -38,123 +63,96 @@ export default {
                     type: "text",
                     name:"mem_name",
                     id:"username",
-                }
-                ,
+                },
                 {
                     title:"生日",
                     type: "date",
                     name:"mem_bday",
                     id:"birthday",
-                }
-                ,
+                },
                 {
                     title:"電話",
                     type: "tel",
                     name:"mem_phone",
                     id:"phone",
-                }
-                ,
+                },
                 {
                     title:"地址",
                     type: "address",
                     name:"mem_address",
                     id:"address",
-                }
-                ,
+                },
                 {
                     title:"E-mail",
                     type: "email",
                     name:"mem_email",
                     id:"email",
-                },
-                {
-                    title:"密碼",
-                    type: "password",
-                    name:"mem_psw",
-                    id:"password",
-
                 }
             ],
-            passwordInput:[
-                {
-                    title:"新密碼",
-                    type: "password",
-                    name:"password",
-                    id:"password1",
-                },
-                {
-                    title:"再次輸入新密碼",
-                    type: "password",
-                    name:"password",
-                    id:"password2",
-                }
-            ],
-            memLevel:"普通會員",
+            memLevel:'',
             result:[],
+            userId:null,
+            oldPassword:'',
+            newPassword:'',
+            ConfirmNewPassword:'',
         }
     },
     created(){
         this.getData();
     },
     methods:{
+        async getData(){
+            await this.$store.dispatch("getUserId");
+            this.userId = this.$store.getters["userId"];
+            // alert(this.userId);
+
+            if (this.userId) {
+                fetch('/api_server/getMemberInfo.php', {
+                    method: "POST",
+                    body: JSON.stringify({
+                        userId: this.userId,
+                }),
+                })
+                .then((res) => res.json())
+                .then((json)=>{
+                    console.log(json);
+
+                    this.result = json;
+    
+                    this.formInput[0].value = json[0].mem_name
+                    this.formInput[1].value = json[0].mem_bday
+                    this.formInput[2].value = json[0].mem_phone
+                    this.formInput[3].value = json[0].mem_address
+                    this.formInput[4].value = json[0].mem_email
+                    this.memLevel=json[0].mem_level
+                })
+            }
+        
+        },
         saveData(){
             const payload={
-                mem_name:this.formInput[0].test,
-                mem_bday:this.formInput[1].test,
-                mem_phone:this.formInput[2].test,
-                mem_address:this.formInput[3].test,
-                mem_email:this.formInput[4].test,
-                mem_psw:this.formInput[5].test
+                mem_name:this.formInput[0].value,
+                mem_bday:this.formInput[1].value,
+                mem_phone:this.formInput[2].value,
+                mem_address:this.formInput[3].value,
+                mem_email:this.formInput[4].value,
+                mem_psw:this.password1
             }
-            console.log("=============",payload);
-            fetch('http://localhost/timevolts_pika/public/phpfile/updateMemberInfo.php', {
+            fetch('/api_server/updateMemberInfo.php', {
                 method:'POST', 
                 body: new URLSearchParams(payload),
             })
         },
+        // 舊密碼要跟資料庫的原始密碼一樣，新密碼跟再次更新密碼要做驗證，全部打完送ajax去驗證如果正確再傳回資料庫跟渲染畫面
+        changePsw(){
+
+        },
         changeInfo(){
-            this.inputDisabled = !this.inputDisabled;
+           this.inputDisabled = !this.inputDisabled;
             if(this.inputDisabled == true){
                this.saveData(); 
             }
-            
-            //密碼驗證
-            // if(this.password==this.oldpassword){
-            //     if(this.newpassword2==this.newpassword3){
-            //         this.password=this.newpassword2
-            //     }
-            // }
         },
-        getData(){
-            fetch('http://localhost/timevolts_pika/public/phpfile/getMemberInfo.php')
-            .then((res) => res.json())
-            .then((json)=>{
-                this.formInput[0].test = json[1].mem_name
-                this.formInput[1].test = json[1].mem_bday
-                this.formInput[2].test = json[1].mem_phone
-                this.formInput[3].test = json[1].mem_address
-                this.formInput[4].test = json[1].mem_email
-                this.formInput[5].test = json[1].mem_psw
-                console.log(this.formInput[0]);
-                
-            })
-        },
-        // saveData(){
-        //     fetch('http://localhost/timevolts_pika/public/phpfile/updateMemberInfo.php', {
-        //         method:'POST', 
-        //         body: JSON.stringify({test:123}),
-        //     })
-        //     .then((res) => res.json())
-        //     .then((result) => {
-        //         this.formInput[0].test = json[0].mem_name
-        //         this.formInput[1].test = json[0].mem_bday
-        //         this.formInput[2].test = json[0].mem_phone
-        //         this.formInput[3].test = json[0].mem_address
-        //         this.formInput[4].test = json[0].mem_email
-        //         this.formInput[5].test = json[0].mem_psw
-        //         console.log(this.formInput[0]);
-        //     })
-        // }
     }
 };
 </script>

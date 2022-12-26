@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { reactive, ref, watchEffect, computed } from "vue";
+import { reactive, ref, watchEffect, computed, onMounted } from "vue";
 import { cardContext } from "../../js/data";
 import { useStore } from "vuex";
 
@@ -96,6 +96,28 @@ export default {
       })
     );
 
+    // test
+    const productInfo2 = reactive({ list: "" });
+    const fetchAbc = () => {
+      fetch("http://localhost/timevolts_pika/public/phpfiles/test.php", {
+        method: "POST",
+        
+        body: JSON.stringify({
+          name: "QQQ",
+        }),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          // productInfo2.list = result;
+        })
+        .catch((error) => console.log(error));
+    };
+    onMounted(() => {
+      fetchAbc();
+      // console.log(productInfo2);
+    });
+
     console.log(productInfo);
     console.log(cardContext);
 
@@ -113,7 +135,6 @@ export default {
       console.log(productInfo);
       console.log(cardContext);
     });
-    
 
     return {
       cardContext,

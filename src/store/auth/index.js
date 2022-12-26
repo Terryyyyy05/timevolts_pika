@@ -2,16 +2,35 @@ export default {
    state() {
       return {
          userId: null,
-         token: null,
-         tokenExpiration: null,
+         loginError: null,
+         // token: null,
+         // tokenExpiration: null,
       };
    },
    getters: {
       userId(state) {
          return state.userId;
       },
+      loginError(state) {
+         return state.loginError;
+      },
    },
    actions: {
+      async getUserId(context) {
+         try {
+            const response = await fetch("/api_server/ifLogin.php");
+
+            const responseData = await response.json();
+            // console.log(responseData);
+            if (responseData.mem_id) {
+               context.commit("getUserId", responseData.mem_id);
+            } else {
+               context.commit("getUserId", null);
+            }
+         } catch (error) {
+            console.log(error);
+         }
+      },
       async login(context, payload) {
          // const response = await fetch(
          //    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAUSZzvY_JJH6cu7Gc99iQdkAScLAh2PZY",
@@ -25,18 +44,22 @@ export default {
          //    }
          // );
 
-         fetch("http://localhost/timevolts_pika/public/phpfile/login.php", {
+         const response = await fetch("/api_server/login.php", {
             method: "POST",
             body: JSON.stringify({
                email: payload.email,
                password: payload.password,
             }),
-         }).then((response) => {
-            return response.json();
          });
 
-         // const responseData = await response.json();
+         const responseData = await response.json();
          // console.log(responseData);
+         if (responseData.errMsg) {
+            // 登入失敗
+            context.commit("getLoginError", responseData.errMsg);
+         } else {
+            context.commit("getLoginError", null);
+         }
 
          // if (!response.ok) {
          //    const error = new Error(
@@ -63,30 +86,28 @@ export default {
          //       }),
          //    }
          // );
+         try {
+            const response = await fetch("/api_server/signup.php", {
+               method: "POST",
+               body: JSON.stringify({
+                  action: "signup",
+                  name: payload.name,
+                  email: payload.email,
+                  password: payload.password,
+               }),
+            });
 
-         fetch("http://localhost/timevolts_pika/public/phpfile/signup.php", {
-            method: "POST",
-            body: JSON.stringify({
-               email: payload.email,
-               password: payload.password,
-            }),
-            // headers: {
-            //    "Content-Type": "application/json",
-            // },
-         }).then((response) => {
-            return response.json();
-         });
+            const responseData = await response.json();
+            // console.log(responseData);
 
-         // const responseData = await response.json();
-         // console.log(responseData);
-
-         // if (!response.ok) {
-         //    const error = new Error(
-         //       responseData.message || "發生錯誤，請稍後再試"
-         //    );
-         //    console.log(error);
-         //    throw error;
-         // }
+            if (!response.ok) {
+               const error = new Error(error.message || "發生錯誤");
+               console.log(error);
+               throw error;
+            }
+         } catch (error) {
+            console.log(error);
+         }
 
          // context.commit("setUser", {
          //    token: responseData.idToken,
@@ -96,10 +117,16 @@ export default {
       },
    },
    mutations: {
-      setUser(state, payload) {
-         state.token = payload.token;
-         state.userId = payload.userId;
-         state.tokenExpiration = payload.tokenExpiration;
+      // setUser(state, payload) {
+      //    state.token = payload.token;
+      //    state.userId = payload.userId;
+      //    state.tokenExpiration = payload.tokenExpiration;
+      // },
+      getUserId(state, payload) {
+         state.userId = payload;
+      },
+      getLoginError(state, payload) {
+         state.loginError = payload;
       },
    },
 };

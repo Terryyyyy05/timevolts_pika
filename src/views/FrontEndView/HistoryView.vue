@@ -14,6 +14,7 @@
          :tag-region="history.tagRegion"
          :happen-year="history.happenYear"
          :description="history.description"
+         :image="history.image"
       ></history-item>
       <button class="btn-primary" v-if="isActive" @click="showmore">
          查看更多

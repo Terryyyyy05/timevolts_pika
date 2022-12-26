@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="Black"></div> -->
   <div class="vl-parent" id="loading-background">
     <loading
       v-model:active="isLoading"
@@ -54,9 +53,6 @@
           誠摯的邀請您來場奇幻的時光之旅<br />
           <span>探索歷史的全新可能... </span>
         </p>
-        <!-- <p class="typewriter">
-          {{ typewriter }}
-        </p> -->
       </div>
       <div class="slogan">
         <strong>現在，我們實現了時光旅行</strong>
@@ -122,9 +118,9 @@ import { reactive, ref } from "vue";
 
 export default {
   name: "HomeView",
-  datas() {
+  data() {
     return {
-      isLoading: true,
+      isLoading: false,
       fullPage: true,
       result: {}, //存資料
       nowTime: [{ data: "" }],
@@ -180,7 +176,7 @@ export default {
 
   created() {
     if (!sessionStorage["first"]) {
-      this.isLoading = true;
+      // this.isLoading = true;
       // setTimeout(() => {
       //   this.isLoading = false;
       // }, 2000);
@@ -214,7 +210,7 @@ export default {
         { opacity: 1 },
         { duration: 2, opacity: 0, delay: 4 }
       );
-      gsap.to(".loadingContainer", { x: 100000, duration: 0.1 }, ">");
+      // gsap.to(".loadingContainer", { x: 100000, duration: 0.1 }, ">");
 
       setTimeout(() => {
         this.isLoading = false;
@@ -237,7 +233,9 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/css/utils/_variables.scss";
-
+p {
+  line-height: 1.7;
+}
 // loading
 .loading-container {
   > p {
@@ -267,18 +265,6 @@ $b2-primary: (2px solid map-get($color, "primary"));
 $b20-primary: (20px solid map-get($color, "primary"));
 
 // loading
-.Black {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: #000;
-  mix-blend-mode: darken;
-  position: fixed;
-  // z-index: 1000;
-}
 
 #fetch {
   color: map-get($color, "primary");
@@ -305,7 +291,7 @@ $b20-primary: (20px solid map-get($color, "primary"));
     top: 50%;
     bottom: 50%;
     // display: block;
-    line-height: 36px;
+    // line-height: 36px;
     font-size: 36px;
     color: map-get($color, "primary");
     position: fixed;
@@ -399,19 +385,17 @@ h2 {
   align-items: center;
   display: grid;
   grid-template-columns: 2fr 4.5fr 4.5fr 1fr;
-  grid-template-rows: 1.5fr 3fr 0.5fr;
+  grid-template-rows: 1.5fr 2.5fr 0.5fr;
   gap: 20px;
 
   @media screen and (max-width: $m-breakpoint) {
     height: auto;
     grid-template-columns: 2fr 4.5fr 4.5fr;
-    grid-template-rows: 1fr 4fr 0.5fr;
+    grid-template-rows: 1fr 2fr 0.5fr;
   }
   .sideTotem {
     grid-column: 1;
     grid-row: 1/3;
-    // background-image:url(@/assets/image/home/sideTotem.svg) ;
-    object-fit: scale-down;
     border: none;
     img {
       height: 100%;
@@ -462,8 +446,10 @@ h2 {
   .text {
     grid-column: 2/3;
     grid-row: 2/3;
+    flex-grow: 1;
     padding: 20px;
     border: $b2-primary;
+
     > p > span::after {
       content: "|";
       animation-name: flashing;
@@ -553,6 +539,7 @@ h2 {
     ),
     url(@/assets/image/home/bg2_1440.jpg);
   background-position: center;
+  background-size: cover;
 }
 .historcal-news {
   background: linear-gradient(

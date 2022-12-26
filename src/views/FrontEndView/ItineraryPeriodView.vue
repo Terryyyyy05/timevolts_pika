@@ -96,7 +96,7 @@ export default {
         const strList = reactive(Array.from({ length: 5 }, () => ""));
         const getData = () => {
             fetch(
-                "http://localhost/timevolts/public/phpfile/getItineraries.php"
+                "/api_server/getItineraries.php"
             )
                 .then((res) => res.json())
                 .then((result) => {

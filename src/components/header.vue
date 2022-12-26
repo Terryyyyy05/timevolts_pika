@@ -1,10 +1,16 @@
 <template>
+  <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="askForLogin">
+    <p>請先登入!</p>
+  </base-dialog>
   <cart :cartStatus="cartStatus" @xmark="() => (cartStatus = false)" />
   <header>
-    <div class="icon-container">
-      <router-link to="/memberLightBox">
-        <div><img src="../../public/Group604.png" alt="" /></div>
-      </router-link>
+    <div
+      class="icon-container"
+      style="cursor: pointer"
+      @click="clickMemberIcon"
+    >
+      <span class="mem_name" v-if="userId">Hi, {{ mem_name }}</span>
+      <div><img src="../../public/Group604.png" alt="" /></div>
       <div @click="toggleCart" style="cursor: pointer">
         <img src="../../public/Group605.png" alt="" />
       </div>
@@ -31,7 +37,7 @@
           </router-link>
         </div>
         <div @click="showChatbox" class="chatbox-icon">
-          <img src="../../public/Group243.png" alt="時空管理局" />
+          <img src="../../public/chatbot-icon.gif" alt="時空管理局" />
         </div>
         <GetVoucher />
       </div>
@@ -87,15 +93,45 @@ export default {
       cartStatus: false,
       show: false,
       openRobot: false,
+      mem_name: "",
+      userId: null,
+      hasLoggedIn: true,
     };
   },
+  created() {
+    this.getData();
+    this.sayHi();
+  },
   methods: {
+    async getData() {
+      await this.$store.dispatch("getUserId");
+      this.userId = this.$store.getters["userId"];
+
+      if (this.userId) {
+      fetch('/api_server/getMemberInfo.php', {
+            method: "POST",
+            body: JSON.stringify({
+              userId: this.userId,
+              
+            })
+          })
+        .then((res) => res.json())
+        .then((json) => {
+          this.mem_name = json[0].mem_name;
+        })
+      }
+                
+              
+        
+    },
     changeColor(e) {
       e.target.style.transition = "all .3s";
       e.target.style.backgroundColor = "#ffe1b5";
       // e.target.style.color = "#1e1e1e";
+      if (!e.target.childNodes[0]) return;
       e.target.childNodes[0].innerText =
-        this.pageName[e.target.dataset.item].en;
+        this.pageName[e.target.dataset.item]?.en;
+      if (!e.target.childNodes[0].style) return;
       e.target.childNodes[0].style.color = "#1e1e1e";
       e.target.childNodes[0].style.backgroundColor = "transparent";
       e.target.childNodes[0].style.transition = "all .05s";
@@ -105,8 +141,10 @@ export default {
       // e.target.style.color = "#ffe1b5";
       e.target.style.backgroundColor = "transparent";
       e.target.style.backdropFilter = "blur(5px)";
+      if (!e.target.childNodes[0]) return;
       e.target.childNodes[0].innerText =
-        this.pageName[e.target.dataset.item].ch;
+        this.pageName[e.target.dataset.item]?.ch;
+      if (!e.target.childNodes[0].style) return;
       e.target.childNodes[0].style.color = "#ffe1b5";
       e.target.childNodes[0].style.backgroundColor = "transparent";
       e.target.childNodes[0].style.transition = "all 0s";
@@ -122,6 +160,31 @@ export default {
     },
     closeTheBox() {
       this.openRobot = false;
+    },
+    async clickMemberIcon() {
+      await this.$store.dispatch("getUserId");
+      this.userId = this.$store.getters["userId"];
+      // console.log(this.userId);
+      if (!this.userId) {
+        // 找不到會員
+        this.hasLoggedIn = false;
+      } else {
+        // 會員有登入
+        this.$router.push({ path: "/memberCenter" });
+      }
+    },
+    async sayHi() {
+      await this.$store.dispatch("getUserId");
+      this.userId = this.$store.getters["userId"];
+      // console.log(this.userId);
+  
+    },
+    askForLogin() {
+      if (this.$route.path !== "/memberLightBox") {
+        this.$router.push({ path: "/memberLightBox" });
+      } else {
+        this.hasLoggedIn = true;
+      }
     },
   },
 };
@@ -140,6 +203,15 @@ header {
     height: fit-content;
     margin-top: calc((55px - 15px) / 2);
     pointer-events: none;
+    .mem_name {
+      color: #ffe1b5;
+      vertical-align: baseline;
+      margin: 0 auto;
+      margin-right: 2px;
+      padding: 5px 2px;
+      text-align: center;
+      line-height: 1.3;
+    }
     div {
       width: 15px;
       height: 15px;
