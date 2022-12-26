@@ -12,13 +12,18 @@ export default {
       },
    },
    actions: {
-      async getUserId() {
+      async getUserId(context) {
          try {
             const response = await fetch("/api_server/ifLogin.php");
 
             const responseData = await response.json();
-            console.log(responseData);
-         } catch {}
+            // console.log(responseData);
+            if (responseData.mem_id) {
+               context.commit("getUserId", responseData.mem_id);
+            }
+         } catch (error) {
+            console.log(error);
+         }
       },
       async login(context, payload) {
          // const response = await fetch(
@@ -108,5 +113,8 @@ export default {
       //    state.userId = payload.userId;
       //    state.tokenExpiration = payload.tokenExpiration;
       // },
+      getUserId(state, payload) {
+         state.userId = payload;
+      },
    },
 };
