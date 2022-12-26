@@ -2,6 +2,7 @@
   <cart :cartStatus="cartStatus" @xmark="() => (cartStatus = false)" />
   <header>
     <div class="icon-container">
+      <span class="mem_name">Hi, {{ mem_name }}</span>
       <router-link to="/memberLightBox">
         <div><img src="../../public/Group604.png" alt="" /></div>
       </router-link>
@@ -31,7 +32,7 @@
           </router-link>
         </div>
         <div @click="showChatbox" class="chatbox-icon">
-          <img src="../../public/Group243.png" alt="時空管理局" />
+          <img src="../../public/chatbot-icon.gif" alt="時空管理局" />
         </div>
         <GetVoucher />
       </div>
@@ -87,9 +88,20 @@ export default {
       cartStatus: false,
       show: false,
       openRobot: false,
+      mem_name:'',
     };
   },
+  created(){
+    this.getData();
+  },
   methods: {
+    getData(){
+            fetch('/api_server/getMemberInfo.php')
+            .then((res) => res.json())
+            .then((json)=>{
+                this.mem_name = json[1].mem_name
+            })
+        },
     changeColor(e) {
       e.target.style.transition = "all .3s";
       e.target.style.backgroundColor = "#ffe1b5";
@@ -136,6 +148,14 @@ header {
   z-index: 101;
   pointer-events: none;
   .icon-container {
+    .mem_name {
+      color: #ffe1b5;
+      vertical-align: baseline;
+      margin: 0 auto;
+      padding: 5px 2px;
+      text-align: center;
+      line-height: 1.3;
+    }
     display: flex;
     height: fit-content;
     margin-top: calc((55px - 15px) / 2);
