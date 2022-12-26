@@ -2,22 +2,22 @@ import { createRouter, createWebHistory } from "vue-router";
 import Switchpage from "../views/SwitchpageView.vue";
 
 const routes = [
-   {
-      path: "/",
-      name: "Switchpage",
-      component: Switchpage,
-   },
-   {
-      path: "/home",
-      name: "FrontEndHome",
-      component: () => import("../views/FrontEndView/HomeView.vue"),
-   },
-   {
-      path: "/about",
-      name: "about",
-      component: () => import("../views/FrontEndView/AboutView.vue"),
-   },
-   {
+  {
+    path: "/",
+    name: "Switchpage",
+    component: Switchpage,
+  },
+  {
+    path: "/home",
+    name: "FrontEndHome",
+    component: () => import("../views/FrontEndView/HomeView.vue"),
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: () => import("../views/FrontEndView/AboutView.vue"),
+  },
+  {
     path: "/experience",
     name: "experience",
     component: () => import("../views/FrontEndView/ExperienceView.vue"),
