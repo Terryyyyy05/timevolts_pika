@@ -3,9 +3,9 @@ header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
 
 
-// session_start();
+session_start();
 try{
-    require_once("../phpfile/php_connect_books/connectBooks.php");
+    require_once("./php_connect_books/connectBooks.php");
     $sql = "update member set mem_name = :mem_name,
                               mem_bday = :mem_bday,
                               mem_phone = :mem_phone,

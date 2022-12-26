@@ -2,6 +2,7 @@ export default {
    state() {
       return {
          userId: null,
+         loginError: null,
          // token: null,
          // tokenExpiration: null,
       };
@@ -10,15 +11,25 @@ export default {
       userId(state) {
          return state.userId;
       },
+      loginError(state) {
+         return state.loginError;
+      },
    },
    actions: {
-      async getUserId() {
+      async getUserId(context) {
          try {
             const response = await fetch("/api_server/ifLogin.php");
 
             const responseData = await response.json();
-            console.log(responseData);
-         } catch {}
+            // console.log(responseData);
+            if (responseData.mem_id) {
+               context.commit("getUserId", responseData.mem_id);
+            } else {
+               context.commit("getUserId", null);
+            }
+         } catch (error) {
+            console.log(error);
+         }
       },
       async login(context, payload) {
          // const response = await fetch(
@@ -42,7 +53,13 @@ export default {
          });
 
          const responseData = await response.json();
-         console.log(responseData);
+         // console.log(responseData);
+         if (responseData.errMsg) {
+            // 登入失敗
+            context.commit("getLoginError", responseData.errMsg);
+         } else {
+            context.commit("getLoginError", null);
+         }
 
          // if (!response.ok) {
          //    const error = new Error(
@@ -70,18 +87,15 @@ export default {
          //    }
          // );
          try {
-            const response = await fetch(
-               "http://localhost/timevolts_pika/public/phpfile/signup.php",
-               {
-                  method: "POST",
-                  body: JSON.stringify({
-                     action: "signup",
-                     name: payload.name,
-                     email: payload.email,
-                     password: payload.password,
-                  }),
-               }
-            );
+            const response = await fetch("/api_server/signup.php", {
+               method: "POST",
+               body: JSON.stringify({
+                  action: "signup",
+                  name: payload.name,
+                  email: payload.email,
+                  password: payload.password,
+               }),
+            });
 
             const responseData = await response.json();
             // console.log(responseData);
@@ -108,5 +122,11 @@ export default {
       //    state.userId = payload.userId;
       //    state.tokenExpiration = payload.tokenExpiration;
       // },
+      getUserId(state, payload) {
+         state.userId = payload;
+      },
+      getLoginError(state, payload) {
+         state.loginError = payload;
+      },
    },
 };
