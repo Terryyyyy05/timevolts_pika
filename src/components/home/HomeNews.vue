@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     getHomeNewData() {
-      fetch("http://localhost/timevolts_pika/public/phpfile/getHomeNew.php")
+      fetch("/api_server/getHomeNew.php")
         .then((res) => res.json())
         .then((jsonData) => {
           this.NewsData = jsonData;

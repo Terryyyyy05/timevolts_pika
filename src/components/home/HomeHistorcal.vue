@@ -75,7 +75,7 @@ export default {
   computed: {},
   methods: {
     getHistoriesData() {
-      fetch("http://localhost/timevolts_pika/public/phpfile/getHistories.php")
+      fetch("/api_server/getHistories.php")
         .then((res) => res.json())
         .then((jsonData) => {
           this.HistoriesData = jsonData;

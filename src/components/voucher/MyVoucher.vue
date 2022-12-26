@@ -89,7 +89,7 @@ export default {
   computed: {},
   methods: {
     getVoucher() {
-      fetch("http://localhost/timevolts_pika/public/phpfile/getGetCoupon.php")
+      fetch("/api_server/getGetCoupon.php")
         .then((res) => res.json())
         .then((jsonData) => {
           this.CouponData = jsonData;
