@@ -126,8 +126,8 @@ export default {
       closeTheBox() {
          this.openRobot = false;
       },
-      setLogin() {
-         this.$store.dispatch("getUserId");
+      async setLogin() {
+         await this.$store.dispatch("getUserId");
          this.userId = this.$store.getters["userId"];
          console.log(this.userId);
          if (!this.userId) {

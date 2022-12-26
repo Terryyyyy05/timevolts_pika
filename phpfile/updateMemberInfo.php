@@ -16,7 +16,7 @@ try{
 
     $memberInfo = $pdo->prepare($sql);	
     
-    $_SESSION["mem_id"] = 2;
+   //  $_SESSION["mem_id"] = 2;
     $memberInfo->bindValue(":mem_id", $_SESSION["mem_id"]);
     $memberInfo->bindValue(":mem_name", $_POST["mem_name"]);
     $memberInfo->bindValue(":mem_bday", $_POST["mem_bday"]);
