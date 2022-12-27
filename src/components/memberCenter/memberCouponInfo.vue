@@ -1,4 +1,7 @@
 <template>
+  <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="askForLogin">
+    <p>請先登入!</p>
+  </base-dialog>
   <div v-for="coupon in MyVouchers" :key="coupon.id" class="wrap">
     <!-- {{ coupon }} -->
     <div class="id">{{ coupon.coupon_id }}</div>
@@ -46,6 +49,11 @@ export default {
     return {
       informationVisibile: 10,
       page: 10,
+      get_mem_id: {
+        val: 0,
+      },
+      userId: null,
+      hasLoggedIn: true,
       MyVouchers: [
         {
           coupon_id: 1, //編號
@@ -85,22 +93,62 @@ export default {
   },
   created() {
     console.log(this);
+    console.log(this.getUserId);
+    this.loginConfirm();
   },
   computed: {
+    async loginConfirm() {
+      await this.$store.dispatch("getUserId");
+      this.userId = this.$store.getters["userId"];
+      if (!this.userId) {
+        // 找不到會員
+        this.hasLoggedIn = false;
+        console.log("未登入", this.get_mem_id);
+      } else {
+        // 會員有登入
+        this.get_mem_id.val = this.userId;
+        await this.giveGetVoucher();
+        console.log("登入了", this.get_mem_id);
+      }
+    },
+    askForLogin() {
+      if (this.$route.path !== "/memberLightBox") {
+        this.$router.push({ path: "/memberLightBox" });
+      } else {
+        this.hasLoggedIn = true;
+      }
+    },
     pageVisibile() {
-      this.informationVisibile = Math.ceil(this.MyVouchers.length / this.page);
+      // this.informationVisibile = Math.ceil(this.MyVouchers.length / this.page);
     },
     Vouchers() {
-      return this.MyVouchers.slice(0, this.page);
+      // return this.MyVouchers.slice(0, this.page);
     },
     today() {
       return new Date();
     },
   },
   methods: {
+    async giveGetVoucher() {
+      try {
+        const myVoucher = await fetch("/api_server/getGetCoupon.php", {
+          method: "POST",
+          body: JSON.stringify({
+            action: "get_mem_id",
+            mem_id: this.get_mem_id.val,
+          }),
+        });
+
+        const myVoucherData = await myVoucher.json();
+        this.MyVouchers = myVoucherData;
+        console.log(this.MyVouchers);
+        return this.MyVouchers;
+      } catch (error) {
+        console.error(error);
+        // this.AgetVoucher();
+      }
+    },
     useExpired(my_coupon) {
-      console.log(Date.parse(this.today));
-      console.log(my_coupon.coupon_exp_date == 0);
       if (my_coupon.my_coupon_status == 0) {
         // 如果已使用
         return 4;
