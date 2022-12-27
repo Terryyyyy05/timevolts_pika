@@ -4,46 +4,56 @@
         <div class="imgBlock"></div>
         <div class="infoBlock">
             <div>
-                <h3 class="infoBlockTitle">訂單編號:{{ itineray_order_id }}</h3>
+                <h3 class="infoBlockTitle">
+                    訂單編號:{{ "itineray_order_id" }}
+                </h3>
             </div>
             <div class="infoOutterWrap">
                 <div class="infoWrap">
                     <div>
                         <label class="label">姓名:</label>
-                        <input class="input" type="text" />
+                        <div class="input">{{ memData[0]?.name }}</div>
+                        <!-- <input class="input" type="text" /> -->
                     </div>
                     <div>
                         <label class="label">電話:</label>
-                        <input class="input" type="text" />
+                        <div class="input">{{ memData[0]?.phone }}</div>
+                        <!-- <input class="input" type="text" /> -->
                     </div>
                     <div>
                         <label class="label">e-mail:</label>
-                        <input class="input" type="text" />
+                        <div class="input">{{ memData[0]?.email }}</div>
+                        <!-- <input class="input" type="text" /> -->
                     </div>
                     <div>
                         <label class="label">行程單價:</label>
-                        <input class="input" type="text" />
+                        <div class="input">{{ memData[0]?.oriPrice }}</div>
+                        <!-- <input class="input" type="text" /> -->
                     </div>
                     <div>
                         <label class="label">參加人數:</label>
-                        <input class="input" type="text" />
+                        <div class="input">{{ memData[0]?.participant }}</div>
+                        <!-- <input class="input" type="text" /> -->
                     </div>
                 </div>
                 <div class="priceWrap">
                     <div>
                         <label class="label">原始費用:</label>
-                        <input class="input" type="text" />
+                        <div class="input">{{ memData[0]?.oriPrice }}</div>
+                        <!-- <input class="input" type="text" /> -->
                     </div>
                     <div>
                         <label class="label">會員優惠:</label>
-                        <input class="input" type="text" />
+                        <div class="input">{{ memData[0]?.discount }}</div>
+                        <!-- <input class="input" type="text" /> -->
                     </div>
                     <div>
                         <span class="hrSpan"></span>
                     </div>
                     <div>
                         <label class="label">實付金額:</label>
-                        <input class="input" type="text" />
+                        <div class="input">{{ memData[0]?.name }}</div>
+                        <!-- <input class="input" type="text" /> -->
                     </div>
                 </div>
             </div>
@@ -70,8 +80,47 @@ export default {
     components: {
         participantsInfo,
     },
-    data() {},
-    
+    data() {
+        return {
+            memData: [],
+        };
+    },
+    computed: {
+        // qq() {
+        //     return this.$store.getters["itinerary/itineraries"];
+        // },
+    },
+
+    created() {
+        this.getData();
+    },
+    methods: {
+        getData() {
+            fetch("/api_server/getMemberItineraryOrder(mem).php")
+                .then((res) => res.json())
+                .then((data) => {
+                    // this.data = data;
+                    // console.log(this.data[0].mem_name);
+                    const memInfos = [];
+                    for (const key in data) {
+                        const memInfo = {
+                            id: data[key].mem_id,
+                            name: data[key].mem_name,
+                            phone: data[key].mem_phone,
+                            email: data[key].mem_email,
+                            oriPrice: data[key].itinerary_order_original_price,
+                            discount: data[key].itinerary_order_discount_amount,
+                            total: data[key].itinerary_order_total,
+                            participant: data[key].itinerary_participant,
+                        };
+                        memInfos.push(memInfo);
+                    }
+                    this.memData = memInfos;
+                    console.log(this.memData);
+                    // this.$store.dispatch("getMemberOrder", memInfos);
+                });
+        },
+    },
 };
 </script>
 <style lang="scss" scoped>
