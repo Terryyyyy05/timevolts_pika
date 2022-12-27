@@ -5,7 +5,7 @@
       <the-heading heading="票根製作" subheading="Customize Ticket"></the-heading>
       <div class="wrapper">
          <div class="customize-area">
-            <div class="customize" :style="{backgroundColor:curColor}">
+            <div class="customize" :style="{backgroundColor:curColor}" id="customize">
                <div class="ticket">
                   <div class="ticket-container">
                      <div class="ticket-intro">
@@ -20,8 +20,9 @@
                         </div>
                      </div>
                      <div id="picContainer">
-                        <div class="ticket_drag" v-bind:style="ticket_drag">
+                        <div class="ticket_drag" v-bind:class="{ticket_drag:isActive}">
                            新增圖片
+                           <img :src="pics.src" :class="img" v-show="isActive">
                         </div>
                      </div>
                   </div>
@@ -47,7 +48,11 @@
                <button id="appendBtn">新增圖片格</button>
             </div>
             <div class="picArea">
-               <div class="picElement"><img src="@/assets/image/ticket/dinosaur.svg"></div>
+               <div class="picElement" v-for="pic in pics" :key="pic">
+                  <img :src="pic.src">
+               </div>
+               
+               <!-- <div class="picElement"><img src="@/assets/image/ticket/dinosaur.svg"></div>
                <div class="picElement"><img src="@/assets/image/ticket/dog.svg"></div>
                <div class="picElement"><img src="@/assets/image/ticket/face.svg"></div>
                <div class="picElement"><img src="@/assets/image/ticket/lighting.svg"></div>
@@ -55,7 +60,7 @@
                <div class="picElement"><img src="@/assets/image/ticket/pig.svg"></div>
                <div class="picElement"><img src="@/assets/image/ticket/snake.svg"></div>
                <div class="picElement"><img src="@/assets/image/ticket/snowflake.svg"></div>
-               <div class="picElement"><img src="@/assets/image/ticket/star.svg"></div>
+               <div class="picElement"><img src="@/assets/image/ticket/star.svg"></div> -->
 
             </div>
             <div class="pannel-title">
@@ -66,7 +71,8 @@
       </div>
          <div class="btn">
             <router-link to="/membercenter">
-            <button class="btn-primary">完成客製</button></router-link>
+            <button class="btn-primary" @click="finish">完成客製</button>
+            </router-link>
             <button class="btn-secondary" id="clearBtn">重新製作</button>
          </div>
       </div>
@@ -89,42 +95,83 @@ export default {
          colors:['#521957','#4F4F4F','#07350E','#501010','#000000','#1B1D54'],
          curColor:'#1e1e1e',
          message:'',
-         // ticket_drag:{
-         //    border: '2px dotted #fab042',
-         //    position: 'absolute',
-         //    width: '40px',
-         //    minHeight: '40px',
-         //    padding: '10px',
-         //    top: '10px',
-         //    right: '10px',
-         //    fontSize: '15px',
-         //    textAlign: 'center',
-         // }
+         pics:[
+            {src: require(`@/assets/image/ticket/dinosaur.svg`)},
+            {src: require(`@/assets/image/ticket/dog.svg`)},
+            {src: require(`@/assets/image/ticket/face.svg`)},
+            {src: require(`@/assets/image/ticket/lighting.svg`)},
+            {src: require(`@/assets/image/ticket/panda.svg`)},
+            {src: require(`@/assets/image/ticket/pig.svg`)},
+         ],
+         ticket_drag:{
+            isActive:true,
+            border: '2px dotted #fab042',
+            position: 'absolute',
+            width: '40px',
+            minHeight: '40px',
+            padding: '10px',
+            top: '10px',
+            right: '10px',
+            fontSize: '15px',
+            textAlign: 'center',
+         },
+         img:{
+            isActive:true,
+            width:'100%',
+         }
       }
    },
    mounted() {
-      drag();
-        
+      setTimeout(() => {
+         drag();
+      }, 100);
+      // drag();
    },
    methods: {
-      changeColor(color){
-         this.curColor=color
-      }
-   },
-//    htmlToImage.toBlob(document.getElementById('my-node'))
-//   .then(function (blob) {
-//     if (window.saveAs) {
-//       window.saveAs(blob, 'my-node.png');
-//     } else {
-//      FileSaver.saveAs(blob, 'my-node.png');
-//    }
-//   });
+      changeColor(color) {
+         this.curColor = color
+      },
+      // finish() {
+      //    htmlToImage.toBlob(document.getElementById('customize'))
+      //       .then(function (blob) {
+      //          if (window.saveAs) {
+      //             window.saveAs(blob, 'customize.png');
+      //          } else {
+      //             FileSaver.saveAs(blob, 'customize.png');
+      //          }
+      //       });
+      //    fetch(img.src)
+      //       .then(res => res.blob())
+      //       .then(blob => {
+      //          const file = new File([blob], "capture.png", {
+      //             type: 'image/png'
+      //          });
+      //          var fd = new FormData();
+      //          fd.append("image", file);
+      //          $.ajax({
+      //             type: "POST",
+      //             enctype: 'multipart/form-data',
+      //             url: "/api/file/upload",
+      //             data: fd,
+      //             processData: false,
+      //             contentType: false,
+      //             cache: false,
+      //             success: (data) => {
+      //                alert("yes");
+      //             },
+      //             error: function (xhr, status, error) {
+      //                alert(xhr.responseText);
+      //             }
+      //          });
+      //       });
+      // }
+   },  
 };
 
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/css/utils/variables';
 
 .container {

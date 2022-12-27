@@ -103,7 +103,7 @@
             <font-awesome-icon icon="fa-solid fa-xmark" />
         </button>
         <div class="l-box-img">
-            <img :src="`/${popupData.news_img}`"/>
+            <img :src="`.news/${popupData.news_img}`"/>
             <!-- <img :src="popupData.img" /> -->
             <!-- 自閉合 -->
         </div>
@@ -122,6 +122,7 @@
 </template>
 
 <script>
+import { BASE_URL } from '@/assets/js/commom.js';
 export default {
     components: {
 
@@ -382,9 +383,10 @@ export default {
             this.activeId = NaN;
         },
         getData() {
-            fetch(
-                "/api_server/getNews.php"
-            )
+            // fetch(
+            //     "/api_server/getNews.php"
+            // )
+            fetch(`${BASE_URL}/getNews.php`)
                 .then((res) => res.json())
                 .then((json) => {
                     this.newsAll = json;
