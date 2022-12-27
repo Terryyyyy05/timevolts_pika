@@ -1,5 +1,9 @@
 <template>
-  <div v-for="coupon in Vouchers" :key="coupon.id" class="wrap">
+  <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="askForLogin">
+    <p>請先登入!</p>
+  </base-dialog>
+  <div v-for="coupon in MyVouchers" :key="coupon.id" class="wrap">
+    <!-- {{ coupon }} -->
     <div class="id">{{ coupon.coupon_id }}</div>
     <div class="coupon_discount_number">
       {{ coupon.coupon_discount_number }}
@@ -10,24 +14,30 @@
     <div class="coupon_valid_date">
       {{ coupon.coupon_valid_date }}
     </div>
-    <div class="coupon_exp_date" v-if="coupon.coupon_valid_date !== null">
-      {{ coupon.coupon_exp_date }}
+    <!-- <div class="coupon_exp_date" v-if="coupon.coupon_valid_date"></div> -->
+    <div class="coupon_exp_date">
+      <p v-if="coupon.coupon_exp_date != null">
+        {{ coupon.coupon_exp_date }}
+      </p>
+      <p v-else>無期限</p>
     </div>
-    <!-- <div class="coupon_exp_date" v-if="coupon.coupon_valid_date == 'null'">
-      無期限
-    </div> -->
     <div class="btnWrap">
       <router-link
-        v-if="coupon.my_coupon_status == 1"
+        v-if="useExpired(coupon) == 1"
         class="btn-lightbox btn"
         to="/news"
         @click="time"
       >
         可使用
       </router-link>
-      <!-- && coupon.coupon_exp_date -->
-      <a v-if="coupon.my_coupon_status == 0" class="btn-lightbox btn-none">
-        不可使用
+      <a v-if="useExpired(coupon) == 2" class="btn-lightbox btn-none">
+        未生效
+      </a>
+      <a v-if="useExpired(coupon) == 3" class="btn-lightbox btn-none">
+        已過期
+      </a>
+      <a v-if="useExpired(coupon) == 4" class="btn-lightbox btn-none">
+        已使用
       </a>
     </div>
   </div>
@@ -39,6 +49,11 @@ export default {
     return {
       informationVisibile: 10,
       page: 10,
+      get_mem_id: {
+        val: 0,
+      },
+      userId: null,
+      hasLoggedIn: true,
       MyVouchers: [
         {
           coupon_id: 1, //編號
@@ -56,7 +71,7 @@ export default {
           coupon_discount_number: 5, //折扣金額
           coupon_issue_date: "2022-12-18", //發送日期
           coupon_valid_date: "2022-12-18", //生效日期
-          coupon_exp_date: "null", //到期日期
+          coupon_exp_date: null, //到期日期
           coupon_quantity: 2000, //發行數量
           coupon_given_numbers: 0, //已發數量
           coupon_pricing_condition: 100, //消費門檻
@@ -67,7 +82,7 @@ export default {
           coupon_discount_number: 5000, //折扣金額
           coupon_issue_date: "2022-12-18", //發送日期
           coupon_valid_date: "2022-12-18", //生效日期
-          coupon_exp_date: "null", //到期日期
+          coupon_exp_date: null, //到期日期
           coupon_quantity: 2000, //發行數量
           coupon_given_numbers: 0, //已發數量
           coupon_pricing_condition: 80000, //消費門檻
@@ -76,12 +91,82 @@ export default {
       ],
     };
   },
+  created() {
+    console.log(this);
+    console.log(this.getUserId);
+    this.loginConfirm();
+  },
   computed: {
+    async loginConfirm() {
+      await this.$store.dispatch("getUserId");
+      this.userId = this.$store.getters["userId"];
+      if (!this.userId) {
+        // 找不到會員
+        this.hasLoggedIn = false;
+        console.log("未登入", this.get_mem_id);
+      } else {
+        // 會員有登入
+        this.get_mem_id.val = this.userId;
+        await this.giveGetVoucher();
+        console.log("登入了", this.get_mem_id);
+      }
+    },
+    askForLogin() {
+      if (this.$route.path !== "/memberLightBox") {
+        this.$router.push({ path: "/memberLightBox" });
+      } else {
+        this.hasLoggedIn = true;
+      }
+    },
     pageVisibile() {
-      this.informationVisibile = Math.ceil(this.MyVouchers.length / this.page);
+      // this.informationVisibile = Math.ceil(this.MyVouchers.length / this.page);
     },
     Vouchers() {
-      return this.MyVouchers.slice(0, this.page);
+      // return this.MyVouchers.slice(0, this.page);
+    },
+    today() {
+      return new Date();
+    },
+  },
+  methods: {
+    async giveGetVoucher() {
+      try {
+        const myVoucher = await fetch("/api_server/getGetCoupon.php", {
+          method: "POST",
+          body: JSON.stringify({
+            action: "get_mem_id",
+            mem_id: this.get_mem_id.val,
+          }),
+        });
+
+        const myVoucherData = await myVoucher.json();
+        this.MyVouchers = myVoucherData;
+        console.log(this.MyVouchers);
+        return this.MyVouchers;
+      } catch (error) {
+        console.error(error);
+        // this.AgetVoucher();
+      }
+    },
+    useExpired(my_coupon) {
+      if (my_coupon.my_coupon_status == 0) {
+        // 如果已使用
+        return 4;
+      } else if (
+        Date.parse(my_coupon.coupon_exp_date) < Date.parse(this.today) ||
+        my_coupon.coupon_exp_date == 0
+      ) {
+        // 如果已過期
+        return 3;
+      } else if (
+        Date.parse(my_coupon.coupon_valid_date) >= Date.parse(this.today)
+      ) {
+        // 如果未達生效日
+        return 2;
+      } else {
+        // 如果以上都達成
+        return 1;
+      }
     },
   },
 };

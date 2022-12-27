@@ -52,11 +52,13 @@ switch ($action) {
     case "pick_up_record":
         try {
             require_once("./php_connect_books/connectBooks.php");
-            $sql = "INSERT INTO `tibamefe_cgd103g3`.`my_coupon` (`mem_id`, `coupon_id`, `my_coupon_status`) VALUES ('1', '3', '1');";
+            $sql = "INSERT INTO `tibamefe_cgd103g3`.`my_coupon` (`mem_id`, `coupon_id`, `my_coupon_status`) VALUES (:mem_id, :coupon_id, '1');";
             $member = $pdo->prepare($sql);
+            $member->bindValue(":mem_id", $datas["mem_id"]);
+            $member->bindValue(":coupon_id", $datas["coupon_id"]);
             $member->execute();
             $msg = '回傳成功';
-            $errMsg = '';
+            $errMsg = '回傳失敗';
 
             $coupons = $pdo->query($sql);
             $coupon = $coupons->fetchAll(PDO::FETCH_ASSOC);

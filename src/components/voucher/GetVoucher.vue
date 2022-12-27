@@ -76,9 +76,6 @@ export default {
       click_coupon_id: {
         val: 0,
       },
-      click_mem_id: {
-        val: 0,
-      },
       // unreceivedCoupon: [], //未領取的優惠卷
       showModal: false, //燈箱開關
       login: false, //是否登入
@@ -90,6 +87,7 @@ export default {
   computed: {
     ReceiveQuantity() {
       // 檢查可領取數量
+      let selt = this;
       return this.CouponData.reduce((acc, cur) => {
         // acc = this.CouponData.login;
         if (cur.mem_id === null) {
@@ -146,6 +144,7 @@ export default {
     },
 
     async AgetVoucher() {
+      // 未登入預覽可以領取的數量
       try {
         const getVoucher = await fetch("/api_server/getGetCoupon.php", {
           method: "POST",
@@ -196,14 +195,37 @@ export default {
         return (a = true);
       }
     },
-    receive(index) {
+    async receive(index) {
       // if ((e.target = )) {
       // 領取並傳回後端
-      // 先寫死1 之後要抓會員ID
       const UserCouponData = this.CouponData[index];
-      UserCouponData.mem_id = 1;
+      this.get_mem_id.val = this.userId;
+      this.click_coupon_id.val = this.CouponData[index].coupon_id;
+      await this.clickCoupon();
+
+      this.CouponData[index].mem_id = this.get_mem_id.val;
+      console.log(this.get_mem_id);
+      console.log(this.click_coupon_id);
+      console.log(UserCouponData);
+
       alert(`恭喜您獲得${UserCouponData.coupon_discount_number}元 優惠卷~
       `);
+    },
+    async clickCoupon() {
+      // 寫入領取資料
+      try {
+        await fetch("/api_server/getGetCoupon.php", {
+          method: "POST",
+          body: JSON.stringify({
+            action: "pick_up_record",
+            mem_id: this.get_mem_id.val,
+            coupon_id: this.click_coupon_id.val,
+          }),
+        });
+      } catch (error) {
+        console.error(error);
+        // this.giveGetVoucher();
+      }
     },
   },
 
