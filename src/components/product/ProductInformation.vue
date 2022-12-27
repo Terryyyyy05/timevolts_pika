@@ -1,12 +1,12 @@
 <template>
   <div class="cardList">
     <product-card
-      v-for="card in cardContext2.list"
+      v-for="card in cardList"
       :key="card.pro_name"
       :id="card.pro_id"
     >
       <div class="pic">
-        <img :src="require('@/assets/image/product/product_1.png')" alt="" />
+        <img :src="IMG_URL(card.pro_img)" alt="" />
       </div>
       <h3>{{ card.pro_name }}</h3>
       <span class="p_md price">${{ card.pro_price }}</span>
@@ -21,13 +21,10 @@
 
 <script>
 import { ref, computed, reactive, onMounted } from "vue";
-import { cardContext } from "./js/data.js";
-import { BASE_URL } from "@/assets/js/commom";
-
+import { IMG_URL } from "@/assets/js/img_path.js";
 
 import ShowMoreButton from "../../components/history/UI/ShowMoreButton.vue";
 import ProductCard from "./base/ProductCard.vue";
-
 
 export default {
   components: {
@@ -41,15 +38,15 @@ export default {
       return (perPageCardNum.value += 4);
     };
 
-    // const cardList = computed(() => {
-    //   return cardContext.slice(0, perPageCardNum.value);
-    // });
-
-    const distinguishTrueFalse = computed(() => {
-      return perPageCardNum.value < cardContext.length ? true : false;
+    const cardList = computed(() => {
+      return cardContext2.list.slice(0, perPageCardNum.value);
     });
 
-    // test
+    const distinguishTrueFalse = computed(() => {
+      return perPageCardNum.value < cardContext2.list.length ? true : false;
+    });
+
+    // 抓資料
     const cardContext2 = reactive({ list: [] });
     const fetchAbc = () => {
       fetch(`/api_server/getProducts.php`)
@@ -65,10 +62,10 @@ export default {
 
     return {
       perPageCardNum,
-      // cardList,
+      cardList,
       addCardNum,
       distinguishTrueFalse,
-      cardContext2,
+      IMG_URL,
     };
   },
 };

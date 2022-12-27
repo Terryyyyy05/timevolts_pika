@@ -1,6 +1,11 @@
 <template>
   <div class="flex">
     <div class="pic">
+      <!-- <img
+        :src="IMG_URL(productInfo2.list.pro_img)"
+        alt=""
+        ref="img"
+      /> -->
       <img
         :src="require('@/assets/image/product/product_1.png')"
         alt=""
@@ -8,12 +13,12 @@
       />
     </div>
     <div class="content">
-      <h2 id="title" ref="title">{{ productInfo.title }}</h2>
-      <p class="p_lg">商品用途： <br />{{ productInfo.purpose }}</p>
+      <h2 id="title" ref="title">{{ productInfo2.list.pro_name }}</h2>
+      <p class="p_lg">商品用途： <br />{{ productInfo2.list.pro_info }}</p>
       <div>
         <span class="p_md">價錢： $</span>
         <span class="p_md" id="price" ref="price">{{
-          productInfo.price * totalNumber
+          productInfo2.list.pro_price * totalNumber
         }}</span>
       </div>
 
@@ -41,9 +46,10 @@
 </template>
 
 <script>
-import { reactive, ref, watchEffect, computed, onMounted } from "vue";
+import { reactive, ref, computed, onMounted } from "vue";
 import { cardContext } from "../../js/data";
 import { useStore } from "vuex";
+import { IMG_URL } from "@/assets/js/img_path.js";
 
 // test
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
@@ -84,9 +90,6 @@ export default {
     const route = useRoute();
 
     console.log(route.params.id);
-    // console.log(route.query);
-    // console.log(route.hash);
-    // console.log(route.path);
 
     const aaa = reactive(route.params.id);
 
@@ -97,19 +100,21 @@ export default {
     );
 
     // test
-    const productInfo2 = reactive({ list: "" });
+    const productInfo2 = reactive({ list: [] });
+
     const fetchAbc = () => {
-      fetch("http://localhost/timevolts_pika/public/phpfiles/test.php", {
+      const formData = new FormData();
+      formData.append("pro_id", route.params.id);
+
+      fetch("/api_server/getOneProduct.php", {
         method: "POST",
-        
-        body: JSON.stringify({
-          name: "QQQ",
-        }),
+        body: formData,
       })
         .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-          // productInfo2.list = result;
+        .then((res) => {
+          const result = res;
+          productInfo2.list = result[0];
+          console.log(productInfo2.list);
         })
         .catch((error) => console.log(error));
     };
@@ -119,14 +124,12 @@ export default {
     });
 
     console.log(productInfo);
-    console.log(cardContext);
 
     onBeforeRouteUpdate(async (to, from) => {
       console.log("QQ");
       console.log(productInfo);
       console.log(cardContext);
 
-      // alert(to.params.id);
       Object.assign(
         productInfo,
         cardContext.find((i) => i.id === parseInt(to.params.id))
@@ -145,6 +148,8 @@ export default {
       // test
       aaa,
       productInfo,
+      productInfo2,
+      IMG_URL,
       // DOM
       title,
       price,
