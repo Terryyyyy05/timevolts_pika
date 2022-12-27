@@ -3,20 +3,17 @@
     <div class="wrap">
         <itinerary-collection-card-info />
     </div>
-    <detail-lightbox></detail-lightbox>
     <pagination />
 </template>
 <script>
 import itineraryCollectionCardInfo from "@/components/memberCenter/itineraryCollectionCardInfo.vue";
 import pagination from "@/components/memberCenter/pagination.vue";
-import detailLightbox from "@/components/memberCenter/detailLightbox.vue";
 
 export default {
     name: "itineraryCollection",
     components: {
         itineraryCollectionCardInfo,
         pagination,
-        detailLightbox,
     },
 };
 </script>
