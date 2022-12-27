@@ -12,9 +12,9 @@ switch ($action) {
         try {
             require_once("./php_connect_books/connectBooks.php");
             // 已登入可以領取的折價卷
-            $sql = "SELECT * from coupon c left join my_coupon m  using(coupon_id)  where c.coupon_status = 1 and (c.coupon_quantity - c.coupon_given_numbers) and (c.coupon_exp_date >= current_date or c.coupon_exp_date is null )and c.coupon_issue_date <= current_date and (m.mem_id={$datas["mem_id"]} or m.mem_id is null) order by m.mem_id";
+            $sql = " SELECT * from coupon c left join my_coupon m on c.coupon_id = m.coupon_id and m.mem_id = {$datas["mem_id"]} left join (select count(*) mycount , coupon_id from my_coupon group by coupon_id) mc on c.coupon_id = mc.coupon_id where 1=1 and c.coupon_status = 1 and (current_date between c.coupon_issue_date and c.coupon_exp_date or c.coupon_exp_date is null ) and ifnull(mc.mycount,0) < c.coupon_quantity ;";
             $member = $pdo->prepare($sql);
-            // $member->bindValue(":mem_id", $datas["mem_id"]);
+            // $member->bindValue(":mem_id", $datas["mem_id"], PDO::PARAM_INT);
             $member->execute();
             $msg = '回傳成功';
             $errMsg = '';
@@ -22,6 +22,7 @@ switch ($action) {
             $coupons = $pdo->query($sql);
             $coupon = $coupons->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($coupon);
+            // echo json_encode($datas["mem_id"]);
         } catch (PDOException $e) {
             // 處理 PDOException
             // $result = ["msg" => "系統錯誤，請聯繫相關人員"];
@@ -33,7 +34,12 @@ switch ($action) {
         try {
             require_once("./php_connect_books/connectBooks.php");
             // 未登入可以領取的折價卷
-            $sql = "SELECT * from coupon c left join my_coupon m  using(coupon_id)  where c.coupon_status = 1 and (c.coupon_quantity - c.coupon_given_numbers) and (c.coupon_exp_date >= current_date or c.coupon_exp_date is null )and c.coupon_issue_date <= current_date order by m.mem_id;";
+            $sql = "SELECT * from coupon c 
+            left join (select count(*) mycount , coupon_id from my_coupon group by coupon_id) mc on c.coupon_id = mc.coupon_id
+           where 1=1
+           and c.coupon_status = 1
+           and (current_date between c.coupon_issue_date and c.coupon_exp_date or c.coupon_exp_date is null )
+           and ifnull(mc.mycount,0) < c.coupon_quantity ;";
             $member = $pdo->prepare($sql);
             $member->execute();
             $msg = '回傳成功';
@@ -52,6 +58,7 @@ switch ($action) {
     case "pick_up_record":
         try {
             require_once("./php_connect_books/connectBooks.php");
+            // 會員領取的優惠卷
             $sql = "INSERT INTO `tibamefe_cgd103g3`.`my_coupon` (`mem_id`, `coupon_id`, `my_coupon_status`) VALUES (:mem_id, :coupon_id, '1');";
             $member = $pdo->prepare($sql);
             $member->bindValue(":mem_id", $datas["mem_id"]);
@@ -63,6 +70,30 @@ switch ($action) {
             $coupons = $pdo->query($sql);
             $coupon = $coupons->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($coupon);
+        } catch (PDOException $e) {
+            // 處理 PDOException
+            // $result = ["msg" => "系統錯誤，請聯繫相關人員"];
+            $result = ["msg" => $e->getMessage()];
+            echo json_encode($result);
+        }
+        break;
+    case "mem_coupon":
+        try {
+            require_once("./php_connect_books/connectBooks.php");
+            // 會員折價卷的紀錄
+            $sql = " select * from coupon c  join my_coupon m on c.coupon_id = m.coupon_id and m.mem_id = {$datas["mem_id"]}  
+            where 1=1 
+            and c.coupon_status = 1 ; ";
+            $member = $pdo->prepare($sql);
+            // $member->bindValue("mem_id", $datas["mem_id"], PDO::PARAM_INT);
+            $member->execute();
+            $msg = '回傳成功';
+            $errMsg = '';
+
+            $coupons = $pdo->query($sql);
+            $coupon = $coupons->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($coupon);
+            // echo json_encode($datas["mem_id"]);
         } catch (PDOException $e) {
             // 處理 PDOException
             // $result = ["msg" => "系統錯誤，請聯繫相關人員"];
