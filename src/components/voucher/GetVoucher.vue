@@ -144,6 +144,7 @@ export default {
     },
 
     async AgetVoucher() {
+      // 未登入預覽可以領取的數量
       try {
         const getVoucher = await fetch("/api_server/getGetCoupon.php", {
           method: "POST",
@@ -197,7 +198,6 @@ export default {
     async receive(index) {
       // if ((e.target = )) {
       // 領取並傳回後端
-      // 先寫死1 之後要抓會員ID
       const UserCouponData = this.CouponData[index];
       this.get_mem_id.val = this.userId;
       this.click_coupon_id.val = this.CouponData[index].coupon_id;
@@ -212,6 +212,7 @@ export default {
       `);
     },
     async clickCoupon() {
+      // 寫入領取資料
       try {
         await fetch("/api_server/getGetCoupon.php", {
           method: "POST",
