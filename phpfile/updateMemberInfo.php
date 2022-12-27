@@ -7,7 +7,6 @@ header("Content-Type:application/json;charset=utf-8");
 try{
     require_once("./php_connect_books/connectBooks.php");
     $sql = "update member set mem_name = :mem_name,
-                              mem_bday = :mem_bday,
                               mem_phone = :mem_phone,
                               mem_address = :mem_address,
                               mem_email = :mem_email,
@@ -19,7 +18,6 @@ try{
    
     $memberInfo->bindValue(":mem_id", $_SESSION["mem_id"]);
     $memberInfo->bindValue(":mem_name", $_POST["mem_name"]);
-    $memberInfo->bindValue(":mem_bday", $_POST["mem_bday"]);
     $memberInfo->bindValue(":mem_phone", $_POST["mem_phone"]);
     $memberInfo->bindValue(":mem_address", $_POST["mem_address"]);
     $memberInfo->bindValue(":mem_email", $_POST["mem_email"]);
