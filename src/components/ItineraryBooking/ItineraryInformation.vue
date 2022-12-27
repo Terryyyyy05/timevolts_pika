@@ -50,7 +50,8 @@
          </base-card>
       </div>
    </div>
-   <buyer-info :number="this.attendNum"></buyer-info>
+   <buyer-info :attendNum="this.attendNum" ref="buyerInfo"></buyer-info>
+   <button class="btn-primary" @click="toSecondStep">確認訂票</button>
 </template>
 
 <script>
@@ -62,38 +63,27 @@ export default {
       Calendar,
       BuyerInfo,
    },
-   props: ['latestDate', 'departDate', 'returnDate', 'classification', 'dangerLev', 'region', 'singlePrice', 'memLev', 'feature', 'itineraryName'],
+   props: ['latestDate', 'departDate', 'returnDate', 'classification', 'dangerLev', 'region', 'singlePrice', 'memLev', 'feature', 'itineraryName', "itineraryId", "userId"],
    data() {
       return {
-         // latestDate: "2023-01-01",
-         // departDate: "2022-12-04",
-         // returnDate: "2022-12-08",
-         // classification: "期間限定行程",
-         // dangerLev: "高",
-         // region: "歐洲",
-         // singlePrice: 50000,
-         // memLev: "白金",
          attendNum: 1,
          originPrice: null,
          memDiscout: null,
          discoutPrice: null,
          totalPrice: null,
-         // orderNum: "O26572548",
-         // feature: "宗教事件",
-         // itineraryName: "十字軍東征",
       };
    },
-   provide() {
-      return {
-         orderNum: this.orderNum,
-         totalPrice: this.totalPrice,
-         attendNum: this.attendNum,
-         classification: this.classification,
-         feature: this.feature,
-         itineraryName: this.itineraryName,
-         dangerLev: this.dangerLev,
-      };
-   },
+   emits: ["setStep"],
+   // provide() {
+   //    return {
+   //       orderNum: this.orderNum,
+   //       totalPrice: this.totalPrice,
+   //       classification: this.classification,
+   //       feature: this.feature,
+   //       itineraryName: this.itineraryName,
+   //       dangerLev: this.dangerLev,
+   //    };
+   // },
    computed: {
       computeOriginPrice() {
          this.originPrice = this.singlePrice * this.attendNum;
@@ -108,6 +98,14 @@ export default {
          return this.totalPrice;
       },
    },
+   created() {
+      if (this.memLev === "白金會員") {
+         this.memmemDiscoutLev = 9;
+      }
+      if (this.memLev === "鑽石會員") {
+         this.memDiscout = 8;
+      }
+   },
    methods: {
       minusAttNum() {
          if (this.attendNum > 1) {
@@ -117,6 +115,22 @@ export default {
       addAttNum() {
          this.attendNum += 1;
       },
+      toSecondStep() {
+         this.$emit('setStep', 'second');
+         this.$store.dispatch("itineraryBooking/sendOrderInfo", {
+            userId: this.userId,
+            itineraryId: this.itineraryId,
+            attendNum: this.attendNum,
+            originPrice: this.originPrice,
+            totalPrice: this.totalPrice,
+            discoutPrice: this.discoutPrice,
+         });
+         this.$refs.buyerInfo.sendParticipants(); 
+      },
+      
+   },
+   updated() {
+      // console.log(this.userId, this.itineraryId, this.attendNum, this.originPrice, this.totalPrice, this.discoutPrice)
    },
 };
 </script>

@@ -30,16 +30,16 @@
             :returnDate="info[0].itinerary_end_date"
             :classification="info[0].story_classification"
             :dangerLev="info[0].story_risk"
-            :region="info[0].story_rigion"
+            :region="info[0].story_spot"
+            :feature="info[0].story_specialty"
             :singlePrice="info[0].itinerary_price"
             :memLev="info[0].mem_level"
+            :itineraryId="info[0].itinerary_id"
+            :itineraryName="itineraryName"
+            :userId="userId"
+            @set-step="toNextStep"
          ></component>
       </keep-alive>
-      <div class="buttons" v-if="this.selectedStep !== 'confirm-order'">
-         <button class="btn-primary" @click="nextStep">
-            {{ button }}
-         </button>
-      </div>
       <div class="buttons" v-if="this.selectedStep === 'confirm-order'">
          <router-link to="/customizetk">
             <button class="btn-primary">開始製作</button>
@@ -71,12 +71,13 @@ export default {
       return {
          selectedStep: "itinerary-information",
          currentStep: "行程資訊",
-         button: "確認訂票",
          userId: null,
          hasLoggedIn: true,
          hasItineraryName: true,
          itineraryName: "",
          info: [],
+         orderInfo: {},
+         participants: [],
       };
    },
    computed: {
@@ -102,24 +103,21 @@ export default {
             return "width: 100%";
          }
       },
-      hello() {
-         return this.info;
-      },
    },
    created() {
       this.checkLogin();
    },
    methods: {
-      nextStep() {
-         if (this.selectedStep === "itinerary-information") {
+      toNextStep(step) {
+         if (step === "second") {
             this.selectedStep = "checkout";
             this.currentStep = "結帳";
-            this.button = "前往付款";
             window.scrollTo(0, 0);
-         } else if (this.selectedStep === "checkout") {
+         } else if (step === "third") {
             this.selectedStep = "confirm-order";
             this.currentStep = "訂單成立";
             window.scrollTo(0, 0);
+            this.confirmOrder();
          }
       },
       async checkLogin() {
@@ -131,10 +129,11 @@ export default {
          if (!this.userId) {
             // 找不到會員
             this.hasLoggedIn = false;
-         } else if (!this.itineraryName) {
-            this.hasItineraryName = false;
-         } else if (this.userId && this.itineraryName) {
+         } else {
             this.getItineraryInfo();
+         }
+         if (this.itineraryName === "") {
+            this.hasItineraryName = false;
          }
       },
       askForLogin() {
@@ -154,6 +153,59 @@ export default {
 
          this.info = responseData;
          console.log(this.info);
+      },
+      async confirmOrder() {
+         this.orderInfo = this.$store.getters["itineraryBooking/orderInfo"];
+         // console.log(this.orderInfo);
+         this.participants =
+            this.$store.getters["itineraryBooking/participants"];
+         console.log(this.participants);
+         // console.log(this.participants.length);
+         try {
+            const response = await fetch(
+               "/api_server/sendItinBookingInfo.php",
+               {
+                  method: "POST",
+                  body: JSON.stringify({
+                     userId: this.orderInfo.userId,
+                     itineraryId: this.orderInfo.itineraryId,
+                     attendNum: this.orderInfo.attendNum,
+                     originPrice: this.orderInfo.originPrice,
+                     totalPrice: this.orderInfo.totalPrice,
+                     discoutPrice: this.orderInfo.discoutPrice,
+                  }),
+               }
+            );
+
+            const responseData = await response.json();
+            // console.log(responseData);
+
+            if (!response.ok) {
+               const error = new Error(error.message || "發生錯誤");
+               console.log(error);
+               throw error;
+            }
+         } catch (error) {
+            console.log(error);
+         }
+
+         this.sendParticipants();
+      },
+      sendParticipants() {
+         for (let i = 0; i < this.participants.length; i++) {
+            fetch("/api_server/sendParticipants.php", {
+               method: "POST",
+               body: JSON.stringify({
+                  name: this.participants[i].name,
+                  phone: this.participants[i].phone,
+                  email: this.participants[i].email,
+               }),
+            })
+               .then((response) => response.json())
+               .then((data) => {
+                  console.log(data);
+               });
+         }
       },
    },
 };
