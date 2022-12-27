@@ -3,7 +3,11 @@
       <h3>訂購人資訊</h3>
       <div class="buyer-info">
          <div class="checkbox">
-            <base-checkbox text="同會員資料"></base-checkbox>
+            <label class="check-container"
+               >同會員資料
+               <input type="checkbox" @change="sameAsMember" />
+               <span class="checkmark"></span>
+            </label>
          </div>
          <div>
             <label class="p_lg">姓名</label>
@@ -12,15 +16,6 @@
                type="text"
                ref="buyerName"
                v-model="buyerName"
-            />
-         </div>
-         <div>
-            <label class="p_lg">生日</label>
-            <input
-               class="p_lg"
-               type="text"
-               ref="buyerBirthday"
-               v-model="buyerBirthday"
             />
          </div>
          <div>
@@ -41,78 +36,69 @@
                v-model="buyerEmail"
             />
          </div>
-         <div>
-            <label class="p_lg">地址</label>
-            <input
-               class="p_lg"
-               type="text"
-               ref="buyerAddress"
-               v-model="buyerName"
-            />
-         </div>
       </div>
    </base-card>
 
    <base-card class="base-card">
       <h3>填寫旅客資料</h3>
-      <span class="p_xl attend-num">參團人數 : {{ number }}</span>
+      <span class="p_xl attend-num">參團人數 : {{ attendNum }}</span>
       <div class="buyer-info">
          <div class="info-top">
             <span class="p_lg">旅客1</span>
             <div class="checkbox">
                <label class="check-container"
                   >同訂購人資料
-                  <input type="checkbox" @change="clickCheckbox" />
+                  <input type="checkbox" @change="sameAsBuyer" />
                   <span class="checkmark"></span>
                </label>
             </div>
          </div>
          <div>
             <label class="p_lg">姓名</label>
-            <input class="p_lg" type="text" v-model="travelerName" />
-         </div>
-         <div>
-            <label class="p_lg">生日</label>
-            <input class="p_lg" type="text" v-model="travelerBirthday" />
+            <input class="p_lg" type="text" v-model="traveler.name" />
          </div>
          <div>
             <label class="p_lg">電話</label>
-            <input class="p_lg" type="text" v-model="travelerPhone" />
+            <input class="p_lg" type="text" v-model="traveler.phone" />
          </div>
          <div>
             <label class="p_lg">信箱</label>
-            <input class="p_lg" type="text" v-model="travelerEmail" />
-         </div>
-         <div>
-            <label class="p_lg">地址</label>
-            <input class="p_lg" type="text" v-model="travelerAddress" />
+            <input class="p_lg" type="text" v-model="traveler.email" />
          </div>
       </div>
 
-      <div v-if="this.number > 1">
-         <div class="buyer-info" v-for="(num, index) in number - 1" :key="num">
+      <div v-if="this.attendNum > 1">
+         <div
+            class="buyer-info"
+            v-for="(participant, index) in restParticipants"
+            :key="participant"
+         >
             <div class="info-top">
                <span class="p_lg">旅客 {{ index + 2 }}</span>
             </div>
             <div>
                <label class="p_lg">姓名</label>
-               <input class="p_lg" type="text" />
-            </div>
-            <div>
-               <label class="p_lg">生日</label>
-               <input class="p_lg" type="text" />
+               <input
+                  class="p_lg"
+                  type="text"
+                  v-model="restParticipants[index].name"
+               />
             </div>
             <div>
                <label class="p_lg">電話</label>
-               <input class="p_lg" type="text" />
+               <input
+                  class="p_lg"
+                  type="text"
+                  v-model="restParticipants[index].phone"
+               />
             </div>
             <div>
                <label class="p_lg">信箱</label>
-               <input class="p_lg" type="text" />
-            </div>
-            <div>
-               <label class="p_lg">地址</label>
-               <input class="p_lg" type="text" />
+               <input
+                  class="p_lg"
+                  type="text"
+                  v-model="restParticipants[index].email"
+               />
             </div>
          </div>
       </div>
@@ -126,45 +112,78 @@ export default {
    components: {
       BaseCheckbox,
    },
-   props: ["number"],
-   inject: ["attendNum"],
+   props: ["attendNum"],
    data() {
       return {
-         travelerName: "",
-         travelerBirthday: "",
-         travelerPhone: "",
-         travelerEmail: "",
-         travelerAddress: "",
+         traveler: {
+            name: "",
+            phone: "",
+            email: "",
+         },
+         buyerName: "",
+         buyerEmail: "",
+         buyerPhone: "",
+         restParticipants: [],
+         participants: [],
+         allParticipants: [],
+         // restParticipants: new Array(this.attendNum - 1),
       };
    },
    methods: {
-      clickCheckbox(event) {
+      sameAsBuyer(event) {
          if (event.target.checked === true) {
             this.copyInfo();
          } else {
             this.removeInfo();
          }
       },
-      copyInfo() {
-         const enteredName = this.$refs.buyerName.value;
-         const enteredBirthday = this.$refs.buyerBirthday.value;
-         const enteredEmail = this.$refs.buyerEmail.value;
-         const enteredPhone = this.$refs.buyerPhone.value;
-         const enteredAddress = this.$refs.buyerAddress.value;
+      async sameAsMember(event) {
+         if (event.target.checked === true) {
+            const response = await fetch("/api_server/sameAsMember.php");
 
-         this.travelerName = enteredName;
-         this.travelerBirthday = enteredBirthday;
-         this.travelerEmail = enteredEmail;
-         this.travelerPhone = enteredPhone;
-         this.travelerAddress = enteredAddress;
+            const responseData = await response.json();
+            // console.log(responseData);
+
+            this.buyerName = responseData[0].mem_name;
+            this.buyerEmail = responseData[0].mem_email;
+            this.buyerPhone = responseData[0].mem_phone;
+         } else {
+            this.buyerName = "";
+            this.buyerEmail = "";
+            this.buyerPhone = "";
+         }
+      },
+      copyInfo() {
+         this.traveler.name = this.$refs.buyerName.value;
+         this.traveler.email = this.$refs.buyerEmail.value;
+         this.traveler.phone = this.$refs.buyerPhone.value;
       },
       removeInfo() {
-         this.travelerName = "";
-         this.travelerBirthday = "";
-         this.travelerEmail = "";
-         this.travelerPhone = "";
-         this.travelerAddress = "";
+         this.traveler.name = "";
+         this.traveler.email = "";
+         this.traveler.phone = "";
       },
+      sendParticipants() {
+         this.participants.push(this.traveler);
+         for (const key in this.restParticipants) {
+            const participant = {
+               name: this.restParticipants[key].name,
+               phone: this.restParticipants[key].phone,
+               email: this.restParticipants[key].email,
+            };
+            this.participants.push(participant);
+         }
+         // console.log(this.participants);
+         this.$store.dispatch(
+            "itineraryBooking/sendParticipants",
+            this.participants
+         );
+      },
+   },
+   updated() {
+      this.restParticipants = [...new Array(this.attendNum - 1)].map(
+         () => ({})
+      );
    },
 };
 </script>

@@ -4,12 +4,15 @@ import { storage } from "@/components/product/js/localStorage";
 import historyModule from "./history/index.js";
 import itineraryModule from "./itinerary/index.js";
 import authModule from "./auth/index.js";
+import itineraryBookingModule from "./itineraryBooking/index.js";
+
 
 export default createStore({
    modules: {
       history: historyModule,
       itinerary: itineraryModule,
       auth: authModule,
+      itineraryBooking: itineraryBookingModule
    },
    state: {
       cart: [],

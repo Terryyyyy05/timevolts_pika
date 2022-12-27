@@ -162,7 +162,7 @@ export default {
       async bookItinerary() {
          await this.$store.dispatch("getUserId");
          this.userId = this.$store.getters["userId"];
-         console.log(this.userId);
+         // console.log(this.userId);
          if (!this.userId) {
             // 找不到會員
             this.hasLoggedIn = false;
