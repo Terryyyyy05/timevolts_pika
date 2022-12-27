@@ -1,15 +1,11 @@
 <template>
   <div class="flex">
     <div class="pic">
-      <!-- <img
+      <img
         :src="IMG_URL(productInfo2.list.pro_img)"
         alt=""
         ref="img"
-      /> -->
-      <img
-        :src="require('@/assets/image/product/product_1.png')"
-        alt=""
-        ref="img"
+        v-if="productInfo2.list.pro_img !== undefined"
       />
     </div>
     <div class="content">
@@ -46,18 +42,20 @@
 </template>
 
 <script>
-import { reactive, ref, computed, onMounted } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import { cardContext } from "../../js/data";
 import { useStore } from "vuex";
 import { IMG_URL } from "@/assets/js/img_path.js";
 
 // test
-import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
+import { onBeforeRouteUpdate, onBeforeRouteLeave, useRoute } from "vue-router";
 
 export default {
   components: {},
   setup() {
     const store = useStore();
+    const route = useRoute();
+
     const totalNumber = ref(1);
 
     const minusNum = () => {
@@ -86,25 +84,10 @@ export default {
     };
 
     // test
-    const router = useRouter();
-    const route = useRoute();
-
-    console.log(route.params.id);
-
-    const aaa = reactive(route.params.id);
-
-    const productInfo = reactive(
-      cardContext.find((i) => {
-        return i.id === parseInt(route.params.id);
-      })
-    );
-
-    // test
     const productInfo2 = reactive({ list: [] });
-
-    const fetchAbc = () => {
+    const fetchAbc = (id) => {
       const formData = new FormData();
-      formData.append("pro_id", route.params.id);
+      formData.append("pro_id", id);
 
       fetch("/api_server/getOneProduct.php", {
         method: "POST",
@@ -114,29 +97,34 @@ export default {
         .then((res) => {
           const result = res;
           productInfo2.list = result[0];
-          console.log(productInfo2.list);
+
+          store.commit("addItemClassName", productInfo2.list.pro_class_name);
         })
         .catch((error) => console.log(error));
     };
+
     onMounted(() => {
-      fetchAbc();
-      // console.log(productInfo2);
+      fetchAbc(route.params.id);
     });
 
-    console.log(productInfo);
-
     onBeforeRouteUpdate(async (to, from) => {
-      console.log("QQ");
-      console.log(productInfo);
-      console.log(cardContext);
+      // console.log("QQ");
+      // console.log(productInfo);
+      // console.log(cardContext);
 
-      Object.assign(
-        productInfo,
-        cardContext.find((i) => i.id === parseInt(to.params.id))
-      );
+      // Object.assign(
+      //   productInfo,
+      //   cardContext.find((i) => i.id === parseInt(to.params.id))
+      // );
 
-      console.log(productInfo);
-      console.log(cardContext);
+      // console.log(productInfo);
+      // console.log(cardContext);
+
+      fetchAbc(to.params.id);
+    });
+
+    onBeforeRouteLeave(() => {
+      store.commit("addItemClassName", "");
     });
 
     return {
@@ -146,8 +134,6 @@ export default {
       addNum,
       addToCart,
       // test
-      aaa,
-      productInfo,
       productInfo2,
       IMG_URL,
       // DOM
@@ -177,7 +163,6 @@ export default {
 .flex {
   display: flex;
   column-gap: 5%;
-  margin-top: 150px;
   .pic {
     width: 50%;
     display: flex;
