@@ -25,7 +25,7 @@
       <router-link
         v-if="useExpired(coupon) == 1"
         class="btn-lightbox btn"
-        to="/news"
+        to="/product"
         @click="time"
       >
         可使用
@@ -54,41 +54,7 @@ export default {
       },
       userId: null,
       hasLoggedIn: true,
-      MyVouchers: [
-        {
-          coupon_id: 1, //編號
-          coupon_discount_number: 200, //折扣金額
-          coupon_issue_date: "2022-12-20", //發送日期
-          coupon_valid_date: "2022-12-25", //生效日期
-          coupon_exp_date: "2023-01-15", //到期日期
-          coupon_quantity: 1000, //發行數量
-          coupon_given_numbers: 0, //已發數量
-          coupon_pricing_condition: 1000, //消費門檻
-          my_coupon_status: 1, // 1=可使用,0=不可使用
-        },
-        {
-          coupon_id: 2, //編號
-          coupon_discount_number: 5, //折扣金額
-          coupon_issue_date: "2022-12-18", //發送日期
-          coupon_valid_date: "2022-12-18", //生效日期
-          coupon_exp_date: null, //到期日期
-          coupon_quantity: 2000, //發行數量
-          coupon_given_numbers: 0, //已發數量
-          coupon_pricing_condition: 100, //消費門檻
-          my_coupon_status: 1, // 1=可使用,0=不可使用
-        },
-        {
-          coupon_id: 3, //編號
-          coupon_discount_number: 5000, //折扣金額
-          coupon_issue_date: "2022-12-18", //發送日期
-          coupon_valid_date: "2022-12-18", //生效日期
-          coupon_exp_date: null, //到期日期
-          coupon_quantity: 2000, //發行數量
-          coupon_given_numbers: 0, //已發數量
-          coupon_pricing_condition: 80000, //消費門檻
-          my_coupon_status: 0, // 1=可使用,0=不可使用
-        },
-      ],
+      MyVouchers: [],
     };
   },
   created() {
@@ -97,20 +63,17 @@ export default {
     this.loginConfirm();
   },
   computed: {
-    async loginConfirm() {
-      await this.$store.dispatch("getUserId");
-      this.userId = this.$store.getters["userId"];
-      if (!this.userId) {
-        // 找不到會員
-        this.hasLoggedIn = false;
-        console.log("未登入", this.get_mem_id);
-      } else {
-        // 會員有登入
-        this.get_mem_id.val = this.userId;
-        await this.giveGetVoucher();
-        console.log("登入了", this.get_mem_id);
-      }
+    pageVisibile() {
+      this.informationVisibile = Math.ceil(this.MyVouchers.length / this.page);
     },
+    Vouchers() {
+      return this.MyVouchers.slice(0, this.page);
+    },
+    today() {
+      return new Date();
+    },
+  },
+  methods: {
     askForLogin() {
       if (this.$route.path !== "/memberLightBox") {
         this.$router.push({ path: "/memberLightBox" });
@@ -118,17 +81,20 @@ export default {
         this.hasLoggedIn = true;
       }
     },
-    pageVisibile() {
-      // this.informationVisibile = Math.ceil(this.MyVouchers.length / this.page);
+    async loginConfirm() {
+      await this.$store.dispatch("getUserId");
+      this.userId = this.$store.getters["userId"];
+      if (!this.userId) {
+        // 找不到會員
+        // this.hasLoggedIn = false;
+        // console.log("未登入", this.get_mem_id);
+      } else {
+        // 會員有登入
+        this.get_mem_id.val = this.userId;
+        await this.giveGetVoucher();
+        // console.log("登入了", this.get_mem_id);
+      }
     },
-    Vouchers() {
-      // return this.MyVouchers.slice(0, this.page);
-    },
-    today() {
-      return new Date();
-    },
-  },
-  methods: {
     async giveGetVoucher() {
       try {
         const myVoucher = await fetch("/api_server/getGetCoupon.php", {
