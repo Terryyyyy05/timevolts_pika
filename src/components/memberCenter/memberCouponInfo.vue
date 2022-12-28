@@ -100,7 +100,7 @@ export default {
         const myVoucher = await fetch("/api_server/getGetCoupon.php", {
           method: "POST",
           body: JSON.stringify({
-            action: "get_mem_id",
+            action: "mem_coupon",
             mem_id: this.get_mem_id.val,
           }),
         });

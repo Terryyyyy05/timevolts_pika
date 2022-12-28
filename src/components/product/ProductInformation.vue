@@ -57,7 +57,6 @@ export default {
     };
     onMounted(() => {
       fetchAbc();
-      console.log(cardContext2);
     });
 
     return {
