@@ -37,7 +37,7 @@ export default {
     const itemClassName = computed(() => store.state.itemClassName);
 
     const fetchAbc = () => {
-      fetch(`/api_server/getProducts.php`)
+      fetch(`${BASE_URL}getProducts.php`)
         .then((res) => res.json())
         .then((result) => {
           cardContext2.list = result;
