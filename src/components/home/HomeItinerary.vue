@@ -12,7 +12,7 @@
             'img-index': activeIndex != index,
           }"
         >
-          <img v-bind:src="'/image/history/banner/' + item.story_cover" />
+          <img v-bind:src="ITIN_IMG_URL(item.story_cover)" alt="" />
         </div>
       </TransitionGroup>
     </div>
@@ -55,6 +55,7 @@
 
 <script>
 // import { Carousel, Slide } from 'vue-carousel';
+import { ITIN_IMG_URL } from "@/assets/js/img_path.js";
 import { BASE_URL } from "@/assets/js/commom.js";
 export default {
   // components: {
