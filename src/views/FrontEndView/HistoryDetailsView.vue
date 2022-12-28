@@ -69,6 +69,7 @@
 <script>
 import HistoryBanner from "../../components/history/UI/HistoryBanner.vue";
 import ActiveParagraph from "../../components/history/ActiveParagraph.vue";
+import { BASE_URL } from "@/assets/js/commom.js";
 
 export default {
    components: {
@@ -133,9 +134,7 @@ export default {
          this.$router.go(-1);
       },
       async getHistoryDetails() {
-         const response = await fetch(
-            "http://localhost/timevolts_pika/public/phpfile/getHistoryDetails.php"
-         );
+         const response = await fetch(`${BASE_URL}getHistoryDetails.php`);
 
          const responseData = await response.json();
          console.log(responseData);
