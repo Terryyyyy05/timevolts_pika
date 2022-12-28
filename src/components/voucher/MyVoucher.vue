@@ -88,13 +88,22 @@ export default {
   },
   computed: {},
   methods: {
-    getVoucher() {
-      fetch("/api_server/getGetCoupon.php")
-        .then((res) => res.json())
-        .then((jsonData) => {
-          this.CouponData = jsonData;
-          console.log(this.CouponData);
+    async getVoucher() {
+      try {
+        let selt = this;
+        const myVoucher = await fetch("/api_server/getGetCoupon.php", {
+          method: "POST",
+          body: JSON.stringify({
+            action: "mem_coupon",
+            mem_id: selt.get_mem_id.val,
+          }),
         });
+
+        const myVoucherData = await myVoucher.json();
+        selt.MyVouchers = myVoucherData;
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     showbox() {
