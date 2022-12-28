@@ -12,7 +12,8 @@ switch ($action) {
         try {
             require_once("./php_connect_books/connectBooks.php");
             // 已登入可以領取的折價卷
-            $sql = " SELECT * from coupon c left join my_coupon m on c.coupon_id = m.coupon_id and m.mem_id = {$datas["mem_id"]} left join (select count(*) mycount , coupon_id from my_coupon group by coupon_id) mc on c.coupon_id = mc.coupon_id where 1=1 and c.coupon_status = 1 and (current_date between c.coupon_issue_date and c.coupon_exp_date or c.coupon_exp_date is null ) and ifnull(mc.mycount,0) < c.coupon_quantity ;";
+            $sql = " SELECT c.coupon_id , c.coupon_discount_number , c.coupon_issue_date , c.coupon_valid_date,c.coupon_exp_date , c.coupon_quantity , c.coupon_given_numbers , c.coupon_pricing_condition , c.coupon_status , m.mem_id , m.my_coupon_status , mc.mycount
+            from coupon c left join my_coupon m on c.coupon_id = m.coupon_id and m.mem_id = {$datas["mem_id"]} left join (select count(*) mycount , coupon_id from my_coupon group by coupon_id) mc on c.coupon_id = mc.coupon_id where 1=1 and c.coupon_status = 1 and (current_date between c.coupon_issue_date and c.coupon_exp_date or c.coupon_exp_date is null ) and ifnull(mc.mycount,0) < c.coupon_quantity ;";
             $member = $pdo->prepare($sql);
             // $member->bindValue(":mem_id", $datas["mem_id"], PDO::PARAM_INT);
             $member->execute();
@@ -59,7 +60,7 @@ switch ($action) {
         try {
             require_once("./php_connect_books/connectBooks.php");
             // 會員領取的優惠卷
-            $sql = "INSERT INTO `tibamefe_cgd103g3`.`my_coupon` (`mem_id`, `coupon_id`, `my_coupon_status`) VALUES (:mem_id, :coupon_id, '1');";
+            $sql = "INSERT INTO `my_coupon` (`mem_id`, `coupon_id`, `my_coupon_status`) VALUES (:mem_id, :coupon_id, '1');";
             $member = $pdo->prepare($sql);
             $member->bindValue(":mem_id", $datas["mem_id"]);
             $member->bindValue(":coupon_id", $datas["coupon_id"]);
