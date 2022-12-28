@@ -22,6 +22,7 @@
 <script>
 import { ref, computed, reactive, onMounted } from "vue";
 import { IMG_URL } from "@/assets/js/img_path.js";
+import { BASE_URL } from "@/assets/js/commom.js";
 
 import ShowMoreButton from "../../components/history/UI/ShowMoreButton.vue";
 import ProductCard from "./base/ProductCard.vue";
@@ -49,7 +50,7 @@ export default {
     // 抓資料
     const cardContext2 = reactive({ list: [] });
     const fetchAbc = () => {
-      fetch(`/api_server/getProducts.php`)
+      fetch(`${BASE_URL}getProducts.php`)
         .then((res) => res.json())
         .then((result) => {
           cardContext2.list = result;

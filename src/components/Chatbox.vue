@@ -214,7 +214,7 @@ export default {
     },
   },
   created() {
-    fetch(`/api_server/getQuestion.php`)
+    fetch(`/api_server/get_Question.php`)
       .then((res) => res.json())
       .then((json) => {
         (this.robotQuestion = json.map((item) => {
