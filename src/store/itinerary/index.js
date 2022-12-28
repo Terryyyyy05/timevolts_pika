@@ -238,8 +238,19 @@ export default {
       },
    },
    actions: {
-      bookItinerary(context, payload) {
-         context.commit("bookItinerary", payload);
+      async bookItinerary(context, payload) {
+         const response = await fetch("/api_server/getItineraryInfo.php", {
+            method: "POST",
+            body: JSON.stringify({
+               userId: payload.userId,
+               itineraryName: payload.itineraryName,
+            }),
+         });
+
+         const responseData = await response.json();
+         // console.log(responseData);
+
+         context.commit("bookItinerary", payload.itineraryName);
       },
    },
    mutations: {
