@@ -21,7 +21,7 @@ try{
     $memberInfo->bindValue(":mem_phone", $_POST["mem_phone"]);
     $memberInfo->bindValue(":mem_address", $_POST["mem_address"]);
     $memberInfo->bindValue(":mem_email", $_POST["mem_email"]);
-    $memberInfo->bindValue(":mem_psw", $_POST["mem_psw"]);
+    // $memberInfo->bindValue(":mem_psw", $_POST["mem_psw"]);
     $memberInfo->execute();					
 
     $msg = "異動成功";

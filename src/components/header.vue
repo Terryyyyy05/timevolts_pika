@@ -6,11 +6,13 @@
   <header>
     <div
       class="icon-container"
-      style="cursor: pointer"
-      @click="clickMemberIcon"
+      
     >
       <span class="mem_name" v-if="userId">Hi, {{ mem_name }}</span>
-      <div><img src="../../public/Group604.png" alt="" /></div>
+      <div style="cursor: pointer"
+      @click="clickMemberIcon">
+        <img src="../../public/Group604.png" alt="" />
+      </div>
       <div @click="toggleCart" style="cursor: pointer">
         <img src="../../public/Group605.png" alt="" />
       </div>
@@ -53,7 +55,7 @@
 import Cart from "@/components/Cart.vue";
 import Chatbox from "@/components/Chatbox.vue";
 import GetVoucher from "@/components/voucher/GetVoucher.vue";
-
+import { BASE_URL } from "@/assets/js/commom.js";
 export default {
   name: "all-header",
   components: {
@@ -108,7 +110,7 @@ export default {
       this.userId = this.$store.getters["userId"];
 
       if (this.userId) {
-      fetch('/api_server/getMemberInfo.php', {
+      fetch(`${BASE_URL}getMemberInfo.php`, {
             method: "POST",
             body: JSON.stringify({
               userId: this.userId,
