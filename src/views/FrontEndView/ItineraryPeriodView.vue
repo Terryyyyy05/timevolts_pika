@@ -72,6 +72,7 @@ import asideBar from "@/components/itineraryPeriod/asideBar.vue";
 import { onMounted, reactive } from "vue";
 import { cardContext } from "@/components/itinerary/js/data.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
+import { BASE_URL } from "@/assets/js/commom";
 
 export default {
    name: "itiniraryPeriodView",
@@ -92,29 +93,29 @@ export default {
       );
       const imgText = period2.imgsrc.split("/")[2].split(".")[0];
 
-      const p2 = reactive({ list: "" });
-      const cardContext2 = reactive([]);
-      const strList = reactive(Array.from({ length: 5 }, () => ""));
-      const getData = () => {
-         fetch("/api_server/getItineraries.php")
-            .then((res) => res.json())
-            .then((result) => {
-               cardContext2.value = result;
-               // console.log(cardContext2.value[0]);
-               p2.list = cardContext2.value.find((item) => {
-                  return `${item.story_id}` === route.params.id;
-               });
-               // console.log(route.params.id);
-               // console.log(`${cardContext2.value[0].story_id}`);
-               // console.log(cardContext2.value);
-               console.log(p2.list.itinerary_memo);
-               strList[0] = p2.list.itinerary_memo;
-               strList[1] = p2.list.itinerary_content;
-               strList[2] = p2.list.itinerary_delicacy;
-               strList[3] = "安全守則";
-               strList[4] = "取消政策";
-            });
-      };
+        const p2 = reactive({ list: "" });
+        const cardContext2 = reactive([]);
+        const strList = reactive(Array.from({ length: 5 }, () => ""));
+        const getData = () => {
+            fetch(`${BASE_URL}/getItineraries.php`)
+                .then((res) => res.json())
+                .then((result) => {
+                    cardContext2.value = result;
+                    // console.log(cardContext2.value[0]);
+                    p2.list = cardContext2.value.find((item) => {
+                        return `${item.story_id}` === route.params.id;
+                    });
+                    // console.log(route.params.id);
+                    // console.log(`${cardContext2.value[0].story_id}`);
+                    // console.log(cardContext2.value);
+                    console.log(p2.list.itinerary_memo);
+                    strList[0] = p2.list.itinerary_memo;
+                    strList[1] = p2.list.itinerary_content;
+                    strList[2] = p2.list.itinerary_delicacy;
+                    strList[3] = "安全守則";
+                    strList[4] = "取消政策";
+                });
+        };
 
       // const strList = computed(() => [
       //     p2.list['str1'],

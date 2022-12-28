@@ -12,6 +12,8 @@
     </div>
 </template>
 <script>
+import { BASE_URL } from "@/assets/js/commom";
+
 export default {
     name: "participantsInfo",
     data() {
@@ -32,7 +34,7 @@ export default {
 
     methods: {
         getData() {
-            fetch("/api_server/getMemberParticipatesInfo.php")
+            fetch(`${BASE_URL}/getMemberParticipatesInfo.php`)
                 .then((res) => res.json())
                 .then((data) => {
                     // this.result = data;
