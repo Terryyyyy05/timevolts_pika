@@ -56,7 +56,7 @@
             <div class="about-content">
                 <div class="member-list">
                     <div class="member-list-title">
-                        <img src="@/assets/image/about/diamond.svg" />
+                        <img src="@/assets/image/about/face22.svg" />
                         <h4>普通會員</h4>
                     </div>
                     <div class="member-list-intro">
@@ -67,13 +67,13 @@
                 </div>
                 <div class="member-list">
                     <div class="member-list-title">
-                        <img src="@/assets/image/about/diamond.svg" />
+                        <img src="@/assets/image/about/star22.svg" />
                         <h4>白金會員</h4>
                     </div>
                     <div class="member-list-intro">
                         <ul>
                             <li>穿越次數達3次</li>
-                            <li>累積消費價格達$$$$</li>
+                            <li>累積消費價格達$20000</li>
                             <li>搶先得知新上架行程</li>
                             <li>行程購買9折</li>
                         </ul>
@@ -81,13 +81,13 @@
                 </div>
                 <div class="member-list">
                     <div class="member-list-title">
-                        <img src="@/assets/image/about/diamond.svg" />
+                        <img src="@/assets/image/about/diamond22.svg" />
                         <h4>鑽石會員</h4>
                     </div>
                     <div class="member-list-intro">
                         <ul>
                             <li>穿越次數達10次</li>
-                            <li>累積消費價格達$$$$</li>
+                            <li>累積消費價格達$100000</li>
                             <li>搶先得知新上架行程</li>
                             <li>行程購買8折</li>
                         </ul>
@@ -157,12 +157,16 @@ export default {
             padding: 20px;
 
             .member-list-title {
+                height: 50px;
                 display: flex;
                 justify-content: center;
-                margin: 10px;
+                align-items: center;
+                margin-bottom: 5px;
 
                 img {
-                    width: 20%;
+                    width: 10%;
+                    margin-top:5px ;
+                    margin-right: 10px;
                 }
 
                 h4 {
@@ -243,7 +247,11 @@ export default {
 
                 .member-list-title {
                     img {
-                        width: 10%;
+                        width: 15%;
+                    }
+
+                    h4 {
+                        font-size: 17px;
                     }
                 }
 
