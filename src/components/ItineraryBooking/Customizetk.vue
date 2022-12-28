@@ -20,9 +20,10 @@
                         </div>
                      </div>
                      <div id="picContainer">
-                        <div class="ticket_drag" v-bind:class="{ticket_drag:isActive}">
+                        <!-- <div class="ticket_drag" v-bind:class="{ticket_drag:isActive}"> -->
+                        <div class="ticket_drag">
                            新增圖片
-                           <img :src="pics.src" :class="img" v-show="isActive">
+                           <!-- <img :src="pics.src" :class="img" v-show="isActive"> -->
                         </div>
                      </div>
                   </div>
@@ -102,30 +103,30 @@ export default {
             {src: require(`@/assets/image/ticket/lighting.svg`)},
             {src: require(`@/assets/image/ticket/panda.svg`)},
             {src: require(`@/assets/image/ticket/pig.svg`)},
+            {src: require(`@/assets/image/ticket/snake.svg`)},
+            {src: require(`@/assets/image/ticket/snowflake.svg`)},
+            {src: require(`@/assets/image/ticket/star.svg`)},
          ],
-         ticket_drag:{
-            isActive:true,
-            border: '2px dotted #fab042',
-            position: 'absolute',
-            width: '40px',
-            minHeight: '40px',
-            padding: '10px',
-            top: '10px',
-            right: '10px',
-            fontSize: '15px',
-            textAlign: 'center',
-         },
-         img:{
-            isActive:true,
-            width:'100%',
-         }
+         // ticket_drag:{
+         //    isActive:true,
+         //    border: '2px dotted #fab042',
+         //    position: 'absolute',
+         //    width: '40px',
+         //    minHeight: '40px',
+         //    padding: '10px',
+         //    top: '10px',
+         //    right: '10px',
+         //    fontSize: '15px',
+         //    textAlign: 'center',
+         // },
+         // img:{
+         //    isActive:true,
+         //    width:'100%',
+         // }
       }
    },
    mounted() {
-      setTimeout(() => {
-         drag();
-      }, 100);
-      // drag();
+      drag();
    },
    methods: {
       changeColor(color) {
@@ -171,7 +172,7 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/assets/css/utils/variables';
 
 .container {

@@ -32,7 +32,6 @@ import "jquery-ui-dist/jquery-ui";
 
     };
 
-
     // 拖曳開始
     function startDrag(e){
         let data = `<img src='${e.target.src}'>`;
@@ -75,6 +74,7 @@ import "jquery-ui-dist/jquery-ui";
         }
         let ticket_input = document.querySelector('.ticket_input');
         ticket_input.innerHTML= '';
+
     }
     // 貼圖格可拖曳
     
@@ -83,8 +83,9 @@ import "jquery-ui-dist/jquery-ui";
         containment: 'parent',
     });
 
-window.addEventListener("load",doFirst);
+// window.addEventListener("load",doFirst);
 
+doFirst()
 }
    
  
