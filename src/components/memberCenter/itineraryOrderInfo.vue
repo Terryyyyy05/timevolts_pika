@@ -22,106 +22,107 @@ export default {
     data() {
         return {
             informationVisibile: 10,
+            // 這邊也要getData
             orderList: [
-                {
-                    id: 1,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 2,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 3,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 4,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 5,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 6,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 7,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 8,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 9,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 10,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
-                {
-                    id: 11,
-                    itineraryName: "十字軍東征",
-                    date: "2022/12/30",
-                    start: "2022/1/1",
-                    end: "2022/1/5",
-                    price: 100000,
-                    status: "訂單成立",
-                },
+                // {
+                //     id: 1,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 2,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 3,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 4,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 5,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 6,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 7,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 8,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 9,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 10,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
+                // {
+                //     id: 11,
+                //     itineraryName: "十字軍東征",
+                //     date: "2022/12/30",
+                //     start: "2022/1/1",
+                //     end: "2022/1/5",
+                //     price: 100000,
+                //     status: "訂單成立",
+                // },
             ],
         };
     },
@@ -131,10 +132,41 @@ export default {
         },
     },
     methods: {
+        async getData(){
+            await this.$store.dispatch("getUserId");
+            this.userId = this.$store.getters["userId"];
+            // alert(this.userId);
+
+            if (this.userId) {
+                fetch('/api_server/getMemberInfo.php', {
+                    method: "POST",
+                    body: JSON.stringify({
+                        userId: this.userId,
+                }),
+                })
+                .then((res) => res.json())
+                .then((json)=>{
+                    console.log(json);
+
+                    this.result = json;
+    
+                    this.formInput[0].value = json[0].mem_name
+                    this.formInput[1].value = json[0].mem_bday
+                    this.formInput[2].value = json[0].mem_phone
+                    this.formInput[3].value = json[0].mem_address
+                    this.formInput[4].value = json[0].mem_email
+                    this.memLevel=json[0].mem_level
+                })
+            }
+        
+        },
         changeDisplay() {
             this.$emit("clickOpenModal");
         },
     },
+    mounted(){
+        this.getData();
+    }
 };
 </script>
 <style lang="scss" scoped>

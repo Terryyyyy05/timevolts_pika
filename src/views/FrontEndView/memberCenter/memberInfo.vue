@@ -8,52 +8,37 @@
             enctype="multipart/form-data"
         >
             <div v-for="item in formInput" :key="item.title">
-                <label for="item.title">{{ item.title }}</label>
-                <input
-                    required
-                    :disabled="inputDisabled"
-                    :type="item.type"
-                    :name="item.name"
-                    :id="item.id"
-                    v-model="item.value"
-                    v-if="item.id !== 'email' && item.id !== 'birthday'"
-                />
-                <input
-                    disabled
-                    :type="item.type"
-                    :name="item.name"
-                    :id="item.id"
-                    v-model="item.value"
-                    v-if="item.id === 'email' || item.id === 'birthday'"
-                />
+                <label for="item.title">{{item.title}}</label>
+                <input 
+                required 
+                :disabled="inputDisabled" 
+                :type="item.type" 
+                :name="item.name" 
+                :id="item.id" 
+                v-model="item.value"
+                v-if="item.id!=='email'"
+                >
+                <input 
+                disabled 
+                :type="item.type" 
+                :name="item.name" 
+                :id="item.id" 
+                v-model="item.value"
+                v-if="item.id==='email'"
+                >
             </div>
             <!-- 更新密碼 -->
-            <div v-show="!inputDisabled">
+            <div>
                 <label for="password">舊密碼</label>
-                <input
-                    type="text"
-                    id="password"
-                    ref="mem_psw"
-                    v-model="oldPassword"
-                />
+                <input :disabled="inputDisabled" type="text" id="password" ref="mem_psw" v-model="oldPassword">
             </div>
-            <div v-show="!inputDisabled">
+            <div>
                 <label for="password1">新密碼</label>
-                <input
-                    type="password"
-                    id="password1"
-                    ref="mem_password1"
-                    v-model="newPassword"
-                />
+                <input :disabled="inputDisabled" type="password" id="password1" ref="mem_password1" v-model="newPassword">
             </div>
-            <div v-show="!inputDisabled">
+            <div>
                 <label for="password2">再次密碼</label>
-                <input
-                    type="password"
-                    id="password2"
-                    ref="mem_password2"
-                    v-model="ConfirmNewPassword"
-                />
+                <input :disabled="inputDisabled" type="password" id="password2" ref="mem_password2" v-model="ConfirmNewPassword">
             </div>
         </form>
         <div class="photo-area">
@@ -86,6 +71,7 @@
     </main>
 </template>
 <script>
+import { BASE_URL } from "@/assets/js/commom.js";
 export default {
     data() {
         return {
@@ -98,10 +84,10 @@ export default {
                     id: "username",
                 },
                 {
-                    title: "生日",
+                    title:"生日",
                     type: "date",
-                    name: "mem_bday",
-                    id: "birthday",
+                    name:"mem_bday",
+                    id:"birthday",
                 },
                 {
                     title: "電話",
@@ -140,7 +126,7 @@ export default {
             // alert(this.userId);
 
             if (this.userId) {
-                fetch("/api_server/getMemberInfo.php", {
+                fetch(`${BASE_URL}getMemberInfo.php`, {
                     method: "POST",
                     body: JSON.stringify({
                         userId: this.userId,
@@ -150,28 +136,27 @@ export default {
                     .then((json) => {
                         console.log(json);
 
-                        this.result = json;
-
-                        this.formInput[0].value = json[0].mem_name;
-                        this.formInput[1].value = json[0].mem_bday;
-                        this.formInput[2].value = json[0].mem_phone;
-                        this.formInput[3].value = json[0].mem_address;
-                        this.formInput[4].value = json[0].mem_email;
-                        this.memLevel = json[0].mem_level;
-                    });
+                    this.result = json;
+    
+                    this.formInput[0].value = json[0].mem_name
+                    this.formInput[1].value = json[0].mem_phone
+                    this.formInput[2].value = json[0].mem_address
+                    this.formInput[3].value = json[0].mem_email
+                    this.memLevel=json[0].mem_level
+                })
             }
         },
-        saveData() {
-            const payload = {
-                mem_name: this.formInput[0].value,
-                mem_bday: this.formInput[1].value,
-                mem_phone: this.formInput[2].value,
-                mem_address: this.formInput[3].value,
-                mem_email: this.formInput[4].value,
-                mem_psw: this.password1,
-            };
-            fetch("/api_server/updateMemberInfo.php", {
-                method: "POST",
+        saveData(){
+            const payload={
+                mem_name:this.formInput[0].value,
+                mem_bday:this.formInput[1].value,
+                mem_phone:this.formInput[2].value,
+                mem_address:this.formInput[3].value,
+                mem_email:this.formInput[4].value,
+                mem_psw:this.password1
+            }
+            fetch('/api_server/updateMemberInfo.php', {
+                method:'POST', 
                 body: new URLSearchParams(payload),
             });
         },
