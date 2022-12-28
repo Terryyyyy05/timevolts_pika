@@ -104,7 +104,7 @@
         </button>
         <div class="l-box-img">
             <!-- <img :src="`.news/${popupData.news_img}`"/> -->
-            <img :src="`.news/${popupData.news_img}`"/>
+            <img :src="`./news/${popupData.news_img}`"/>
             <!-- <img :src="popupData.img" /> -->
             <!-- 自閉合 -->
         </div>
