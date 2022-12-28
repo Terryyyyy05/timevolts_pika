@@ -1,3 +1,5 @@
+import { BASE_URL } from "@/assets/js/commom.js";
+
 export default {
    namespaced: true,
    state() {
@@ -173,7 +175,7 @@ export default {
    },
    actions: {
       async getHistories(context) {
-         const response = await fetch("/api_server/getHistories.php");
+         const response = await fetch(`${BASE_URL}getHistories.php`);
 
          const responseData = await response.json();
          console.log(responseData);

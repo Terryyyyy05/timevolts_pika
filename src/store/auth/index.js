@@ -1,3 +1,5 @@
+import { BASE_URL } from "@/assets/js/commom.js";
+
 export default {
    state() {
       return {
@@ -18,7 +20,7 @@ export default {
    actions: {
       async getUserId(context) {
          try {
-            const response = await fetch("/api_server/ifLogin.php");
+            const response = await fetch(`${BASE_URL}ifLogin.php`);
 
             const responseData = await response.json();
             // console.log(responseData);
@@ -44,7 +46,7 @@ export default {
          //    }
          // );
 
-         const response = await fetch("/api_server/login.php", {
+         const response = await fetch(`${BASE_URL}login.php`, {
             method: "POST",
             body: JSON.stringify({
                email: payload.email,
@@ -87,7 +89,7 @@ export default {
          //    }
          // );
          try {
-            const response = await fetch("/api_server/signup.php", {
+            const response = await fetch(`${BASE_URL}signup.php`, {
                method: "POST",
                body: JSON.stringify({
                   action: "signup",

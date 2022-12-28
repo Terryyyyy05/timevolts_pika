@@ -59,6 +59,7 @@ import ProgressBar from "../../components/ItineraryBooking/UI/ProgressBar.vue";
 import ItineraryInformation from "../../components/ItineraryBooking/ItineraryInformation.vue";
 import Checkout from "../../components/ItineraryBooking/Checkout.vue";
 import ConfirmOrder from "../../components/ItineraryBooking/ConfirmOrder.vue";
+import { BASE_URL } from "@/assets/js/commom.js";
 
 export default {
    components: {
@@ -140,7 +141,7 @@ export default {
          this.$router.push({ path: "/memberLightBox" });
       },
       async getItineraryInfo() {
-         const response = await fetch("/api_server/getItineraryInfo.php", {
+         const response = await fetch(`${BASE_URL}getItineraryInfo.php`, {
             method: "POST",
             body: JSON.stringify({
                userId: this.userId,
@@ -162,20 +163,17 @@ export default {
          console.log(this.participants);
          // console.log(this.participants.length);
          try {
-            const response = await fetch(
-               "/api_server/sendItinBookingInfo.php",
-               {
-                  method: "POST",
-                  body: JSON.stringify({
-                     userId: this.orderInfo.userId,
-                     itineraryId: this.orderInfo.itineraryId,
-                     attendNum: this.orderInfo.attendNum,
-                     originPrice: this.orderInfo.originPrice,
-                     totalPrice: this.orderInfo.totalPrice,
-                     discoutPrice: this.orderInfo.discoutPrice,
-                  }),
-               }
-            );
+            const response = await fetch(`${BASE_URL}sendItinBookingInfo.php`, {
+               method: "POST",
+               body: JSON.stringify({
+                  userId: this.orderInfo.userId,
+                  itineraryId: this.orderInfo.itineraryId,
+                  attendNum: this.orderInfo.attendNum,
+                  originPrice: this.orderInfo.originPrice,
+                  totalPrice: this.orderInfo.totalPrice,
+                  discoutPrice: this.orderInfo.discoutPrice,
+               }),
+            });
 
             const responseData = await response.json();
             // console.log(responseData);
@@ -193,7 +191,7 @@ export default {
       },
       sendParticipants() {
          for (let i = 0; i < this.participants.length; i++) {
-            fetch("/api_server/sendParticipants.php", {
+            fetch(`${BASE_URL}sendParticipants.php`, {
                method: "POST",
                body: JSON.stringify({
                   name: this.participants[i].name,
