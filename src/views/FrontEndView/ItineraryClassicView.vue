@@ -73,6 +73,7 @@ import asideBar from "@/components/itineraryPeriod/asideBar.vue";
 import { onMounted, reactive } from "vue";
 import { cardContext } from "@/components/itinerary/js/data.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
+import { BASE_URL } from "@/assets/js/commom";
 
 export default {
    name: "itiniraryPeriodView",
@@ -96,40 +97,40 @@ export default {
       const cardContext2 = reactive([]);
       const strList = reactive(Array.from({ length: 5 }, () => ""));
 
-      const getData = () => {
-         fetch("/api_server/getItineraries.php")
-            .then((res) => res.json())
-            .then((result) => {
-               cardContext2.value = result;
-               p2.list = cardContext2.value.find((item) => {
-                  return `${item.story_id}` === route.params.id;
-               });
-               strList[0] = p2.list.itinerary_memo;
-               strList[1] = p2.list.itinerary_content;
-               strList[2] = p2.list.itinerary_delicacy;
-               strList[3] = "安全守則";
-               strList[4] = "取消政策";
-            });
-      };
-      onMounted(() => {
-         getData();
-      });
-      return {
-         period2,
-         imgText,
-         cardContext2,
-         p2,
-         strList,
-      };
-   },
-   data() {
-      return {
-         itinerary: 0,
-         contentOneToFive: 0,
-         userId: null,
-         hasLoggedIn: true,
-      };
-   },
+        const getData = () => {
+            fetch(`${BASE_URL}/getItineraries.php`)
+                .then((res) => res.json())
+                .then((result) => {
+                    cardContext2.value = result;
+                    p2.list = cardContext2.value.find((item) => {
+                        return `${item.story_id}` === route.params.id;
+                    });
+                    strList[0] = p2.list.itinerary_memo;
+                    strList[1] = p2.list.itinerary_content;
+                    strList[2] = p2.list.itinerary_delicacy;
+                    strList[3] = "安全守則";
+                    strList[4] = "取消政策";
+                });
+        };
+        onMounted(() => {
+            getData();
+        });
+        return {
+            period2,
+            imgText,
+            cardContext2,
+            p2,
+            strList,
+        };
+    },
+    data() {
+        return {
+            itinerary: 0,
+            contentOneToFive: 0,
+            userId: null,
+            hasLoggedIn: true,
+        };
+    },
 
    mounted() {},
    methods: {
