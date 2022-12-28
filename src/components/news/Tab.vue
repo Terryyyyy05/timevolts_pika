@@ -103,6 +103,7 @@
             <font-awesome-icon icon="fa-solid fa-xmark" />
         </button>
         <div class="l-box-img">
+            <!-- <img :src="`.news/${popupData.news_img}`"/> -->
             <img :src="`.news/${popupData.news_img}`"/>
             <!-- <img :src="popupData.img" /> -->
             <!-- 自閉合 -->
@@ -341,16 +342,16 @@ export default {
             
         // },
         itineraryData() {
-            return this.newsAll.filter(v => v.news_category === 0);
+            return this.newsAll.filter(v => v.news_category === "行程預訂");
         },
         historyData() {
-            return this.newsAll.filter(v => v.news_category === 1);
+            return this.newsAll.filter(v => v.news_category === "歷史故事");
         },
         shoppingData() {
-            return this.newsAll.filter(v => v.news_category === 2);
+            return this.newsAll.filter(v => v.news_category === "購物商城");
         },
         otherData() {
-            return this.newsAll.filter(v => v.news_category === 3);
+            return this.newsAll.filter(v => v.news_category === "其他消息");
         },
         // newsData() {
         //     return [...this.itineraryData,...this.historyData,...this.shoppingData,...this.otherData,].sort((a, b) => {
@@ -386,7 +387,7 @@ export default {
             // fetch(
             //     "/api_server/getNews.php"
             // )
-            fetch(`${BASE_URL}/getNews.php`)
+            fetch(`${BASE_URL}getNews.php`)
                 .then((res) => res.json())
                 .then((json) => {
                     this.newsAll = json;

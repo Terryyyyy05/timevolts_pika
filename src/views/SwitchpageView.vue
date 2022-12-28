@@ -26,6 +26,9 @@ export default{
 <style scoped lang="scss">
 
 main {
+    background-image: url('@/assets/image/switch-gif.gif');
+    background-position: center;
+    background-size: cover;
     height: 100vh;
     position: relative;
     .wrap {
