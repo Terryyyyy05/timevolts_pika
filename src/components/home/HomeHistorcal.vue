@@ -55,7 +55,7 @@
 
 <script>
 // import { Carousel, Slide } from 'vue-carousel';
-
+import { BASE_URL } from "@/assets/js/commom.js";
 export default {
   // components: {
   //     Carousel,
@@ -75,7 +75,7 @@ export default {
   computed: {},
   methods: {
     getHistoriesData() {
-      fetch("/api_server/getHistories.php")
+      fetch(`${BASE_URL}getHistories.php`)
         .then((res) => res.json())
         .then((jsonData) => {
           this.HistoriesData = jsonData;

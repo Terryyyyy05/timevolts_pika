@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/commom.js";
 export default {
   name: "Chatbox",
   emits: ["closeThisBox"],
@@ -214,7 +215,8 @@ export default {
     },
   },
   created() {
-    fetch(`/api_server/get_Question.php`)
+    // fetch(`/api_server/get_Question.php`)
+  fetch(`${BASE_URL}get_Question.php`)
       .then((res) => res.json())
       .then((json) => {
         (this.robotQuestion = json.map((item) => {
@@ -232,14 +234,6 @@ export default {
             };
           }));
       });
-
-    // { id: 1, content: "時間管理局是一個什麼樣的組織？", index: 1 }
-    /* {
-          id: 1,
-          content:
-            "時間管理局是一個為了維持時間線正常運行的組織，其主要成員都是研究時空穿越的頂尖科學家。",
-          index: 1,
-        }, */
   },
 };
 </script>

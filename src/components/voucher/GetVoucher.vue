@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/commom.js";
 export default {
   data() {
     return {
@@ -122,7 +123,7 @@ export default {
     },
     async giveGetVoucher() {
       try {
-        const getVoucher = await fetch("/api_server/getGetCoupon.php", {
+        const getVoucher = await fetch(`${BASE_URL}getGetCoupon.php`, {
           method: "POST",
           body: JSON.stringify({
             action: "get_mem_id",
@@ -146,7 +147,7 @@ export default {
     async AgetVoucher() {
       // 未登入預覽可以領取的數量
       try {
-        const getVoucher = await fetch("/api_server/getGetCoupon.php", {
+        const getVoucher = await fetch(`${BASE_URL}getGetCoupon.php`, {
           method: "POST",
           body: JSON.stringify({
             action: "not_logged_coupon",
@@ -214,7 +215,7 @@ export default {
     async clickCoupon() {
       // 寫入領取資料
       try {
-        await fetch("/api_server/getGetCoupon.php", {
+        await fetch(`${BASE_URL}getGetCoupon.php`, {
           method: "POST",
           body: JSON.stringify({
             action: "pick_up_record",
