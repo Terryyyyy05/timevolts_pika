@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/commom.js";
+
 export default {
   data() {
     return {
@@ -91,7 +93,8 @@ export default {
     async getVoucher() {
       try {
         let selt = this;
-        const myVoucher = await fetch("/api_server/getGetCoupon.php", {
+
+        const myVoucher = await fetch(`${BASE_URL}getGetCoupon.php`, {
           method: "POST",
           body: JSON.stringify({
             action: "mem_coupon",

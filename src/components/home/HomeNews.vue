@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/commom.js";
 export default {
   // components: {
   //     Carousel,
@@ -33,7 +34,7 @@ export default {
   },
   methods: {
     getHomeNewData() {
-      fetch("/api_server/getHomeNew.php")
+      fetch(`${BASE_URL}getHomeNew.php`)
         .then((res) => res.json())
         .then((jsonData) => {
           this.NewsData = jsonData;
