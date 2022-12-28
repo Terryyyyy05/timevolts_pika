@@ -1,3 +1,5 @@
+import { BASE_URL } from "@/assets/js/commom.js";
+
 export default {
    namespaced: true,
    state() {
@@ -239,7 +241,7 @@ export default {
    },
    actions: {
       async bookItinerary(context, payload) {
-         const response = await fetch("/api_server/getItineraryInfo.php", {
+         const response = await fetch(`${BASE_URL}getItineraryInfo.php`, {
             method: "POST",
             body: JSON.stringify({
                userId: payload.userId,

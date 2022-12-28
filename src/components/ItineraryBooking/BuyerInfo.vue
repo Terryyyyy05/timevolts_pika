@@ -107,6 +107,7 @@
 
 <script>
 import BaseCheckbox from "../history/base/BaseCheckbox.vue";
+import { BASE_URL } from "@/assets/js/commom.js";
 
 export default {
    components: {
@@ -139,7 +140,7 @@ export default {
       },
       async sameAsMember(event) {
          if (event.target.checked === true) {
-            const response = await fetch("/api_server/sameAsMember.php");
+            const response = await fetch(`${BASE_URL}sameAsMember.php`);
 
             const responseData = await response.json();
             // console.log(responseData);

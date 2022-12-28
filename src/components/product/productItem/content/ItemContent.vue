@@ -46,6 +46,7 @@ import { reactive, ref, onMounted } from "vue";
 import { cardContext } from "../../js/data";
 import { useStore } from "vuex";
 import { IMG_URL } from "@/assets/js/img_path.js";
+import { BASE_URL } from "@/assets/js/commom.js";
 
 // test
 import { onBeforeRouteUpdate, onBeforeRouteLeave, useRoute } from "vue-router";
@@ -89,7 +90,7 @@ export default {
       const formData = new FormData();
       formData.append("pro_id", id);
 
-      fetch("/api_server/getOneProduct.php", {
+      fetch(`${BASE_URL}getOneProduct.php`, {
         method: "POST",
         body: formData,
       })
