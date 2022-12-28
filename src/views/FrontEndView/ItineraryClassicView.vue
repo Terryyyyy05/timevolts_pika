@@ -75,6 +75,7 @@ import asideBar from "@/components/itineraryPeriod/asideBar.vue";
 import { onMounted, reactive } from "vue";
 import { cardContext } from "@/components/itinerary/js/data.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
+import { BASE_URL } from "@/assets/js/commom";
 
 export default {
     name: "itiniraryPeriodView",
@@ -98,90 +99,90 @@ export default {
         const cardContext2 = reactive([]);
         const strList = reactive(Array.from({ length: 5 }, () => ""));
 
-      const getData = () => {
-         fetch("/api_server/getItineraries.php")
-            .then((res) => res.json())
-            .then((result) => {
-               cardContext2.value = result;
-               p2.list = cardContext2.value.find((item) => {
-                  return `${item.story_id}` === route.params.id;
-               });
-               strList[0] = p2.list.itinerary_memo;
-               strList[1] = p2.list.itinerary_content;
-               strList[2] = p2.list.itinerary_delicacy;
-               strList[3] = "安全守則";
-               strList[4] = "取消政策";
-            });
-      };
-      onMounted(() => {
-         getData();
-      });
-      return {
-         period2,
-         imgText,
-         cardContext2,
-         p2,
-         strList,
-      };
-   },
-   data() {
-      return {
-         itinerary: 0,
-         contentOneToFive: 0,
-         userId: null,
-         hasLoggedIn: true,
-      };
-   },
+        const getData = () => {
+            fetch(`${BASE_URL}/getItineraries.php`)
+                .then((res) => res.json())
+                .then((result) => {
+                    cardContext2.value = result;
+                    p2.list = cardContext2.value.find((item) => {
+                        return `${item.story_id}` === route.params.id;
+                    });
+                    strList[0] = p2.list.itinerary_memo;
+                    strList[1] = p2.list.itinerary_content;
+                    strList[2] = p2.list.itinerary_delicacy;
+                    strList[3] = "安全守則";
+                    strList[4] = "取消政策";
+                });
+        };
+        onMounted(() => {
+            getData();
+        });
+        return {
+            period2,
+            imgText,
+            cardContext2,
+            p2,
+            strList,
+        };
+    },
+    data() {
+        return {
+            itinerary: 0,
+            contentOneToFive: 0,
+            userId: null,
+            hasLoggedIn: true,
+        };
+    },
 
-   mounted() {},
-   methods: {
-      // changeParagraph()
-      changeParagraph0() {
-         this.contentOneToFive = 0;
-      },
-      changeParagraph1() {
-         this.contentOneToFive = 1;
-      },
-      changeParagraph2() {
-         this.contentOneToFive = 2;
-      },
-      changeParagraph3() {
-         this.contentOneToFive = 3;
-      },
-      changeParagraph4() {
-         this.contentOneToFive = 4;
-      },
-      // getData() {
-      //     fetch(
-      //         "http://localhost/timevolts/public/phpfile/getItineraries.php"
-      //     )
-      //         .then((res) => res.json())
-      //         .then((json) => {
-      //             this.result = json;
-      //             console.log(this.result);
-      //         });
-      // },
-      async bookItinerary() {
-         await this.$store.dispatch("getUserId");
-         this.userId = this.$store.getters["userId"];
-         // console.log(this.userId);
-         if (!this.userId) {
-            // 找不到會員
-            this.hasLoggedIn = false;
-            // console.log(this.p2.list.story_name);
-         } else {
-            // 會員有登入
-            await this.$store.dispatch(
-               "itinerary/bookItinerary",
-               this.p2.list.story_name
-            );
-            this.$router.push({ path: "/itinerary-booking" });
-         }
-      },
-      askForLogin() {
-         this.$router.push({ path: "/memberLightBox" });
-      },
-   },
+    mounted() {},
+    methods: {
+        // changeParagraph()
+        changeParagraph0() {
+            this.contentOneToFive = 0;
+        },
+        changeParagraph1() {
+            this.contentOneToFive = 1;
+        },
+        changeParagraph2() {
+            this.contentOneToFive = 2;
+        },
+        changeParagraph3() {
+            this.contentOneToFive = 3;
+        },
+        changeParagraph4() {
+            this.contentOneToFive = 4;
+        },
+        // getData() {
+        //     fetch(
+        //         "http://localhost/timevolts/public/phpfile/getItineraries.php"
+        //     )
+        //         .then((res) => res.json())
+        //         .then((json) => {
+        //             this.result = json;
+        //             console.log(this.result);
+        //         });
+        // },
+        async bookItinerary() {
+            await this.$store.dispatch("getUserId");
+            this.userId = this.$store.getters["userId"];
+            // console.log(this.userId);
+            if (!this.userId) {
+                // 找不到會員
+                this.hasLoggedIn = false;
+                // console.log(this.p2.list.story_name);
+            } else {
+                // 會員有登入
+                await this.$store.dispatch(
+                    "itinerary/bookItinerary",
+                    this.p2.list.story_name
+                );
+                this.$router.push({ path: "/itinerary-booking" });
+            }
+        },
+        askForLogin() {
+            this.$router.push({ path: "/memberLightBox" });
+        },
+    },
 };
 </script>
 

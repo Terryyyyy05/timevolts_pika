@@ -75,6 +75,8 @@
 </template>
 <script>
 import participantsInfo from "@/components/memberCenter/participantsInfo.vue";
+import { BASE_URL } from "@/assets/js/commom";
+
 export default {
     name: "detailLightbox",
     components: {
@@ -96,7 +98,7 @@ export default {
     },
     methods: {
         getData() {
-            fetch("/api_server/getMemberItineraryOrder(mem).php")
+            fetch(`${BASE_URL}/getMemberItineraryOrder(mem).php`)
                 .then((res) => res.json())
                 .then((data) => {
                     // this.data = data;

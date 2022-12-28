@@ -71,6 +71,7 @@ import asideBar from "@/components/itineraryPeriod/asideBar.vue";
 import { onMounted, reactive } from "vue";
 import { cardContext } from "@/components/itinerary/js/data.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
+import { BASE_URL } from "@/assets/js/commom";
 
 export default {
     name: "itiniraryPeriodView",
@@ -95,9 +96,7 @@ export default {
         const cardContext2 = reactive([]);
         const strList = reactive(Array.from({ length: 5 }, () => ""));
         const getData = () => {
-            fetch(
-                "/api_server/getItineraries.php"
-            )
+            fetch(`${BASE_URL}/getItineraries.php`)
                 .then((res) => res.json())
                 .then((result) => {
                     cardContext2.value = result;
