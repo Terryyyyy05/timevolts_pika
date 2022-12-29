@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { ref, computed, reactive, onMounted } from "vue";
+// import { ref, computed, reactive, onMounted } from "vue";
 // import { Carousel, Slide } from 'vue-carousel';
 import { ITIN_IMG_URL } from "@/assets/js/itin_img_path.js";
 import { BASE_URL } from "@/assets/js/commom.js";
