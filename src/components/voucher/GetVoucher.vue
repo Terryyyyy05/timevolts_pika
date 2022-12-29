@@ -204,6 +204,7 @@ export default {
       this.get_mem_id.val = this.userId;
       this.click_coupon_id.val = UserCouponData.coupon_id;
       await this.clickCoupon();
+      // await this.Calculate_send();
 
       this.CouponData[index].mem_id = this.get_mem_id.val;
       console.log(this.get_mem_id);
@@ -222,6 +223,20 @@ export default {
             action: "pick_up_record",
             mem_id: this.get_mem_id.val,
             coupon_id: this.click_coupon_id.val,
+          }),
+        });
+      } catch (error) {
+        console.error(error);
+        // this.giveGetVoucher();
+      }
+      try {
+        //  紀錄領取數量
+        await fetch(`${BASE_URL}getGetCoupon.php`, {
+          method: "POST",
+          body: JSON.stringify({
+            action: "Calculate_send",
+            coupon_id: this.click_coupon_id.val,
+            coupon_ida: this.click_coupon_id.val,
           }),
         });
       } catch (error) {
