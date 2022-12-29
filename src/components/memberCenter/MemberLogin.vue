@@ -92,7 +92,7 @@ export default {
             });
             this.loginError = this.$store.getters["loginError"];
             if (!this.loginError) {
-               this.$router.push({ path: "/memberCenter" });
+               this.$router.go(-1);
             }
             console.log(this.loginError);
          } catch (err) {
