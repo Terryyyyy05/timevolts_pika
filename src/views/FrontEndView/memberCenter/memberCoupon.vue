@@ -4,7 +4,7 @@
   </div>
   <div class="wrap">
     <ul class="ulWrap">
-      <li>折扣卷編號</li>
+      <!-- <li>折扣卷編號</li> -->
       <li>折抵金額</li>
       <li>門檻金額</li>
       <li>使用日期</li>
@@ -56,6 +56,6 @@ export default {
 .ulWrap > li {
   color: #fff;
   font-size: 20px;
-  width: 16.666666%;
+  width: 20%;
 }
 </style>

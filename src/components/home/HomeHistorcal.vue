@@ -44,7 +44,9 @@
               'img-index': activeIndex != index,
             }"
           >
-            <img v-bind:src="'/image/history/banner/' + item.story_cover" />
+            <!-- <img v-bind:src="'/image/history/banner/' + item.story_cover" /> -->
+
+            <img :src="STORY_IMG_URL(item.story_cover)" alt="" />
           </div>
         </TransitionGroup>
       </div>
@@ -55,6 +57,7 @@
 
 <script>
 // import { Carousel, Slide } from 'vue-carousel';
+import { STORY_IMG_URL } from "@/assets/js/story_img_path.js";
 import { BASE_URL } from "@/assets/js/commom.js";
 export default {
   // components: {
@@ -66,12 +69,15 @@ export default {
       currentPage: 1,
       HistoriesData: [],
       look: {},
-      imgsrc: require("@/assets/image/home/icon/icon_1.svg"),
       filterExtension: false,
       activeIndex: 0,
     };
   },
-
+  setup() {
+    return {
+      STORY_IMG_URL,
+    };
+  },
   computed: {},
   methods: {
     getHistoriesData() {

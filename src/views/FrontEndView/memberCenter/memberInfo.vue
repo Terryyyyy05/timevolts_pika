@@ -84,12 +84,6 @@ export default {
                     id: "username",
                 },
                 {
-                    title:"生日",
-                    type: "date",
-                    name:"mem_bday",
-                    id:"birthday",
-                },
-                {
                     title: "電話",
                     type: "tel",
                     name: "mem_phone",
@@ -149,16 +143,15 @@ export default {
         saveData(){
             const payload={
                 mem_name:this.formInput[0].value,
-                mem_bday:this.formInput[1].value,
-                mem_phone:this.formInput[2].value,
-                mem_address:this.formInput[3].value,
-                mem_email:this.formInput[4].value,
-                mem_psw:this.password1
+                mem_phone:this.formInput[1].value,
+                mem_address:this.formInput[2].value,
+                mem_email:this.formInput[3].value,
+                // mem_psw:this.password1
             }
-            fetch('/api_server/updateMemberInfo.php', {
+            fetch(`${BASE_URL}updateMemberInfo.php`, {
                 method:'POST', 
                 body: new URLSearchParams(payload),
-            });
+            }).then((res)=> res.json()).then((res)=> console.log(res))
         },
         // 舊密碼要跟資料庫的原始密碼一樣，新密碼跟再次更新密碼要做驗證，全部打完送ajax去驗證如果正確再傳回資料庫跟渲染畫面
         changePsw() {},
@@ -173,6 +166,55 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/utils/variables";
+@media screen and (max-width:767px){
+    
+    .memberinfo {
+        padding: 2px;
+        width: 90%;
+        font-size: 12px;
+        div {
+            font-size: 12px;
+            margin: 2px 0;
+            label {
+                font-size: 12px;
+                margin-right: 2px;
+            }
+            input {
+                width: 60%;
+                outline: none;
+                background-color: map-get($color, "dark_sub");
+                color: #fff;
+            }
+        }
+    }
+    .photo-area {
+        padding: 5px;
+        width: 20%;
+        // form {
+            
+        // }
+        .memLevel {
+            padding: 3px 0;
+            color: #fff;
+
+        }
+        .btn-area {
+            display: flex;
+            button {
+                font-size: 12px;
+                padding: 5px ;
+                margin: 0 2px;
+            }
+        }
+        #myimg {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 1px solid map-get($color, primary);
+    }
+    }
+    
+}
 .title {
     color: #fff;
     display: flex;
@@ -235,7 +277,7 @@ main {
         .memLevel {
             padding: 15px 0;
             color: #fff;
-            font-size: 24px;
+            font-size: 20px;
         }
         .btn-area {
             display: flex;
