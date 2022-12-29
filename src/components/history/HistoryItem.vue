@@ -2,7 +2,7 @@
    <base-history-card class="hirtory-card">
       <h3>{{ title }}</h3>
       <div class="history-content">
-         <img :src="`/image/history/banner/${image}`" />
+         <img :src="STORY_IMG_URL(image)" />
          <div class="history-text">
             <div>
                <span class="p_md">#{{ tagDanderLevel }}</span>
@@ -23,6 +23,7 @@
 
 <script>
 import BaseHistoryCard from "./base/BaseHistoryCard.vue";
+import { STORY_IMG_URL } from "@/assets/js/story_img_path.js";
 
 export default {
    components: {
@@ -38,6 +39,11 @@ export default {
       "description",
       "image",
    ],
+   setup() {
+      return {
+         STORY_IMG_URL,
+      };
+   },
    computed: {
       historyDetailsLink() {
          return this.$route.path + "/" + this.id;

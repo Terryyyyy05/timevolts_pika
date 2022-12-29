@@ -28,7 +28,7 @@
             >
                <img
                   class="small-image"
-                  :src="`/image/history/story/${detail.image}`"
+                  :src="ARTICLE_IMG_URL(detail.image)"
                   alt="historyImage"
                   @click="switchImage(index)"
                />
@@ -37,7 +37,7 @@
          <div class="big-image-container">
             <img
                class="big-image"
-               :src="`/image/history/story/${selectedDetails[count].image}`"
+               :src="ARTICLE_IMG_URL(selectedDetails[count].image)"
                alt="historyImage"
             />
          </div>
@@ -70,6 +70,8 @@
 import HistoryBanner from "../../components/history/UI/HistoryBanner.vue";
 import ActiveParagraph from "../../components/history/ActiveParagraph.vue";
 import { BASE_URL } from "@/assets/js/commom.js";
+import { ARTICLE_IMG_URL } from "@/assets/js/article_img_path.js";
+import { STORY_IMG_URL } from "@/assets/js/story_img_path.js";
 
 export default {
    components: {
@@ -77,6 +79,12 @@ export default {
       ActiveParagraph,
    },
    props: ["id"],
+   setup() {
+      return {
+         ARTICLE_IMG_URL,
+         STORY_IMG_URL,
+      };
+   },
    data() {
       return {
          count: 0,

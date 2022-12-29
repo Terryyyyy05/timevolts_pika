@@ -27,9 +27,15 @@
 
 <script type="module">
 import Parallax from "parallax-js";
+import { STORY_IMG_URL } from "@/assets/js/story_img_path.js";
 
 export default {
    props: ["banner", "id"],
+   setup() {
+      return {
+         STORY_IMG_URL,
+      };
+   },
    mounted() {
       this.intscence();
    },
