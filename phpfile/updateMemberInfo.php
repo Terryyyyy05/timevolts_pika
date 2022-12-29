@@ -4,13 +4,16 @@ session_start();
 header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
 
+// echo json_encode( $_SESSION["mem_id"]);
+
+// exit();
 try{
     require_once("./php_connect_books/connectBooks.php");
     $sql = "update member set mem_name = :mem_name,
                               mem_phone = :mem_phone,
                               mem_address = :mem_address,
-                              mem_email = :mem_email,
-                              mem_psw = :mem_psw
+                              mem_email = :mem_email
+                              
             where mem_id = :mem_id";
 
     $memberInfo = $pdo->prepare($sql);	
@@ -28,4 +31,8 @@ try{
 } catch (PDOException $e) {
     $msg = "錯誤行號 : ".$e->getLine().", 錯誤訊息 : ".$e->getMessage();
 }
+
+//輸出結果
+$result = ["msg"=>$msg];
+echo json_encode($result);
 ?>

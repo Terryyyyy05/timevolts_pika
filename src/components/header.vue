@@ -206,11 +206,12 @@ header {
     margin-top: calc((55px - 15px) / 2);
     pointer-events: none;
     .mem_name {
+      font-size: 12px;
       color: #ffe1b5;
       vertical-align: baseline;
       margin: 0 auto;
       margin-right: 2px;
-      padding: 5px 2px;
+      // padding: 5px 2px;
       text-align: center;
       line-height: 1.3;
     }
@@ -365,7 +366,12 @@ header {
           height: 100%;
         }
       }
+      .mem_name {
+      font-size: 16px;
+      padding: 5px 2px;
     }
+    }
+    
     div.nav {
       .hbicon {
         height: 85px;
