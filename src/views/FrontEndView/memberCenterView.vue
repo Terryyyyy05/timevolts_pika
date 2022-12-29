@@ -38,6 +38,7 @@
    <all-footer />
 </template>
 <script>
+import { BASE_URL } from "@/assets/js/commom.js";
 export default {
    data() {
       return {
