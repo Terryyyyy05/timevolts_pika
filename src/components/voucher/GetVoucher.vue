@@ -88,7 +88,7 @@ export default {
   computed: {
     ReceiveQuantity() {
       // 檢查可領取數量
-      let selt = this;
+      // let selt = this;
       return this.CouponData.reduce((acc, cur) => {
         // acc = this.CouponData.login;
         if (cur.mem_id === null) {
@@ -122,25 +122,25 @@ export default {
       }
     },
     async giveGetVoucher() {
+      let selt = this;
       try {
         const getVoucher = await fetch(`${BASE_URL}getGetCoupon.php`, {
           method: "POST",
           body: JSON.stringify({
             action: "get_mem_id",
             // coupon_id: this.get_coupon_id.val,
-            mem_id: this.get_mem_id.val,
-            // my_coupon_status: this.get_my_coupon_status.val,
+            mem_id: selt.get_mem_id.val,
+            // my_coupon_status: selt.get_my_coupon_status.val,
           }),
         });
 
         const getVoucherData = await getVoucher.json();
         console.log(getVoucherData);
-        this.CouponData = getVoucherData;
-        console.log(this.CouponData);
-        return this.CouponData;
+        selt.CouponData = getVoucherData;
+        console.log(selt);
+        return selt.CouponData;
       } catch (error) {
         console.error(error);
-        // this.AgetVoucher();
       }
     },
 
@@ -199,10 +199,12 @@ export default {
     async receive(index) {
       // if ((e.target = )) {
       // 領取並傳回後端
+      console.log(this);
       const UserCouponData = this.CouponData[index];
       this.get_mem_id.val = this.userId;
-      this.click_coupon_id.val = this.CouponData[index].coupon_id;
+      this.click_coupon_id.val = UserCouponData.coupon_id;
       await this.clickCoupon();
+      // await this.Calculate_send();
 
       this.CouponData[index].mem_id = this.get_mem_id.val;
       console.log(this.get_mem_id);
@@ -221,6 +223,20 @@ export default {
             action: "pick_up_record",
             mem_id: this.get_mem_id.val,
             coupon_id: this.click_coupon_id.val,
+          }),
+        });
+      } catch (error) {
+        console.error(error);
+        // this.giveGetVoucher();
+      }
+      try {
+        //  紀錄領取數量
+        await fetch(`${BASE_URL}getGetCoupon.php`, {
+          method: "POST",
+          body: JSON.stringify({
+            action: "Calculate_send",
+            coupon_id: this.click_coupon_id.val,
+            coupon_ida: this.click_coupon_id.val,
           }),
         });
       } catch (error) {

@@ -32,6 +32,9 @@ export default {
     ShowMoreButton,
     ProductCard,
   },
+  created() {
+    console.log(this);
+  },
   setup() {
     const perPageCardNum = ref(8);
 

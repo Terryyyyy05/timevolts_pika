@@ -4,7 +4,7 @@
   </base-dialog>
   <div v-for="coupon in MyVouchers" :key="coupon.id" class="wrap">
     <!-- {{ coupon }} -->
-    <div class="id">{{ coupon.coupon_id }}</div>
+    <!-- <div class="id">{{ coupon.coupon_id }}</div> -->
     <div class="coupon_discount_number">
       {{ coupon.coupon_discount_number }}
     </div>
@@ -149,23 +149,23 @@ export default {
   padding: 5px;
   border-bottom: 1px dashed map-get($color, primary);
 }
-.id {
-  width: 16.666666%;
-}
+// .id {
+//   width: 16.666666%;
+// }
 .coupon_discount_number {
-  width: 16.666666%;
+  width: 20%;
 }
 .coupon_pricing_condition {
-  width: 16.666666%;
+  width: 20%;
 }
 .coupon_valid_date {
-  width: 16.666666%;
+  width: 20%;
 }
 .coupon_exp_date {
-  width: 16.666666%;
+  width: 20%;
 }
 .btnWrap {
-  width: 16.666666%;
+  width: 20%;
 }
 .btn,
 .btn-none {

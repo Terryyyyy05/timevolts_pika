@@ -2,15 +2,15 @@
   <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="askForLogin">
     <p>請先登入!</p>
   </base-dialog>
-  <cart :cartStatus="cartStatus" @xmark="() => (cartStatus = false)" />
+  <cart
+    :cartStatus="cartStatus"
+    @xmark="() => (cartStatus = false)"
+    @goCheckOut="goCheckOut"
+  />
   <header>
-    <div
-      class="icon-container"
-      
-    >
+    <div class="icon-container">
       <span class="mem_name" v-if="userId">Hi, {{ mem_name }}</span>
-      <div style="cursor: pointer"
-      @click="clickMemberIcon">
+      <div style="cursor: pointer" @click="clickMemberIcon">
         <img src="../../public/Group604.png" alt="" />
       </div>
       <div @click="toggleCart" style="cursor: pointer">
@@ -110,21 +110,17 @@ export default {
       this.userId = this.$store.getters["userId"];
 
       if (this.userId) {
-      fetch(`${BASE_URL}getMemberInfo.php`, {
-            method: "POST",
-            body: JSON.stringify({
-              userId: this.userId,
-              
-            })
-          })
-        .then((res) => res.json())
-        .then((json) => {
-          this.mem_name = json[0].mem_name;
+        fetch(`${BASE_URL}getMemberInfo.php`, {
+          method: "POST",
+          body: JSON.stringify({
+            userId: this.userId,
+          }),
         })
+          .then((res) => res.json())
+          .then((json) => {
+            this.mem_name = json[0].mem_name;
+          });
       }
-                
-              
-        
     },
     changeColor(e) {
       e.target.style.transition = "all .3s";
@@ -152,7 +148,7 @@ export default {
       e.target.childNodes[0].style.transition = "all 0s";
     },
     toggleCart() {
-      return (this.cartStatus = !this.cartStatus);
+      this.cartStatus = !this.cartStatus;
     },
     shownav() {
       this.show = !this.show;
@@ -179,13 +175,26 @@ export default {
       await this.$store.dispatch("getUserId");
       this.userId = this.$store.getters["userId"];
       // console.log(this.userId);
-  
     },
     askForLogin() {
       if (this.$route.path !== "/memberLightBox") {
         this.$router.push({ path: "/memberLightBox" });
       } else {
         this.hasLoggedIn = true;
+      }
+    },
+    // gg
+    async goCheckOut() {
+      this.cartStatus = !this.cartStatus;
+      await this.$store.dispatch("getUserId");
+      this.userId = this.$store.getters["userId"];
+      // console.log(this.userId);
+      if (!this.userId) {
+        // 找不到會員
+        this.hasLoggedIn = false;
+      } else {
+        // 會員有登入
+        this.$router.push({ path: "/ProductCheckOut" });
       }
     },
   },

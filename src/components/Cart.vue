@@ -35,9 +35,9 @@
         </div>
       </li>
     </ul>
-    <router-link to="/ProductCheckOut" class="mid">
-      <button class="btn-lightbox">結帳</button>
-    </router-link>
+    <!-- <router-link to="/ProductCheckOut" class="mid">
+    </router-link> -->
+    <button class="btn-lightbox" @click="goCheckOut">結帳</button>
   </div>
 </template>
 
@@ -56,7 +56,7 @@ export default {
       default: false,
     },
   },
-  emits: ["xmark"],
+  emits: ["xmark", "goCheckOut"],
   setup(props, { emit }) {
     const store = useStore();
 
@@ -85,6 +85,10 @@ export default {
       emit("xmark");
     };
 
+    const goCheckOut = () => {
+      emit("goCheckOut");
+    };
+
     return {
       items,
       removeFromCart,
@@ -94,6 +98,7 @@ export default {
       addNum,
       minusNum,
       closeCart,
+      goCheckOut,
     };
   },
 };
