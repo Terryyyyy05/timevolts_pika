@@ -270,14 +270,23 @@ $price-width: 35%;
       width: $info-width;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      // justify-content: space-between;
+      box-sizing: border-box;
+
+      .pic {
+        width: 50%;
+      }
 
       img {
         width: 100%;
       }
 
       .item-name {
-        margin-right: 25%;
+        width: 45%;
+        // margin-right: 10%;
+        // margin-left: 10%;
+        padding: 0 5% 0 5%;
+        // text-align: center;
       }
     }
     .item-amount {
@@ -391,6 +400,7 @@ $price-width: 35%;
 
         .item-name {
           margin-right: 0%;
+          width: unset;
         }
       }
       .item-amount {
