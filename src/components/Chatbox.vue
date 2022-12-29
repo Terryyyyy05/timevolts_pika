@@ -31,6 +31,7 @@
                   <div
                     class="con_que"
                     @click="clickRobot(item2.content, item2.id)"
+                    v-if="item2.status"
                   >
                     <div class="czkj-question-msg">
                       {{ item2.index }}
@@ -216,7 +217,7 @@ export default {
   },
   created() {
     // fetch(`/api_server/get_Question.php`)
-  fetch(`${BASE_URL}get_Question.php`)
+    fetch(`${BASE_URL}get_Question.php`)
       .then((res) => res.json())
       .then((json) => {
         (this.robotQuestion = json.map((item) => {
@@ -224,6 +225,7 @@ export default {
             id: item.qa_id,
             content: item.qa_title,
             index: item.qa_id,
+            status: item.qa_status,
           };
         })),
           (this.robotAnswer = json.map((item) => {
@@ -231,6 +233,7 @@ export default {
               id: item.qa_id,
               content: item.qa_answer,
               index: item.qa_id,
+              status: item.qa_status,
             };
           }));
       });
