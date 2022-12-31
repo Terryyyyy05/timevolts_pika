@@ -27,7 +27,7 @@
          v-if="notClassic"
          class="banner-containter"
          :style="{
-            backgroundImage: `url(${IMG_URL(banner)})`,
+            backgroundImage: `url(../new_img2/${banner})`,
          }"
       >
          <div id="scene">
