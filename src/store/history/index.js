@@ -31,6 +31,7 @@ export default {
                happenYear: responseData[key].story_age,
                description: responseData[key].story_intro,
                image: responseData[key].story_cover,
+               status: responseData[key].story_status,
             };
             histories.push(history);
          }
