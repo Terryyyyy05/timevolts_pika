@@ -22,18 +22,41 @@
             </div>
          </div>
       </div>
+
+      <div
+         v-if="notClassic"
+         class="banner-containter"
+         :style="{
+            backgroundImage: `url(${IMG_URL(banner)})`,
+         }"
+      >
+         <div id="scene">
+            <div class="layer" data-depth="0.1" v-if="hasParallax">
+               <img
+                  :src="require(`@/assets/image/history/parallax_${id}01.png`)"
+                  alt=""
+               />
+            </div>
+            <div class="layer" data-depth="0.2" v-if="hasParallax">
+               <img
+                  :src="require(`@/assets/image/history/parallax_${id}02.png`)"
+                  alt=""
+               />
+            </div>
+         </div>
+      </div>
    </section>
 </template>
 
 <script type="module">
 import Parallax from "parallax-js";
-import { STORY_IMG_URL } from "@/assets/js/story_img_path.js";
+import { IMG_URL } from "@/assets/js/img_path.js";
 
 export default {
    props: ["banner", "id"],
    setup() {
       return {
-         STORY_IMG_URL,
+         IMG_URL,
       };
    },
    mounted() {
@@ -42,6 +65,11 @@ export default {
    computed: {
       hasParallax() {
          return this.id >= 1 && this.id <= 4 ? true : false;
+      },
+      notClassic() {
+         if (this.id > 16) {
+            return true;
+         }
       },
    },
    methods: {
