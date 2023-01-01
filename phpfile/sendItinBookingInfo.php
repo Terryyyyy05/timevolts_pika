@@ -8,8 +8,8 @@ $datas = json_decode($json, true); //轉為關聯性陣列
 
 try {
    require_once("../phpfile/php_connect_books/connectBooks.php");
-   $sql = "INSERT INTO itineray_order(itineray_order_id, itinerary_id, mem_id, itineray_order_date, itinerary_participant, itinerary_order_total, itinerary_order_discount_amount, itinerary_order_original_price) 
-           VALUES (4, :itineraryId, :userId, CURDATE(), :attendNum, :totalPrice, :discoutPrice, :originPrice)";
+   $sql = "INSERT INTO itinerary_order(itinerary_id, mem_id, itinerary_order_date, itinerary_participant, itinerary_order_total, itinerary_order_discount_amount, itinerary_order_original_price, itinerary_order_status) 
+           VALUES (:itineraryId, :userId, CURDATE(), :attendNum, :totalPrice, :discoutPrice, :originPrice, 2)";
    $member = $pdo->prepare($sql);
    $member->bindValue(":userId", $datas["userId"]);
    $member->bindValue(":itineraryId", $datas["itineraryId"]);
