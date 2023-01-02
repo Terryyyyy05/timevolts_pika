@@ -1,6 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin:*');
-header("Content-Type:application/json;charset=utf-8");
 
 /**
  *    Credit信用卡付款產生訂單範例
@@ -25,7 +23,7 @@ try {
    $obj->Send['ReturnURL']         = "http://www.ecpay.com.tw/receive.php";    //付款完成通知回傳的網址
    $obj->Send['MerchantTradeNo']   = $MerchantTradeNo;                          //訂單編號
    $obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');                       //交易時間
-   $obj->Send['TotalAmount']       = 200;                                      //交易金額
+   $obj->Send['TotalAmount']       = 2000;                                      //交易金額
    $obj->Send['TradeDesc']         = "good to drink";                          //交易描述
    $obj->Send['ChoosePayment']     = ECPay_PaymentMethod::Credit;              //付款方式:Credit
    $obj->Send['IgnorePayment']     = ECPay_PaymentMethod::GooglePay;           //不使用付款方式:GooglePay
@@ -73,7 +71,7 @@ try {
 
 
    //產生訂單(auto submit至ECPay)
-   //$obj->CheckOut();
+   $obj->CheckOut();
    $Response = (string)$obj->CheckOutString();
    echo $Response;
 

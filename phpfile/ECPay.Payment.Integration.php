@@ -621,7 +621,7 @@ abstract class ECPay_Aio
       return $rs;
    }
 
-   protected static function HtmlEncode($szCheckMacValue, $arParameters, $ServiceURL, $paymentButton = '' ,$target = "_self")
+   protected static function HtmlEncode($target , $arParameters, $ServiceURL, $szCheckMacValue, $paymentButton = '')
    {
 
       //生成表單，自動送出
@@ -696,7 +696,7 @@ class ECPay_Send extends ECPay_Aio
       $szCheckMacValue = ECPay_CheckMacValue::generate($arParameters, $HashKey, $HashIV, $arParameters['EncryptType']);
 
       //生成表單，自動送出
-      $szHtml = parent::HtmlEncode($szCheckMacValue, $arParameters, $ServiceURL, '', $target);
+      $szHtml = parent::HtmlEncode($target, $arParameters, $ServiceURL, $szCheckMacValue, '');
       echo $szHtml;
       exit;
    }
@@ -709,7 +709,7 @@ class ECPay_Send extends ECPay_Aio
       $szCheckMacValue = ECPay_CheckMacValue::generate($arParameters, $HashKey, $HashIV, $arParameters['EncryptType']);
 
       //生成表單
-      $szHtml = parent::HtmlEncode($szCheckMacValue, $arParameters, $ServiceURL, $paymentButton, $target);
+      $szHtml = parent::HtmlEncode($target, $arParameters, $ServiceURL, $szCheckMacValue, $paymentButton);
       return  $szHtml;
    }
 }
@@ -925,7 +925,7 @@ class ECPay_TradeNoAio extends ECPay_Aio
       $szCheckMacValue = ECPay_CheckMacValue::generate($arParameters, $HashKey, $HashIV, $EncryptType);
 
       //生成表單，自動送出
-      $szHtml = parent::HtmlEncode($szCheckMacValue, $arParameters, $ServiceURL, '', $target);
+      $szHtml = parent::HtmlEncode($target, $arParameters, $ServiceURL, $szCheckMacValue, '');
       echo $szHtml;
       exit;
    }
@@ -976,7 +976,7 @@ class ECPay_FundingReconDetail extends ECPay_Aio
       $szCheckMacValue = ECPay_CheckMacValue::generate($arParameters, $HashKey, $HashIV, $EncryptType);
 
       //生成表單，自動送出
-      $szHtml = parent::HtmlEncode($szCheckMacValue, $arParameters, $ServiceURL, '', $target);
+      $szHtml = parent::HtmlEncode($target, $arParameters, $ServiceURL, $szCheckMacValue, '');
       echo $szHtml;
       exit;
    }
