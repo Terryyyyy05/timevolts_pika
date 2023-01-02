@@ -105,7 +105,7 @@
         <div class="l-box-img">
             <!-- <img :src="`.news/${popupData.news_img}`"/> -->
             <!-- <img :src="require(`/public/news/atlantis_01.png`)"/> -->
-            <img :src="`./news/${popupData.news_img}`"/>
+            <img :src="`../new_img2/${popupData.news_img}`"/>
             <!-- <img :src="popupData.img" /> -->
             <!-- 自閉合 -->
         </div>
@@ -392,11 +392,11 @@ export default {
                 .then((res) => res.json())
                 .then((json) => {
                     this.newsAll = json;
-                    console.log(this.newsAll);
+                    // console.log(this.newsAll);
                 });
         },
         saveData() {
-            console.log(this.newsAll);
+            // console.log(this.newsAll);
         },
 
         isOpen() {
