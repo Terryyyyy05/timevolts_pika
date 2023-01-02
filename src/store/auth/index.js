@@ -7,6 +7,7 @@ export default {
          loginError: null,
          // token: null,
          // tokenExpiration: null,
+         memberStatus: null,
       };
    },
    getters: {
@@ -15,6 +16,9 @@ export default {
       },
       loginError(state) {
          return state.loginError;
+      },
+      memberStatus(state) {
+         return state.memberStatus;
       },
    },
    actions: {
@@ -62,6 +66,8 @@ export default {
          } else {
             context.commit("getLoginError", null);
          }
+
+         context.commit("getMemberStatus", responseData.memberStatus);
 
          // if (!response.ok) {
          //    const error = new Error(
@@ -129,6 +135,9 @@ export default {
       },
       getLoginError(state, payload) {
          state.loginError = payload;
+      },
+      getMemberStatus(state, payload) {
+         state.memberStatus = payload;
       },
    },
 };
