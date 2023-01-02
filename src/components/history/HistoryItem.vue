@@ -1,5 +1,6 @@
 <template>
    <base-history-card class="hirtory-card">
+      <slot></slot>
       <h3>{{ title }}</h3>
       <div class="history-content">
          <img :src="`../new_img2/${image}`" />

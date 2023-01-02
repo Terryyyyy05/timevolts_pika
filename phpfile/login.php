@@ -29,6 +29,9 @@ try {
       $_SESSION["mem_id"] = $memRow["mem_id"];
       // $_SESSION["memEmail"] = $memRow["mem_email"];
       echo json_encode(["mem_id" => $_SESSION["mem_id"], "msg" => $msg, "memberStatus" => $memRow["mem_status"]]);
+      if ($memRow["mem_status"] === 0) {
+         session_unset();
+      }
    }
 } catch (PDOException $e) {
    // $errMsg .= "錯誤 : " . $e->getMessage() . "<br>";
