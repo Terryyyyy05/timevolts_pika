@@ -78,6 +78,28 @@ switch ($action) {
             echo json_encode($result);
         }
         break;
+    case "Calculate_send":
+        try {
+            require_once("./php_connect_books/connectBooks.php");
+            // 計算已發送的優惠卷
+            $sql = "UPDATE `coupon` SET `coupon_given_numbers` = (SELECT  count(*) FROM my_coupon  WHERE coupon_id = {$datas["coupon_id"]}) 
+            WHERE coupon_id = {$datas["coupon_ida"]} ";
+            $member = $pdo->prepare($sql);
+            // $member->bindValue(":coupon_id", $datas["coupon_id"]);
+            $member->execute();
+            $msg = '計算數量成功';
+
+            $coupons = $pdo->query($sql);
+            $coupon = $coupons->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($coupon);
+        } catch (PDOException $e) {
+            $errMsg = '計算數量失敗';
+            // 處理 PDOException
+            // $result = ["msg" => "系統錯誤，請聯繫相關人員"];
+            $result = ["msg" => $e->getMessage()];
+            echo json_encode($result);
+        }
+        break;
     case "mem_coupon":
         try {
             require_once("./php_connect_books/connectBooks.php");

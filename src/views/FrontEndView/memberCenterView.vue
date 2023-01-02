@@ -4,8 +4,8 @@
    <div class="container">
       <the-heading heading="會員中心" subheading="Member"></the-heading>
    </div>
-
    <div class="container main-content">
+      
       <div class="nav-container">
          <nav>
             <router-link to="/memberCenter/memberInfo">{{
@@ -38,6 +38,7 @@
    <all-footer />
 </template>
 <script>
+import { BASE_URL } from "@/assets/js/commom.js";
 export default {
    data() {
       return {
@@ -54,7 +55,7 @@ export default {
    methods: {
       async signOut() {
          //to boaz, here for you to write sign out function!!
-         await fetch("/api_server/signout.php");
+         await fetch(`${BASE_URL}signout.php`);
          // console.log(this.$store.getters["userId"]);
          this.$router.push({ path: "/memberLightBox" });
       },
@@ -62,6 +63,24 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+
+@media screen and (max-width:767px) {
+   .nav-container {
+      position: absolute;
+      width: 55%;
+      left: -3.8%;
+      opacity: 1;
+      // transition: all .5s, left 1s 0s;
+      z-index: 1;
+      nav {
+         background-color: #1e1e1e;
+      }
+      .signOutbutton {
+         z-index: 1;
+      }
+   }
+  
+}
 .container.main-content {
    display: flex;
    justify-content: flex-start;
@@ -101,6 +120,7 @@ export default {
    }
 }
 @media screen and (min-width: 768px) {
+   
    .container.main-content {
       .nav-container {
          width: 25%;

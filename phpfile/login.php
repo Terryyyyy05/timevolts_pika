@@ -28,7 +28,7 @@ try {
       //登入成功,將登入者的資料寫入session
       $_SESSION["mem_id"] = $memRow["mem_id"];
       // $_SESSION["memEmail"] = $memRow["mem_email"];
-      echo json_encode(["mem_id" => $_SESSION["mem_id"], "msg" => $msg]);
+      echo json_encode(["mem_id" => $_SESSION["mem_id"], "msg" => $msg, "memberStatus" => $memRow["mem_status"]]);
    }
 } catch (PDOException $e) {
    // $errMsg .= "錯誤 : " . $e->getMessage() . "<br>";

@@ -6,6 +6,13 @@
       <base-dialog :show="!!error" title="發生錯誤" @close="handleError">
          <p>{{ error }}</p>
       </base-dialog>
+      <base-dialog
+         :show="this.memberStatus === 0"
+         title="警告"
+         @close="handleError"
+      >
+         <p>此帳號已被停權</p>
+      </base-dialog>
       <base-dialog :show="isLoading" :title="載入中" fixed>
          <base-spinner></base-spinner>
       </base-dialog>
@@ -24,7 +31,7 @@
                      @blur="clearValidity('email')"
                   />
                   <input
-                     type="text"
+                     type="password"
                      placeholder="密碼"
                      v-model.trim="password.val"
                      @blur="clearValidity('password')"
@@ -61,6 +68,7 @@ export default {
          isLoading: false,
          error: null,
          loginError: null,
+         memberStatus: null,
       };
    },
    methods: {
@@ -90,11 +98,12 @@ export default {
                email: this.email.val,
                password: this.password.val,
             });
+            this.memberStatus = this.$store.getters["memberStatus"];
             this.loginError = this.$store.getters["loginError"];
-            if (!this.loginError) {
-               this.$router.push({ path: "/memberCenter" });
+            if (!this.loginError && this.memberStatus === 1) {
+               this.$router.go(-1);
             }
-            console.log(this.loginError);
+            // console.log(this.loginError);
          } catch (err) {
             this.error = err.message || "發生錯誤";
          }
@@ -103,6 +112,7 @@ export default {
       },
       handleError() {
          this.error = null;
+         this.memberStatus = null;
       },
       askForLogin() {
          this.loginError = null;

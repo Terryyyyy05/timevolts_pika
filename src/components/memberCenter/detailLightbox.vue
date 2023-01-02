@@ -174,6 +174,9 @@ export default {
     width: 70%;
     height: 20px;
     align-items: center;
+    margin-left: 0;
+    font-size: 24px;
+    color: #fff;
 }
 .hrSpan {
     border-bottom: 3px solid map-get($color, primary);
@@ -204,6 +207,8 @@ export default {
 }
 .label > input {
     margin-left: 0;
+    font-size: 24px;
+    color: #fff;
 }
 .wrap {
     width: 100%;

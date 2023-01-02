@@ -52,8 +52,6 @@
 </template>
 
 <script>
-// import "@/components/itineraryPeriod/JS/itinerary";
-
 export default {
     components: {},
     props: {

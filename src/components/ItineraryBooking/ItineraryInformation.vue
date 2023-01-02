@@ -2,6 +2,10 @@
    <div class="information p_md">
       <calendar :selected-date="departDate"></calendar>
       <div>
+         <div class="story-name">
+            <font-awesome-icon icon="fas fa-flag" />
+            <h4>{{itineraryName}}</h4>
+         </div>
          <div class="info-list">
             <div>
                <p>最近出團日 : {{ latestDate }}</p>
@@ -148,6 +152,17 @@ export default {
 .information {
    @include grid(2fr 3fr, 80px);
    color: map-get($color, "primary");
+}
+
+.story-name {
+   display: flex;
+   gap: 12px;
+   align-items: center;
+   margin-bottom: 36px;
+}
+
+h4 {
+   font-weight: 500
 }
 
 .info-list {

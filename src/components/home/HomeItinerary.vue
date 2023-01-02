@@ -12,7 +12,8 @@
             'img-index': activeIndex != index,
           }"
         >
-          <img v-bind:src="ITIN_IMG_URL(item.story_cover)" alt="" />
+          <!-- <img src="../../assets/image/itin/ " alt="" /> -->
+          <img :src="ITIN_IMG_URL(item.itinerary_img)" alt="" />
         </div>
       </TransitionGroup>
     </div>
@@ -54,8 +55,9 @@
 </template>
 
 <script>
+// import { ref, computed, reactive, onMounted } from "vue";
 // import { Carousel, Slide } from 'vue-carousel';
-import { ITIN_IMG_URL } from "@/assets/js/img_path.js";
+import { ITIN_IMG_URL } from "@/assets/js/itin_img_path.js";
 import { BASE_URL } from "@/assets/js/commom.js";
 export default {
   // components: {
@@ -72,7 +74,11 @@ export default {
       activeIndex: 1,
     };
   },
-
+  setup() {
+    return {
+      ITIN_IMG_URL,
+    };
+  },
   computed: {},
   methods: {
     getItineraryData() {
@@ -82,6 +88,7 @@ export default {
           this.itineraryData = jsonData;
           this.look = this.itineraryData[this.activeIndex];
           // console.log("itin", this.itineraryData);
+          // return ITIN_IMG_URL;
         });
     },
 
@@ -119,6 +126,7 @@ export default {
   },
   created() {
     this.getItineraryData();
+    console.log(this);
   },
 };
 </script>

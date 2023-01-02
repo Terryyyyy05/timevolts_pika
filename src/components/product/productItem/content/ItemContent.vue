@@ -2,11 +2,17 @@
   <div class="flex">
     <div class="pic">
       <img
-        :src="IMG_URL(productInfo2.list.pro_img)"
+        :src="`../new_img2/${productInfo2.list.pro_img}`"
         alt=""
         ref="img"
         v-if="productInfo2.list.pro_img !== undefined"
       />
+      <!-- <img
+        :src="IMG_URL(productInfo2.list.pro_img)"
+        alt=""
+        ref="img"
+        v-if="productInfo2.list.pro_img !== undefined"
+      /> -->
     </div>
     <div class="content">
       <h2 id="title" ref="title">{{ productInfo2.list.pro_name }}</h2>

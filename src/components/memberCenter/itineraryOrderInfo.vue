@@ -1,11 +1,11 @@
 <template>
-    <div v-for="order in orderList" :key="order.id" class="wrap">
-        <div class="id">{{ order.id }}</div>
-        <div class="itineraryName">{{ order.itineraryName }}</div>
-        <div class="date">{{ order.date }}</div>
+    <div v-for="(order, index) in orderData" :key="order.id" class="wrap">
+        <div class="id">{{ order.order_id }}</div>
+        <div class="itineraryName">{{ order.itinerary_name }}</div>
+        <div class="date">{{ order.order_date }}</div>
         <div class="start">{{ order.start }}</div>
         <div class="end">{{ order.end }}</div>
-        <div class="price">{{ order.price }}</div>
+        <div class="price">{{ order.total }}</div>
         <div class="status">{{ order.status }}</div>
         <div class="btnWrap">
             <button class="btn-lightbox btn" @click="changeDisplay">
@@ -15,24 +15,28 @@
     </div>
 </template>
 <script>
+import { BASE_URL } from "@/assets/js/commom";
+
 export default {
+    
     name: "itineraryOrderInfo",
     emits: ["clickOpenModal"],
 
     data() {
         return {
             informationVisibile: 10,
+            orderData: [],
             // 這邊也要getData
             orderList: [
-                // {
-                //     id: 1,
-                //     itineraryName: "十字軍東征",
-                //     date: "2022/12/30",
-                //     start: "2022/1/1",
-                //     end: "2022/1/5",
-                //     price: 100000,
-                //     status: "訂單成立",
-                // },
+                {
+                    id: 1,
+                    itineraryName: "十字軍東征",
+                    date: "2022/12/30",
+                    start: "2022/1/1",
+                    end: "2022/1/5",
+                    price: 100000,
+                    status: "訂單成立",
+                },
                 // {
                 //     id: 2,
                 //     itineraryName: "十字軍東征",
@@ -132,41 +136,67 @@ export default {
         },
     },
     methods: {
-        async getData(){
+        async getData() {
             await this.$store.dispatch("getUserId");
             this.userId = this.$store.getters["userId"];
             // alert(this.userId);
 
             if (this.userId) {
-                fetch('/api_server/getMemberInfo.php', {
+                fetch(`${BASE_URL}/getMemberInfo.php`, {
                     method: "POST",
                     body: JSON.stringify({
                         userId: this.userId,
-                }),
+                    }),
                 })
-                .then((res) => res.json())
-                .then((json)=>{
-                    console.log(json);
+                    .then((res) => res.json())
+                    .then((json) => {
+                        console.log(json);
 
-                    this.result = json;
-    
-                    this.formInput[0].value = json[0].mem_name
-                    this.formInput[1].value = json[0].mem_bday
-                    this.formInput[2].value = json[0].mem_phone
-                    this.formInput[3].value = json[0].mem_address
-                    this.formInput[4].value = json[0].mem_email
-                    this.memLevel=json[0].mem_level
-                })
+                        this.result = json;
+
+                        this.formInput[0].value = json[0].mem_name;
+                        this.formInput[1].value = json[0].mem_bday;
+                        this.formInput[2].value = json[0].mem_phone;
+                        this.formInput[3].value = json[0].mem_address;
+                        this.formInput[4].value = json[0].mem_email;
+                        this.memLevel = json[0].mem_level;
+                    })
+                    .then(
+                        fetch(`${BASE_URL}/getItineraryOrder.php`)
+                            .then((res) => res.json())
+                            .then((data) => {
+                                // this.data = data;
+
+                                // console.log(this.data[0].itinerary_order_id);
+                                const itineraryOrders = [];
+                                for (const key in data) {
+                                    const itineraryOrder = {
+                                        order_id: data[key].itinerary_order_id,
+                                        itinerary_name:
+                                            data[key].itinerary_name,
+                                        order_date:
+                                            data[key].itinerary_order_date,
+                                        start: data[key].itinerary_start_date,
+                                        end: data[key].itinerary_end_date,
+                                        total: data[key].itinerary_order_total,
+                                        status: data[key]
+                                            .itinerary_order_status,
+                                    };
+                                    itineraryOrders.push(itineraryOrder);
+                                }
+                                this.orderData = itineraryOrders;
+                                console.log(this.orderData);
+                            })
+                    );
             }
-        
         },
         changeDisplay() {
             this.$emit("clickOpenModal");
         },
     },
-    mounted(){
+    mounted() {
         this.getData();
-    }
+    },
 };
 </script>
 <style lang="scss" scoped>

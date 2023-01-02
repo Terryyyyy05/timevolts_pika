@@ -97,42 +97,44 @@ export default {
       const cardContext2 = reactive([]);
       const strList = reactive(Array.from({ length: 5 }, () => ""));
 
-        const getData = () => {
-            fetch(`${BASE_URL}/getItineraries.php`)
-                .then((res) => res.json())
-                .then((result) => {
-                    cardContext2.value = result;
-                    p2.list = cardContext2.value.find((item) => {
-                        return `${item.story_id}` === route.params.id;
-                    });
-                    strList[0] = p2.list.itinerary_memo;
-                    strList[1] = p2.list.itinerary_content;
-                    strList[2] = p2.list.itinerary_delicacy;
-                    strList[3] = "安全守則";
-                    strList[4] = "取消政策";
-                });
-        };
-        onMounted(() => {
-            getData();
-        });
-        return {
-            period2,
-            imgText,
-            cardContext2,
-            p2,
-            strList,
-        };
-    },
-    data() {
-        return {
-            itinerary: 0,
-            contentOneToFive: 0,
-            userId: null,
-            hasLoggedIn: true,
-        };
-    },
+      const getData = () => {
+         fetch(`${BASE_URL}/getItineraries.php`)
+            .then((res) => res.json())
+            .then((result) => {
+               cardContext2.value = result;
+               p2.list = cardContext2.value.find((item) => {
+                  return `${item.story_id}` === route.params.id;
+               });
+               strList[0] = p2.list.itinerary_memo;
+               strList[1] = p2.list.itinerary_content;
+               strList[2] = p2.list.itinerary_delicacy;
+               strList[3] = "安全守則";
+               strList[4] = "取消政策";
+            });
+      };
+      onMounted(() => {
+         getData();
+      });
+      return {
+         period2,
+         imgText,
+         cardContext2,
+         p2,
+         strList,
+      };
+   },
+   data() {
+      return {
+         itinerary: 0,
+         contentOneToFive: 0,
+         userId: null,
+         hasLoggedIn: true,
+      };
+   },
 
-   mounted() {},
+   beforeUpdate() {
+      this.saveItineraryName();
+   },
    methods: {
       // changeParagraph()
       changeParagraph0() {
@@ -179,6 +181,14 @@ export default {
       },
       askForLogin() {
          this.$router.push({ path: "/memberLightBox" });
+      },
+      saveItineraryName() {
+         fetch(`${BASE_URL}saveStoryId.php`, {
+            method: "POST",
+            body: JSON.stringify({
+               story_id: this.p2.list.story_id,
+            }),
+         });
       },
    },
 };

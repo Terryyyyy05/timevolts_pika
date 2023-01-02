@@ -8,14 +8,14 @@ $datas = json_decode($json, true); //轉為關聯性陣列
 
 try {
    require_once("../phpfile/php_connect_books/connectBooks.php");
-   $sql = "INSERT INTO participant_info(itineray_order_id, participant_name, participant_phone, participant_email) 
-           VALUES (4, :name, :phone, :email)";
+   $sql = "INSERT INTO participant_info(itinerary_order_id, participant_name, participant_phone, participant_email) 
+           VALUES (:itinerary_order_id, :name, :phone, :email)";
    $participants = $pdo->prepare($sql);
+   $participants->bindValue(":itinerary_order_id", $datas["itineraryOrderId"]);
    $participants->bindValue(":name", $datas["name"]);
    $participants->bindValue(":phone", $datas["phone"]);
    $participants->bindValue(":email", $datas["email"]);
    $participants->execute();
-
 } catch (PDOException $e) {
    // 處理 PDOException
    $result = ["msg" => "系統錯誤，請聯繫相關人員"];

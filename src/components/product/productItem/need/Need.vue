@@ -8,7 +8,8 @@
       style="width: 100%"
     >
       <div class="pic">
-        <img :src="IMG_URL(card.pro_img)" alt="" />
+        <img :src="`../new_img2/${card.pro_img}`" alt="" />
+        <!-- <img :src="IMG_URL(card.pro_img)" alt="" /> -->
       </div>
       <h3>{{ card.pro_name }}</h3>
       <span class="p_md price">${{ card.pro_price }}</span>
@@ -45,7 +46,7 @@ export default {
           cardContext2.list = cardContext2.list.filter(
             (item) =>
               item.pro_class_name === itemClassName.value &&
-              item.pro_id !== parseInt(route.params.id)
+              item.pro_id != route.params.id
           );
 
           if (cardContext2.list.length > 2) {
