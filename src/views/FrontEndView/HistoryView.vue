@@ -5,7 +5,7 @@
       <the-heading heading="歷史故事" subheading="history"></the-heading>
       <history-filter @change-filter="setFilters"></history-filter>
       <history-item
-         v-for="history in VisibleHistory"
+         v-for="(history, index) in VisibleHistory"
          :key="history.id"
          :id="history.id"
          :title="history.title"
@@ -15,7 +15,14 @@
          :happen-year="history.happenYear"
          :description="history.description"
          :image="history.image"
-      ></history-item>
+      >
+         <font-awesome-icon
+            icon="fa-solid fa-heart"
+            :class="{ isFavorite: isFavorite }"
+            class="heart"
+            @click=""
+         />
+      </history-item>
       <button class="btn-primary" v-if="isActive" @click="showmore">
          查看更多
       </button>
@@ -115,7 +122,9 @@ export default {
             }
             return false;
          });
-         const filteredStatus = filteredRegion.filter((history) => history.status === 1)
+         const filteredStatus = filteredRegion.filter(
+            (history) => history.status === 1
+         );
          return filteredStatus;
       },
       VisibleHistory() {
@@ -144,4 +153,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.heart {
+   color: #eee;
+   font-size: 36px;
+   margin-left: auto;
+   display: flex;
+   justify-content: flex-end;
+   cursor: pointer;
+}
+</style>
