@@ -104,6 +104,7 @@
         </button>
         <div class="l-box-img">
             <!-- <img :src="`.news/${popupData.news_img}`"/> -->
+            <!-- <img :src="require(`/public/news/atlantis_01.png`)"/> -->
             <img :src="`./news/${popupData.news_img}`"/>
             <!-- <img :src="popupData.img" /> -->
             <!-- 自閉合 -->
