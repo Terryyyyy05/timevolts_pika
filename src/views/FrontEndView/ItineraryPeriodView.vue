@@ -72,8 +72,8 @@ import commentsInfo from "@/components/itineraryPeriod/commentsInfo.vue";
 import itinPeriodCardInfo from "@/components/itineraryPeriod/itinPeriodCardInfo.vue";
 import asideBar from "@/components/itineraryPeriod/asideBar.vue";
 import { onMounted, reactive } from "vue";
-/* import { cardContext } from "@/components/itinerary/js/data.js"; */
-import { cardContext } from "../../../public/js/datatest.js";
+import { cardContext } from "@/components/itinerary/js/data.js";
+// import { cardContext } from "../../../public/js/datatest.js";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { BASE_URL } from "@/assets/js/commom";
 
