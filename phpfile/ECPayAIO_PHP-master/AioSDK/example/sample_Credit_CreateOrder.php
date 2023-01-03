@@ -53,7 +53,8 @@ $datas = json_decode($json, true); //轉為關聯性陣列
         // $obj->Send['OrderResultURL']     = "http://localhost/timevolts_pika/phpfile/ECPayAIO_PHP-master/AioSDK/example/sample_ServerReplyPaymentStatus.php" ;   
         
         
-        $obj->Send['ClientBackURL']     = "http://localhost:8080/Product" ;           
+        // $obj->Send['ClientBackURL']     = "http://localhost:8080/Product" ;           
+        $obj->Send['ClientBackURL']     = "https://tibamef2e.com/cgd103/g3/product/" ;           
 
 
          
