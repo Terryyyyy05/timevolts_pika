@@ -3,7 +3,7 @@
       <div
          class="banner-containter"
          :style="{
-            backgroundImage: `url(../new_img2/${banner})`,
+            backgroundImage: `url(new_img2/${banner})`,
          }"
       >
          <div id="scene">
@@ -26,7 +26,7 @@
          v-if="notClassic"
          class="banner-containter"
          :style="{
-            backgroundImage: `url(../new_img2/${banner})`,
+            backgroundImage: `url(new_img2/${banner})`,
          }"
       >
          <div id="scene">
