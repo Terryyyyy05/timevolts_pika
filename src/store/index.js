@@ -20,6 +20,7 @@ export default createStore({
       addressee: {},
       checkOutCart: {},
       totalAmount: "",
+      couponAmount: "",
     },
     itemClassName: "",
   },
@@ -83,6 +84,9 @@ export default createStore({
     },
     cartTotalAmount(state, totalAmount) {
       state.curBuyerInfo.totalAmount = totalAmount;
+    },
+    cartCouponAmount(state, couponAmount) {
+      state.curBuyerInfo.couponAmount = couponAmount;
     },
     // itemContent
     addItemClassName(state, name) {

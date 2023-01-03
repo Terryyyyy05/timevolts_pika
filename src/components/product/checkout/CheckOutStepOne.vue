@@ -173,6 +173,8 @@ export default {
       couponUse.price = item.coupon_discount_number;
       couponUse.condition = item.coupon_pricing_condition;
 
+      store.commit("cartCouponAmount", couponUse.price);
+
       console.log(couponUse);
       console.log(item);
     };

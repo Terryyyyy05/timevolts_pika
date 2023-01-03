@@ -63,17 +63,26 @@
           }}</span></span
         >
       </div>
-      <div class="discount-amount">
-        折扣金額: <span>$ <span>-200</span></span>
+      <div class="discount-amount" v-if="couponAmount !== ''">
+        折扣金額:
+        <span
+          >$ <span>-{{ couponAmount }}</span></span
+        >
       </div>
-      <div class="after-discount">
-        折扣後金額: <span>$ <span>1800</span></span>
+      <div class="after-discount" v-if="couponAmount !== ''">
+        折扣後金額:
+        <span
+          >$ <span>{{ afterTotalPrice + 888 }}</span></span
+        >
       </div>
       <div class="freight-amount">
-        運費: <span>$ <span>200</span></span>
+        運費: <span>$ <span>888</span></span>
       </div>
       <div class="total-amount">
-        總金額: <span>$ <span>2000</span></span>
+        總金額:
+        <span
+          >$ <span>{{ afterTotalPrice }}</span></span
+        >
       </div>
     </div>
   </div>
@@ -101,9 +110,20 @@ export default {
     const items = computed(() => {
       return store.getters.cartItems;
     });
+
+    const afterTotalPrice = computed(() => {
+      return store.state.curBuyerInfo.totalAmount;
+    });
+
+    const couponAmount = computed(() => {
+      return store.state.curBuyerInfo.couponAmount;
+    });
+
     return {
       items,
       curBuyerInfo,
+      afterTotalPrice,
+      couponAmount,
     };
   },
 };
@@ -225,7 +245,7 @@ $price-width: 25%;
   > div {
     display: flex;
     justify-content: space-between;
-    column-gap: 100px;
+    // column-gap: 100px;
   }
 
   > div:last-child {
