@@ -52,7 +52,7 @@
                     </div>
                     <div>
                         <label class="label">實付金額:</label>
-                        <div class="input">{{ memData[0]?.name }}</div>
+                        <div class="input">{{ memData[0]?.total }}</div>
                         <!-- <input class="input" type="text" /> -->
                     </div>
                 </div>
@@ -75,7 +75,7 @@
 </template>
 <script>
 import participantsInfo from "@/components/memberCenter/participantsInfo.vue";
-    import { BASE_URL } from "@/assets/js/commom";
+import { BASE_URL } from "@/assets/js/commom";
 
 export default {
     name: "detailLightbox",
