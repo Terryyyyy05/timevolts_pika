@@ -3,7 +3,7 @@
       <slot></slot>
       <h3>{{ title }}</h3>
       <div class="history-content">
-         <img :src="`../new_img2/${image}`" />
+         <img :src="`new_img2/${image}`" />
          <div class="history-text">
             <div>
                <span class="p_md">#{{ tagDanderLevel }}</span>

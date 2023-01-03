@@ -28,7 +28,7 @@
             >
                <img
                   class="small-image"
-                  :src="`../new_img2/${detail.image}`"
+                  :src="`new_img2/${detail.image}`"
                   alt="historyImage"
                   @click="switchImage(index)"
                />
@@ -37,7 +37,7 @@
          <div class="big-image-container">
             <img
                class="big-image"
-               :src="`../new_img2/${selectedDetails[count].image}`"
+               :src="`new_img2/${selectedDetails[count].image}`"
                alt="historyImage"
             />
          </div>
