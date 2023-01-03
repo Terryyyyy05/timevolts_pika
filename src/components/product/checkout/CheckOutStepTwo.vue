@@ -1,9 +1,9 @@
 <template>
   <base-card-check class="base-card">
     <form class="buyer-info">
-      <div class="checkbox">
+      <!-- <div class="checkbox">
         <base-checkbox text="同會員資料"></base-checkbox>
-      </div>
+      </div> -->
       <div class="form-content">
         <div>
           <label class="p_lg">姓名</label>
