@@ -7,7 +7,7 @@
          <p>{{ error }}</p>
       </base-dialog>
       <base-dialog
-         :show="this.memberStatus === 0"
+         :show="this.memberStatus == 0"
          title="警告"
          @close="handleError"
       >
