@@ -31,6 +31,9 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faAnglesUp } from "@fortawesome/free-solid-svg-icons";
+import { faFlag } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 // import { LoadingPlugin } from 'vue-loading-overlay';
 
 // add icons from library
@@ -44,6 +47,9 @@ library.add(faPlus);
 library.add(faCircleCheck);
 library.add(faTrashCan);
 library.add(faAnglesUp);
+library.add(faFlag);
+library.add(faStar);
+library.add(faHeart);
 
 // Vue 實體
 const app = createApp(App);

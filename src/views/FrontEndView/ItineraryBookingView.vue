@@ -4,11 +4,7 @@
    <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="askForLogin">
       <p>請先登入!</p>
    </base-dialog>
-   <base-dialog
-      :show="!hasItineraryName"
-      title="警告"
-      @close="this.$router.go(-1)"
-   >
+   <base-dialog :show="!!error" title="錯誤訊息" @close="this.$router.go(-1)">
       <p>由於您重整了頁面，請重新來過</p>
    </base-dialog>
    <div class="container">
@@ -74,7 +70,7 @@ export default {
          currentStep: "行程資訊",
          userId: null,
          hasLoggedIn: true,
-         hasItineraryName: true,
+         error: false,
          itineraryName: "",
          info: [],
          orderInfo: {},
@@ -125,6 +121,9 @@ export default {
          await this.$store.dispatch("getUserId");
          this.userId = this.$store.getters["userId"];
          this.itineraryName = this.$store.getters["itinerary/itineraryName"];
+         if (this.itineraryName === "") {
+            this.error = true;
+         }
          // console.log(this.userId);
          // console.log(this.itineraryName);
          if (!this.userId) {
@@ -132,9 +131,6 @@ export default {
             this.hasLoggedIn = false;
          } else {
             this.getItineraryInfo();
-         }
-         if (this.itineraryName === "") {
-            this.hasItineraryName = false;
          }
       },
       askForLogin() {
@@ -145,22 +141,39 @@ export default {
             method: "POST",
             body: JSON.stringify({
                userId: this.userId,
-               itineraryName: this.itineraryName,
+               // itineraryName: this.itineraryName,
             }),
          });
+
+         if (!response.ok) {
+            this.error = true;
+         }
 
          const responseData = await response.json();
          // console.log(responseData);
 
          this.info = responseData;
-         console.log(this.info);
+         // console.log(this.info);
       },
+      // async payForOrder() {
+      //    this.orderInfo = this.$store.getters["itineraryBooking/orderInfo"];
+      //    // console.log(this.orderInfo);
+      //    const response = await fetch(`${BASE_URL}Ecpay.php`, {
+      //       method: "POST",
+      //       body: JSON.stringify({
+      //          itineraryId: this.orderInfo.itineraryId,
+      //          attendNum: this.orderInfo.attendNum,
+      //          totalPrice: this.orderInfo.totalPrice,
+      //          itineraryName: this.itineraryName,
+      //       }),
+      //    });
+      // },
       async confirmOrder() {
          this.orderInfo = this.$store.getters["itineraryBooking/orderInfo"];
          // console.log(this.orderInfo);
          this.participants =
             this.$store.getters["itineraryBooking/participants"];
-         console.log(this.participants);
+         // console.log(this.participants);
          // console.log(this.participants.length);
          try {
             const response = await fetch(`${BASE_URL}sendItinBookingInfo.php`, {
@@ -189,11 +202,24 @@ export default {
 
          this.sendParticipants();
       },
-      sendParticipants() {
+      async sendParticipants() {
+         const response = await fetch(`${BASE_URL}getItineraryOrderId.php`, {
+            method: "POST",
+            body: JSON.stringify({
+               userId: this.orderInfo.userId,
+               itineraryId: this.orderInfo.itineraryId,
+            }),
+         });
+
+         const responseData = await response.json();
+         // console.log(responseData);
+
+         const itineraryOrderId = responseData;
          for (let i = 0; i < this.participants.length; i++) {
             fetch(`${BASE_URL}sendParticipants.php`, {
                method: "POST",
                body: JSON.stringify({
+                  itineraryOrderId: itineraryOrderId,
                   name: this.participants[i].name,
                   phone: this.participants[i].phone,
                   email: this.participants[i].email,
