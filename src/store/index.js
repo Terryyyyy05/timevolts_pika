@@ -6,25 +6,31 @@ import itineraryModule from "./itinerary/index.js";
 import authModule from "./auth/index.js";
 import itineraryBookingModule from "./itineraryBooking/index.js";
 
-
 export default createStore({
   modules: {
     history: historyModule,
     itinerary: itineraryModule,
     auth: authModule,
-      itineraryBooking: itineraryBookingModule
+    itineraryBooking: itineraryBookingModule,
   },
   state: {
     cart: [],
     buyerOrder: [],
     curBuyerInfo: {
       addressee: {},
+      checkOutCart: {},
+      totalAmount: "",
     },
     itemClassName: "",
   },
   getters: {
     cartItems(state) {
       return state.cart;
+    },
+    cartItemsTotalAmount(state) {
+      return state.cart.reduce((acu, cur) => {
+        return acu + parseInt(cur.price);
+      }, 0);
     },
   },
   mutations: {
@@ -74,6 +80,9 @@ export default createStore({
     },
     curBuyerInfo(state, infoData) {
       state.curBuyerInfo.addressee = { ...infoData };
+    },
+    cartTotalAmount(state, totalAmount) {
+      state.curBuyerInfo.totalAmount = totalAmount;
     },
     // itemContent
     addItemClassName(state, name) {

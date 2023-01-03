@@ -49,6 +49,7 @@
         查看訂單
       </button>
     </div>
+    <div id="form_ECPAy"></div>
   </div>
 </template>
 
@@ -61,7 +62,9 @@ import CheckOutStepTwo from "@/components/product/checkout/CheckOutStepTwo.vue";
 import CheckOutStepThree from "@/components/product/checkout/CheckOutStepThree.vue";
 import done from "@/components/product/checkout/done.vue";
 
-import { ref, computed } from "vue";
+import { BASE_URL } from "@/assets/js/commom.js";
+
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
@@ -136,15 +139,17 @@ export default {
         buttonLeft.value = "上一步";
         buttonRight.value = "信用卡付款";
       } else if (selectedStep.value === "check-out-step-three") {
-        selectedStep.value = "done";
-        currentStep.value = "訂單完成";
+        // selectedStep.value = "done";
+        // currentStep.value = "訂單完成";
 
-        let btnLeft = document.getElementById("btnLeft");
-        let btnRight = document.getElementById("btnRight");
-        btnLeft.style.display = "none";
-        btnRight.style.display = "none";
+        // let btnLeft = document.getElementById("btnLeft");
+        // let btnRight = document.getElementById("btnRight");
+        // btnLeft.style.display = "none";
+        // btnRight.style.display = "none";
 
-        store.commit("addBuyerInfo");
+        // store.commit("addBuyerInfo");
+        sendECPAy();
+        return
       }
       window.scrollTo(0, 0);
     };
@@ -164,6 +169,43 @@ export default {
         buttonRight.value = "下一步";
       }
     };
+
+    const sendECPAy = () => {
+      console.log(store.state.cart);
+      const sendItem = {};
+      sendItem.cart = store.state.cart;
+      sendItem.totalAmount = store.state.curBuyerInfo.totalAmount;
+      console.log(sendItem);
+
+      fetch(
+        `${BASE_URL}ECPayAIO_PHP-master/AioSDK/example/sample_Credit_CreateOrder.php`,
+        {
+          method: "POST",
+          body: JSON.stringify(sendItem),
+        }
+      )
+        .then((res) => res.text())
+        .then((html) => {
+          const fragment = document
+            .createRange()
+            .createContextualFragment(html);
+          document.getElementById("form_ECPAy").appendChild(fragment);
+        });
+    };
+
+    // const testqq = () => {
+    //   fetch(
+    //     `${BASE_URL}ECPayAIO_PHP-master/AioSDK/example/sample_ServerReplyPaymentStatus.php`
+    //   )
+    //     .then((res) => res.json())
+    //     .then((html) => {
+    //       console.log(html);
+    //     });
+    // };
+
+    // onMounted(() => {
+    //   testqq();
+    // });
 
     return {
       // data

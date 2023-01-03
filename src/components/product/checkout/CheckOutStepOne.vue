@@ -78,10 +78,7 @@
         <div class="total-amount">
           總金額:
           <span
-            >$
-            <span>{{
-              originTotalPrice - couponUse.price - freight
-            }}</span></span
+            >$ <span>{{ afterTotalPrice }}</span></span
           >
         </div>
       </div>
@@ -101,7 +98,7 @@
 </template>
 
 <script>
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, watchEffect } from "vue";
 import { useStore } from "vuex";
 
 // test
@@ -137,6 +134,17 @@ export default {
         return acu + parseInt(cur.price);
       }, 0)
     );
+
+    const afterTotalPrice = computed(() => {
+      return (
+        store.getters.cartItemsTotalAmount - freight.value - couponUse.price
+      );
+    });
+
+    // watchEffect
+    watchEffect(() => {
+      store.commit("cartTotalAmount", afterTotalPrice.value);
+    });
 
     // methods
     const removeFromCart = (e) => {
@@ -182,6 +190,7 @@ export default {
       originTotalPrice,
       freight,
       couponUse,
+      afterTotalPrice,
     };
   },
 };
