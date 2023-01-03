@@ -130,7 +130,7 @@ export default {
             return false;
          });
          const filteredStatus = filteredRegion.filter(
-            (history) => history.status === 1
+            (history) => history.status == 1
          );
          return filteredStatus;
       },

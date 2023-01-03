@@ -100,7 +100,7 @@ export default {
             });
             this.memberStatus = this.$store.getters["memberStatus"];
             this.loginError = this.$store.getters["loginError"];
-            if (!this.loginError && this.memberStatus === 1) {
+            if (!this.loginError && this.memberStatus == 1) {
                this.$router.go(-1);
             }
             // console.log(this.loginError);
