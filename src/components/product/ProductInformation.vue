@@ -7,7 +7,7 @@
     >
       <div class="pic">
         <!-- <img :src="IMG_URL(card.pro_img)" alt="" /> -->
-        <img :src="`../new_img2/${card.pro_img}`" alt="" />
+        <img :src="`new_img2/${card.pro_img}`" alt="" />
       </div>
       <h3>{{ card.pro_name }}</h3>
       <span class="p_md price">${{ card.pro_price }}</span>
