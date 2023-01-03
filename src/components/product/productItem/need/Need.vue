@@ -8,7 +8,7 @@
       style="width: 100%"
     >
       <div class="pic">
-        <img :src="`../new_img2/${card.pro_img}`" alt="" />
+        <img :src="`/cgd103/g3/new_img2/${card.pro_img}`" alt="" />
         <!-- <img :src="IMG_URL(card.pro_img)" alt="" /> -->
       </div>
       <h3>{{ card.pro_name }}</h3>
