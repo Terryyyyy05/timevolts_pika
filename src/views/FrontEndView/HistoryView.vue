@@ -1,6 +1,9 @@
 <template>
    <all-header />
    <innerpageHeader></innerpageHeader>
+   <base-dialog :show="!hasLoggedIn" title="登入訊息" @close="closeDialog">
+      <p>您需要登入才能執行此操作</p>
+   </base-dialog>
    <div class="container">
       <the-heading heading="歷史故事" subheading="history"></the-heading>
       <history-filter @change-filter="setFilters"></history-filter>
@@ -18,9 +21,9 @@
       >
          <font-awesome-icon
             icon="fa-solid fa-heart"
-            :class="{ isFavorite: isFavorite }"
+            :class="{ isFavorite: filteredHistories[index].isFavorite }"
             class="heart"
-            @click=""
+            @click="clickHeart(index)"
          />
       </history-item>
       <button class="btn-primary" v-if="isActive" @click="showmore">
@@ -33,6 +36,7 @@
 <script>
 import HistoryFilter from "../../components/history/HistoryFilter.vue";
 import HistoryItem from "../../components/history/HistoryItem.vue";
+import { BASE_URL } from "@/assets/js/commom.js";
 
 export default {
    components: {
@@ -56,6 +60,9 @@ export default {
             oceania: true,
          },
          visible: 4,
+         activeIndex: [],
+         userId: null,
+         hasLoggedIn: true,
       };
    },
    computed: {
@@ -149,6 +156,42 @@ export default {
       showmore() {
          this.visible += 4;
       },
+      async clickHeart(index) {
+         await this.$store.dispatch("getUserId");
+         this.userId = this.$store.getters["userId"];
+         if (!this.userId) {
+            // 找不到會員
+            this.hasLoggedIn = false;
+         } else {
+            this.collectStory(index);
+         }
+      },
+      async collectStory(index) {
+         this.filteredHistories[index].isFavorite =
+            !this.filteredHistories[index].isFavorite;
+         if (this.filteredHistories[index].isFavorite === true) {
+            // console.log(index);
+            // console.log(this.filteredHistories[index].id);
+            const response = await fetch(`${BASE_URL}collectStory.php`, {
+               method: "POST",
+               body: JSON.stringify({
+                  userId: this.userId,
+                  storyId: this.filteredHistories[index].id,
+               }),
+            });
+         } else {
+            const response = await fetch(`${BASE_URL}unCollectStory.php`, {
+               method: "POST",
+               body: JSON.stringify({
+                  userId: this.userId,
+                  storyId: this.filteredHistories[index].id,
+               }),
+            });
+         }
+      },
+      closeDialog() {
+         this.hasLoggedIn = true;
+      },
    },
 };
 </script>
@@ -161,5 +204,9 @@ export default {
    display: flex;
    justify-content: flex-end;
    cursor: pointer;
+}
+
+.isFavorite {
+   color: red;
 }
 </style>

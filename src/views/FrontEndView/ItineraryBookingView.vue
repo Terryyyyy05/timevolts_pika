@@ -155,19 +155,22 @@ export default {
          this.info = responseData;
          // console.log(this.info);
       },
-      // async payForOrder() {
-      //    this.orderInfo = this.$store.getters["itineraryBooking/orderInfo"];
-      //    // console.log(this.orderInfo);
-      //    const response = await fetch(`${BASE_URL}Ecpay.php`, {
-      //       method: "POST",
-      //       body: JSON.stringify({
-      //          itineraryId: this.orderInfo.itineraryId,
-      //          attendNum: this.orderInfo.attendNum,
-      //          totalPrice: this.orderInfo.totalPrice,
-      //          itineraryName: this.itineraryName,
-      //       }),
-      //    });
-      // },
+      async payForOrder() {
+         this.orderInfo = this.$store.getters["itineraryBooking/orderInfo"];
+         // console.log(this.orderInfo);
+         const response = await fetch(`${BASE_URL}Ecpay.php`, {
+            method: "POST",
+            // body: JSON.stringify({
+            //    itineraryId: this.orderInfo.itineraryId,
+            //    attendNum: this.orderInfo.attendNum,
+            //    totalPrice: this.orderInfo.totalPrice,
+            //    itineraryName: this.itineraryName,
+            // }),
+            headers: {
+               "Content-Type": "application/x-www-form-urlencoded",
+            },
+         });
+      },
       async confirmOrder() {
          this.orderInfo = this.$store.getters["itineraryBooking/orderInfo"];
          // console.log(this.orderInfo);

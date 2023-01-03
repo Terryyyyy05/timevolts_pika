@@ -83,7 +83,6 @@ export default {
       itinPeriodCardInfo,
       asideBar,
    },
-
    setup() {
       const route = useRoute();
 
@@ -172,6 +171,7 @@ export default {
          // result: [],
          userId: null,
          hasLoggedIn: true,
+         storyId: "",
       };
    },
 

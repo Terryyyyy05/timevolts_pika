@@ -23,7 +23,7 @@ export default {
 
          for (const key in responseData) {
             const history = {
-               id: String(responseData[key].story_id),
+               id: responseData[key].story_id,
                title: responseData[key].story_name,
                tagDanderLevel: responseData[key].story_risk,
                tagFeature: responseData[key].story_specialty,
@@ -32,9 +32,29 @@ export default {
                description: responseData[key].story_intro,
                image: responseData[key].story_cover,
                status: responseData[key].story_status,
+               isFavorite: false,
             };
             histories.push(history);
          }
+
+         const response2 = await fetch(`${BASE_URL}getCollectedStory.php`);
+
+         const responseData2 = await response2.json();
+         // console.log(responseData2);
+
+         const favoriteStory = [];
+
+         for (const key in responseData2) {
+            favoriteStory.push(responseData2[key].story_id);
+         }
+         // console.log(favoriteStory);
+
+         histories.forEach(history => {
+            if (favoriteStory.includes(history.id)) {
+              history.isFavorite = true;
+            }
+          });
+         // console.log(histories);
 
          context.commit("getHistories", histories);
       },

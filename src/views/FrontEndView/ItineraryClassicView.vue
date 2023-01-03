@@ -131,7 +131,6 @@ export default {
          hasLoggedIn: true,
       };
    },
-
    beforeUpdate() {
       this.saveItineraryName();
    },
