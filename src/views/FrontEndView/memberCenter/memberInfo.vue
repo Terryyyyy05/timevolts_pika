@@ -29,22 +29,22 @@
             </div>
             <!-- 更新密碼 -->
             <div>
-                <label for="password">舊密碼</label>
+                <label for="password">密碼</label>
                 <input :disabled="inputDisabled" type="text" id="password" ref="mem_psw" v-model="oldPassword">
             </div>
-            <div>
+            <!-- <div>
                 <label for="password1">新密碼</label>
                 <input :disabled="inputDisabled" type="password" id="password1" ref="mem_password1" v-model="newPassword">
             </div>
             <div>
                 <label for="password2">再次密碼</label>
                 <input :disabled="inputDisabled" type="password" id="password2" ref="mem_password2" v-model="ConfirmNewPassword">
-            </div>
+            </div> -->
         </form>
         <div class="photo-area">
             <form action="" method="post" enctype="multipart/form-data">
                 <label for="uploadPic">
-                    <div id="myimg"></div>
+                    <div id="myimg"><img src="../../../assets/image/about/member.jpg" alt=""></div>
                 </label>
                 <input
                     :disabled="inputDisabled"
@@ -56,13 +56,13 @@
             </form>
             <p class="memLevel">{{ memLevel }}</p>
             <div class="btn-area">
-                <button
+                <!-- <button
                     class="btn-lightbox"
                     v-show="!inputDisabled"
                     @click="changeInfo()"
                 >
                     取消
-                </button>
+                </button> -->
                 <button class="btn-lightbox" @click="changeInfo()">
                     {{ inputDisabled ? "編輯" : "完成" }}
                 </button>
@@ -209,8 +209,14 @@ export default {
         #myimg {
         width: 100px;
         height: 100px;
+        object-fit: cover;
         border-radius: 50%;
         border: 1px solid map-get($color, primary);
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
     }
     }
     
@@ -289,8 +295,14 @@ main {
     #myimg {
         width: 200px;
         height: 200px;
+        object-fit: cover;
         border-radius: 50%;
         border: 2px solid map-get($color, primary);
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
     }
 }
 </style>

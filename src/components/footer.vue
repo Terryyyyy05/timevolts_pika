@@ -7,7 +7,7 @@
       <router-link to="/history">歷史故事</router-link> |
       <router-link to="/product">購物商城</router-link> |
       <router-link to="/about">關於我們</router-link> |
-      <router-link to="/member">會員中心</router-link>
+      <router-link to="/memberLightBox">會員中心</router-link>
     </div>
     <div>{{copyright}}</div>
     <div class="container">{{disclaimer}}</div>
