@@ -52,6 +52,7 @@ import itinCard from "@/components/itinerary/card/itinCard.vue";
 import showMoreButton from "@/components/itinerary/card/showMoreButton.vue";
 import { ref, computed } from "vue";
 import { cardContext } from "../js/data.js";
+import { BASE_URL } from "@/assets/js/commom";
 
 export default {
     components: {
@@ -72,12 +73,65 @@ export default {
         const distinguishTrueFalse = computed(() => {
             return informationVisible.value !== 16 ? true : false;
         });
+        // const storyData = reactive([]);
+        // const fetchStory = () => {
+        //     fetch(`${BASE_URL}/getItineraries.php`)
+        //         .then((res) => res.json)
+        //         .then((data) => {
+        //             const storyInfos = [];
+        //             for (const key in data) {
+        //                 const storyInfo = {
+        //                     name: data[key].story_name,
+        //                     risk: data[key].story_risk,
+        //                     specialty: data[key].story_specialty,
+        //                     spot: data[key].story_spot,
+        //                     years: data[key].itinerary_number_of_years,
+        //                     intro: data[key].story_intro,
+        //                     image: data[key].story_cover,
+        //                 };
+        //                 storyInfos.push(storyInfo);
+        //             }
+        //             storyData.value = storyInfos;
+        //             console.log(storyInfos);
+        //         });
+        // };
         return {
             informationVisible,
             visibleInformation,
             AddvisibleInformation,
             distinguishTrueFalse,
         };
+    },
+    data() {
+        return {
+            storyData: [],
+        };
+    },
+    created() {
+        this.fetchStory();
+    },
+    methods: {
+        fetchStory() {
+            fetch(`${BASE_URL}/getItineraries.php`)
+                .then((res) => res.json())
+                .then((data) => {
+                    const storyInfos = [];
+                    for (const key in data) {
+                        const storyInfo = {
+                            name: data[key].story_name,
+                            risk: data[key].story_risk,
+                            specialty: data[key].story_specialty,
+                            spot: data[key].story_spot,
+                            years: data[key].itinerary_number_of_years,
+                            intro: data[key].story_intro,
+                            image: data[key].story_cover,
+                        };
+                        storyInfos.push(storyInfo);
+                    }
+                    this.storyData = storyInfos;
+                    console.log(this.storyData);
+                });
+        },
     },
 };
 </script>

@@ -75,7 +75,7 @@
 </template>
 <script>
 import participantsInfo from "@/components/memberCenter/participantsInfo.vue";
-import { BASE_URL } from "@/assets/js/commom";
+    import { BASE_URL } from "@/assets/js/commom";
 
 export default {
     name: "detailLightbox",
