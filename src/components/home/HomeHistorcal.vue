@@ -46,7 +46,7 @@
           >
             <!-- <img v-bind:src="'/image/history/banner/' + item.story_cover" /> -->
 
-            <img :src="STORY_IMG_URL(item.story_cover)" alt="" />
+            <img :src="`/cgd103/g3/new_img2/${item.story_cover}`" alt="" />
           </div>
         </TransitionGroup>
       </div>
@@ -57,7 +57,7 @@
 
 <script>
 // import { Carousel, Slide } from 'vue-carousel';
-import { STORY_IMG_URL } from "@/assets/js/story_img_path.js";
+// import { STORY_IMG_URL } from "@/assets/js/story_img_path.js";
 import { BASE_URL } from "@/assets/js/commom.js";
 export default {
   // components: {
@@ -73,11 +73,11 @@ export default {
       activeIndex: 0,
     };
   },
-  setup() {
-    return {
-      STORY_IMG_URL,
-    };
-  },
+  // setup() {
+  //   return {
+  //     STORY_IMG_URL,
+  //   };
+  // },
   computed: {},
   methods: {
     getHistoriesData() {
